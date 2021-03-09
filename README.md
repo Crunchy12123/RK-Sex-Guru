@@ -1,2 +1,4 @@
 # RK-Sex-Guru
- Mod for the game LifePlat
+ Mod for the game LifePlay
+ 
+## COMIN SOON !
