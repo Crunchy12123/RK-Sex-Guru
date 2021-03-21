@@ -44,6 +44,8 @@ OTHER: Player:
             
             If 0
 
+                SGId = Actor.getID()
+                Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
                 Player(Happy):: "Of course, you are welcome to join, let's exchange our numbers!"
                 Player:interpersonal += 0.5
                 Player.modifyActorVar(rk_discipleattractiontoplayer, 0.5)

@@ -62,12 +62,14 @@ SceneStart()
     
         Player(Curious)::"Let's see what we received as a donation this week!"
         
-        If SexGuruDisciple > 1 
+        If SexGuruDisciple > 10
+            SGId = MarcyKlump.getID()
             MarcyKlump.dressExcept(Outerwear, Headwear, Eyewear)
             MarcyKlump.show()
             MarcyKlump(Happy)::"Yes my Lord, let's check together!"
             MarcyKlump:rapportwithplayer += Random(5, 10)
             MarcyKlump.makeInterested(Player)
+            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
             MarcyKlump.setActorVar(tag_SGDisciple, 1)
             MarcyKlump.modifyActorVar(rk_discipleAttraction, 15)
             Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
