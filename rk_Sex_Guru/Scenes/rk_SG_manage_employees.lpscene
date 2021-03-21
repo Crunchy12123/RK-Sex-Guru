@@ -1,0 +1,78 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+    
+    discipleattraction = Actor.getActorVar(rk_discipleattraction)
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+
+    If Player.isNaked()
+        Player.dress()
+    EndIf
+    Player.show()
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(Home)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+    
+    stayInMenu = true
+            
+        While stayInMenu
+            Player(Serene):: "Which employees do I want to manage?"
+            1:: "Disciples"
+            40:: "Community models"
+            5:: "Maid"
+            30:: "Instructors"
+            50:: "Photographer"
+            60:: "Filmmaker"
+            70:: "Assistant guru"
+            80:: "Web administrator"
+            90:: "Henchmens/Henchgirls"
+            99:: "All done"
+    
+            If 40 
+                SGManageDiscipleJobType.setGlobal(choice)
+                followUp(rk_SG_manage_disciple) // not paid but give you gifts
+                stayInMenu = false
+
+            ElseIf 1 || 5 || 50 || 60 || 70 || 80
+                SGManageDiscipleJobType.setGlobal(choice)
+                followUp(rk_SG_manage_staff)
+                stayInMenu = false
+        
+            ElseIf 30
+                "NOT IMPLEMENTED YET"
+                // followUp(rk_SG_manage_Instructor) // paid per train
+                stayInMenu = false
+        
+            ElseIf 90
+        
+                Player(Serene):: "Which Henchmen do I want to manage?"
+                91::"Henchmen inside the temple"
+                92::"Henchgirl inside the temple"
+                93::"Henchmen outside the temple"
+                94::"Henchgirl outside the temple"
+        
+                If 91 || 92 || 93 || 94
+        
+                SGManageDiscipleJobType.setGlobal(choice)
+                followUp(rk_SG_manage_Henchmens)
+                stayInMenu = false
+            
+            Else
+            
+                stayInMenu = false
+        
+            EndIf
+            
+        EndWhile
+        
+    EndIf
+    
+SceneEnd()

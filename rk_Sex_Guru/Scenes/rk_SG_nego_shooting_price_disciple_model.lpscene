@@ -1,0 +1,196 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: MainActor = getSpecific(PassedOn)
+OTHER: none
+
+SceneStart()
+    
+    discipleattraction = MainActor.getActorVar(rk_discipleattraction)
+    
+    // Get the desired location, main location for this code
+    SGdesiredShootingLocation = rk_SG_NextShootingLocation.getGlobal()
+
+    If SGdesiredShootingLocation == 1 // home
+        moveTo(place_of_worship)
+    EndIf
+
+    askingPrice = 0
+    
+    If Player.isNaked()
+        Player.dress()
+    EndIf
+    Player.show()
+    
+    // Calculate salary for the shoot
+    If MainActor.isValid()
+        
+        MainActor.dress()
+        MainActor.show(1)
+        MainActor.moveToPersonStand(Player, 50) // Walk close to the target
+        
+        SGisAgencyModel = MainActor.getActorVar(rk_SG_IsAgencyModel)
+        
+        If MainActor.isProstitute()    // prostitutes get a lower salary
+            askingPrice = 150
+            MainActor.setActorVar(rk_SG_DiscipleSalary, askingPrice)
+            askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+            
+            Player(Serene)::"<MainActor.Name> is one of my sex workers. I will only pay <MainActor.o> <askingPriceLocal> for this shooting."
+        
+        ElseIf SGisAgencyModel > 0
+            // Shooting price is based on attractiveness and pornfame
+            askingPrice = 50 * MainActor:pornfame
+            If MainActor:attractiveness > 50
+                askingPrice = 75 * MainActor:pornfame
+            ElseIf MainActor:attractiveness > 75
+                askingPrice = 100 * MainActor:pornfame
+            ElseIf MainActor:attractiveness > 90
+                askingPrice = 150 * MainActor:pornfame
+            EndIf
+            
+            // Price is higher than with normal npcs
+            askingPrice *= 1.05  // real models are more expensive ;)
+            
+            askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+            "<MainActor.Name> is a ChurchAgency model and is available to book for <askingPriceLocal>. Book <MainActor.o>?"
+            0:: "Yes, pay <askingPriceLocal>"
+            1:: "Negotiate on the price"
+            99:: "Don't book <MainActor.Name>"
+            
+            If 99
+                MainActor.hide()
+                MainActor = 0
+            ElseIf 1
+                ChurchAgencyBoss = generatePersonTemporary(rk_ChurchAgency_Boss)
+                dressFormal()
+                ChurchAgencyBoss.dress()
+                dressFormal()
+                secondScreen(ChurchAgencyBoss)
+                ChurchAgencyBoss.show(3)
+                Random
+                    ChurchAgencyBoss::"Listen buddy, you pay my price, or my models won't shooting for you. Easy as is uh?"
+                    ChurchAgencyBoss::"If you want to do a shooting with one of my models, you will have to pay my price. Not less?"
+                    ChurchAgencyBoss::"Are you trying to negotiate with me? At least you have some guts...!"
+                    ChurchAgencyBoss::"Really? You want to pay less for <MainActor.Name>? Good luck to find an another ChurchAgency!"
+                    ChurchAgencyBoss::"If you don't have money, then I don't have models for you!"
+                EndRandom
+                0:: "Pay what <ChurchAgencyBoss.Name> - <MainActor.Name>'s agent - demands"
+                1:: "Refuse <MainActor.Name>"
+                
+                If 1
+                    MainActor = 0
+                EndIf
+                
+                secondScreen()
+                ChurchAgencyBoss.hide()
+                ChurchAgencyBoss.delete()
+            EndIf
+        Else    // normal NPC
+            
+            // Test if the actor is one of my dates
+            askForPrice = true
+
+            If money < 2000
+                If MainActor.isDating() || MainActor.isRelative()
+                    
+                    Player(Embarassed)::"<MainActor.Name> is my <MainActor.relationship> and I am low on money. Should I ask <MainActor.o> to do the shoot for free?"
+                    0:: "Yes it's worth a try."
+                    1:: "No, I will pay <MainActor.o>."
+                    
+                    If 0 
+                        If MainActor:rapportwithplayer >= 55 && MainActor:perversion >= 50
+                            Random
+                                MainActor(Wink):: "Sure, let's do that for money!"
+                                MainActor(Wink):: "It's a good idea to earn some money this way. I was afraid to ask you that?"
+                                MainActor(Bored):: "Ok... I will do it for you."
+                                MainActor(Bored):: "Oh sweet, you are asking me to help you with my body? So you like my body?"
+                            EndRandom
+                            Player(Happy)::"Wow! I was lucky. <MainActor.Name> accept to do the shoot without being paid."
+                            MainActor.modifyActorVar(rk_discipleattraction, 10)
+                            askForPrice = false
+                        Else
+                            Random
+                                MainActor(Angry):: "Oh <Player.Name> I'm open to do it but not for free!"
+                                MainActor(Bored):: "<Player.Boy_or_Girl>, I' ready to do a shooting with you. But I want to see some cash!"
+                                MainActor(Bored):: "I'm not going to undress if you are not going to pay me. It's easy as that!"
+                            EndRandom
+                            Player(Sad)::"Uhh! Let's see how much <MainActor.s> is asking for..."
+                        EndIf
+                    EndIf
+                EndIf
+            EndIf
+            
+            If askForPrice
+
+                // Shooting price is based on attractiveness and intelligence
+                askingPrice = 50 * MainActor:intelligence
+                If MainActor:attractiveness > 50
+                    askingPrice = 75 * MainActor:intelligence
+                ElseIf MainActor:attractiveness > 75
+                    askingPrice = 100 * MainActor:intelligence
+                ElseIf MainActor:attractiveness > 90
+                    askingPrice = 150 * MainActor:intelligence
+                EndIf
+                
+                askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+                
+                Random
+                    Player(Bored)::"<MainActor.Name> is asking for <askingPriceLocal>. Will I pay that for <MainActor.o>?"
+                    Player(Serene)::"<MainActor.Name> requests a salary of <askingPriceLocal>. Pay that?"
+                    Player(Serene)::"<MainActor.Name> thinks <MainActor.s> is worth <askingPriceLocal>. Accept that?"
+                    Player(Serene)::"<MainActor.Name> demands <askingPriceLocal> for taking part in this shooting. Accept?"
+                    Player(Serene)::"<askingPriceLocal> is what <MainActor.Name> thinks I should pay <MainActor.o> for this shooting. Agree?"
+                EndRandom
+                
+                0:: "Yes, pay <askingPriceLocal>"
+                1:: "Try to negotiate with <MainActor.Name>"
+                99:: "Don't book <MainActor.Name>"
+                
+                If 1
+                    chance = Random(1,5)
+                    If chance >= 3
+                        askingPrice -= (chance*100)
+                        If askingPrice < 350
+                            askingPrice = 350
+                        EndIf
+                        askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+                        Player(Wink)::"I was able to talk <MainActor.Name> down to <askingPriceLocal>."
+                    Else
+                        Random
+                            Player(Annoyed)::"<MainActor.Name> was not willing to negotiate."
+                            Player(Annoyed)::"I will have to pay what <MainActor.o> demands or find another model that I can afford."
+                            Player(Annoyed)::"My negotiations were unlucky."
+                            Player(Annoyed)::"Bah! <MainActor.Name> says this is <MainActor.p> minimum."
+                            Player(Annoyed)::"<MainActor.Name> consisted on <MainActor.p> salary. I had no chance..."
+                            Player(Annoyed)::"I had a hard time negotiating with <MainActor.Name>. We could not agree on a discount."
+                            Player(Annoyed)::"This time I did not succeed in negotiating with <MainActor.Name>. Maybe next time?"
+                        EndRandom
+                        0:: "Pay what <MainActor.s> demands"
+                        1:: "Refuse <MainActor.Name> offer"
+                        
+                        If 1
+                            MainActor = 0
+                        EndIf
+                    EndIf
+                ElseIf 99
+                    MainActor.hide()
+                    MainActor = 0
+                EndIf
+            EndIf
+        EndIf
+        
+        askingPrice
+    EndIf
+    
+    If money < askingPrice && MainActor.isValid()
+        Player(Sad)::"I don't have enough money to pay <MainActor.Name>."
+        Player(Curious)::"I need to find a way to make money to do shootings!"
+    ElseIf MainActor.isValid()
+        rk_SG_NextShootingCost.setGlobal(askingPrice)
+        
+        MainActor.passOn()
+        followUp(rk_SG_do_shooting)
+    EndIf
+    
+SceneEnd()

@@ -1,0 +1,200 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+    JuiceCollectorType = Player.getActorVar(rk_SG_JuiceCollectorType)
+    HolyStatueType = Player.getActorVar(rk_SG_HolyStatueTypeType)
+    SGPussyJuice  = Player.getActorVar(rk_SGPussyJuice)
+    SGSpermJuice  = Player.getActorVar(rk_SGSpermJuice)
+    AmountDons = SGPussyJuice + SGSpermJuice
+    MarcyKlump = generatePersonTemporary(rk_ModelT_Marcy_Klump)
+    
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(place_of_worship)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+        
+    // Calculate the time in days since the last check
+    DondaysSinceBirth = (Player:Age * 365)
+    DondaysSinceBirth += 0.5
+    DondaysSinceBirth = DondaysSinceBirth.round()
+    DondaysSinceBirth -= 1
+        
+    DonlastCheckDays = Player.getActorVar(rk_LastDonCheck)
+    DonLastCheck = DondaysSinceBirth - DonlastCheckDays
+    
+    // Initialize the reporting date
+    If DonlastCheckDays == 0
+        DonLastCheck = -1
+    EndIf
+        
+    // Sanity check
+    If DonLastCheck < 1
+        If DonLastCheck < 0
+            Player.setActorVar(rk_LastDonCheck, DondaysSinceBirth)
+            "To receive new donations you have to wait at least 24 hours."
+        Else
+            Player(Annoyed)::"I already checked if we received new donations in the last 24hrs."
+            Player(Curious)::"Maybe I should go write some gospels, do public presentation or else, for passing time..."
+        EndIf
+    Else
+    
+    // Remember the current date as last check time
+    Player.setActorVar(rk_LastDonCheck, DondaysSinceBirth)
+
+    If HolyStatueType < 1
+    
+        "You need a Holy Statue and a sex juice collector before receiving any donations!"
+        
+    ElseIf JuiceCollectorType < 1
+     
+        "You need a sex juice collector before receiving any donations!"
+    
+    Else
+    
+        Player(Curious)::"Let's see what we received as a donation this week!"
+        
+        If SexGuruDisciple > 1 
+            MarcyKlump.dressExcept(Outerwear, Headwear, Eyewear)
+            MarcyKlump.show()
+            MarcyKlump(Happy)::"Yes my Lord, let's check together!"
+            MarcyKlump:rapportwithplayer += Random(5, 10)
+            MarcyKlump.makeInterested(Player)
+            MarcyKlump.setActorVar(tag_SGDisciple, 1)
+            MarcyKlump.modifyActorVar(rk_discipleAttraction, 15)
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+            MarcyKlump.makePermanent()
+            exchangeContact(MarcyKlump)
+            MarcyKlump:perversion += 15
+            MarcyKlump:arousal += 10
+            
+        EndIf
+        
+        DonationChance = random(0, 45)
+        
+        If DonationChance == 3
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player(Happy)::"We received 2 bottle of sperm juice this week!"
+            Player.modifyActorVar(rk_SGSpermJuice, 2)
+        
+        ElseIf DonationChance == 7
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player(Happy)::"We received 2 bottle of pussy juice this week!"
+            Player.modifyActorVar(rk_SGPussyJuice, 2)
+        
+        ElseIf DonationChance == 11
+        
+            MoneyDonationChance = random(10, 500)
+            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
+            
+            Player(Happy)::"We received <MoneyDonationChanceLoc> this week!"
+            money += MoneyDonationChance
+            
+        
+        ElseIf DonationChance == 15
+        
+            Player(Happy)::"We received 1 bottle of sperm juice this week!"
+            Player.modifyActorVar(rk_SGSpermJuice, 1)
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 0.5)
+            Player(Happy)::"And also 1 bottle of pussy juice this week!"
+            Player.modifyActorVar(rk_SGPussyJuice, 1)
+            
+        ElseIf DonationChance == 19
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 2.5)
+            Player(Happy)::"We received 5 bottle of sperm juice this week!"
+            Player.modifyActorVar(rk_SGSpermJuice, 5)
+            
+            Player(Happy)::"And also 5 bottle of pussy juice this week!"
+            Player.modifyActorVar(rk_SGPussyJuice, 5)
+            
+        ElseIf DonationChance == 23
+        
+            MoneyDonationChance = random(10, 500)
+            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 3)
+            Player(Happy)::"We received <MoneyDonationChanceLoc> this week!"
+            money += MoneyDonationChance
+            
+            Player(Happy)::"We received 1 bottle of sperm juice this week!"
+            Player.modifyActorVar(rk_SGSpermJuice, 1)
+            
+            Player(Happy)::"And also 1 bottle of pussy juice this week!"
+            Player.modifyActorVar(rk_SGPussyJuice, 1)
+            
+        ElseIf DonationChance == 27
+        
+            MoneyDonationChance = random(10, 1500)
+            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 2)
+            Player(Happy)::"We received <MoneyDonationChanceLoc> this week!"
+            money += MoneyDonationChance
+            
+        ElseIf DonationChance == 31
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            "We received 10 Healthy Cookies"
+            Player.modifyActorVar(Tstock_HealthyCookie, 10)
+        
+        ElseIf DonationChance == 35
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            "We received 10 Nutricious breads"
+            Player.modifyActorVar(Tstock_Bread, 10)
+
+        ElseIf DonationChance == 39
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            "We received 10 Big ball hickeys"
+            Player.modifyActorVar(stock_BigBallHickey, 10)
+
+        ElseIf DonationChance == 43
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            "We received 10 Sushi dishes"
+            Player.modifyActorVar(Tstock_Sushi, 10)
+
+        Else
+        
+            Player(sad)::"We've received nothing this week!"
+            
+        EndIf
+        
+        If SexGuruDisciple > 1
+            
+            "What I want to do next?"
+            0::"Give some love to <MarcyKlump.name> <MarcyKlump.name_last>"
+            99::"Nothing else!"
+            
+            If 0
+            
+                Player.strip()
+                MarcyKlump.strip()
+                            
+                Sex(Player, MarcyKlump)
+                            
+                MarcyKlump:perversion += 1
+                Player:perversion += 1
+                            
+                Player:arousal -=40
+                MarcyKlump:arousal -= 40
+                            
+                passTime(0.5, 1.5)
+            
+            EndIf
+            
+        EndIf
+    
+    EndIf
+
+SceneEnd()

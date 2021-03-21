@@ -1,0 +1,40 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+
+SceneStart()
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
+    PriceChurchCommerce = Player.getActorVar(rk_PriceChurchCommerce)
+    
+    Rent = Random(1000, 3000)
+    RentConverted = Rent.convertToLocalCurrency(true)
+    
+    "The rent of this church for commercial use is <RentConverted> per month, and the current pastor is not renewing."
+    "Do I lease it?"
+    0:: "Yes"
+    1:: "No"
+    
+    If 0
+    
+        Player(happy)::"Yes, that will be perfect for selling our kinky homemade temple products!"
+        ChanceOpening = Random(0, 2)
+        Player.modifyActorVar(rk_SG_SexGuruReputation, ChanceOpening)
+        "I signed the lease on the property and took over the church."
+        
+        Player.setActorVar(rk_PriceChurchCommerce, Rent)
+        "What should I name this church?"
+        enterBusinessName()
+        startBusiness()
+        karma += 5
+        Player.modifyActorVar(rk_discipleattractiontoplayer, ChanceOpening)
+        Player(Happy)"Good, I own a church! Now I should start to produce some products to sell at my church!"
+        Player.setActorVar(rk_StartChurchCommerce, 1)
+        
+    Endif
+    
+SceneEnd()

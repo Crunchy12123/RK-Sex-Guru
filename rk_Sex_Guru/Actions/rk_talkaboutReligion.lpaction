@@ -1,0 +1,13 @@
+ACTION_UNIQUEID: rk_talkaboutReligion
+ACTION_NAME: Talk about my religion
+WHERE: interaction
+WHEN: 0 - 24
+MINUTES: 1 - 15
+TIMEOUT_MINUTES: 0
+ALSO_TIMEOUT: 
+EFFECTS: mood +1 (END), perversion +0.1 (END), mood -2 (INTERRUPTED)
+CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE)
+MOVE_FIRST: true
+SCENE_ALWAYS: rk_talkaboutReligion
+ANIMATION:
+WHO: Actor = getTarget(); If !Actor.isCreature()

@@ -1,0 +1,32 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    discipleattraction = Actor.getActorVar(rk_discipleattraction)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
+    
+    Player.animate(socialize)
+    
+    If StartChurchCommerce > 0
+        Player.modifyActorVar(rk_Churchbrand, 0.25)
+    EndIf
+    
+    "You begin to discuss with the person about your religion and its benefits!"
+    Player.modifyActorVar(rk_discipleattractiontoplayer, 0.25)
+    Actor:discipleattraction += 1
+    passTime(0.5,1)
+    
+    "The reputation of your religion has increased a bit!"
+    Player.modifyActorVar(rk_SG_SexGuruReputation, 0.25)
+    Player:interpersonal += 1
+    
+    // More content will come here
+
+SceneEnd()

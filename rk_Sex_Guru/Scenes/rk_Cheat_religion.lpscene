@@ -1,0 +1,77 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+    SceneStart()
+    
+        SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Religion reputation
+        discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)  // How Religion attract people
+        discipleattraction = Actor.getActorVar(rk_discipleattraction) // Attracted to become a disciple
+        SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination) // Illumination
+        SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
+        rkAreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru) // yes/no
+        SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
+        SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples counter
+        SGPussyJuice = Player.getActorVar(rk_SGPussyJuice)
+        SGSpermJuice = Player.getActorVar(rk_SGSpermJuice)
+        
+        StayInMenu = true
+        While StayInMenu
+            
+            "Be aware that cheating can have consequences on your stats!"
+            "What I want to do?"
+            0::"Add 25 to my perversion"
+            1::"Add 25 to my religion attraction"
+            2::"Add 25 to my illumination"
+            3::"Add 25 to my religion reputation"
+            11::"Add 10 gospels to my inventory!"
+            12::"Add 20 bottles of sperm juice to temple inventory!"
+            13::"Add 20 bottles of pussy juice to temple inventory!"
+            99::"Back to the game!"
+            
+            If 0
+            
+                "25 points added to your perversion"
+                Player:perversion += 25
+            
+            ElseIf 1
+            
+                "25 points added to your religion attraction"
+                Player.modifyActorVar(rk_discipleattractiontoplayer, 25)
+                
+            ElseIf 2
+            
+                "25 points added to your illumination"
+                Player.modifyActorVar(rk_SG_SexGuruIllumination, 25)
+                
+            ElseIf 3
+            
+                "25 points added to your religion reputation"
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 25)
+
+            ElseIf 11
+            
+                "10 gospels added to your holy book"
+                Player.modifyActorVar(rk_SG_SexGuruGospels, 10)
+                
+            ElseIf 13
+            
+                "10 bottles of sperm juice added to your temple inventory"
+                Player.modifyActorVar(rk_SGSpermJuice, 20)  
+                
+            ElseIf 12
+            
+                "10 bottles of pussy juice added to your temple inventory"
+                Player.modifyActorVar(rk_SGPussyJuice, 20)
+                
+            ElseIf 99
+            
+                StayInMenu = false
+                
+            EndIf
+            
+        EndWhile
+    
+    SceneEnd()

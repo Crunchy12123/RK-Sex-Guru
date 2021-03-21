@@ -1,0 +1,180 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+    SceneStart()
+    discipleattraction = Actor.getActorVar(rk_discipleattraction)
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(Home)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+
+    If Player.isNaked()
+        Player.dress()
+    EndIf
+    Player.show()
+    
+    "Please select the disciple that you want to manage."
+    selectNPC(SGDisciple)
+    MainActor = getSelectedNPC()
+    
+    If MainActor.isValid()
+        // MainActor.dressExcept(Outerwear, Top, Bottom, Foot, Headwear, Eyewear)
+        MainActor.dress()
+        MainActor.show(1)
+        
+        traningPrice = 3000 * Random(0.8 , 1)   // Some discount?
+        traningPriceLocal = traningPrice.convertToLocalCurrency(true)
+        
+        Player::"What do I want to do?"
+        
+        stayInMenu = true
+        While stayInMenu
+            0:: "Check disciple's statistics"
+            1:: "Book some ads to promote <MainActor.Name> for <traningPriceLocal>"
+            2:: "Do a shooting with <MainActor.Name>"
+            98:: "Select other disciple"
+            99:: "Return"
+            
+            If 0
+                SGfame = MainActor:pornfame
+                SGcntSolo = MainActor.getActorVar(rk_SG_SoloShootingsDone)
+                SGcntGay = MainActor.getActorVar(rk_SG_GayShootingsDone)
+                SGcntLesbian = MainActor.getActorVar(rk_SG_LesbianShootingsDone)
+                SGcntAmateur = MainActor.getActorVar(rk_SG_AmateurShootingsDone)
+                SGcntThreesome = MainActor.getActorVar(rk_SG_ThreesomeShootingsDone)
+                
+                SGisAgencyModel = MainActor.getActorVar(rk_SG_IsAgencyModel)                  // 1 if the model was generated
+                SGcntSets = MainActor.getActorVar(rk_SG_VideoCount)                          // number of videos of this MainActor
+                SGvalSets = MainActor.getActorVar(rk_SG_VideosValue)                         // value of the videos of this MainActor
+                SGcntPendingSets = MainActor.getActorVar(rk_SG_VideoCountPending)           // pending video uploads
+                SGvalPendingSets = MainActor.getActorVar(rk_SG_VideosValuePending)           // value of the pending uploads
+                
+                SGcntSetsP = MainActor.getActorVar(rk_SG_PhotoCount)                  // number of videos of this actor
+                SGvalSetsP = MainActor.getActorVar(rk_SG_PhotoValue)
+                SGcntPendingSetsP = MainActor.getActorVar(rk_SG_PhotoCountPending)
+                SGvalPendingSetsP = MainActor.getActorVar(rk_SG_PhotoValuePending)
+            
+                SGsumSets = SGcntSets+SGcntPendingSets+SGcntSetsP+SGcntPendingSetsP
+
+                SGfameText = "currently unknown"
+                If SGfame >= 90
+                    SGfameText = "a porn god"
+                ElseIf SGfame >= 80
+                    SGfameText = "famous"
+                ElseIf SGfame >= 65
+                    SGfameText = "very well known"
+                ElseIf SGfame >= 50
+                    SGfameText = "well known"
+                ElseIf SGfame >= 35
+                    SGfameText = "somewhat known"
+                ElseIf SGfame >= 25
+                    SGfameText = "little known"
+                ElseIf SGfame >= 10
+                    SGfameText = "very little known"
+                EndIf
+                
+                txtModelType = "one of my models"
+                If SGisAgencyModel>0
+                    txtModelType = "a ChurchAgency model"
+                EndIf
+                
+                txtGayLes = ""
+                If MainActor.isMale()
+                    // Generate a male character so we can test if the selected model is gay
+                    tmpActor = generatePersonTemporary()
+                    While !tmpActor.isMale()
+                        tmpActor = generatePersonTemporary()
+                    EndWhile
+                    
+                    If MainActor.isInterestedIn(tmpActor)
+                        txtGayLes = "<MainActor.Name> has done <SGcntGay> gay shootings."
+                    Else
+                        txtGayLes = "<MainActor.Name> won't do gay shootings."
+                    EndIf
+                Else
+                    // Generate a female character so we can test if the selected model is lesbian
+                    tmpActor = generatePersonTemporary()
+                    While tmpActor.isMale()
+                        tmpActor = generatePersonTemporary()
+                    EndWhile
+                    
+                    If MainActor.isInterestedIn(tmpActor)
+                        txtGayLes = "<MainActor.Name> has done <SGcntLesbian> lesbian shootings."
+                    Else
+                        txtGayLes = "<MainActor.Name> won't do lesbian shootings."
+                    EndIf
+                    
+                EndIf
+                0:: "<MainActor.Name> is <txtModelType> and <SGfameText> in the community."
+                0:: "<MainActor.S> has done <SGcntAmateur> amateur and <SGcntSolo> solo shootings."
+                0:: "<txtGayLes>"
+                0:: "<MainActor.name> took part in <SGcntThreesome> threesome shootings."
+                0:: "We have <SGsumSets> sets of videos and photos with <MainActor.o> as main actor."
+                0:: "Click to continue..."
+                
+            ElseIf 1
+                last = MainActor.getActorVar(rk_SG_LastJobTraining)
+                daysSinceBirth = (Player:Age * 365) // get the current date 
+                delta = daysSinceBirth - last
+                
+                If delta < 7
+                    timeToWait = 7 - delta
+                    Player(Annoyed)::"I already booked ads for <MainActor.Name> this week. I will have to wait <timeToWait> days."
+                Else
+                    Player(Serene)::"<MainActor.Name> needs some more reputation to increase <MainActor.p> visitor numbers. Pay <traningPriceLocal> for some ads?"
+                    0:: "Yes"
+                    1:: "No"
+                    
+                    If 0
+                        MainActor.setActorVar(rk_SG_LastJobTraining, daysSinceBirth) // remember last training
+                        
+                        MainActor.dress()
+                        MainActor.show(1)
+                        
+                        Random
+                            Player(Serene)::"Listen, <MainActor.Name> I booked some ads for you to make you more famous."
+                            Player(Serene)::"Hey <MainActor.Name>, I booked a new ad for web site featuring you as main actor!"
+                        EndRandom
+                        
+                        money -= traningPrice
+                        gain = Random(0.5,4)
+                        MainActor:pornfame += gain
+                        
+                        Random
+                            MainActor(Serene)::"Awesome! Thanks for doing that for me!"
+                            MainActor(Serene)::"That's cool. I want to be a real porn star!"
+                            MainActor(Flirty)::"Nice. Hope I will attract many more visitors to your site!"
+                        EndRandom
+                        Actor.modifyActorVar(rk_discipleattraction, 1)
+                        
+                    EndIf
+                EndIf
+            ElseIf 2
+                MainActor.passOn()
+                followUp(rk_SG_do_shooting)
+                stayInMenu = false
+            ElseIf 98
+                
+                // Back to model selection 
+                followUp(rk_SG_manage_diciple)
+                stayInMenu = false
+                
+            ElseIf 99
+                
+                //Back to main menu
+                followUp(rk_SG_manage_employees)
+                stayInMenu = false
+            EndIf
+        EndWhile
+    EndIf
+    
+    passTime(1,2)
+    
+    SceneEnd()

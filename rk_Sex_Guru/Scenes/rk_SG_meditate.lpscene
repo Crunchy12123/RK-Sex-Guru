@@ -1,0 +1,87 @@
+WHAT: none
+WHERE: home
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination)
+    
+    "I decide to undress completely and start a meditation session right here ..."
+    Player.strip()
+    "Before I start to meditate, what should I think about?"
+    0::"Ideas for my religion"
+    1:: SGIllumination > 60 :: "Meditate about Elfy Mana"
+    99::"I changed my mind!"
+    
+    If 0
+        Player.show()
+        Player.animate(pray)
+    
+        "Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
+        Player:arousal += 5
+
+        "After a while..."
+        passTime(0.5, 2)
+        Player:perversion -= 0.15
+    
+        "I open my eyes and come out of my deep meditation and the feeling was so relieving..."
+        Player:energy += 3
+        Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
+        Player.animate()
+    
+        Player:karma += 0.5
+        Player:mood += 5
+        
+    ElseIf 1
+    
+        Player.show()
+        Player.animate(pray)
+    
+        "Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
+        Player:arousal += 15
+
+        "After a while..."
+        passTime(0.5, 2)
+        Player:perversion += 1
+    
+        "I open my eyes and come out of my deep meditation and the feeling was so relieving..."
+        Player:energy += 3
+        
+        Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
+        Player.animate()
+        
+        ElfyManaYes = random(0,20)
+        
+        if ElfyManaYes > 10
+        
+            "Elfy Mana just appears in my house,...!"
+            ElfyMana.show()
+            ElfyMana.dressExcept(Outerwear, Top, Bottom)
+        
+            ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."
+            ElfyMana(Serene)::"Let's start having fun together..."
+            ElfyMana:attractiontoplayer += Random(0, 1)
+            
+            Player.strip()
+            ElfyMana.strip()
+            Sex(ElfyMana, Player)
+            
+            ElfyMana(Happy)::"It was fun! Next time you want to play, just meditate and think about me again! See ya!"
+            Player:karma += 0.5
+            Player:mood += 5
+
+            ElfyMana.hide()
+        
+        Else
+        
+            "Looks like she didn't hear my call! Next time maybe!"
+            Player:karma += 0.5
+            Player:mood += 3
+            
+        EndIf
+        
+    EndIf
+
+SceneEnd()

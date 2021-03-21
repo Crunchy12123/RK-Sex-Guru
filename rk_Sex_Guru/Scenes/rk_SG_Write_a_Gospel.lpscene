@@ -1,0 +1,23 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination) // Illumination
+    SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
+    
+    Player.animate(write)
+    
+    "You've written a gospel that will inspire your followers, that's for sure!"
+    Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
+    Player:intelligence += Random(0,1)
+    
+    "1 gospel added to your Holy book!"
+    Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
+    Player:energy -= Random(0,1)
+    passTime(0.5, 2)
+
+SceneEnd()

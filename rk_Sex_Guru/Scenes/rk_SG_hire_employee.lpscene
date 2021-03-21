@@ -1,0 +1,569 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+    SceneStart()
+
+    // local variables for hiring people...
+    TempleJobTitle = ""
+    currentDiscipleId = 0
+    DiscipleIsGenerated = false
+    DiscipleAskingPrice = 0
+    DisciplejobBasePayment = 100
+    DisciplejobRandomPayment = 0
+    DiscipleSkillLvl = 1
+
+    // Find out what to hire...
+    hireType = SGHireNewDiscipleJobType.getGlobal()
+
+    If hireType == 5
+
+        TempleJobTitle = "Maid"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedMaidId)
+        DisciplejobBasePayment = 200
+        DisciplejobRandomPayment = 500
+
+    ElseIf hireType == 50
+
+        TempleJobTitle = "Photographer"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedPhotographerId)
+        DisciplejobBasePayment = 600
+        DisciplejobRandomPayment = 4000
+
+    ElseIf hireType == 60
+
+        TempleJobTitle = "Filmaker"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedFilmakerId)
+        DisciplejobBasePayment = 800
+        DisciplejobRandomPayment = 10000
+
+    ElseIf hireType == 70
+
+        TempleJobTitle = "Assistant guru"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedAssistantId)
+        DisciplejobBasePayment = 100
+        DisciplejobRandomPayment = 500
+
+    ElseIf hireType == 80
+
+        TempleJobTitle = "web administrator"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedWebAdminId)
+        DisciplejobBasePayment = 750
+        DisciplejobRandomPayment = 5000
+
+    ElseIf hireType == 91
+
+        TempleJobTitle = "Henchmen personal guard"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedHench1Id)
+        DisciplejobBasePayment = 750
+        DisciplejobRandomPayment = 5000
+
+    ElseIf hireType == 92
+
+        TempleJobTitle = "Henchgirl personal guard"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedHench2Id)
+        DisciplejobBasePayment = 750
+        DisciplejobRandomPayment = 5000
+
+    ElseIf hireType == 93
+
+        TempleJobTitle = "Henchmen security guard"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedHench3Id)
+        DisciplejobBasePayment = 750
+        DisciplejobRandomPayment = 5000
+
+    ElseIf hireType == 94
+
+        TempleJobTitle = "Henchgirl security guard"
+        currentDiscipleId = Player.getActorVar(rk_SG_EmployedHench4Id)
+        DisciplejobBasePayment = 750
+        DisciplejobRandomPayment = 5000
+
+    Else
+
+        "PANIC!! rk_SG_hire_employee.lpscene called with unknown job type (<hireType>)!"
+
+    EndIf
+
+    Player.dress()
+    Player.show(0)
+
+    // Test if we already got this employee
+    MainActor = getSpecific(currentDiscipleId)
+
+    // Already have a employee of this type?
+    If MainActor.isValid()
+        MainActor.dress()
+        secondScreenIfHidden(MainActor)
+        MainActor.show()
+        Player::"I already have hired <MainActor.Name> as <TempleJobTitle>."
+        Player::"If I want to hire someone else, I need to fire <MainActor.o> first."
+
+        secondScreen()
+        MainActor.hide()
+    Else
+
+        // Go find a new one
+        MainActor = 0
+        Player(Wink)::"Should I ask one of my contacts or hire someone?"
+        0:: "Ask one of my contacts"
+        1:: "Hire someone else"
+        2:: "I don't need a <TempleJobTitle>"
+
+        If 0
+            foundEmployee = false
+            While !foundEmployee
+                selectNPC()
+                MainActor = getSelectedNPC()
+
+                // Test if the selected actor is already employed
+                If MainActor.isValid()
+                    currentSalary = MainActor.getActorVar(rk_SG_DiscipleSalary)
+                    If currentSalary > 0
+                        // Test if this id still is assigned to an employee slot
+                        cannotHire = false
+                        If MainActor.getID() == Player.getActorVar(rk_SG_EmployedMaidId)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGMaid, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedPhotographerId)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGPhotographer, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedFilmakerId)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGFilmaker, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedAssistantId)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGAssistant, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedWebAdminId)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGAdmin, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedHench1Id)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGHench1, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedHench2Id)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGHench2, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedHench3Id)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGHench3, 1)
+
+                        ElseIf MainActor.getID() == Player.getActorVar(rk_SG_EmployedHench4Id)
+                            cannotHire = true
+
+                            //Sanity check!
+                            MainActor.setActorVar(tag_SGHench4, 1)
+
+                        EndIf
+
+                        If cannotHire
+                            Player::"<MainActor.Name> is already working for me. I cannot offer <MainActor.o> another job!"
+                            MainActor.hide()
+                            MainActor = 0
+                        Else
+                            foundEmployee = true
+                        EndIf
+                    Else
+                        foundEmployee = true
+                    EndIf
+                Else
+                    // User cancelled
+                    foundEmployee = true
+                EndIf
+            EndWhile
+        ElseIf 1
+            MainActor = generatePersonTemporary()
+
+            foundEmployee = false
+            While !foundEmployee
+
+                MainActor.dress()
+                secondScreenIfHidden(MainActor)
+                MainActor.show()
+
+                DiscipleSkillLvl = Random(1,100)
+                skillText = "has no skill"
+
+                // write the stat that controls the skill level
+                If hireType == 5
+
+                    MainActor:interpersonal => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community as a maid"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a <MainActor.god_or_goddess> in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community as a maid"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community as a maid"
+                    EndIf
+
+                ElseIf hireType == 50
+
+                    MainActor:pornfame => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community as a photographer"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a <MainActor.god_or_goddess> in the community as a photographer"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community as a photographer"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community as a photographer"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community for <MainActor.his_or_her> family and wedding pictures"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community for <MainActor.his_or_her> wedding pictures"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community for <MainActor.his_or_her> family pictures"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community as a photographer"
+                    EndIf
+
+                ElseIf hireType == 60
+
+                    MainActor:pornfame => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community as a filmaker"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a <MainActor.god_or_goddess> in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community as a filmaker"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community as a filmaker"
+                    EndIf
+
+                ElseIf hireType == 70
+
+                    MainActor:perversion => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community as assistant"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a <MainActor.god_or_goddess> of perversion in the community"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous for <MainActor.his_or_her> perversion in the community"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous for <MainActor.his_or_her> perversion in the community"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community as assistant"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community as assistant"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community as assistant for <MainActor.his_or_her> volunteering"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community as assistant"
+                    EndIf
+                ElseIf hireType == 80
+                    // "web administrator"
+                    MainActor:intelligence => DiscipleSkillLvl
+
+                    skillText = "is a complete dumb ass"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "is a real pro hacker IT geek"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "is a real IT professional"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "is highly intelligent"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "has a good IT knowledge"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "at least knows how to use software"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "at least knows how to turn on a computer"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "does not seem very clever"
+                    EndIf
+
+                ElseIf hireType == 91
+
+                    MainActor:fitness => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a god in the community"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community for his fitness"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community as my personal guard"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community for being strict"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community"
+                    EndIf
+
+                ElseIf hireType == 92
+
+                    MainActor:fitness => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a goddess in the community"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community for her fitness"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community as my personal guard"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community for being strict"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community"
+                    EndIf
+
+                ElseIf hireType == 93
+
+                    MainActor:muscle => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a muscle god in the community"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community for his muscles..."
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community, called the eye of the lynx"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community"
+                    EndIf
+
+                ElseIf hireType == 94
+
+                    MainActor:muscle => DiscipleSkillLvl
+
+                    skillText = "completely unknown in the community"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a muscle goddess in the community"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous in the community for her muscles..."
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community, called the eye of the tigress"
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community"
+                    EndIf
+                EndIf
+
+                Player::"<MainActor.Name> is available to hire. <MainActor.S> is <skillText>. Invite <MainActor.o> to a job interview?"
+                0:: "Yes"
+                1:: "No"
+
+                If 0
+                    foundEmployee = true
+                Else
+                    MainActor.hide()
+                    MainActor = generatePersonTemporary()
+                EndIf
+            EndWhile
+            actorIsGenerated = true
+        EndIf
+
+        // If we found someone for the job interview
+        If MainActor.isValid()
+
+            // Go to the Temple if any
+            TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+            If TempleSize > 0
+                moveTo(Home)
+                setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+            EndIf
+
+            // get the stat that controls the skill level
+            If hireType == 5
+                // "Maid"
+                DiscipleSkillLvl = MainActor:interpersonal
+            ElseIf hireType == 50
+                // "Photographer"
+                DiscipleSkillLvl = MainActor:pornfame
+            ElseIf hireType == 60
+                // "Filmaker"
+                DiscipleSkillLvl = MainActor:pornfame
+            ElseIf hireType == 70
+                // "Assistant guru"
+                DiscipleSkillLvl = MainActor:perversion
+            ElseIf hireType == 80
+                // "web administrator"
+                DiscipleSkillLvl = MainActor:intelligence
+            ElseIf hireType == 91
+                // "Hench 1"
+                DiscipleSkillLvl = MainActor:fitness
+            ElseIf hireType == 92
+                // "Hench 2"
+                DiscipleSkillLvl = MainActor:fitness
+            ElseIf hireType == 93
+                // "Hench 3"
+                DiscipleSkillLvl = MainActor:muscle
+            ElseIf hireType == 94
+                // "Hench 4"
+                DiscipleSkillLvl = MainActor:muscle
+            EndIf
+
+            askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
+            priceLocal = askingPrice.convertToLocalCurrency(true)
+
+            Player::"<MainActor.Name> is available to hire for <priceLocal> / month. Hire <MainActor.o>?"
+            0:: "Yes, hire <MainActor.Name>"
+            1:: "Try to negotiate on salary"
+            2:: "No, look for someone else"
+
+            If 0
+                // All good
+            ElseIf 1
+                chance = Random(1,5)
+                If chance >= 3
+                    askingPrice -= (chance*100)
+                    If askingPrice < 1100
+                        askingPrice = 1100
+                    EndIf
+                    askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+                    Player(Wink)::"I was able to talk <MainActor.Name> down to <askingPriceLocal>."
+                Else
+                    Random
+                        Player(Annoyed)::"<MainActor.Name> was not willing to negotiate."
+                        Player(Annoyed)::"My negotiations were unlucky."
+                        Player(Annoyed)::"<MainActor.Name> says this is <MainActor.p> minimum."
+                    EndRandom
+
+                    Player(Annoyed)::"I will have to pay what <MainActor.o> demands or find another <TempleJobTitle> that I can afford."
+                    0:: "Pay what <MainActor.s> demands"
+                    1:: "Don't hire <MainActor.o>"
+
+                    If 1
+                        MainActor = 0
+                    Else
+                        // All good
+                    EndIf
+                EndIf
+            Else
+                MainActor = 0
+            EndIf
+        EndIf
+
+        // Check if player can pay the negotiated salary
+        If MainActor.isValid() && money < askingPrice
+            Player(Sad)::"I don't have enough money to pay <MainActor.Name>."
+            Player(Curious)::"I need make some money first!"
+            MainActor = 0
+        EndIf
+
+        // It the actor is still valid, all checks were OK, so employ him
+        If MainActor.isValid()
+
+            If actorIsGenerated
+                MainActor.makePermanent()
+                exchangeContact(MainActor)
+            EndIf
+
+            SGId = MainActor.getID()
+            MainActor.setActorVar(rk_SG_DiscipleSalary, askingPrice)
+            daysSinceBirth = (Player:Age * 365) // get the current date
+            MainActor.setActorVar(rk_SG_LastSalaryNegotiation, daysSinceBirth) // remember last salary negotiation
+
+            // Persist the new employee
+            If hireType == 5
+                Player.setActorVar(rk_SG_EmployedMaidId, SGId)
+                MainActor.setActorVar(tag_SGMaid, 1)
+
+            ElseIf hireType == 50
+                Player.setActorVar(rk_SG_EmployedPhotographerId, SGId)
+                MainActor.setActorVar(tag_SGPhotographer, 1)
+
+            ElseIf hireType == 60
+                Player.setActorVar(rk_SG_EmployedFilmakerId, SGId)
+                MainActor.setActorVar(tag_SGFilmaker, 1)
+
+            ElseIf hireType == 70
+                Player.setActorVar(rk_SG_EmployedAssistantId, SGId)
+                MainActor.setActorVar(tag_SGAssistant, 1)
+
+            ElseIf hireType == 80
+                Player.setActorVar(rk_SG_EmployedWebAdminId, SGId)
+                MainActor.setActorVar(tag_SGAdmin, 1)
+
+            ElseIf hireType == 91
+                Player.setActorVar(rk_SG_EmployedHench1Id, SGId)
+                MainActor.setActorVar(tag_SGHench1, 1)
+
+            ElseIf hireType == 92
+                Player.setActorVar(rk_SG_EmployedHench2Id, SGId)
+                MainActor.setActorVar(tag_SGHench2, 1)
+
+            ElseIf hireType == 93
+                Player.setActorVar(rk_SG_EmployedHench3Id, SGId)
+                MainActor.setActorVar(tag_SGHench3, 1)
+
+            ElseIf hireType == 94
+                Player.setActorVar(rk_SG_EmployedHench4Id, SGId)
+                MainActor.setActorVar(tag_SGHench4, 1)
+
+            Else
+                "PANIC!!? rk_SG_hire_employee.lpscene called with unknown job type!"
+            EndIf
+
+            Player(Happy)::"<MainActor.Name> and I signed the contract. <MainActor.S> is now working as my <TempleJobTitle>."
+            Player(Happy)::"I added <MainActor.Name> to my address book."
+        EndIf
+    EndIf
+
+    secondScreen()
+
+    passTime(1,2)
+
+    // Go back to the scene that called us...
+    followUp(rk_SG_manage_employees)
+
+    SceneEnd()

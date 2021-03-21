@@ -1,0 +1,305 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+    
+    SexGuruState = Player.getActorVar(rk_SG_SexGuruState) // open yes/no
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples
+    SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination) // Illumination
+
+    PastorChris = generatePersonTemporary(rk_ModelM_Pastor_Chris)
+    PastorChris.hide()
+    PastorChris.SetJob(Pastor)
+    PastorChris.makePermanent()
+            
+    NunDixie = generatePersonTemporary(rk_modelF_Nun_Dixie)
+    NunDixie.hide()
+    NunDixie.SetJob(Nun)
+    NunDixie.makePermanent()
+    
+    Player.show()
+    dressFormal()
+    Player.dress()
+    dressFormal()
+    
+    "I decided to visit the Sex Religious Society to start my own religion. A company that manages all religions focused on sex ...!"
+    
+    moveTo(Home)
+    setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+        
+    stayInMenu = true
+    While stayInMenu
+
+        If interpersonal > 75
+
+            priceSG = 10000
+            priceSGLocal = priceSG.convertToLocalCurrency()
+
+            "Should I get a licence from the Sex Religious Society to open my own religious community?"
+            0:: money > priceSG && rk_SG_SexGuruState <= 0 ::"Yes (<priceSGLocal>)"
+            1:: "I need information on how to get started"
+            99:: "Not now!"
+        
+            If 0
+
+                PastorChris.show()
+                dressFormal()
+                PastorChris.dress()
+
+                "Why not? This is an adult game, having disciples who will give me money and sex in exchange of my wisdom..."
+                "Let's start my own religion!"
+                Player.moveToPersonStand(PastorChris, 50)
+            
+                Player(Excited)::"Hi pastor, I would like to create my own religion!"
+                PastorChris(Happy):: "Good! I'm happy to see a new guru who wants to join our society!"
+                PastorChris.animate(write)
+                
+                PastorChris(Happy):: "First what name your religion will have?"
+                ReligionName = enterString()
+                
+                exchangeContact(PastorChris)
+                PastorChris:attractiontoplayer += Random(0, 1)
+
+                Player:rkOpenedSexGuru => 1
+                Player.setActorVar(rk_SG_SexGuruState, 1)
+            
+                // Set the next possible reporting date to today
+                daysSinceBirth = (Player:Age * 365)
+                Player.setActorVar(rk_LastSGBusinessCheck, daysSinceBirth)
+            
+                money -= priceSG
+            
+                PastorChris(Serene):: "This will be your main job or...?"
+                0:: "No, I will do my regular job as well"
+                1:: "Yes, no other job needed"
+                
+                If 1
+                
+                    salary = 1  // setting the salary to 1 will disable "need to find a job" nag screens
+                    Player.setBoss()
+                    
+                EndIf
+
+                PastorChris(Serene):: "Good, I think I got the necessary to register your religion '<ReligionName>' inside our black book."
+                
+                yesMale = Player.isMale()
+                If yesMale && Player:perversion > 75 || Player:arousal > 15
+                
+                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
+                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru!"
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                    
+                    If 0
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my dick... anyway..."
+                        "I pulled my pants down and he started licking my penis right away, like a popcycle for a few minutes and then sucking me like a real pro!"
+                        Player.dressExcept(Bottom)
+                        PastorChris.strip()
+                        Sex(Player, PastorChris)
+                        Filter(Blowjob)
+                        perversion += 0.35
+                        PastorChris:attractiontoplayer += Random(0, 1)
+                        passTime(0.15, 0.25)
+                    
+                    EndIf
+
+                
+                ElseIf Player.isFemale() && Player:perversion > 75 || Player:arousal > 15
+                
+                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "
+                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick your lovely vagina!"
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                    
+                    If 0
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my pussy... anyway..."
+                        "I pulled my pants down and he started licking my pussy right away, like a real pro!"
+                        Player.dressExcept(Bottom)
+                        PastorChris.strip()
+                        
+                        "He licks my vulva, annoys my clit, fucked me with his tongue, .... wooaw I'm in heaven!"
+                        Sex(Player, PastorChris)
+                        Filter(Licking)
+                        perversion += 0.35
+                        PastorChris:attractiontoplayer += Random(0, 1)
+                        passTime(0.15, 0.25)
+                    
+                    EndIf
+                
+                EndIf
+                
+                PastorChris(Serene):: "In a few hours, a nun will come to see you to make you sign some papers about your creative process."
+                PastorChris(Serene):: "I wish you much success and many followers! Bye!"
+                PastorChris.hide()
+                passTime(0.25, 0.5)
+                
+                "Going back home..."
+                moveTo(home)
+
+                "After few hours,..."
+                passTime(2,4)
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            
+                "Someone knock at my door..."
+                "I open the door and let her in..."
+                NunDixie(Happy)::"Hello dear, my name is <NunDixie.name> <NunDixie.name_last>. I came to see you to make you signed some papers about your process of creating a religion..."
+                NunDixie.show(1)
+                dressFormal()
+                NunDixie.dress()
+                NunDixie.animate(socialize)
+                NunDixie.makeInterested(Player)
+                NunDixie:attractiontoplayer += Random(0, 2)
+                NunDixie:rapportwithplayer += Random(5, 10)
+            
+                Player(Happy)::"Ok, hi! Nice to see you! Come in, come in, I was waiting for you...."
+                Player.animate(socialize)
+            
+                NunDixie(Happy)::"So, the name of your new religion is <ReligionName>!"
+                Player(Happy)::"Exactly!"
+                NunDixie(Serene)::"It may take a lot of effort to organize your religion and have it officially recognized."
+                NunDixie(Serene)::"As your religion grows, you may look into more permanent meeting place, such as a rented or purchased temple."
+                NunDixie(Serene)::"But don't be discouraged because, it will be very rewarding to see your work lead to a flourishing membership."
+                NunDixie(Serene)::"Also before I leave, if you haven't already, I recommend that you go see Pastor Chris, he will explain how to get started."
+                NunDixie(Happy)::"All right <Player.name>, all papers are signed! Now get your religion up and running. Call me if you need anything!"
+                NunDixie:attractiontoplayer += Random(0, 1)
+
+                If Player:perversion > 75 || Player:arousal > 15
+                
+                    NunDixie(Flirty)::"Huumm! Before I leave I can feel that you are horny, I can smell your hormones from here and I like that smell..."
+                    NunDixie(Flirty)::"As a nun, my duty is to help those in need. I can see you need to be relieved!"
+                    NunDixie(Flirty)::"Do you want me to taste you, because I really want to...."
+                
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                
+                    if 0
+                    
+                        "She jump on me and we start having sex right here!"
+                        Player.strip()
+                        NunDixie.strip()
+                        Sex(NunDixie, Player)
+                        NunDixie:attractiontoplayer += Random(1, 3)
+                        NunDixie:rapportwithplayer += Random(5, 10)
+                    EndIf       
+                    
+                EndIf
+
+                exchangeContact(NunDixie)
+                NunDixie.hide()
+            
+                Player(Serene):: "Now I should find a temple, more disciples and start ripping off some people!"
+                stayInMenu = false
+        
+            Elseif 1
+
+                "I ask to see someone to get more information on how to start my religious community..."
+                Player.animate(socialize)
+            
+                "After a while... someone arrive!"
+                passTime(0.01,0.25)
+            
+                PastorChris.show()
+                dressFormal()
+                PastorChris.dress()
+                PastorChris.animate(socialize)
+                Player.moveToPersonStand(PastorChris, 50)
+            
+                PastorChris(Happy)::"Hi, my name is <PastorChris.name> <PastorChris.name_last>, I'm the person who will tell you how to start your religious community..."
+                PastorChris(Serene)::"First thing you need to do to become a sex guru is to meditate and write gospels, until you reach an illumination."
+                PastorChris(Serene)::"Click on 'Become a sex guru' to start the process to enlightenment."
+                Player(Curious):: "How will I know that I reached it?"
+                PastorChris(Wink)::"You will know, I can tell you... So, let me finish..."
+                PastorChris(Serene)::"When you meditate you boost a little bit your illumination."
+                PastorChris(Serene)::"When you wrote a gospel you boost a little bit your reputation. But when you do a public presentation it boost a little more."
+                PastorChris(Serene)::"The Gospels also needed when you make public presentations, preach to your followers and for other events."
+                PastorChris(Serene)::"You need to write at least 10 gospels before starting."
+                PastorChris(Serene)::"You also need to improve your interpersonal skills to 75, because new religions are rarely accepted if your not a good talker..."
+                PastorChris(Serene)::"After all these, you will then unlock the possibility to find disciples."
+                PastorChris(Serene)::"You will need to find at least ten disciples who will be glad to join your community!"
+                PastorChris(Serene)::"Finally, rent a building, a house,... to make it your temple."
+                PastorChris(Serene)::"Not a easy task, it's an expensive business,... but you will end up millionaire if you don't do crazy things!"
+                
+                yesMale = Player.isMale()
+                If yesMale && Player:perversion > 75 || Player:arousal > 15
+                
+                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
+                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru!"
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                    
+                    If 0
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my dick... anyway..."
+                        "I pulled my pants down and he started licking my penis right away, like a popcycle for a few minutes and then sucking me like a real pro!"
+                        Player.dressExcept(Bottom)
+                        PastorChris.strip()
+                        Sex(Player, PastorChris)
+                        Filter(Blowjob)
+                        perversion += 0.35
+                        PastorChris:attractiontoplayer += Random(0, 1)
+                        passTime(0.15, 0.25)
+                    
+                    EndIf
+
+                
+                ElseIf Player.isFemale() && Player:perversion > 75 || Player:arousal > 15
+                
+                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "
+                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick your lovely vagina!"
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                    
+                    If 0
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my pussy... anyway..."
+                        "I pulled my pants down and he started licking my pussy right away, like a real pro!"
+                        Player.dressExcept(Bottom)
+                        PastorChris.strip()
+                        
+                        "He licks my vulva, annoys my clit, fucked me with his tongue, .... wooaw I'm in heaven!"
+                        Sex(Player, PastorChris)
+                        Filter(Licking)
+                        perversion += 0.35
+                        PastorChris:attractiontoplayer += Random(0, 1)
+                        passTime(0.15, 0.25)
+                    
+                    EndIf
+                
+                EndIf
+                
+                PastorChris(Happy)::"That's it for now! Have a nice gaming!"
+                PastorChris:attractiontoplayer += Random(0, 1)
+                PastorChris.hide()
+        
+            Else
+            
+                "Not at the moment. Maybe later !"
+                stayInMenu = false
+        
+            EndIf
+        
+        Else
+ 
+            "You need at least 75 of interpersonal skills to be a sex guru."
+            stayInMenu = false
+
+        EndIf
+        
+    EndWhile
+    
+SceneEnd()

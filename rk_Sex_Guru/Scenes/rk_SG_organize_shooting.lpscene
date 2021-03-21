@@ -1,0 +1,34 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+    
+    // Find a location - more locations will come
+    hasOffice = Player.getActorVar(rk_PlayerTempleLocationSize)
+
+    Player::"Where do I want to do the shooting?"
+    0:: "Right here"
+    1:: PlayerHasHome()::"In my bedroom"
+    100::"I changed my mind!"
+    
+    If choice >= 0 && choice < 99
+        
+        // persist the location in a global variable
+        rk_SG_NextShootingLocation.setGlobal(choice)
+        
+        // Get the desired location
+        SGdesiredShootingLocation = choice
+        
+        If SGdesiredShootingLocation == 1 // home
+            moveTo(place_of_worship)
+        EndIf
+        
+        // Select a MainActor
+        followUp(rk_SG_find_church_model)
+        
+    EndIf
+    
+SceneEnd()

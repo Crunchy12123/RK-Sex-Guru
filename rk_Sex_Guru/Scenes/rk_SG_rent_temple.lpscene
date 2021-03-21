@@ -1,0 +1,111 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+    SceneStart()
+
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(Home)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+    
+    // First check if we already have a Temple
+    wantNewTemple = true
+    moveTemplePrice = 6000
+    If TempleSize > 0
+        
+        Templeprice = Player.getActorVar(rk_PlayerTemplePrice)
+        TemplepriceLocal = Templeprice.convertToLocalCurrency()
+        Tsize = "very small temple"
+        If TempleSize == 6
+            Tsize = "very large temple"
+        ElseIf TempleSize == 5
+            Tsize = "large temple"
+        ElseIf TempleSize == 4
+            Tsize = "spacious temple"
+        ElseIf TempleSize == 3
+            Tsize = "adequate temple"
+        ElseIf TempleSize == 2
+            Tsize = "small temple"
+        EndIf
+        
+        moveTemplePriceLocal = moveTemplePrice.convertToLocalCurrency(true)
+        Player::"I already have a <Tsize> temple for <TemplepriceLocal>. Move to a new temple for <moveTemplePriceLocal>?"
+        0:: "No, stay in the current temple"
+        1:: "Yes look for a new one!"
+        
+        If 0 
+            wantNewTemple = false
+        EndIf
+        
+    Else
+        // Explain what the temple is good for
+        Player::"If I rent an temple I can have more disciples and equipment!"
+        Player::"If I rent spacious, large or very large temple I can also use one of the rooms for innovation. We'll see !"
+        
+    EndIf
+    
+    looking = wantNewTemple
+    While looking
+    
+        Tchance = Random(1,15)
+        Tchance = Tchance.Round()
+        Templeprice = 600 * Tchance
+        TpriceLocal = Templeprice.convertToLocalCurrency()
+        TnumSize = 1
+        
+        Tsize = "very small"
+        If Tchance >= 13
+            Tsize = "very large"
+            TnumSize = 6
+        ElseIf Tchance >= 10
+            Tsize = "large"
+            TnumSize = 5
+        ElseIf Tchance >= 7
+            Tsize = "spacious"
+            TnumSize = 4
+        ElseIf Tchance >= 4
+            Tsize = "adequate"
+            TnumSize = 3
+        ElseIf Tchance >= 2
+            Tsize = "small"
+            TnumSize = 2
+        EndIf
+        
+        Player::"There is a <Tsize> nearby temple available for <TpriceLocal> per month. Shall I rent it?"
+        0::"Yes rent it"
+        1::"No look for another temple"
+        99::"I don't want to rent an temple now"
+        
+        If 0
+            If sceneType = Player.getActorVar(rk_TempleEquipmentType)
+            If [sceneType == 4 && TnumSize <= 5] || [sceneType == 3 && TnumSize <= 2]
+                Player(Sad)::"Well I got too much weed and equipment to fit into this small temple. I need to find a larger one."
+            Else
+                looking = false
+                
+                If TempleSize > 0   // moving
+                    money -= 6000
+                EndIf
+                
+                TempleSize = TnumSize
+                
+                Player(Happy)::"I signed the contract and now can start preach inside a building."
+
+                // Persist the temple settings
+                Player.setActorVar(rk_PlayerTempleLocationSize, TnumSize)
+                Player.setActorVar(rk_PlayerTemplePrice, Templeprice)
+            EndIf
+            
+        ElseIf 99
+            looking = false
+        EndIf
+    EndWhile
+    
+    followUp(rk_Manage_Your_Religion)
+    
+    SceneEnd()

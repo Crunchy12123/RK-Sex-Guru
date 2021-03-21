@@ -1,0 +1,264 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    discipleAttraction = Actor.getActorVar(rk_discipleAttraction)
+    
+    SGPussyJuice = Player.getActorVar(rk_SGPussyJuice)
+    SGSpermJuice = Player.getActorVar(rk_SGSpermJuice)
+    Tstock_MilkShake = Player.getActorVar(Tstock_MilkShake)
+    Tstock_IcecreamCup = Player.getActorVar(Tstock_IcecreamCup)
+    Tstock_FrozenPie = Player.getActorVar(Tstock_FrozenPie)
+    Tstock_IceCreamCake = Player.getActorVar(Tstock_IceCreamCake)
+    
+    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+    
+    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+    
+    FrozenMealsStock = SpecialIceCreams
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(place_of_worship)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+    
+    If FrozenMealsStock > 0
+    
+        stayInMenu = true
+            
+        While stayInMenu
+        
+            "What type of homemade frozen meals I want to sell?"
+            0::"Ice cream desserts <SpecialIceCreams> in stock"
+            99::"Go back"
+        
+            If 0
+            
+                If SpecialIceCreams < 10
+                
+                    "You don't have enough special frozen desserts to sell. You need to produce at leat 10 meals of the same products! Better go produce some more!"
+                
+                Else
+                
+                    // Get current ice cream desserts prices for each types
+                    price_DickyMilkShake = Random(6, 7)
+                    price_DickyMilkShake_local = price_DickyMilkShake.convertToLocalCurrency()
+                    price_MilkShakePussy = Random(6, 7)
+                    price_MilkShakePussy_local = price_MilkShakePussy.convertToLocalCurrency()
+                    price_CumCreamDelight = Random(7, 8)
+                    price_CumCreamDelight_local = price_CumCreamDelight.convertToLocalCurrency()
+                    price_PussyCreamDelux = Random(7, 8)
+                    price_PussyCreamDelux_local = price_PussyCreamDelux.convertToLocalCurrency()
+                    price_Aphrodisiacicecream = Random(8, 9)
+                    price_Aphrodisiacicecream_local = price_Aphrodisiacicecream.convertToLocalCurrency()
+                    price_PussycreamyfrozenPie = Random(9, 10)
+                    price_PussycreamyfrozenPie_local = price_PussycreamyfrozenPie.convertToLocalCurrency()
+                    price_CreamCakelove = Random(10, 15)
+                    price_CreamCakelove_local = price_CreamCakelove.convertToLocalCurrency()
+                    price_ProteinMilXShake = Random(7, 8)
+                    price_ProteinMilXShake_local = price_ProteinMilXShake.convertToLocalCurrency()
+        
+                    "Which special frozen desserts I want to sell?"
+                    0:: Tstock_MilkShakeS > 10 ::"Sell 1 Dicky Milk Shake for <price_DickyMilkShake_local>"
+                    1:: Tstock_MilkShakeP > 10 ::"Sell 1 Milk Shake Pussy <price_MilkShakePussy_local>"
+                    2:: Tstock_IcecreamS > 10 ::"Sell 1 Cum Cream Delight <price_CumCreamDelight_local>"
+                    3:: Tstock_IcecreamP > 10 ::"Sell 1 Pussy Cream Delux <price_PussyCreamDelux_local>"
+                    4:: Tstock_ApIcecream > 10 ::"Sell 1 Aphrodisiac ice cream <price_Aphrodisiacicecream_local>"
+                    5:: Tstock_FrozenPiePC > 10 ::"Sell 1 Pussy creamy frozen Pie <price_PussycreamyfrozenPie_local>"
+                    6:: Tstock_CreamCake > 10 ::"Sell 1 Cream Cake of love <price_CreamCakelove_local>"
+                    7:: Tstock_MilkShakeTOP > 10 ::"Sell 1 Protein MilX Shake <price_ProteinMilXShake_local>"
+                    99::"Go back"
+            
+                    If 0
+                    
+                        MSSnum = Random(1,10)  // number of product
+                        priceMilkShakeStotalsell = MSSnum * Random(6,7)  // total price
+                        priceMilkShakeStotalsellloc = priceMilkShakeStotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Dicky Milk Shakes."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countMilkShakeS = Tstock_MilkShakeS - MSSnum
+                        Player.setActorVar(Tstock_MilkShakeS, countMilkShakeS)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceMilkShakeStotalsell
+                        
+                        "You were able to sell <MSSnum> Dicky Milk Shake(s) for a total in revenue: <priceMilkShakeStotalsellloc>. <countMilkShakeS> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                    
+                    ElseIf 1
+                    
+                        MSPnum = Random(1,10)  // number of product
+                        priceMilkShakePtotalsell = MSPnum * Random(6,7)  // total price
+                        priceMilkShakePtotalsellloc = priceMilkShakePtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Milk Shake Pussy."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countMilkShakeP = Tstock_MilkShakeP - MSPnum
+                        Player.setActorVar(Tstock_MilkShakeP, countMilkShakeP)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceMilkShakePtotalsell
+                        
+                        "You were able to sell <MSPnum> Milk Shake Pussy for a total in revenue: <priceMilkShakePtotalsellloc>. <countMilkShakeP> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+
+                    ElseIf 2
+                    
+                        CCDnum = Random(1,10)  // number of product
+                        priceCCDtotalsell = CCDnum * Random(7,8)  // total price
+                        priceCCDtotalsellloc = priceCCDtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Cum Cream Delights."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countCCD = Tstock_IcecreamS - CCDnum
+                        Player.setActorVar(Tstock_IcecreamS, countCCD)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceCCDtotalsell
+                        
+                        "You were able to sell <CCDnum> Cum Cream Delight(s) for a total in revenue: <priceCCDtotalsellloc>. <countCCD> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+
+                    ElseIf 3
+                    
+                        PCDnum = Random(1,10)  // number of product
+                        priceIcecreamPtotalsell = PCDnum * Random(7,8)  // total price
+                        priceIcecreamPtotalsellloc = priceIcecreamPtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Pussy Cream Delux."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countIcecreamP = Tstock_IcecreamP - PCDnum
+                        Player.setActorVar(Tstock_IcecreamP, countIcecreamP)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceIcecreamPtotalsell
+                        
+                        "You were able to sell <PCDnum> Pussy Cream Delux for a total in revenue: <priceIcecreamPtotalsellloc>. <countIcecreamP> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            
+                    ElseIf 4
+                    
+                        AICnum = Random(1,10)  // number of product
+                        priceAICtotalsell = AICnum * Random(8,9)  // total price
+                        priceAICtotalsellloc = priceAICtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Aphrodisiac ice creams."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countAIC = Tstock_ApIcecream - AICnum
+                        Player.setActorVar(Tstock_ApIcecream, countAIC)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceAICtotalsell
+                        
+                        "You were able to sell <AICnum> Aphrodisiac ice cream(s) for a total in revenue: <priceAICtotalsellloc>. <countAIC> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+
+                    ElseIf 5
+                    
+                        PCFPnum = Random(1,10)  // number of product
+                        pricePCFPtotalsell = PCFPnum * Random(9,10)  // total price
+                        pricePCFPtotalsellloc = pricePCFPtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Pussy creamy frozen Pies."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countPCFP = Tstock_FrozenPiePC - PCFPnum
+                        Player.setActorVar(Tstock_FrozenPiePC, countPCFP)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += pricePCFPtotalsell
+                        
+                        "You were able to sell <PCFPnum> Pussy creamy frozen Pie(s) for a total in revenue: <pricePCFPtotalsellloc>. <countPCFP> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            
+                    ElseIf 6
+                    
+                        CCLnum = Random(1,10)  // number of product
+                        priceCCLnumtotalsell = CCLnum * Random(10,15)  // total price
+                        priceCCLnumtotalsellloc = priceCCLnumtotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Cream Cake(s) of love."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countCCL = Tstock_CreamCake - CCLnum
+                        Player.setActorVar(Tstock_CreamCake, countCCL)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += priceCCLnumtotalsell
+                        
+                        "You were able to sell <CCLnum> Cream Cake(s) of love for a total in revenue: <priceCCLnumtotalsellloc>. <countCCL> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+
+                    ElseIf 7
+                    
+                        PMXSnum = Random(1,10)  // number of product
+                        pricePMXStotalsell = PMXSnum * Random(7,8)  // total price
+                        pricePMXStotalsellloc = pricePMXStotalsell.convertToLocalCurrency()  // total price local
+                        
+                        "You spend some hours selling Protein MilX Shakes."
+                        Player.modifyActorVar(rk_Churchbrand, 1)
+                        
+                        countPMXS = Tstock_MilkShakeTOP - PMXSnum
+                        Player.setActorVar(Tstock_MilkShakeTOP, countPMXS)
+
+                        passTime(2,4)
+                        energy -= Random(5,10)
+                        money += pricePMXStotalsell
+                        
+                        "You were able to sell <PMXSnum> Protein MilX Shake(s) for a total in revenue: <pricePMXStotalsellloc>. <countPMXS> remain in stock."
+                        Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+
+                    Else
+                
+                        stayInMenu = false
+
+                    EndIf
+                    
+                Else
+                
+                    stayInMenu = false
+
+                EndIf
+            
+            Else
+                
+                stayInMenu = false
+                        
+            EndIf
+        
+        EndWhile
+    
+    Else
+        Player(Sad)::"Yeah right, I don't have anything to sell! I should begin to produce some homemade foods at my temple!"
+    EndIf
+    
+SceneEnd()

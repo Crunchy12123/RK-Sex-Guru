@@ -1,0 +1,12 @@
+ACTION_UNIQUEID: rk_start_sex_guru
+ACTION_NAME: Start a religious Community
+WHERE: sexwork, place_of_worship
+WHEN: 0 - 24
+MINUTES: 5
+TIMEOUT_MINUTES: 
+ALSO_TIMEOUT: 
+EFFECTS:
+CONDITIONS: rkOpenedSexGuru < 1 (STAT_COMPARE)
+MOVE_FIRST: false
+SCENE_ALWAYS: rk_start_Sex_Guru
+ANIMATION:   

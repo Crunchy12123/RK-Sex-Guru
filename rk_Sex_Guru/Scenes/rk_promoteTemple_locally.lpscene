@@ -1,0 +1,68 @@
+WHAT: promoteTemple_locally
+WHERE: place_of_worship:business, alcohol:business, bag:business, bakery:business, bar:business, beauty:business, beverages:business, bicycle:business, biergarten:business, books:business, butcher:business, cafe:business, car:business, chemist:business, cinema:business, clothes:business, coffee:business, computer:business, confectionery:business, convenience:business, copyshop:business, cosmestics:business, deli:business, doityourself:business, electronics:business, fast_food:business, florist:business, furniture:business, gift:business, greengrocer:business, hairdresser:business, hotel:business, ice_cream:business, jewellery:business, laundry:business, mobile_phone:business, motorcycle:business, musical_instrument:business, newsagent:business, nightclub:business, optician:business, outdoor:business, pet:business, pharmacy:business, photo:business, pub:business, restaurant:business, seafood:business, shoes:business, sports:business, sports_centre:business, stationery:business, supermarket:business, tea:business, theatre:business, tobacco:business, toys:business, variety_store:business, travel_agency:business
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+    SceneStart()
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    
+    Change = 0.5
+    ModifyReputation(Change)
+    
+    PricePromoRadio = Random(400, 1000)
+    PricePromoRadioLoc = PricePromoRadio.convertToLocalCurrency()
+    PricePromoTV = Random(2000, 5000)
+    PricePromoTVLoc = PricePromoTV.convertToLocalCurrency()
+    
+    "How I will promote?"
+    0:: SexGuruGospels >= 10 ::"With flyers (10 gospels)"
+    1:: money > PricePromoRadio ::"Ads on Radio <PricePromoRadioLoc>"
+    2:: money > PricePromoTV ::"Ads on TV <PricePromoTVLoc>"
+    99:: "Not now!"
+    
+    If 0
+        If SexGuruReputation < 50
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+        Else
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1.25)
+        EndIf
+        
+        "My church reputation in the city increased a bit."
+        Player.modifyActorVar(rk_discipleattractiontoplayer, 2)
+        Player.modifyActorVar(rk_SG_SexGuruGospels, -10)
+        Player.modifyActorVar(rk_Churchbrand, 0.5)
+        
+    ElseIf 1
+    
+        If SexGuruReputation < 50
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 2)
+        Else
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 2.5)
+        EndIf
+        
+        "My church reputation in the city increased a bit."
+        Player.modifyActorVar(rk_discipleattractiontoplayer, 3)
+        Player.modifyActorVar(rk_Churchbrand, 1.5)
+        money -= PricePromoRadio
+    
+    ElseIf 2
+
+        If SexGuruReputation < 50
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 3)
+        Else
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 4)
+        EndIf
+        
+        "My church reputation in the city increased a bit."
+        Player.modifyActorVar(rk_discipleattractiontoplayer, 5)
+        Player.modifyActorVar(rk_Churchbrand, 2)
+        money -= PricePromoTV
+        
+    EndIf
+    
+    SceneEnd()
+    timeout(2, promoteTemple_locally)

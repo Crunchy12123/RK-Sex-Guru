@@ -1,0 +1,1803 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    stock_HealthyCookie = Player.getActorVar(stock_HealthyCookie)
+    stock_LentilStew = Player.getActorVar(stock_LentilStew)
+    stock_CauliAlfredo = Player.getActorVar(stock_CauliAlfredo)
+    stock_RicePeas = Player.getActorVar(stock_RicePeas)
+    stock_Edamame = Player.getActorVar(stock_Edamame)
+    stock_PastaAlfredo = Player.getActorVar(stock_PastaAlfredo)
+    stock_CrispyTofu = Player.getActorVar(stock_CrispyTofu)
+    stock_LoMein = Player.getActorVar(stock_LoMein)
+      
+    stock_Jerkey = Player.getActorVar(Tstock_Jerkey)
+    stock_Cheesesteak = Player.getActorVar(Tstock_Cheesesteak)
+    stock_Chicken = Player.getActorVar(Tstock_Chicken)
+    stock_SaltNPepper = Player.getActorVar(Tstock_SaltNPepper)
+    stock_WrappedPork = Player.getActorVar(Tstock_WrappedPork)
+    stock_ChickenKebabs = Player.getActorVar(Tstock_ChickenKebabs)
+    stock_ChineseBeef = Player.getActorVar(Tstock_ChineseBeef)
+    stock_SurfNTurf = Player.getActorVar(Tstock_SurfNTurf)
+    
+    stock_soda = Player.getActorVar(stock_soda)
+    stock_juice = Player.getActorVar(stock_juice)
+    
+    // Get current items inside inventory
+    Tstock_HealthyCookie = Player.getActorVar(Tstock_HealthyCookie)
+    Tstock_LentilStew = Player.getActorVar(Tstock_LentilStew)
+    Tstock_CauliAlfredo = Player.getActorVar(Tstock_CauliAlfredo)
+    Tstock_RicePeas = Player.getActorVar(Tstock_RicePeas)
+    Tstock_Edamame = Player.getActorVar(Tstock_Edamame)
+    Tstock_PastaAlfredo = Player.getActorVar(Tstock_PastaAlfredo)
+    Tstock_CrispyTofu = Player.getActorVar(Tstock_CrispyTofu)
+    Tstock_LoMein = Player.getActorVar(Tstock_LoMein)
+        
+    Tstock_veganmeal = Tstock_HealthyCookie + Tstock_LentilStew + Tstock_CauliAlfredo + Tstock_RicePeas + Tstock_Edamame + Tstock_PastaAlfredo + Tstock_CrispyTofu + Tstock_LoMein
+        
+    Tstock_Jerkey = Player.getActorVar(Tstock_Jerkey)
+    Tstock_Cheesesteak = Player.getActorVar(Tstock_Cheesesteak)
+    Tstock_Chicken = Player.getActorVar(Tstock_Chicken)
+    Tstock_SaltNPepper = Player.getActorVar(Tstock_SaltNPepper)
+    Tstock_WrappedPork = Player.getActorVar(Tstock_WrappedPork)
+    Tstock_ChickenKebabs = Player.getActorVar(Tstock_ChickenKebabs)
+    Tstock_ChineseBeef = Player.getActorVar(Tstock_ChineseBeef)
+    Tstock_SurfNTurf = Player.getActorVar(Tstock_SurfNTurf)
+    
+    Tstock_meatprod = Tstock_Jerkey + Tstock_Cheesesteak + Tstock_Chicken + Tstock_SaltNPepper + Tstock_WrappedPork + Tstock_ChickenKebabs + Tstock_ChineseBeef + Tstock_SurfNTurf
+        
+    Tstock_soda = Player.getActorVar(Tstock_soda)
+    Tstock_juice = Player.getActorVar(Tstock_juice)
+        
+    Tstock_Drinksprod = Tstock_soda + Tstock_juice
+        
+    Trefrigerator_inventory = Tstock_veganmeal + Tstock_meatprod + Tstock_Drinksprod
+    
+    If Trefrigerator_inventory < 1 
+        Player(Anxious)::"Our refrigerator is totally empty!"
+    Else
+
+        Player(Curious)::"Let see what we got in our refrigerator"
+        0:: isModEnabled(rk_VeganShop) || Tstock_veganmeal > 0 ::"Check vegan meal(s) inventory (<Tstock_veganmeal>)"
+        10:: isModEnabled(rk_MeatShop) || Tstock_meatprod > 0 ::"Check meat dish(es) inventory (<Tstock_meatprod>)"
+        20::"Check drinks inventory <Tstock_Drinksprod>"
+        99::"Nevermind, I will check later!"
+        
+        If 0
+        
+            If Tstock_veganmeal < 1
+                Player(Anxious)::"Ok, we don't have any vegan meal! I have to go shopping to the greengrocer!"
+            Else
+        
+                "Click below to eat or transfer to one of your inventories"
+                0:: "<Tstock_HealthyCookie> Healthy cookie(s)"
+                1:: "<Tstock_LentilStew> Winter Squash and Lentil Stew(s)"
+                2:: "<Tstock_CauliAlfredo> Cauliflower Alfredo"
+                3:: "<Tstock_RicePeas> Coconutty Rice and Peas"
+                4:: "<Tstock_Edamame> Peanutty Edamame and Noodle Salad"
+                5:: "<Tstock_PastaAlfredo> Pasta with Red Pepper Alfredo"
+                6:: "<Tstock_CrispyTofu> Crispy Tofu Bowl(s) with fruits"
+                7:: "<Tstock_LoMein> Veggie Lo Mein"
+                99:: "Go back !"
+                
+                If 0
+                
+                    "What I want to do?"
+                    0:: Tstock_HealthyCookie > 0::"Eat a Healthy cookie"
+                    1:: stock_HealthyCookie > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_HealthyCookie > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(stock_HealthyCookie, -1)
+                        mood += 1
+                        energy += 2
+                        fitness += 0.5
+                        intelligence += 0.5
+                        attractiveness += 0.05
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.15, 0.25)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Healthy cookie"
+                        1::"5 Healthy cookies"
+                        2::"10 Healthy cookies"
+                        3::"All Healthy cookie(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_HealthyCookie, -1)
+                            "1 Healthy cookie transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_HealthyCookie, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_HealthyCookie, -5)
+                            "5 Healthy cookies transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_HealthyCookie, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_HealthyCookie, -10)
+                            "10 Healthy cookies transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_HealthyCookie, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_HealthyCookie, stock_HealthyCookie)
+                            "All Healthy cookie(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_HealthyCookie, 0)
+                        
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Healthy cookie"
+                        1::"5 Healthy cookies"
+                        2::"10 Healthy cookies"
+                        3::"All Healthy cookie(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_HealthyCookie, -1)
+                            "1 Healthy cookie transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_HealthyCookie, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_HealthyCookie, -5)
+                            "5 Healthy cookies transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_HealthyCookie, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_HealthyCookie, -10)
+                            "10 Healthy cookies transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_HealthyCookie, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_HealthyCookie, Tstock_HealthyCookie)
+                            "All Healthy cookie(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_HealthyCookie, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 1
+                
+                    "What I want to do?"
+                    0:: Tstock_LentilStew > 0::"Eat a Winter Squash and Lentil Stew"
+                    1:: stock_LentilStew > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_LentilStew > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_LentilStew, -1)
+                        mood += 4
+                        energy += 4
+                        fitness += 1
+                        intelligence += 1
+                        attractiveness += 1
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Winter Squash and Lentil Stew"
+                        1::"5 Winter Squash and Lentil Stews"
+                        2::"10 Winter Squash and Lentil Stews"
+                        3::"All Winter Squash and Lentil Stew(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_LentilStew, -1)
+                            "1 Winter Squash and Lentil Stew transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LentilStew, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_LentilStew, -5)
+                            "5 Winter Squash and Lentil Stews transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LentilStew, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_LentilStew, -10)
+                            "10 Winter Squash and Lentil Stews transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LentilStew, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_LentilStew, stock_LentilStew)
+                            "All Winter Squash and Lentil Stew(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_LentilStew, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Winter Squash and Lentil Stew"
+                        1::"5 Winter Squash and Lentil Stews"
+                        2::"10 Winter Squash and Lentil Stews"
+                        3::"All Winter Squash and Lentil Stew(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_LentilStew, -1)
+                            "1 Winter Squash and Lentil Stew transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LentilStew, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_LentilStew, -5)
+                            "5 Winter Squash and Lentil Stews transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LentilStew, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_LentilStew, -10)
+                            "10 Winter Squash and Lentil Stews transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LentilStew, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_LentilStew, Tstock_LentilStew)
+                            "All Winter Squash and Lentil Stew(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_LentilStew, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 2
+                
+                    "What I want to do?"
+                    0:: Tstock_CauliAlfredo > 0::"Eat a Cauliflower Alfredo"
+                    1:: stock_CauliAlfredo > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_CauliAlfredo > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_CauliAlfredo, -1)
+                        mood += 5
+                        energy += 5
+                        fitness += 2
+                        intelligence += 1.25
+                        attractiveness += 1.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Cauliflower Alfredo"
+                        1::"5 Cauliflower Alfredo"
+                        2::"10 Cauliflower Alfredo"
+                        3::"All Cauliflower Alfredo"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_CauliAlfredo, -1)
+                            "1 Cauliflower Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CauliAlfredo, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_CauliAlfredo, -5)
+                            "5 Cauliflower Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CauliAlfredo, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_CauliAlfredo, -10)
+                            "10 Cauliflower Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CauliAlfredo, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_CauliAlfredo, stock_CauliAlfredo)
+                            "All Cauliflower Alfredo transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_CauliAlfredo, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Cauliflower Alfredo"
+                        1::"5 Cauliflower Alfredo"
+                        2::"10 Cauliflower Alfredo"
+                        3::"All Cauliflower Alfredo"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_CauliAlfredo, -1)
+                            "1 Cauliflower Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CauliAlfredo, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_CauliAlfredo, -5)
+                            "5 Cauliflower Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CauliAlfredo, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_CauliAlfredo, -10)
+                            "10 Cauliflower Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CauliAlfredo, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_CauliAlfredo, Tstock_CauliAlfredo)
+                            "All Cauliflower Alfredo transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_CauliAlfredo, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                    
+                Elseif 3
+                
+                    "What I want to do?"
+                    0:: Tstock_RicePeas > 0::"Eat a Coconutty Rice and Peas"
+                    1:: stock_RicePeas > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_RicePeas > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_RicePeas, -1)
+                        mood += 6
+                        energy += 6
+                        fitness += 3
+                        intelligence += 1.5
+                        attractiveness += 2
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Coconutty Rice and Peas"
+                        1::"5 Coconutty Rice and Peas"
+                        2::"10 Coconutty Rice and Peas"
+                        3::"All Coconutty Rice and Peas"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_RicePeas, -1)
+                            "1 Coconutty Rice and Peas transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_RicePeas, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_RicePeas, -5)
+                            "5 Coconutty Rice and Peas transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_RicePeas, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_RicePeas, -10)
+                            "10 Coconutty Rice and Peas transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_RicePeas, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_RicePeas, stock_RicePeas)
+                            "All Coconutty Rice and Peas transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_RicePeas, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Coconutty Rice and Peas"
+                        1::"5 Coconutty Rice and Peas"
+                        2::"10 Coconutty Rice and Peas"
+                        3::"All Coconutty Rice and Peas"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_RicePeas, -1)
+                            "1 Coconutty Rice and Peas transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_RicePeas, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_RicePeas, -5)
+                            "5 Coconutty Rice and Peas transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_RicePeas, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_RicePeas, -10)
+                            "10 Coconutty Rice and Peas transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_RicePeas, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_RicePeas, Tstock_RicePeas)
+                            "All Coconutty Rice and Peas transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_RicePeas, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 4
+                
+                    "What I want to do?"
+                    0:: Tstock_Edamame > 0::"Eat a Peanutty Edamame and Noodle Salad"
+                    1:: stock_Edamame > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_Edamame > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_Edamame, -1)
+                        mood += 7
+                        energy += 7
+                        fitness += 4
+                        intelligence += 1.75
+                        attractiveness += 2.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Peanutty Edamame and Noodle Salad"
+                        1::"5 Peanutty Edamame and Noodle Salad"
+                        2::"10 Peanutty Edamame and Noodle Salad"
+                        3::"All Peanutty Edamame and Noodle Salad"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_Edamame, -1)
+                            "1 Peanutty Edamame and Noodle Salad transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Edamame, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_Edamame, -5)
+                            "5 Peanutty Edamame and Noodle Salad transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Edamame, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_Edamame, -10)
+                            "10 Peanutty Edamame and Noodle Salad transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Edamame, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_Edamame, stock_Edamame)
+                            "All Peanutty Edamame and Noodle Salad transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_Edamame, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Peanutty Edamame and Noodle Salad"
+                        1::"5 Peanutty Edamame and Noodle Salad"
+                        2::"10 Peanutty Edamame and Noodle Salad"
+                        3::"All Peanutty Edamame and Noodle Salad"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_Edamame, -1)
+                            "1 Peanutty Edamame and Noodle Salad transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Edamame, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_Edamame, -5)
+                            "5 Peanutty Edamame and Noodle Salad transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Edamame, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_Edamame, -10)
+                            "10 Peanutty Edamame and Noodle Salad transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Edamame, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_Edamame, Tstock_Edamame)
+                            "All Peanutty Edamame and Noodle Salad transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_Edamame, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 5
+                
+                    "What I want to do?"
+                    0:: Tstock_PastaAlfredo > 0::"Eat a Pasta with Red Pepper Alfredo"
+                    1:: stock_PastaAlfredo > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_PastaAlfredo > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_PastaAlfredo, -1)
+                        mood += 9
+                        energy += 8
+                        fitness += 5
+                        intelligence += 2
+                        attractiveness += 3
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Pasta with Red Pepper Alfredo"
+                        1::"5 Pasta with Red Pepper Alfredo"
+                        2::"10 Pasta with Red Pepper Alfredo"
+                        3::"All Pasta with Red Pepper Alfredo"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_PastaAlfredo, -1)
+                            "1 Pasta with Red Pepper Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_PastaAlfredo, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_PastaAlfredo, -5)
+                            "5 Pasta with Red Pepper Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_PastaAlfredo, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_PastaAlfredo, -10)
+                            "10 Pasta with Red Pepper Alfredo transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_PastaAlfredo, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_PastaAlfredo, stock_PastaAlfredo)
+                            "All Pasta with Red Pepper Alfredo transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_PastaAlfredo, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Pasta with Red Pepper Alfredo"
+                        1::"5 Pasta with Red Pepper Alfredo"
+                        2::"10 Pasta with Red Pepper Alfredo"
+                        3::"All Pasta with Red Pepper Alfredo"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_PastaAlfredo, -1)
+                            "1 Pasta with Red Pepper Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_PastaAlfredo, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_PastaAlfredo, -5)
+                            "5 Pasta with Red Pepper Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_PastaAlfredo, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_PastaAlfredo, -10)
+                            "10 Pasta with Red Pepper Alfredo transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_PastaAlfredo, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_PastaAlfredo, Tstock_PastaAlfredo)
+                            "All Pasta with Red Pepper Alfredo transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_PastaAlfredo, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 6
+                
+                    "What I want to do?"
+                    0:: Tstock_CrispyTofu > 0::"Eat a Crispy Tofu Bowl with fruits"
+                    1:: stock_CrispyTofu > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_CrispyTofu > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_CrispyTofu, -1)
+                        mood += 10
+                        energy += 9
+                        fitness += 6
+                        intelligence += 2.25
+                        attractiveness += 3.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Crispy Tofu Bowl with fruits"
+                        1::"5 Crispy Tofu Bowl with fruits"
+                        2::"10 Crispy Tofu Bowl with fruits"
+                        3::"All Crispy Tofu Bowl with fruits"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_CrispyTofu, -1)
+                            "1 Crispy Tofu Bowl with fruits transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CrispyTofu, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_CrispyTofu, -5)
+                            "5 Crispy Tofu Bowl with fruits transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CrispyTofu, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_CrispyTofu, -10)
+                            "10 Crispy Tofu Bowl with fruits transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_CrispyTofu, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_CrispyTofu, stock_CrispyTofu)
+                            "All Crispy Tofu Bowl with fruits transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_CrispyTofu, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Crispy Tofu Bowl with fruits"
+                        1::"5 Crispy Tofu Bowl with fruits"
+                        2::"10 Crispy Tofu Bowl with fruits"
+                        3::"All Crispy Tofu Bowl with fruits"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_CrispyTofu, -1)
+                            "1 Crispy Tofu Bowl with fruits transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CrispyTofu, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_CrispyTofu, -5)
+                            "5 Crispy Tofu Bowl with fruits transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CrispyTofu, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_CrispyTofu, -10)
+                            "10 Crispy Tofu Bowl with fruits transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_CrispyTofu, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_CrispyTofu, Tstock_CrispyTofu)
+                            "All Crispy Tofu Bowl with fruits transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_CrispyTofu, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                    
+                Elseif 7
+                
+                    "What I want to do?"
+                    0:: Tstock_LoMein > 0::"Eat a Veggie Lo Mein"
+                    1:: stock_LoMein > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_LoMein > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_LoMein, -1)
+                        mood += 12
+                        energy += 10
+                        fitness += 7
+                        intelligence += 2.5
+                        attractiveness += 4
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Veggie Lo Mein"
+                        1::"5 Veggie Lo Mein"
+                        2::"10 Veggie Lo Mein"
+                        3::"All Veggie Lo Mein"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_LoMein, -1)
+                            "1 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LoMein, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_LoMein, -5)
+                            "5 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LoMein, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_LoMein, -10)
+                            "10 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_LoMein, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_LoMein, stock_LoMein)
+                            "All Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_LoMein, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Veggie Lo Mein"
+                        1::"5 Veggie Lo Mein"
+                        2::"10 Veggie Lo Mein"
+                        3::"All Veggie Lo Mein"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_LoMein, -1)
+                            "1 Veggie Lo Mein transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LoMein, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_LoMein, -5)
+                            "5 Veggie Lo Mein transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LoMein, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_LoMein, -10)
+                            "10 Veggie Lo Mein transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_LoMein, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_LoMein, Tstock_LoMein)
+                            "All Veggie Lo Mein transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_LoMein, 0)
+                        
+                        EndIf
+                    
+                    EndIf                
+                
+                Endif
+                
+            Endif
+            
+        Elseif 10
+
+            if Tstock_meatprod < 1
+                Player(Anxious)::"Ok, we don't have any meat! I have to go to the butcher shop!"
+            Else
+            
+                "Click below to eat or transfer to one of your inventories"
+                0:: "<Tstock_Jerkey> Beef Jerkey bag(s)"
+                1:: "<Tstock_Cheesesteak> Philly Cheesesteak"
+                2:: "<Tstock_Chicken> Chicken schnitzel"
+                3:: "<Tstock_SaltNPepper> Salt-and-Pepper Steak"
+                4:: "<Tstock_WrappedPork> Bacon-Wrapped Pork"
+                5:: "<Tstock_ChickenKebabs> Chicken Kebabs with rice"
+                6:: "<Tstock_ChineseBeef> Chinese Beef & Broccoli"
+                7:: "<Tstock_SurfNTurf> Surf 'n Turf"
+                99:: "Go back !"
+                
+                If 0
+                
+                    "What I want to do?"
+                    0:: Tstock_Jerkey > 0::"Eat a Beef Jerkey bag"
+                    1:: stock_Jerkey > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_Jerkey > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                        
+                        Player.modifyActorVar(Tstock_Jerkey, -1)
+                        mood += 0.5
+                        energy += 1
+                        fitness += 1
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.15, 0.25)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Beef Jerkey bag"
+                        1::"5 Beef Jerkey bags"
+                        2::"10 Beef Jerkey bags"
+                        3::"All Beef Jerkey bag(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_Jerkey, -1)
+                            "1 Beef Jerkey bag transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Jerkey, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_Jerkey, -5)
+                            "5 Beef Jerkey bags transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Jerkey, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_Jerkey, -10)
+                            "10 Beef Jerkey bags transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Jerkey, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_Jerkey, stock_Jerkey)
+                            "All Beef Jerkey bag(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_Jerkey, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Beef Jerkey bag"
+                        1::"5 Beef Jerkey bags"
+                        2::"10 Beef Jerkey bags"
+                        3::"All Beef Jerkey bag(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_Jerkey, -1)
+                            "1 Beef Jerkey bag transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Jerkey, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_Jerkey, -5)
+                            "5 Beef Jerkey bags transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Jerkey, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_Jerkey, -10)
+                            "10 Beef Jerkey bags transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Jerkey, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_Jerkey, Tstock_Jerkey)
+                            "All Beef Jerkey bag(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_Jerkey, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 1
+                
+                    "What I want to do?"
+                    0:: Tstock_Cheesesteak > 0::"Eat a Philly Cheesesteak"
+                    1:: stock_Cheesesteak > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_Cheesesteak > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_Cheesesteak, -1)
+                        mood += 2
+                        energy += 2
+                        fitness += 2
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Philly Cheesesteak"
+                        1::"5 Philly Cheesesteaks"
+                        2::"10 Philly Cheesesteaks"
+                        3::"All Philly Cheesesteak(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_Cheesesteak, -1)
+                            "1 Philly Cheesesteak transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Cheesesteak, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_Cheesesteak, -5)
+                            "5 Philly Cheesesteaks transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Cheesesteak, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_Cheesesteak, -10)
+                            "10 Philly Cheesesteaks transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Cheesesteak, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_Cheesesteak, stock_Cheesesteak)
+                            "All Philly Cheesesteak(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_Cheesesteak, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Philly Cheesesteak"
+                        1::"5 Philly Cheesesteaks"
+                        2::"10 Philly Cheesesteaks"
+                        3::"All Philly Cheesesteak(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_Cheesesteak, -1)
+                            "1 Philly Cheesesteak transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Cheesesteak, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_Cheesesteak, -5)
+                            "5 Philly Cheesesteaks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Cheesesteak, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_Cheesesteak, -10)
+                            "10 Philly Cheesesteaks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Cheesesteak, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_Cheesesteak, Tstock_Cheesesteak)
+                            "All Philly Cheesesteak(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_Cheesesteak, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 2
+                
+                    "What I want to do?"
+                    0:: Tstock_Chicken > 0::"Eat a Chicken schnitzel"
+                    1:: stock_Chicken > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_Chicken > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_Chicken, -1)
+                        mood += 2.5
+                        energy += 2.5
+                        fitness += 2.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Chicken schnitzel"
+                        1::"5 Chicken schnitzels"
+                        2::"10 Chicken schnitzels"
+                        3::"All Chicken schnitzel(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_Chicken, -1)
+                            "1 Chicken schnitzel transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Chicken, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_Chicken, -5)
+                            "5 Chicken schnitzels transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Chicken, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_Chicken, -10)
+                            "10 Chicken schnitzels transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_Chicken, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_Chicken, stock_Chicken)
+                            "All Chicken schnitzel(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_Chicken, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Chicken schnitzel"
+                        1::"5 Chicken schnitzels"
+                        2::"10 Chicken schnitzels"
+                        3::"All Chicken schnitzel(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_Chicken, -1)
+                            "1 Chicken schnitzel transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Chicken, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_Chicken, -5)
+                            "5 Chicken schnitzels transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Chicken, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_Chicken, -10)
+                            "10 Chicken schnitzels transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_Chicken, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_Chicken, Tstock_Chicken)
+                            "All Chicken schnitzel(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_Chicken, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                    
+                Elseif 3
+                
+                    "What I want to do?"
+                    0:: Tstock_SaltNPepper > 0::"Eat a Salt-and-Pepper Steak"
+                    1:: stock_SaltNPepper > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_SaltNPepper > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_SaltNPepper, -1)
+                        mood += 3
+                        energy += 3
+                        fitness += 3
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Salt-and-Pepper Steak"
+                        1::"5 Salt-and-Pepper Steaks"
+                        2::"10 Salt-and-Pepper Steaks"
+                        3::"All Salt-and-Pepper Steak(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_SaltNPepper, -1)
+                            "1 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SaltNPepper, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_SaltNPepper, -5)
+                            "5 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SaltNPepper, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_SaltNPepper, -10)
+                            "10 Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SaltNPepper, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_SaltNPepper, stock_SaltNPepper)
+                            "All Veggie Lo Mein transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_SaltNPepper, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Salt-and-Pepper Steak"
+                        1::"5 Salt-and-Pepper Steaks"
+                        2::"10 Salt-and-Pepper Steaks"
+                        3::"All Salt-and-Pepper Steak(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_SaltNPepper, -1)
+                            "1 Salt-and-Pepper Steak transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SaltNPepper, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_SaltNPepper, -5)
+                            "5 Salt-and-Pepper Steaks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SaltNPepper, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_SaltNPepper, -10)
+                            "10 Salt-and-Pepper Steaks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SaltNPepper, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_SaltNPepper, Tstock_SaltNPepper)
+                            "All Salt-and-Pepper Steaks transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_SaltNPepper, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 4
+                
+                    "What I want to do?"
+                    0:: Tstock_WrappedPork > 0::"Eat a Bacon-Wrapped Pork"
+                    1:: stock_WrappedPork > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_WrappedPork > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_WrappedPork, -1)
+                        mood += 3.5
+                        energy += 3.5
+                        fitness += 3.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Bacon-Wrapped Pork"
+                        1::"5 Bacon-Wrapped Porks"
+                        2::"10 Bacon-Wrapped Porks"
+                        3::"All Bacon-Wrapped Pork(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_WrappedPork, -1)
+                            "1 Bacon-Wrapped Pork transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_WrappedPork, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_WrappedPork, -5)
+                            "5 Bacon-Wrapped Porks transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_WrappedPork, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_WrappedPork, -10)
+                            "10 Bacon-Wrapped Porks transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_WrappedPork, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_WrappedPork, stock_WrappedPork)
+                            "All Bacon-Wrapped Pork(s) transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_WrappedPork, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Bacon-Wrapped Pork"
+                        1::"5 Bacon-Wrapped Porks"
+                        2::"10 Bacon-Wrapped Porks"
+                        3::"All Bacon-Wrapped Pork(s)"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_WrappedPork, -1)
+                            "1 Bacon-Wrapped Pork transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_WrappedPork, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_WrappedPork, -5)
+                            "5 Bacon-Wrapped Porks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_WrappedPork, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_WrappedPork, -10)
+                            "10 Bacon-Wrapped Porks transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_WrappedPork, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_WrappedPork, Tstock_WrappedPork)
+                            "All Bacon-Wrapped Pork(s) transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_WrappedPork, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 5
+                
+                    "What I want to do?"
+                    0:: Tstock_ChickenKebabs > 0::"Eat a Chicken Kebabs with rice"
+                    1:: stock_ChickenKebabs > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_ChickenKebabs > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_ChickenKebabs, -1)
+                        mood += 4
+                        energy += 4
+                        fitness += 4
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Chicken Kebabs with rice"
+                        1::"5 Chicken Kebabs with rice"
+                        2::"10 Chicken Kebabs with rice"
+                        3::"All Chicken Kebabs with rice"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_ChickenKebabs, -1)
+                            "1 Chicken Kebabs with rice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChickenKebabs, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_ChickenKebabs, -5)
+                            "5 Chicken Kebabs with rice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChickenKebabs, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_ChickenKebabs, -10)
+                            "10 Chicken Kebabs with rice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChickenKebabs, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_ChickenKebabs, stock_ChickenKebabs)
+                            "All Chicken Kebabs with rice transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_ChickenKebabs, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Chicken Kebabs with rice"
+                        1::"5 Chicken Kebabs with rice"
+                        2::"10 Chicken Kebabs with rice"
+                        3::"All Chicken Kebabs with rice"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_ChickenKebabs, -1)
+                            "1 Chicken Kebabs with rice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChickenKebabs, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_ChickenKebabs, -5)
+                            "5 Chicken Kebabs with rice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChickenKebabs, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_ChickenKebabs, -10)
+                            "10 Chicken Kebabs with rice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChickenKebabs, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_ChickenKebabs, Tstock_ChickenKebabs)
+                            "All Chicken Kebabs with rice transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_ChickenKebabs, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 6
+                
+                    "What I want to do?"
+                    0:: Tstock_ChineseBeef > 0::"Eat a Chinese Beef & Broccoli"
+                    1:: stock_ChineseBeef > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_ChineseBeef > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_ChineseBeef, -1)
+                        mood += 4.5
+                        energy += 4.5
+                        fitness += 4.5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Chinese Beef & Broccoli"
+                        1::"5 Chinese Beef & Broccoli"
+                        2::"10 Chinese Beef & Broccoli"
+                        3::"All Chinese Beef & Broccoli"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_ChineseBeef, -1)
+                            "1 Chinese Beef & Broccoli transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChineseBeef, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_ChineseBeef, -5)
+                            "5 Chinese Beef & Broccoli transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChineseBeef, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_ChineseBeef, -10)
+                            "10 Chinese Beef & Broccoli transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_ChineseBeef, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_ChineseBeef, stock_ChineseBeef)
+                            "All Chinese Beef & Broccoli transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_ChineseBeef, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Chinese Beef & Broccoli"
+                        1::"5 Chinese Beef & Broccoli"
+                        2::"10 Chinese Beef & Broccoli"
+                        3::"All Chinese Beef & Broccoli"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_ChineseBeef, -1)
+                            "1 Chinese Beef & Broccoli transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChineseBeef, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_ChineseBeef, -5)
+                            "5 Chinese Beef & Broccoli transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChineseBeef, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_ChineseBeef, -10)
+                            "10 Chinese Beef & Broccoli transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_ChineseBeef, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_ChineseBeef, Tstock_ChineseBeef)
+                            "All Chinese Beef & Broccoli transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_ChineseBeef, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                    
+                Elseif 7
+                
+                    "What I want to do?"
+                    0:: Tstock_SurfNTurf > 0::"Eat a Surf 'n Turf"
+                    1:: stock_SurfNTurf > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_SurfNTurf > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_SurfNTurf, -1)
+                        mood += 5
+                        energy += 5
+                        fitness += 5
+                        Player.show()
+                        Player.animate(eat)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 Surf 'n Turf"
+                        1::"5 Surf 'n Turf"
+                        2::"10 Surf 'n Turf"
+                        3::"All Surf 'n Turf"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_SurfNTurf, -1)
+                            "1 Surf 'n Turf transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SurfNTurf, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_SurfNTurf, -5)
+                            "5 Surf 'n Turf transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SurfNTurf, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_SurfNTurf, -10)
+                            "10 Surf 'n Turf transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_SurfNTurf, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_SurfNTurf, stock_SurfNTurf)
+                            "All Surf 'n Turf transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_SurfNTurf, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 Surf 'n Turf"
+                        1::"5 Surf 'n Turf"
+                        2::"10 Surf 'n Turf"
+                        3::"All Surf 'n Turf"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_SurfNTurf, -1)
+                            "1 Surf 'n Turf transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SurfNTurf, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_SurfNTurf, -5)
+                            "5 Surf 'n Turf transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SurfNTurf, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_SurfNTurf, -10)
+                            "10 Surf 'n Turf transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_SurfNTurf, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_SurfNTurf, Tstock_SurfNTurf)
+                            "All Surf 'n Turf transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_SurfNTurf, 0)
+                        
+                        EndIf
+                    
+                    EndIf                
+                
+                Endif
+            
+            Endif
+            
+        Elseif 20
+
+            if Tstock_Drinksprod < 1
+                Player(Anxious)::"Ok, we don't have anything to drink except water!"
+            Else
+            
+                "Click below to drink or transfer to one of your inventories"
+                0:: "<Tstock_soda> bottle(s) of soda"
+                1:: "<Tstock_juice> bottle(s) of juice"
+                99:: "Go back !"
+                
+                If 0
+                
+                    "What I want to do?"
+                    0:: Tstock_soda > 0::"Drink a bottle of soda"
+                    1:: stock_soda > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_soda > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                    
+                        Player.modifyActorVar(Tstock_soda, -1)
+                        mood += 1
+                        energy += 0.5
+                        fitness -= 0.02
+                        Player.show()
+                        Player.animate(drinkbottle)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 bottle of soda"
+                        1::"5 bottles of soda"
+                        2::"10 bottles of soda"
+                        3::"All bottle(s) of soda"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_soda, -1)
+                            "1 bottle of soda transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_soda, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_soda, -5)
+                            "5 bottles of soda transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_soda, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_soda, -10)
+                            "10 bottles of soda transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_soda, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_soda, stock_soda)
+                            "All bottle(s) of soda transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_soda, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 bottle of soda"
+                        1::"5 bottles of soda"
+                        2::"10 bottles of soda"
+                        3::"All bottle(s) of soda"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_soda, -1)
+                            "1 bottle of soda transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_soda, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_soda, -5)
+                            "5 bottles of soda transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_soda, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_soda, -10)
+                            "10 bottles of soda transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_soda, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_soda, Tstock_soda)
+                            "All bottle(s) of soda transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_soda, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Elseif 1
+                
+                    "What I want to do?"
+                    0:: Tstock_juice > 0::"Drink a bottle of juice"
+                    1:: stock_juice > 0::"Tranfer foods from my refrigerator to here"
+                    2:: Tstock_juice > 0::"Tranfer foods from here to my refrigerator"
+                    99:: "Go back !"
+                    
+                    If 0
+                        
+                        Player.modifyActorVar(Tstock_juice, -1)
+                        mood += 0.8
+                        energy += 1
+                        fitness += 0.015
+                        Player.show()
+                        Player.animate(drinkbottle)
+                        Player(Happy)::"Hmmm, yummy!"
+                        passTime(0.25, 0.5)
+                    
+                    
+                    Elseif 1
+                    
+                        "How much I want to transfer to the temple refrigerator?"
+                        0:"1 bottle of juice"
+                        1::"5 bottles of juice"
+                        2::"10 bottles of juice"
+                        3::"All bottle(s) of juice"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(stock_juice, -1)
+                            "1 bottle of juice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_juice, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(stock_juice, -5)
+                            "5 bottles of juice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_juice, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(stock_juice, -10)
+                            "10 bottles of juice transfered to the temple refrigerator!"
+                            Player.modifyActorVar(Tstock_juice, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(Tstock_juice, stock_juice)
+                            "All bottle(s) of juice transfered to the temple refrigerator!"
+                            Player.setActorVar(stock_juice, 0)
+                        
+                        EndIf
+                        
+                    Elseif 2
+                    
+                        "How much I want to transfer to my refrigerator?"
+                        0:"1 bottle of juice"
+                        1::"5 bottles of juice"
+                        2::"10 bottles of juice"
+                        3::"All bottle(s) of juice"
+                        99:: "Go back !"
+                        
+                        If 0
+                        
+                            Player.modifyActorVar(Tstock_juice, -1)
+                            "1 bottle of juice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_juice, 1)
+                        
+                        ElseIf 1
+                        
+                            Player.modifyActorVar(Tstock_juice, -5)
+                            "5 bottles of juice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_juice, 5)
+                        
+                        ElseIf 2
+                        
+                            Player.modifyActorVar(Tstock_juice, -10)
+                            "10 bottles of juice transfered to my refrigerator!"
+                            Player.modifyActorVar(stock_juice, 10)
+                        
+                        ElseIf 3
+
+                            Player.modifyActorVar(stock_juice, Tstock_juice)
+                            "All bottle(s) of juice transfered to my refrigerator!"
+                            Player.setActorVar(Tstock_juice, 0)
+                        
+                        EndIf
+                    
+                    EndIf
+                
+                Endif
+            
+            Endif
+        
+        Endif
+        
+    Endif
+
+    SceneEnd()

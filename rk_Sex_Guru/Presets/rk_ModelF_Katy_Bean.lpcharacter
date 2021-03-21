@@ -1,0 +1,191 @@
+// Information
+INFO Is_Male: 100% false
+INFO Interested_In_Men: 100% true
+INFO Interested_In_Women: 100% true
+INFO Interested_In_Transgender: 100% true
+INFO First_Name: 100% Katy
+INFO Last_Name: 100% Bean
+INFO Race: 100% Daz
+INFO Genital: 100% Vagina
+
+// Morphs
+MORPH Genesis8Female__Head Width: 100% 0.057407
+MORPH Genesis8Female__CTRLFaceOlderHD: 100% 0.476768
+MORPH Genesis8Female__CTRLFaceAngle: 100% 0.187123
+MORPH Genesis8Female__CTRLFitness: 100% 0.274648
+MORPH Genesis8Female__CTRLBodybuilder: 100% 0.124031
+MORPH Genesis8Female__RFMC_Mouth Corners Heights: 100% 0.914706
+MORPH Genesis8Female__RFMC_Mouth Angles: 100% 0.92517
+MORPH Genesis8Female__RFMC_Face Triangle 01: 100% 0.171913
+MORPH Genesis8Female__RFMC_Face Slim: 100% 0.115226
+MORPH Genesis8Female__Olga Head: 100% 0.048193
+MORPH Genesis8Female__Natalie Head: 100% 0.004353
+MORPH Genesis8Female__Face Angle Tilt: 100% 0.293307
+MORPH Genesis8Female__Eyes Droop: 100% 0.325368
+MORPH Genesis8Female__Eyes Asian B: 100% 0.94518
+MORPH Genesis8Female__Eyes Asian A: 100% 0.809872
+MORPH Genesis8Female__Eyes Arched: 100% 0.689139
+MORPH Genesis8Female__Cynthia Head: 100% 0.41332
+MORPH Genesis8Female__FBMBodybuilderDetails: 100% 0.126984
+MORPH Genesis8Female__PHMNoseRidge: 100% 0.040404
+MORPH Genesis8Female__PHMNosePinch: 100% 0.552419
+MORPH Genesis8Female__PHMNoseBridgeSkew: 100% 0.128505
+MORPH Genesis8Female__PHMNoseBridgeHeight: 100% 0.175904
+MORPH Genesis8Female__PHMFaceYoung: 100% 0.457692
+MORPH Genesis8Female__PBMUpperArmsSize: 100% 0.468487
+MORPH Genesis8Female__PBMNipplesSize: 100% 0.936345
+MORPH Genesis8Female__PBMNeckSize: 100% 0.375486
+MORPH Genesis8Female__PBMHipSize: 100% 0.447368
+MORPH Genesis8Female__PBMForearmsSize: 100% 0.347475
+MORPH Genesis8Female__PBMBreastsUpwardSlope: 100% 0.984576
+MORPH Genesis8Female__PBMBreastsSmall: 100% 0.902748
+MORPH Genesis8Female__PBMBreastsShape02: 100% 0.016018
+MORPH Genesis8Female__PBMBreastsDiameter: 100% 0.940367
+MORPH Genesis8Female__PBMAreolaePerk: 100% 0.828512
+MORPH Genesis8Female__PBMAreolaeDiameter: 100% 0.935632
+MORPH Genesis8Female__PBMAreolaeDepth: 100% 0.004193
+MORPH Genesis8Female__FBMFitnessSize: 100% 0.119002
+MORPH Genesis8Female__FBMFitnessDetails: 100% 0.184584
+MORPH Genesis8Female__FBMBodyTone: 100% 0.089552
+MORPH Genesis8Female__FBMBodySize: 100% 0.262868
+MORPH Genesis8FemaleEyelashes__CTRLFaceOlderHD: 100% 0.476768
+MORPH Genesis8FemaleEyelashes__RFMC_Face Triangle 01: 100% 0.171913
+MORPH Genesis8FemaleEyelashes__Olga Head: 100% 0.048193
+MORPH Genesis8FemaleEyelashes__Natalie Head: 100% 0.004353
+MORPH Genesis8FemaleEyelashes__Face Angle Tilt: 100% 0.293307
+MORPH Genesis8FemaleEyelashes__Eyes Droop: 100% 0.325368
+MORPH Genesis8FemaleEyelashes__Eyes Asian B: 100% 0.94518
+MORPH Genesis8FemaleEyelashes__Eyes Asian A: 100% 0.809872
+MORPH Genesis8FemaleEyelashes__Eyes Arched: 100% 0.689139
+MORPH Genesis8FemaleEyelashes__Cynthia Head: 100% 0.41332
+MORPH Genesis8FemaleEyelashes__PHMFaceYoung: 100% 0.457692
+SCALE X: 100% 1.0
+SCALE Y: 100% 1.0
+SCALE Z: 100% 1.0
+
+//Hair
+HAIR Hairstyle: 100% RazorHair
+HAIR Hair_Thickness: 100% 1.0
+HAIR Hair_Color_R: 100% 0.6
+HAIR Hair_Color_G: 100% 0.2
+HAIR Hair_Color_B: 100% 0.0
+HAIR Hair_Color_A: 100% 0.85
+
+HAIR Brow_Color_R: 100% 0.0
+HAIR Brow_Color_G: 100% 0.0
+HAIR Brow_Color_B: 100% 0.0
+HAIR Brow_Color_A: 100% 1.0
+
+// Skin
+SKIN Eye_Color_R: 100% 0.8
+SKIN Eye_Color_G: 100% 0.299945
+SKIN Eye_Color_B: 100% 0.0
+SKIN Eye_Color_A: 100% 0.8
+SKIN Face_Texture: 100% Melanie
+SKIN Skin_Color_R: 100% 0.93
+SKIN Skin_Color_G: 100% 0.72
+SKIN Skin_Color_B: 100% 0.63
+SKIN Skin_Color_A: 100% 1.0
+SKIN BHairColor_R: 100% 0.08
+SKIN BHairColor_G: 100% 0.03
+SKIN BHairColor_B: 100% 0.0
+SKIN BHairColor_A: 100% 0.85
+SKIN Skin_Roughness: 100% 0.10119
+SKIN Skin_Oil: 100% 0.25
+SKIN Skin_Fresnel: 100% 0.986908
+SKIN Skin_Age: 100% 0.060395
+SKIN Skin_Sagging: 100% 0.0
+SKIN Muscle_Tone: 100% 0.0
+SKIN BHairThickness: 100% 1.0
+SKIN BHairstyle: 100% Pubes01
+SKIN Tattoo_Arm: 100% NoHair
+SKIN Tattoo_Torso: 100% NoHair
+SKIN Tattoo_Leg: 100% NoHair
+
+// Stats
+STAT rkOpenedSexGuru: 100% 0.0
+STAT rkOpenedWeedCartel: 100% 0.0
+STAT stock_bagproduct: 100% 0.0
+STAT stock_binocular: 100% 0.0
+STAT stock_tools: 100% 0.0
+STAT stock_toyproduct: 100% 0.0
+STAT stock_travelmap: 100% 0.0
+STAT stock_xxxmag: 100% 0.0
+STAT nnOpenedPornEmpire: 100% 0.0
+STAT nnOpenedPornWebsite: 100% 0.0
+STAT glGunAmmo: 100% 0.0
+STAT glGunShootingSkill: 100% 0.0
+STAT glHealth: 100% 100.0
+STAT glKillCount: 100% 0.0
+STAT glLockPickingSkill: 100% 0.0
+STAT children: 100% 0.0
+STAT fertility: 100% 3.0
+STAT stock_condom: 100% 10.0
+STAT stock_pill: 100% 0.0
+STAT bargain: 100% 0.0
+STAT brand: 100% 0.0
+STAT sentence: 100% 0.0
+STAT modelfame: 100% 0.0
+STAT age: 100% 33.0
+STAT money: 100% 3000.0
+STAT perks: 100% 0.0
+STAT attractiveness: 100% 50.0
+STAT cooking: 100% 10.0
+STAT dance: 100% 10.0
+STAT fitness: 100% 50.0
+STAT intelligence: 100% 50.0
+STAT interpersonal: 100% 50.0
+STAT jobexperience: 100% 10.0
+STAT jobperformance: 100% 0.0
+STAT karma: 100% 50.0
+STAT martial: 100% 10.0
+STAT masochist: 100% 0.0
+STAT muscle: 100% 25.0
+STAT music: 100% 10.0
+STAT perversion: 100% 30.0
+STAT pornfame: 100% 0.0
+STAT sneak: 100% 10.0
+STAT likes_anal: 100% 20.0
+STAT likes_bondage: 100% 20.0
+STAT likes_boobjob: 100% 20.0
+STAT likes_cowgirl: 100% 20.0
+STAT likes_doggy: 100% 20.0
+STAT likes_handjob: 100% 20.0
+STAT likes_missionary: 100% 20.0
+STAT likes_oral: 100% 20.0
+STAT likes_public: 100% 20.0
+STAT likes_rcowgirl: 100% 20.0
+STAT likes_rough: 100% 20.0
+STAT likes_sidefuck: 100% 20.0
+STAT likes_toys: 100% 20.0
+STAT likes_tribadism: 100% 20.0
+STAT likes_vaginal: 100% 20.0
+STAT prone_to_orgasm: 100% 50.0
+STAT arousal: 100% 0.0
+STAT energy: 100% 100.0
+STAT intoxication: 100% 0.0
+STAT mood: 100% 100.0
+STAT appliance_value: 100% 0.0
+STAT car_value: 100% 0.0
+STAT furniture_value: 100% 0.0
+STAT stock_alcohol: 100% 0.0
+STAT stock_book: 100% 0.0
+STAT stock_coffee: 100% 0.0
+STAT stock_flower: 100% 0.0
+STAT stock_gift: 100% 0.0
+STAT stock_haircare: 100% 0.0
+STAT stock_ingredient: 100% 0.0
+STAT stock_juice: 100% 0.0
+STAT stock_makeup: 100% 0.0
+STAT stock_meal: 100% 0.0
+STAT stock_movie: 100% 0.0
+STAT stock_musicalinstrument: 100% 0.0
+STAT stock_petfood: 100% 0.0
+STAT stock_photo: 100% 0.0
+STAT stock_skincare: 100% 0.0
+STAT stock_snack: 100% 0.0
+STAT stock_soda: 100% 0.0
+STAT stock_supplement: 100% 0.0
+STAT stock_tea: 100% 0.0
+STAT stock_tobacco: 100% 0.0
+STAT stock_video: 100% 0.0
