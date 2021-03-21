@@ -40,9 +40,8 @@
 <br>
 <h3>Disciple title:</h3>
 <p>- Disciples</p>
-<p>- Maids</p>
+<p>- Maid</p>
 <p>- Instructors</p>
-<p>- Recrutors</p>
 <p>- Photographer</p>
 <p>- Filmmaker</p>
 <p>- Assistant guru</p>
