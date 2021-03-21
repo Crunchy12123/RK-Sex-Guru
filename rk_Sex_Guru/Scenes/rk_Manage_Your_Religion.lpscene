@@ -189,7 +189,7 @@ SceneStart()
         
             ElseIf 20
         
-               "The name of your religion is: <ReligionName>"
+               txtNameRelig = "Your religion is: <ReligionName>"
             
                 If rkAreASexGuru < 1
             
@@ -211,11 +211,12 @@ SceneStart()
             
                 EndIf
             
-                SGPussyJuice  = Player.getActorVar(rk_SGPussyJuice)
-                SGSpermJuice  = Player.getActorVar(rk_SGSpermJuice)
+                SGPussyJuice = Player.getActorVar(rk_SGPussyJuice)
+                SGSpermJuice = Player.getActorVar(rk_SGSpermJuice)
                 AmountDons = SGPussyJuice + SGSpermJuice
         
                 // Stats
+                0::"<txtNameRelig>"
                 0::"<YouAre>"
                 0::"You have <SexGuruDisciple> disciple(s)"
                 0::"Your reputation level is <SexGuruReputation>"

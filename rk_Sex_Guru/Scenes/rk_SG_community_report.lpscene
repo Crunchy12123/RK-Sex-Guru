@@ -93,19 +93,25 @@ OTHER: none
                 SGexpensesTotal += price
 
             EndIf
-            
-            // TDisciples
+
+            // The Disciples
             DiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
+            DiscipleId = getPerson()
             SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
             SGDisciple = getSpecific(DiscipleId)
-            If SGDisciple.isValid()
-                price = SexGuruDisciple * SGDisciple.getActorVar(rk_SG_DiscipleSalary)
-                price /= 30
-                price *= SGdaysSinceLastCheck
-                    
-                SGexpensesTotal -= price
-
-            EndIf
+            
+            While DiscipleId.isValid()
+                
+                If SGDisciple.isValid()
+                    price =  SGDisciple.getActorVar(rk_SG_DiscipleSalary)
+                    price /= 30
+                    price *= SGdaysSinceLastCheck
+                    TotalP = price
+                EndIf
+                CalcTotalP = TotalP * SexGuruDisciple
+                money += CalcTotalP - [75/100]
+                
+            EndWhile
                 
             // The Assistant Guru
             GuruAssistId = Player.getActorVar(rk_SG_EmployedAssistantId)

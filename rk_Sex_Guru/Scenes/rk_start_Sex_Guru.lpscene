@@ -85,9 +85,8 @@ SceneStart()
                 EndIf
 
                 PastorChris(Serene):: "Good, I think I got the necessary to register your religion '<ReligionName>' inside our black book."
-                
-                yesMale = Player.isMale()
-                If yesMale && Player:perversion > 75 || Player:arousal > 15
+ 
+                If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
                     PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
                     PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
@@ -111,7 +110,7 @@ SceneStart()
                     EndIf
 
                 
-                ElseIf Player.isFemale() && Player:perversion > 75 || Player:arousal > 15
+                ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
                 
                     PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
                     PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "
@@ -229,9 +228,8 @@ SceneStart()
                 PastorChris(Serene)::"You will need to find at least ten disciples who will be glad to join your community!"
                 PastorChris(Serene)::"Finally, rent a building, a house,... to make it your temple."
                 PastorChris(Serene)::"Not a easy task, it's an expensive business,... but you will end up millionaire if you don't do crazy things!"
-                
-                yesMale = Player.isMale()
-                If yesMale && Player:perversion > 75 || Player:arousal > 15
+
+                If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
                     PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
                     PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
@@ -255,7 +253,7 @@ SceneStart()
                     EndIf
 
                 
-                ElseIf Player.isFemale() && Player:perversion > 75 || Player:arousal > 15
+                ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
                 
                     PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
                     PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "

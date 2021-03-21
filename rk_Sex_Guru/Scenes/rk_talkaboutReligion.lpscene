@@ -20,7 +20,7 @@ SceneStart()
     
     "You begin to discuss with the person about your religion and its benefits!"
     Player.modifyActorVar(rk_discipleattractiontoplayer, 0.25)
-    Actor:discipleattraction += 1
+    Actor.modifyActorVar(rk_discipleattraction, 1)
     passTime(0.5,1)
     
     "The reputation of your religion has increased a bit!"
