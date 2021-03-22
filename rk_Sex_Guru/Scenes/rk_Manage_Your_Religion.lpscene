@@ -149,11 +149,29 @@ SceneStart()
     
             "What I want to produce"
             0::"Frozen desserts"
+            19::"Special temple drinks"
+            20::"XXX Calendars"
+            21::"XXX magazines"
             99::"Go back!"
         
             If 0
             
                 followUp(rk_SGProduce_FrozMeal)
+                lookingInventories = false
+                
+            ElseIf 19
+            
+                followUp(rk_SG_Produce_Drinks)
+                lookingInventories = false
+            
+            ElseIf 20
+            
+                followUp(rk_SG_Produce_Calendar)
+                lookingInventories = false
+            
+            ElseIf 21
+            
+                followUp(rk_SG_Produce_XXXMag)
                 lookingInventories = false
             
             EndIf

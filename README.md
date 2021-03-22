@@ -7,29 +7,29 @@
 <p>The mod is not completely done but is working!</p>
 <p>This version is not finished and contains some bugs, so try it on a new game.</p>
 <br>
-<p>- Contain 44 scenes</p>
+<p>- Contain 50 scenes</p>
 <p>- 35 new characters</p>
 <p>- 1 popup scene</p>
 <br>
-<h3></h3>
+<h3>Little resume:</h3>
 <p>- Take over a church for commercial use</p>
 <p>- Meditation</p>
-<p>- Get disciples</p>
+<p>- Recrute disciples</p>
 <p>- Receive donations</p>
 <p>- Promote your religion</p>
 <p>- Talk about your religion</p>
 <p>- Manage community</p>
-<p>- Manage employees</p>
+<p>- Manage disciples/employees</p>
 <p>- Community website</p>
-<p>- eat/sell meals that you produced</p>
-<p>- 8 new frozen desserts</p>
+<p>- Produce foods and items</p>
+<p>- Eat/sell meals that you produced</p>
 <p>- Cheats/reset</p>
-<br>
-<h3>Items:</h3>
-<p>- Gospels</p>
-<p>- Videos</p>
-<p>- Photos</p>
-<p>- Sex juices for drink</p>
+<p>- Write Gospels</p>
+<p>- Produce Videos</p>
+<p>- Produce Photos</p>
+<p>- 5 new Drinks, 8 new frozen desserts</p>
+<p>- Sell temple calendars</p>
+<p>- Sell temple XXX magazines</p>
 <p>- Sex juice collector</p>
 <p>- Holy statue</p>
 <p>- A Holy book for your gospels</p>
@@ -41,7 +41,6 @@
 <h3>Disciple title:</h3>
 <p>- Disciples</p>
 <p>- Maid</p>
-<p>- Instructors</p>
 <p>- Photographer</p>
 <p>- Filmmaker</p>
 <p>- Assistant guru</p>

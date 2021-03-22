@@ -14,6 +14,29 @@ SceneStart()
     photoCamType = Player.getActorVar(rk_SG_PhotoEquipmentType)
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     
+    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+    
+    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     If TempleSize > 0
@@ -126,27 +149,55 @@ SceneStart()
                     
                     EndIf
 
-                    stayInMenu = false
-                    
                 ElseIf 1
                 
                     0::"You have <SGPussyJuice> bottle(s) of pussy juice"
                     0::"You have <SGSpermJuice> bottle(s) of sperm juice"
+                    50::"Show special drinks inventory"
+                    60::"Show my calendars inventory"
+                    61::"Show my XXX magazines inventory"
                     99::"Go back"
                     
-                    // To do: followup to scenes to drink and benefits and the purpose...
+                    If 50
                     
-                    stayInMenu = false
+                        0::"Sperm filtered juices <Spermfilteredjuice> in stock"
+                        0::"Pussy filtered juices <Pussyfilteredjuice> in stock"
+                        0::"Enersex energy drinks <Enersexenergydrinks> in stock"
+                        0::"Sex Juice cocktails <SexJuicecocktail> in stock"
+                        0::"Sex zombie cocktails <Sexzombiecocktail> in stock"
+                        99::"Go back"
+                    
+                    
+                    ElseIf 60
+                    
+                        0:: "Solo Shootings calendar <SoloShootings_Calendars> in stock"
+                        0:: "Amateur Shootings calendar <AmateurShootings_Calendars> in stock"
+                        0:: "Threesome Shootings calendar <ThreesomeShootings_Calendars> in stock"
+                        0:: "GangBang Shootings calendar <GangBangShootings_Calendars> in stock"
+                        0:: "RevGangBang Shootings calendar <RevGangBangShootings_Calendars> in stock"
+                        0:: "Lesbian Shootings calendar <LesbianShootings_Calendars> in stock"
+                        0:: "Gay Shootings calendar <GayShootings_Calendars> in stock"
+                        99::"Go back"
+                    
+                    Else 61
+                    
+                        0:: "Mixed Shootings XXX magazine <MixedShootings_XXXmagazines> in stock"
+                        0:: "Solo Shootings XXX magazine <SoloShootings_XXXmagazines> in stock"
+                        0:: "Amateur Shootings XXX magazine <AmateurShootings_XXXmagazines> in stock"
+                        0:: "Threesome Shootings XXX magazine <ThreesomeShootings_XXXmagazines> in stock"
+                        0:: "GangBang Shootings XXX magazine <GangBangShootings_XXXmagazines> in stock"
+                        0:: "RevGangBang Shootings XXX magazine <RevGangBangShootings_XXXmagazines> in stock"
+                        0:: "Lesbian Shootings XXX magazine <LesbianShootings_XXXmagazines> in stock"
+                        0:: "Gay Shootings XXX magazine <GayShootings_XXXmagazines> in stock"
+                        99::"Go back"
+
+                    EndIf
 
                      
                 ElseIf 2
                 
                     0::"You own <SexGuruGospels> gospel(s)"
                     99::"Go back"
-                    
-                    // To do: followup to scenes to write or else...
-                    
-                    stayInMenu = false
                 
                 ElseIf 3
                 
@@ -167,7 +218,6 @@ SceneStart()
                 
                     "You have <stock_Bitcoins> Bitcoin(s)"
                     "If you need more bitcoins, visit the bank!"
-                    stayInMenu = false
                     
                 Else
                 

@@ -49,11 +49,16 @@ SceneStart()
     Tstock_SurfNTurf = Player.getActorVar(Tstock_SurfNTurf)
     
     Tstock_meatprod = Tstock_Jerkey + Tstock_Cheesesteak + Tstock_Chicken + Tstock_SaltNPepper + Tstock_WrappedPork + Tstock_ChickenKebabs + Tstock_ChineseBeef + Tstock_SurfNTurf
-        
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
     Tstock_soda = Player.getActorVar(Tstock_soda)
     Tstock_juice = Player.getActorVar(Tstock_juice)
         
-    Tstock_Drinksprod = Tstock_soda + Tstock_juice
+    Tstock_Drinksprod = Tstock_soda + Tstock_juice + Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail  
         
     Trefrigerator_inventory = Tstock_veganmeal + Tstock_meatprod + Tstock_Drinksprod
     
@@ -62,9 +67,9 @@ SceneStart()
     Else
 
         Player(Curious)::"Let see what we got in our refrigerator"
-        0:: isModEnabled(rk_VeganShop) || Tstock_veganmeal > 0 ::"Check vegan meal(s) inventory (<Tstock_veganmeal>)"
-        10:: isModEnabled(rk_MeatShop) || Tstock_meatprod > 0 ::"Check meat dish(es) inventory (<Tstock_meatprod>)"
-        20::"Check drinks inventory <Tstock_Drinksprod>"
+        0:: Tstock_veganmeal > 0 ::"Check vegan meal(s) inventory (<Tstock_veganmeal>)"
+        10:: Tstock_meatprod > 0 ::"Check meat dish(es) inventory (<Tstock_meatprod>)"
+        20:: Tstock_Drinksprod > 0::"Check drinks inventory <Tstock_Drinksprod>"
         99::"Nevermind, I will check later!"
         
         If 0
@@ -1604,9 +1609,14 @@ SceneStart()
                 Player(Anxious)::"Ok, we don't have anything to drink except water!"
             Else
             
-                "Click below to drink or transfer to one of your inventories"
+                "Click below to drink one of your choice!"
                 0:: "<Tstock_soda> bottle(s) of soda"
                 1:: "<Tstock_juice> bottle(s) of juice"
+                5:: Spermfilteredjuice > 0::"<Spermfilteredjuice> bottle(s) of Sperm filtered juices"
+                6:: Pussyfilteredjuice > 0::"<Pussyfilteredjuice> bottle(s) of Pussy filtered juices"
+                7:: Enersexenergydrinks > 0::"<Enersexenergydrinks> bottle(s) of Enersex energy drinks"
+                8:: SexJuicecocktail > 0::"<SexJuicecocktail> bottle(s) of Sex Juice cocktails"
+                9:: Sexzombiecocktail > 0::"<Sexzombiecocktail> bottle(s) of Sex zombie cocktails"
                 99:: "Go back !"
                 
                 If 0
@@ -1791,6 +1801,71 @@ SceneStart()
                         EndIf
                     
                     EndIf
+                    
+                ElseIf 5
+                
+                    Player.modifyActorVar(Spermfilteredjuice, -1)
+                    mood += 2
+                    energy += 3
+                    perversion += Random(1, 3)
+                    arousal += 3
+                    Player.show()
+                    Player.animate(drinkbottle)
+                    Player(Happy)::"Hmmm, yummy!"
+                    passTime(0.15, 0.25)
+                
+                ElseIf 6
+                
+                    Player.modifyActorVar(Pussyfilteredjuice, -1)
+                    mood += 2
+                    energy += 3
+                    perversion += Random(1, 3)
+                    arousal += 3
+                    Player.show()
+                    Player.animate(drinkbottle)
+                    Player(Happy)::"Hmmm, yummy!"
+                    passTime(0.15, 0.25)
+                
+                ElseIf 7
+                
+                    Player.modifyActorVar(Enersexenergydrinks, -1)
+                    mood += 3
+                    energy += 10
+                    fitness += 1
+                    perversion += Random(1, 5)
+                    arousal += 5
+                    Player.show()
+                    Player.animate(drinkbottle)
+                    Player(Happy)::"Hmmm, yummy!"
+                    passTime(0.15, 0.25)
+                
+                ElseIf 8
+                
+                    Player.modifyActorVar(SexJuicecocktail, -1)
+                    mood += 4
+                    energy -= 1
+                    perversion += Random(1, 5)
+                    Player.show()
+                    Player.animate(drinkbottle)
+                    Player(Happy)::"Hmmm, yummy!"
+                    arousal += 3
+                    fitness -= 1
+                    intoxication += 2
+                    passTime(0.15, 0.25)
+                
+                ElseIf 9
+                
+                    Player.modifyActorVar(Sexzombiecocktail, -1)
+                    mood += 5
+                    energy -= 1
+                    perversion += Random(1, 6)
+                    Player.show()
+                    Player.animate(drinkbottle)
+                    Player(Happy)::"Hmmm, yummy!"
+                    arousal += 5
+                    intoxication += 2
+                    fitness -= 1
+                    passTime(0.15, 0.25)
                 
                 Endif
             

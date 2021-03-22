@@ -26,11 +26,21 @@ SceneStart()
     
         "What kind of homemade meals I want to sell?"
         0::"Frozen Meals"
+        1::"Special temple drinks"
+        2::"Calendars/XXX magazines"
         99::"Go back"
     
         If 0
         
             followUp(rk_SG_Sell_Frozen_Food)
+            
+        ElseIf 1
+        
+            followUp(rk_SG_Sell_Special_drinks)
+            
+        ElseIf 2
+        
+            followUp(rk_SG_Sell_Calendars_Xmagazines)
         
         Else
                 

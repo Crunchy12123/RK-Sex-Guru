@@ -1,0 +1,111 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SGPussyJuice  = Player.getActorVar(rk_SGPussyJuice)
+    SGSpermJuice  = Player.getActorVar(rk_SGSpermJuice)
+    stock_alcohol  = Player.getActorVar(stock_alcohol)
+    stock_juice  = Player.getActorVar(stock_juice)
+    stock_soda = Player.getActorVar(stock_soda)
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(place_of_worship)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+    
+    "What I want to produce today?"
+    0:: stock_juice > 10 && SGSpermJuice > 10 ::"20 Sperm filtered juices"
+    1:: stock_juice > 10 && SGPussyJuice > 10 ::"20 Pussy filtered juices"
+    2:: stock_juice > 10 && SGSpermJuice > 10 && SGPussyJuice > 10 ::"30 Enersex energy drinks"
+    3:: SGSpermJuice > 10 && SGPussyJuice > 10 && stock_alcohol > 10 && stock_soda > 10::"40 Sex Juice cocktails"
+    4:: stock_juice > 10 && SGSpermJuice > 10 && SGPussyJuice > 10 && stock_alcohol > 10 ::"40 Sex zombie cocktails"
+    98::"I want to see recipes"
+    99::"Go back"
+    
+    If 0
+    
+        "You just made 20 Sperm filtered juice"
+        Player.modifyActorVar(rk_SGSpermJuice, -10)
+        Player:stock_juice -= 10
+        Player.modifyActorVar(rk_Spermfilteredjuice, 20)
+        Player:mood -= 3
+        Player:energy -= 3
+    
+    ElseIf 1
+    
+        "You just made 20 Pussy filtered juice"
+        Player.modifyActorVar(rk_SGPussyJuice, -10)
+        Player:stock_juice -= 10
+        Player.modifyActorVar(rk_Pussyfilteredjuice, 20)
+        Player:mood -= 3
+        Player:energy -= 3
+    
+    ElseIf 2
+    
+        "You just made 30 Enersex energy drinks"
+        Player.modifyActorVar(rk_SGPussyJuice, -10)
+        Player.modifyActorVar(rk_SGSpermJuice, -10)
+        Player:stock_juice -= 10
+        Player.modifyActorVar(rk_Enersexenergydrinks, 30)
+        Player:mood -= 3
+        Player:energy -= 3
+        
+    ElseIf 3
+    
+        "You just made 40 Sex Juice cocktail"
+        Player.modifyActorVar(rk_SGPussyJuice, -10)
+        Player.modifyActorVar(rk_SGSpermJuice, -10)
+        Player:stock_alcohol -= 10
+        Player:stock_soda -= 10
+        Player.modifyActorVar(rk_SexJuicecocktail, 40)
+        Player:mood -= 3
+        Player:energy -= 3
+    
+    ElseIf 4
+    
+        "You just made 40 Sex zombie cocktail"
+        Player.modifyActorVar(rk_SGPussyJuice, -10)
+        Player.modifyActorVar(rk_SGSpermJuice, -10)
+        Player:stock_alcohol -= 10
+        Player:stock_juice -= 10
+        Player.modifyActorVar(rk_Sexzombiecocktail, 40)
+        Player:mood -= 3
+        Player:energy -= 3
+    
+    ElseIf 98
+    
+        "What type of recipe you want to know how to prepare?"
+        0:: "Sperm filtered juices"
+        1:: "Pussy filtered juices"
+        2:: "Enersex energy drinks"
+        3:: "Sex Juice cocktails"
+        4:: "Sex zombie cocktails"
+        99::"Go back"
+    
+        If 0
+            "To produce 20 Sperm filtered juices, you need 10 juices and 10 bottles of Sperm juices"
+        ElseIf 1
+            "To produce 20 Pussy filtered juices, you need 10 juices and 10 bottles of Pussy juices"
+        ElseIf 2
+            "To produce 30 Enersex energy drinks, you need 10 juices, 10 bottles of Sperm juices and 10 bottles of Pussy juices"
+        ElseIf 3
+            "To produce 40 Sex Juice cocktails, you need 10 alcohols, 10 sodas, 10 bottles of Sperm juices and 10 bottles of Pussy juices"
+        ElseIf 4
+            "To produce 40 Sex zombie cocktails, you need 10 juices, 10 alcohols, 10 bottles of Sperm juices and 10 bottles of Pussy juices"
+        EndIf
+        
+    EndIf
+
+SceneEnd()

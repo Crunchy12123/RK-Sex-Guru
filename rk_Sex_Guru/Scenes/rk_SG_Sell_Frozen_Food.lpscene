@@ -52,7 +52,7 @@ SceneStart()
             
                 If SpecialIceCreams < 10
                 
-                    "You don't have enough special frozen desserts to sell. You need to produce at leat 10 meals of the same products! Better go produce some more!"
+                    "You don't have enough special frozen desserts to sell. You need to produce at least 10 meals of the same products! Better go produce some more!"
                 
                 Else
                 
