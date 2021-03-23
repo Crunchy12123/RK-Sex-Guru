@@ -40,6 +40,7 @@
 <br>
 <h3>Disciple title:</h3>
 <p>- Disciples</p>
+<p>- Disciple models</p>
 <p>- Maid</p>
 <p>- Photographer</p>
 <p>- Filmmaker</p>
