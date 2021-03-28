@@ -29,23 +29,28 @@ SceneStart()
 
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
         If SexGuruReputation >= 50
-            Player(Happy)::"Perfect, my religion have a good reputation..."
+            Player(Happy)::"Perfect, my religion have a good reputation... <SexGuruReputation>/50"
+        Else
+            "I need to higher my religion reputation a little bit more, I don't have enough... <SexGuruReputation>/50"
         EndIf
         
-        If SGIllumination >= 10
-            Player(Happy)::"Good, my enlightenment level is enough..."
+        If SGIllumination >= 50
+            Player(Happy)::"Good, my enlightenment level is enough... <SGIllumination>/50"
+        Else
+            "I need to higher my enlightenment level, I don't have enough... <SGIllumination>/50"
         EndIf
         
         If SexGuruDisciple >= 10
             Player(Happy)::"Excellent, I now have at least 10 disciples..."
         Else
-            "I also need 10 disciples to become a guru."
+            "I also need 10 disciples to become a guru,... <SexGuruDisciple>/10"
         EndIf
         
         "What should I do?"
         1:: "Meditate"
         2:: "Write a gospel"
         3:: SexGuruGospels >= 2 ::"Do a public presentation"
+        4:: SGIllumination > 50 ::"Find Disciple"
         99::"I changed my mind!"
         
         If 1
@@ -136,7 +141,7 @@ SceneStart()
             
         ElseIf 4
         
-            followUp(rk_SG_hire_disciple)
+            followUp(rk_SG_manage_employees)
         
         EndIf
         

@@ -194,6 +194,7 @@ SceneStart()
                         Sex(NunDixie, Player)
                         NunDixie:attractiontoplayer += Random(1, 3)
                         NunDixie:rapportwithplayer += Random(5, 10)
+                        
                     EndIf       
                     
                 EndIf
@@ -219,19 +220,36 @@ SceneStart()
                 Player.moveToPersonStand(PastorChris, 50)
             
                 PastorChris(Happy)::"Hi, my name is <PastorChris.name> <PastorChris.name_last>, I'm the person who will tell you how to start your religious community..."
-                PastorChris(Serene)::"First thing you need to do to become a sex guru is to meditate and write gospels, until you reach an illumination."
+                PastorChris(Serene)::"First thing you need to do to become a sex guru is to meditate and write gospels, until you reach an enlightenment."
                 PastorChris(Serene)::"Click on 'Become a sex guru' to start the process to enlightenment."
-                Player(Curious):: "How will I know that I reached it?"
+                PastorChris(Serene)::"You will need to meditate a lot to be able to reach your enlightenment. You need 50 points.... you got <SGIllumination>/50"
+                PastorChris(Serene)::"When you meditate you boost a little bit your enlightenment level. But, be aware that when you meditate, you always undress yourself completely!"
+                PastorChris(Serene)::"When you wrote a gospel you boost a little bit your enlightenment level."
+                Player(Curious):: "Ok but, how will I know that I've reached the enlightenment level?"
                 PastorChris(Wink)::"You will know, I can tell you... So, let me finish..."
-                PastorChris(Serene)::"When you meditate you boost a little bit your illumination."
-                PastorChris(Serene)::"When you wrote a gospel you boost a little bit your reputation. But when you do a public presentation it boost a little more."
-                PastorChris(Serene)::"The Gospels also needed when you make public presentations, preach to your followers and for other events."
-                PastorChris(Serene)::"You need to write at least 10 gospels before starting."
+                PastorChris(Serene)::"The Gospels is needed when you do public presentations, preach to your followers and for other events."
+                PastorChris(Serene)::"When you do a public presentation or other events, it boost your enlightenment level and your religion reputation."
+                PastorChris(Serene)::"You need 50 points of religion reputation.... your reputation is <SexGuruReputation>/50"
+                PastorChris(Serene)::"You must write 10 gospels and keep them in reserve until you are ready to become a guru."
                 PastorChris(Serene)::"You also need to improve your interpersonal skills to 75, because new religions are rarely accepted if your not a good talker..."
                 PastorChris(Serene)::"After all these, you will then unlock the possibility to find disciples."
-                PastorChris(Serene)::"You will need to find at least ten disciples who will be glad to join your community!"
+                PastorChris(Serene)::"You will need to find at least 10 disciples who will be glad to join your community!"
                 PastorChris(Serene)::"Finally, rent a building, a house,... to make it your temple."
                 PastorChris(Serene)::"Not a easy task, it's an expensive business,... but you will end up millionaire if you don't do crazy things!"
+                PastorChris(Serene)::"I got a lot more to explain, do I continue or you have enough for now?"
+                "What do I say?"
+                0::"Tell him to continue"
+                1::"No, I have enough"
+                
+                If 0
+                
+                    PastorChris(Happy)::"The temple is needed if you want your religion to be recognized and to receive donations."
+                    PastorChris:attractiontoplayer += Random(0, 1)
+                    PastorChris(Serene)::"As donations, you will received sometimes sperm and pussy juices, they are needed to produce your homemade products."
+                    PastorChris(Serene)::"You also need to own a church to sell your homemade products."
+                    PastorChris(Serene)::"Each time you sell your homemade products, you boost your reputation and make money."
+                
+                EndIf
 
                 If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 

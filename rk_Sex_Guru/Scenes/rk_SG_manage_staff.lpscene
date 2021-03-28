@@ -119,7 +119,7 @@ SceneStart()
             Player(Serene):: "What about my <TempleJobTitle>?"
             1:: MainActor.isValid():: "Try to negotiate on donation (<DiscipleAskingPriceLocal>/month)"
             2:: MainActor.isValid():: "Send <DiscipleName> to a bootcamp training for <traningPriceLocal>"
-            0:: MainActor.isValid():: "Fire <DiscipleName>"
+            0:: MainActor.isValid():: "Expel <DiscipleName>"
             10:: !MainActor.isValid()::"Hire a <TempleJobTitle>"
             99:: "Back"
             

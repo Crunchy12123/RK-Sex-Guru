@@ -7,8 +7,8 @@
 <p>The mod is not completely done but is working!</p>
 <p>This version is not finished and contains some bugs, so try it on a new game.</p>
 <br>
-<p>- Contain 50 scenes</p>
-<p>- 35 new characters</p>
+<p>- Contain 53 scenes</p>
+<p>- 37 new characters</p>
 <p>- 1 popup scene</p>
 <br>
 <h3>Little resume:</h3>

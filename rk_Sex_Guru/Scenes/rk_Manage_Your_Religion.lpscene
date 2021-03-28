@@ -47,7 +47,7 @@ SceneStart()
             90:: SGOpenedTempleWebsite >= 1 && SexGuruGospels >= 1 ::"Publish content on my website"
             91:: SGOpenedTempleWebsite <= 0 ::"Launch a community website"
             92:: SGOpenedTempleWebsite >= 1 ::"Close your community website"
-            99::"I changed my mind!"
+            99::"Do nothing!"
         
             If 1
         
@@ -140,7 +140,6 @@ SceneStart()
     
         ElseIf 2
     
-            "Be aware that when you meditate, you always undress yourself completely!"
             followUp(rk_SG_meditate)
             lookingInventories = false
     
@@ -182,14 +181,15 @@ SceneStart()
     
         ElseIf 50
         
-            "What I want to do?"
+            "What do I want to do?"
             10:: TempleSize > 0 ::"Show donations"
             31:: SGOpenedTempleWebsite >= 1 ::"Analyse visitor interest"
             35:: rkAreASexGuru > 0 ::"Manage employees"
             20::"Quick religion stats" // will be community report
-            45:: rkAreASexGuru > 0 ::"Community_report"
+            45:: rkAreASexGuru > 0 ::"Community report"
             80:: rkAreASexGuru > 0 ::"Buy equipment"
             90:: rkAreASexGuru > 0 ::"Rent/Move to a new temple"
+            94::"Tutorial"
             95::"Religion Cheats/Reset"
             97::"Close your religious community"
             99::"Go back!"
@@ -264,7 +264,12 @@ SceneStart()
     
                 followUp(rk_SG_rent_temple)
                 lookingInventories = false
+                
+            ElseIf 94
             
+                followUp(rk_SG_Tutorial)
+                lookingInventories = false
+                
             ElseIf 95
     
                 "What I want to do?"
