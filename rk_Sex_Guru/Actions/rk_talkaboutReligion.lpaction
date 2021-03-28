@@ -5,9 +5,9 @@ WHEN: 0 - 24
 MINUTES: 1 - 15
 TIMEOUT_MINUTES: 0
 ALSO_TIMEOUT: 
-EFFECTS: mood +1 (END), perversion +0.1 (END), mood -2 (INTERRUPTED)
+EFFECTS: mood +1 (END), perversion +0.1 (END), mood -2 (INTERRUPTED), Interacting:attractiontoplayer +1 (END), Interacting:discipleattraction +1 (END)
 CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE)
 MOVE_FIRST: true
 SCENE_ALWAYS: rk_talkaboutReligion
 ANIMATION:
-WHO: Actor = getTarget(); If !Actor.isCreature()
+WHO: Actor = getTarget(); If !Actor.isTemporary() && !Actor.isCreature()

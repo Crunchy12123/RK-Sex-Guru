@@ -163,13 +163,17 @@ SceneStart()
                 Player(Happy)::"Ok, hi! Nice to see you! Come in, come in, I was waiting for you...."
                 Player.animate(socialize)
             
+                NunDixie.animate(write)
                 NunDixie(Happy)::"So, the name of your new religion is <ReligionName>!"
                 Player(Happy)::"Exactly!"
+                NunDixie.animate()
                 NunDixie(Serene)::"It may take a lot of effort to organize your religion and have it officially recognized."
                 NunDixie(Serene)::"As your religion grows, you may look into more permanent meeting place, such as a rented or purchased temple."
+                Player.animate(write)
                 NunDixie(Serene)::"But don't be discouraged because, it will be very rewarding to see your work lead to a flourishing membership."
                 NunDixie(Serene)::"Also before I leave, if you haven't already, I recommend that you go see Pastor Chris, he will explain how to get started."
                 NunDixie(Happy)::"All right <Player.name>, all papers are signed! Now get your religion up and running. Call me if you need anything!"
+                Player.animate()
                 NunDixie:attractiontoplayer += Random(0, 1)
 
                 If Player:perversion > 75 || Player:arousal > 15

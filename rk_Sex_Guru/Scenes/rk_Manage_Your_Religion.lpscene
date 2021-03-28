@@ -30,10 +30,10 @@ SceneStart()
         "What should I do?"
         1::"Write a gospel"
         2::"Meditate"
-        20::"Manage your production"
+        20:: StartChurchCommerce > 0:: "Manage your production"
         10::"Manage inventories"
         50::"Manage community"
-        60::"Community sex shooting"
+        60:: rkAreASexGuru > 0 || StartChurchCommerce > 0:: "Community sex shooting"
         0::"Promote my religion"
         99::"I changed my mind!"
     
@@ -57,19 +57,23 @@ SceneStart()
             ElseIf 2
         
                 followUp(rk_SG_Public_Presentation)
+                lookingInventories = false
 
             ElseIf 70
 
                 "If you own a church to sell your homemade products, you get an extra bonus!"
                 followUp(rk_promoteTemple_locally)
+                lookingInventories = false
         
             ElseIf 80
         
                 followUp(rk_SG_book_online_ads)
+                lookingInventories = false
         
             ElseIf 90
         
                 followUp(rk_SG_upload_website)
+                lookingInventories = false
         
             ElseIf 91
     
@@ -147,7 +151,7 @@ SceneStart()
     
         ElseIf 20
     
-            "What I want to produce"
+            "What do I want to produce?"
             0::"Frozen desserts"
             19::"Special temple drinks"
             20::"XXX Calendars"
@@ -234,7 +238,7 @@ SceneStart()
                 AmountDons = SGPussyJuice + SGSpermJuice
         
                 // Stats
-                0::"<txtNameRelig>"
+                0::"Your religion is: <ReligionName>"
                 0::"<YouAre>"
                 0::"You have <SexGuruDisciple> disciple(s)"
                 0::"Your reputation level is <SexGuruReputation>"
@@ -298,7 +302,7 @@ SceneStart()
                     Player.setActorVar(rk_PlayerTemplePrice, 0)
                     Player.setActorVar(rk_SG_SexGuruIllumination, 0)
                     Player.setActorVar(rk_SG_SexGuruState, 0)
-                    "Note that not all of your guru's stats have been removed. If you want to reset Sex-Guru to its original state, click Yes!"
+                    "Note, that not all of your guru's stats have been removed. If you want to reset Sex-Guru to its original state, click Yes!"
                     "Do I want I want to reset Sex-Guru mod?"
                     0::"Yes"
                     1::"No"

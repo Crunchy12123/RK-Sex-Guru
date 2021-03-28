@@ -12,9 +12,10 @@ SceneStart()
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     rkAreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru)
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    TalkToEM = Player.getActorVar(rk_TalkToEM)
     
     ElfyMana = generatePersonTemporary(rk_modelF_Elfy_Mana)
-    ElfyMana.setJob(Supreme Nun)
+    ElfyMana.setJob(SupremeNun)
     ElfyMana.hide()
     
     // Go to the Temple if any
@@ -24,9 +25,23 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
 
-    If SexGuruReputation < 50 && SGIllumination < 50
-    
+    If rkAreASexGuru <= 0
+
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
+        If SexGuruReputation >= 50
+            Player(Happy)::"Perfect, my religion have a good reputation..."
+        EndIf
+        
+        If SGIllumination >= 10
+            Player(Happy)::"Good, my enlightenment level is enough..."
+        EndIf
+        
+        If SexGuruDisciple >= 10
+            Player(Happy)::"Excellent, I now have at least 10 disciples..."
+        Else
+            "I also need 10 disciples to become a guru."
+        EndIf
+        
         "What should I do?"
         1:: "Meditate"
         2:: "Write a gospel"
@@ -37,9 +52,10 @@ SceneStart()
         
             SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination)
     
-            "I decide to start a meditation session right here... to find the enlightenment that will allow me to create my own religion ..."
+            "I decide to undress completely and start a meditation session right here... to find the enlightenment that will allow me to create my own religion ..."
             Player.show()
             Player.animate(pray)
+            Player.strip()
     
             "Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
             Player:arousal += 5
@@ -52,17 +68,23 @@ SceneStart()
             Player:energy += 3
             Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
             Player.animate()
-    
-            If rk_SG_SexGuruIllumination < 50
+            
+            Counter = 0
+
+            If SGIllumination < 50
     
                 "No, nothing, no voices in my head or someone appears to tell me how to reach illumination,..."
                 Player:karma += 0.5
         
                 "I must not give up, I need to do more sessions to reach my enlightenment ..."
                 Player:mood += 5
+                
+            ElseIf TalkToEM > 0
+            
+                "Go!"
         
             Else
-    
+                
                 "Woah... what's happening, is it real?"
                 "Someone just appears in my house,... looks like an elf!"
 
@@ -91,6 +113,7 @@ SceneStart()
                 ElfyMana.makePermanent()
                 ElfyMana:attractiontoplayer += Random(0, 1)
                 passTime(1, 2)
+                Player.setActorVar(rk_TalkToEM, 1)
     
             EndIf
         
@@ -110,24 +133,10 @@ SceneStart()
         ElseIf 3
         
             followUp(rk_SG_Public_Presentation)
+            
+        ElseIf 4
         
-        EndIf
-        
-    ElseIf SexGuruDisciple < 10
-    
-        "Perfect, you have a good reputation to start but you also need disciples to become a guru."
-        "What should I do?"
-        1::"Find a disciple"
-        3:: SexGuruGospels < 2 ::"Do a public presentation"
-        99::"I changed my mind!"
-    
-        If 1
-
-            followUp(rk_Search_for_disciples)
-        
-        ElseIf 3
-        
-            followUp(rk_SG_Public_Presentation)
+            followUp(rk_SG_hire_disciple)
         
         EndIf
         

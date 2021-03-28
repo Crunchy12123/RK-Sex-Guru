@@ -588,7 +588,7 @@ SceneStart()
                             
                             // Price is higher than with normal npcs
                             price *= 1.75
-                            txtType = "ChurchAgency model "
+                            txtType = "ChurchAgency model"
                             
                             price = price.round()
                             priceLocal = price.convertToLocalCurrency(true)
@@ -616,7 +616,7 @@ SceneStart()
                                 secondScreen(ChurchAgencyBoss)
                                 ChurchAgencyBoss.show()
                                 Random
-                                    ChurchAgencyBoss::"Listen buddy, you pay my price, or my models won't shooting for you."
+                                    ChurchAgencyBoss::"Listen <Player.buddy_or_beauty>, you pay my price, or my models won't shooting for you."
                                     ChurchAgencyBoss::"If you want to do a shooting with one of my models, you have to pay my price."
                                     ChurchAgencyBoss::"Who are you, trying to negotiate with me? At least you have some guts..."
                                     ChurchAgencyBoss::"If you don't have money; then I don't have models. Understood?"
@@ -629,7 +629,7 @@ SceneStart()
                                     If actorNaked
                                         Random
                                             ChurchAgencyBoss(Happy)::"Hah! I'm already getting horny seeing <actorToAdd.Name> standing here naked. You want to book <actorToAdd.o> now. Don't you?"
-                                            ChurchAgencyBoss(Wink)::"Ohhh wow. I did not remember <actorToAdd.Name> is so hot. Book <actorToAdd.o> now before my offer expires!"
+                                            ChurchAgencyBoss(Wink)::"Ohhh wow. I did not remember <actorToAdd.Name> is so hot. Book <actorToAdd.o> now before myF offer expires!"
                                             ChurchAgencyBoss(Wink)::"Hmmmm... Did I mention that I only have the sexiest models in my agency? You better book <actorToAdd.o> now before before someone else does!"
                                             ChurchAgencyBoss(Wink)::"You will not find any better model than <actorToAdd.o>. Believe me!"
                                         EndRandom
@@ -1158,11 +1158,11 @@ SceneStart()
                 actorShootVal += thisShootVal
                 MainActor.setActorVar(rk_SG_VideosValuePending, actorShootVal)
                 
-                MainActor.modifyActorVar(rk_SG_PhotoCountPending, 1)
+                MainActor.modifyActorVar(rk_SG_PhotoCountPending, 20)
                 
-                actorShootVal = MainActor.getActorVar(rk_SG_PhotoValuePending)
-                actorShootVal += thisShootVal
-                BonusAShtVal = actorShootVal + 9
+                actorShootValP = MainActor.getActorVar(rk_SG_PhotoValuePending)
+                actorShootValP += thisShootVal
+                BonusAShtVal = actorShootValP + 19
                 MainActor.setActorVar(rk_SG_PhotoValuePending, BonusAShtVal)
                 
                 // Persist the shooting and add statistics
@@ -1170,6 +1170,7 @@ SceneStart()
                     MainActor.modifyActorVar(rk_SG_SoloShootingsDone, 1)
                     
                     Player.modifyActorVar(rk_SG_SoloShootingsInStock, 1)
+                    Player.modifyActorVar(rk_SG_SoloShootingsInStockP, 20)
                 Else
                     
                     If numMaleActors >=1 && numFemaleActors == 0    // gay
@@ -1188,7 +1189,7 @@ SceneStart()
                         
                         // Increase stock
                         Player.modifyActorVar(rk_SG_GayShootingsInStock, 1)
-                        Player.modifyActorVar(rk_SG_GayShootingsInStockP, 10)
+                        Player.modifyActorVar(rk_SG_GayShootingsInStockP, 20)
                         
                     ElseIf numMaleActors == 0 && numFemaleActors >= 2       // lesbian
 
@@ -1204,14 +1205,14 @@ SceneStart()
                         EndIf
                         
                         Player.modifyActorVar(rk_SG_LesbianShootingsInStock, 1)
-                        Player.modifyActorVar(rk_SG_LesbianShootingsInStockP, 10)
+                        Player.modifyActorVar(rk_SG_LesbianShootingsInStockP, 20)
                     EndIf
                     
                     If numFemaleActors >= 3 && numMaleActors == 1
                         
                         // rev gang bang
                         Player.modifyActorVar(rk_SG_RevGangBangShootingsInStock, 1)
-                        Player.modifyActorVar(rk_SG_RevGangBangShootingsInStockP, 10)
+                        Player.modifyActorVar(rk_SG_RevGangBangShootingsInStockP, 20)
                         
                         // Persist this to the actors. Only for statistics.
                         MainActor.modifyActorVar(rk_SG_RevGangBangShootingsDone, 1)
@@ -1223,7 +1224,7 @@ SceneStart()
                         
                         // gang bang
                         Player.modifyActorVar(rk_SG_GangBangShootingsInStock, 1)
-                        Player.modifyActorVar(rk_SG_GangBangShootingsInStockP, 10)
+                        Player.modifyActorVar(rk_SG_GangBangShootingsInStockP, 20)
                         
                         // Persist this to the actors. Only for statistics.
                         MainActor.modifyActorVar(rk_SG_GangBangShootingsDone, 1)
@@ -1235,7 +1236,7 @@ SceneStart()
                         
                         // Threesome
                         Player.modifyActorVar(rk_SG_ThreesomeShootingsInStock, 1)
-                        Player.modifyActorVar(rk_SG_ThreesomeShootingsInStockP, 10)
+                        Player.modifyActorVar(rk_SG_ThreesomeShootingsInStockP, 20)
                         MainActor.modifyActorVar(rk_SG_ThreesomeShootingsDone, 1)
                         SecondActor.modifyActorVar(rk_SG_ThreesomeShootingsDone, 1)
                         ThirdActor.modifyActorVar(rk_SG_ThreesomeShootingsDone, 1)
@@ -1261,7 +1262,7 @@ SceneStart()
                     EndIf
 
                     Player.modifyActorVar(rk_SG_AmateurShootingsInStock, 1)
-                    Player.modifyActorVar(rk_SG_AmateurShootingsInStockP, 10)
+                    Player.modifyActorVar(rk_SG_AmateurShootingsInStockP, 20)
                 EndIf
                 
                 shootCostsLocal = shootCosts.convertToLocalCurrency(true)
@@ -1292,11 +1293,11 @@ SceneStart()
                         goOn = false
                     ElseIf genereatedActor && actorToCheck.isValid()
                         Random
-                            Player(Serene)::"That was a nice shooting with <actorToCheck.Name>. Should I add <actorToCheck.o> to my contacts?"
-                            Player(Excited)::"<actorToCheck.Name> did quite a good job. Should I exchange contacts with <actorToCheck.o>?"
-                            Player(Excited)::"<actorToCheck.Name> did a good performance. Should I add <actorToCheck.o> to my address book?"
+                            Player(Serene)::"That was a nice shooting with <actorToCheck.Name>. Do I make <actorToCheck.o> my disciple?"
+                            Player(Excited)::"<actorToCheck.Name> did quite a good job. Do I make <actorToCheck.o> my disciple?"
+                            Player(Excited)::"<actorToCheck.Name> did a good performance. Do I make <actorToCheck.o> my disciple?"
                         EndRandom
-                        0:: "Yes, add <actorToCheck.o>"
+                        0:: "Yes, make <actorToCheck.o> my disciple"
                         1:: "No. Not this time."
                         
                         If 0
@@ -1308,6 +1309,7 @@ SceneStart()
                             actorToCheck.setActorVar(rk_SG_HasDoneShootings, 1)
                             Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
                             actorToCheck.setActorVar(tag_SGDisciple, 1)
+                            actorToCheck.modifyActorVar(rk_discipleAttraction, 12)
                         EndIf
                     EndIf
                 EndWhile

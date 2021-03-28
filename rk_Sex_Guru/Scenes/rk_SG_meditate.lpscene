@@ -7,16 +7,18 @@ OTHER: none
 SceneStart()
 
     SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination)
+    TalkToEM = Player.getActorVar(rk_TalkToEM)
     
     "I decide to undress completely and start a meditation session right here ..."
     Player.strip()
     "Before I start to meditate, what should I think about?"
     0::"Ideas for my religion"
-    1:: SGIllumination > 60 :: "Meditate about Elfy Mana"
+    1:: TalkToEM > 0 :: "Meditate about Elfy Mana"
     99::"I changed my mind!"
     
     If 0
         Player.show()
+        Player.strip()
         Player.animate(pray)
     
         "Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
@@ -37,6 +39,7 @@ SceneStart()
     ElseIf 1
     
         Player.show()
+        Player.strip()
         Player.animate(pray)
     
         "Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."

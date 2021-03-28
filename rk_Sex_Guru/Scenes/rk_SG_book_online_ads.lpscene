@@ -4,7 +4,7 @@ WHEN: 0 - 24
 WHO: none
 OTHER: none
 
-    SceneStart()
+SceneStart()
 
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
@@ -296,4 +296,4 @@ OTHER: none
     
     passTime(0.5, 1)
     
-    SceneEnd()
+SceneEnd()

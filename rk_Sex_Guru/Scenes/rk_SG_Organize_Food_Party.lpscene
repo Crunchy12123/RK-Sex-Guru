@@ -1,0 +1,474 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(place_of_worship)
+        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    EndIf
+    
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples
+    SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination)
+    SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+
+    "What type of event/party you want to organize?"
+    0::"Organize a spaghetti dinner to raise funds"
+    1::"Hello"
+    99::"Back to the game!"
+    
+    If 0
+    
+        costPperson = 25
+        costPpersonLoc = costPperson.convertToLocalCurrency()
+        costPprepare = Random(7.5, 8.5)
+        costPprepareLoc = costPprepare.convertToLocalCurrency()
+        
+        "You decide to organize a spaghetti dinner to raise funds"
+        "The menu will be: Spaghetti with meat/vege sauce, Caesar salad, Bread, Dessert, one coffee/tea and condiments. One meal will cost <costPpersonLoc> per person."
+        "The cost to prepare everything per person will be: <costPprepareLoc>."
+        "I also need to rent a big place like a restaurant for this event!"
+        "First, you need to sell tickets to know how many places you will reserved!"
+
+        TicketSold = Random(10, 20)
+        costreservation = Random(300, 600)
+        costreservationLoc = costreservation.convertToLocalCurrency()
+        
+        PersonsTotalCost = costPperson * TicketSold
+        PersonsTotalCostLoc = PersonsTotalCost.convertToLocalCurrency()
+        PrepareTotalCost = costPprepare * TicketSold
+        PrepareTotalCostLoc = PrepareTotalCost.convertToLocalCurrency()
+        TotalGainPerson = PersonsTotalCost - PrepareTotalCost
+        
+        EarningTick = PersonsTotalCost - PrepareTotalCost
+        
+        "So I walk around town to sell tickets for my spaguetti event."
+        "After few hours of walking and trying to sell tickets for my event, I was able to sell <TicketSold> tickets, so <TicketSold> persons are supposed to come!"
+        passTime(2, 4)
+        energy -= Random(3, 8)
+        Player.show()
+        Player.animate(call)
+        "So I made a few calls and after a few minutes I found a good restaurant nearby, I immediately made a reservation for <TicketSold> persons."
+        "The reservation cost for <TicketSold> persons is: <costreservationLoc>, but the owner is willing to rent it for free if I sleep with <RestoOwner.him_or_her>!"
+        Player.animate()
+        
+        "The total cost for this event: <PrepareTotalCost>.  You will earn <EarningTick> or more if someone just wants to attend and cancels their meal."
+        "The reservation cost will be aplly if you don't sleep with the owner!"
+        "Do you still want to organize this event"
+        0::money > PersonsTotalCost ::"Yes"
+        1::"No"
+
+        If 0
+
+            moveTo(restaurant)
+            setBackground(restaurant)
+                
+            Actor1 = generatePersonTemporary()
+            Actor1.dress()
+            Actor1.show(1)
+            Actor2 = generatePersonTemporary()
+            Actor2.dress()
+            Actor2.show(2)
+            Actor3 = generatePersonTemporary()
+            Actor3.dress()
+            Actor3.show(3)
+            Actor4 = generatePersonTemporary()
+            Actor4.dress()
+            Actor4.show(4)
+            Actor5 = generatePersonTemporary()
+            Actor5.dress()
+            Actor5.show(5)
+            Actor6 = generatePersonTemporary()
+            Actor6.dress()
+            Actor6.show(6)
+            Actor7 = generatePersonTemporary()
+            Actor7.dress()
+            Actor7.show(7)
+            Actor8 = generatePersonTemporary()
+            Actor8.dress()
+            Actor8.show(8)
+            Actor9 = generatePersonTemporary()
+            Actor9.dress()
+            Actor9.show(9)
+            Actor10 = generatePersonTemporary()
+            Actor10.dress()
+            Actor10.show(10)
+                
+            If TicketSold == 11
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                
+            ElseIf TicketSold == 12
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                
+            ElseIf TicketSold == 13
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                
+            ElseIf TicketSold == 14
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                
+            ElseIf TicketSold == 15
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                
+            ElseIf TicketSold == 16
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                Actor16 = generatePersonTemporary()
+                Actor16.dress()
+                Actor16.show(16)
+
+            ElseIf TicketSold == 17
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                Actor16 = generatePersonTemporary()
+                Actor16.dress()
+                Actor16.show(16)
+                Actor17 = generatePersonTemporary()
+                Actor17.dress()
+                Actor17.show(17)
+
+            ElseIf TicketSold == 18
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                Actor16 = generatePersonTemporary()
+                Actor16.dress()
+                Actor16.show(16)
+                Actor17 = generatePersonTemporary()
+                Actor17.dress()
+                Actor17.show(17)
+                Actor18 = generatePersonTemporary()
+                Actor18.dress()
+                Actor18.show(18)
+
+            ElseIf TicketSold == 19
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                Actor16 = generatePersonTemporary()
+                Actor16.dress()
+                Actor16.show(16)
+                Actor17 = generatePersonTemporary()
+                Actor17.dress()
+                Actor17.show(17)
+                Actor18 = generatePersonTemporary()
+                Actor18.dress()
+                Actor18.show(18)
+                Actor19 = generatePersonTemporary()
+                Actor19.dress()
+                Actor19.show(19)
+
+            ElseIf TicketSold == 20
+                Actor11 = generatePersonTemporary()
+                Actor11.dress()
+                Actor11.show(11)
+                Actor12 = generatePersonTemporary()
+                Actor12.dress()
+                Actor12.show(12)
+                Actor13 = generatePersonTemporary()
+                Actor13.dress()
+                Actor13.show(13)
+                Actor14 = generatePersonTemporary()
+                Actor14.dress()
+                Actor14.show(14)
+                Actor15 = generatePersonTemporary()
+                Actor15.dress()
+                Actor15.show(15)
+                Actor16 = generatePersonTemporary()
+                Actor16.dress()
+                Actor16.show(16)
+                Actor17 = generatePersonTemporary()
+                Actor17.dress()
+                Actor17.show(17)
+                Actor18 = generatePersonTemporary()
+                Actor18.dress()
+                Actor18.show(18)
+                Actor19 = generatePersonTemporary()
+                Actor19.dress()
+                Actor19.show(19)
+                Actor20 = generatePersonTemporary()
+                Actor20.dress()
+                Actor20.show(20)
+                
+            EndIf
+            passTime(0.15, 0.5)
+            "Everyone is now here and ready to eat and listen to my speech!"
+            "People are all served, so I can start my speech"
+            
+            Actor1.animate(eat)
+            Actor2.animate(eat)
+            Actor3.animate(eat)
+            Actor4.animate(eat)
+            Actor5.animate(eat)
+            Actor6.animate(eat)
+            Actor7.animate(eat)
+            Actor8.animate(eat)
+            Actor9.animate(eat)
+            Actor10.animate(eat)
+                
+            If TicketSold == 11
+                Actor11.animate(eat)
+                
+            ElseIf TicketSold == 12
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                
+            ElseIf TicketSold == 13
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                
+            ElseIf TicketSold == 14
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                
+            ElseIf TicketSold == 15
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                
+            ElseIf TicketSold == 16
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                Actor16.animate(eat)
+
+            ElseIf TicketSold == 17
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                Actor16.animate(eat)
+                Actor17.animate(eat)
+
+            ElseIf TicketSold == 18
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                Actor16.animate(eat)
+                Actor17.animate(eat)
+                Actor18.animate(eat)
+
+            ElseIf TicketSold == 19
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                Actor16.animate(eat)
+                Actor17.animate(eat)
+                Actor18.animate(eat)
+                Actor19.animate(eat)
+
+            ElseIf TicketSold == 20
+                Actor11.animate(eat)
+                Actor12.animate(eat)
+                Actor13.animate(eat)
+                Actor14.animate(eat)
+                Actor15.animate(eat)
+                Actor16.animate(eat)
+                Actor17.animate(eat)
+                Actor18.animate(eat)
+                Actor19.animate(eat)
+                Actor20.animate(eat)
+                
+            EndIf
+            
+            
+            //pendant le souper
+            
+            passTime(2, 4)
+            
+            "The event ended pretty well, people listened to my speech in silence and no one complained about the food..."
+            PersonCM = Random(0, TicketSold)
+            CMSold = Random(0, PersonCM)
+            PersonBuy = CMSold * 10
+            PersonBuyCMLoc = PersonBuy.convertToLocalCurrency()
+
+            DessertCost =  6
+            DessertCostLoc = DessertCost.convertToLocalCurrency()
+            CandyCost = 2.5
+            CandyCostLoc = CandyCost.convertToLocalCurrency()
+            DrinkCost = 2
+            DrinkCostLoc = DrinkCost.convertToLocalCurrency()
+            
+            DessertSale =  Random(0, TicketSold)
+            CandySale = Random(0, TicketSold)
+            DrinkSale = Random(0, TicketSold)
+            bonusSaleCount = DessertSale + CandySale + DrinkSale
+
+            DessertSaleAmount = DessertSale * DessertCost
+            CandySaleAmount = CandySale * CandyCost
+            DrinkSaleAmount = DrinkSale * DrinkCost
+            BonusSaleAmount = DessertSaleAmount + CandySaleAmount + DrinkSaleAmount
+            BonusSaleAmountLoc = BonusSaleAmount.convertToLocalCurrency()
+            
+            If BonusSaleAmount > 0
+            
+                "During the dinner and the speech, you were able to make more sales with the owner's vending machines... The owner gives you 15% on the sales..."
+                "You made <bonusSaleCount> sale(s), <BonusSaleAmountLoc> and a cash back of <BonusM>"
+                "You have sold <DessertSale> dessert, <CandySale> candies and <DrinkSale> drinks"
+                BonusM = BonusSaleAmount - [85/100]
+            
+            EndIf
+            
+            If CMSold > 0
+            
+                "Also, <PersonCM> person canceled their meal, <CMSold> person were able to buy a second meal, so you made an extra bonus of <PersonBuyCMLoc>"
+            
+            EndIf
+            
+            TotalFunds = EarningTick + BonusM
+            money += TotalFunds
+            mood += Random(3, 5)
+        
+            "You decide to clean the place a bit..."
+            Player.dress
+            Player.show
+            Player.animate(sweep)
+        
+            RestoOwner = generatePersonTemporary()
+            RestoOwner.dress
+            RestoOwner.show
+            "After few minutes, the restaurant owner appear in front of me and said..."
+            RestoOwner(Curious)::"So! Has your event ended? Did you make your choice on the cost of my reservation? Pay with sex or in cash?"
+            Player(Attentive)::"Yeah, my event ended few minutes ago..."
+            Player.animate()
+            
+            "What do I do, pay with sex or in cash?"
+            0::"Pay with sex"
+            1:: money > costreservation ::"Pay in cash"
+            
+            If 0
+                
+                Player(Flirty)::"I choose to pay with sex!"
+                RestoOwner(Happy)::"Good, good, let's do it right here..."
+                Player.strip()
+                RestoOwner.strip()
+                Sex(Player, RestoOwner)
+                perversion += 5
+                RestoOwner.modifyActorVar(rk_discipleattraction, 5)
+                
+            ElseIf 1
+                
+                Player(Wink)::"I choose to pay in cash!"
+                money -= costreservation
+                RestoOwner(Happy)::"Good, you can leave I will do the rest of the clean up... Have a nice day!"
+            
+            EndIf
+        
+        
+        EndIf
+    
+    ElseIf 1
+    
+        "Hello"
+    
+    EndIf
+
+SceneEnd()
