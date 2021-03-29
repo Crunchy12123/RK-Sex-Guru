@@ -10,6 +10,7 @@ SceneStart()
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples
     SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination) // Illumination
+    TempAcceptance = Actor.getActorVar(rk_SG_TempAcceptance)
 
     PastorChris = generatePersonTemporary(rk_ModelM_Pastor_Chris)
     PastorChris.hide()
@@ -88,50 +89,151 @@ SceneStart()
  
                 If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
-                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
-                    PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
-                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru!"
+                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris(Serene) :: "I love the smell of a hot and humid penis!"
+                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
                     
                     If 0
 
-                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my dick... anyway..."
-                        "I pulled my pants down and he started licking my penis right away, like a popcycle for a few minutes and then sucking me like a real pro!"
-                        Player.dressExcept(Bottom)
-                        PastorChris.strip()
-                        Sex(Player, PastorChris)
-                        Filter(Blowjob)
-                        perversion += 0.35
-                        PastorChris:attractiontoplayer += Random(0, 1)
-                        passTime(0.15, 0.25)
-                    
-                    EndIf
+                        If Player.IsWithCompanion()
 
-                
-                ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
-                
-                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
-                    PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "
-                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick your lovely vagina!"
-                    "Do I accept the offer?"
-                    0::"Yes"
-                    99::"No"
-                    
-                    If 0
-
-                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my pussy... anyway..."
-                        "I pulled my pants down and he started licking my pussy right away, like a real pro!"
+                            Actor = getCompanion()
+                            PastorChris (Serene) :: "Let your companion join the party?"
+                            "Do I accept?"
+                            0:: Actor:perversion > 50 ::"Why not!"
+                            1::"No!"
+                            
+                            If 0
+                                
+                                Actor.dress()
+                                Actor.show(2)
+                                Actor.makeInterestedIn(Player)
+                                Actor.makeInterestedIn(PastorChris)
+                                Actor.movetoPersonStand(Player, 50)
+                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                
+                            EndIf
+                        
+                        EndIf
+                        
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he didn't fucked for a long time, his dick already leaking... anyway..."
+                        "I pulled my pants down and he started carressing my dick right away!"
                         Player.dressExcept(Bottom)
                         PastorChris.strip()
                         
-                        "He licks my vulva, annoys my clit, fucked me with his tongue, .... wooaw I'm in heaven!"
-                        Sex(Player, PastorChris)
-                        Filter(Licking)
-                        perversion += 0.35
-                        PastorChris:attractiontoplayer += Random(0, 1)
-                        passTime(0.15, 0.25)
+                        If TempAcceptance > 0
+                        
+                            Actor.isInterestedIn(PastorChris)
+                            Actor.show()
+                            Actor.strip()
+                            Player.strip()
+                            
+                            Sex(Actor, Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            Actor:attractiontoplayer += Random(1, 3)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
+                        
+                        Else
+                        
+                            "He lick my cock like a popcycle for a few minutes and we fucked each other like a real pros..."
+                            Sex(Player, PastorChris)
+                            Filter(Blowjob)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            
+                        EndIf
+                        
+                    Else
+                    
+                        PastorChris(Sad):: "Ok then..."
+                        
+                    EndIf
+
+                ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
+                
+                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris(Serene) :: "I love the smell of a hot and humid vagina! "
+                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
+                    "Do I accept the offer?"
+                    0::"Yes"
+                    99::"No"
+                    
+                    If 0
+
+                        If Player.IsWithCompanion()
+
+                            Actor = getCompanion()
+                            PastorChris (Serene) :: "Let your companion join the party?"
+                            "Do I accept?"
+                            0:: Actor:perversion > 50 ::"Why not!"
+                            1::"No!"
+                            
+                            If 0
+
+                                Actor.dress()
+                                Actor.show(2)
+                                Actor.makeInterestedIn(Player)
+                                Actor.makeInterestedIn(PastorChris)
+                                Actor.movetoPersonStand(Player, 50)
+                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                
+                            EndIf
+                            
+                        EndIf
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down..."
+                        "I pulled my pants down and he started caressing my pussy right away!"
+                        Player.dressExcept(Bottom)
+                        PastorChris.strip()
+                        
+                        If TempAcceptance > 0
+                        
+                            Actor.isInterestedIn(PastorChris)
+                            Actor.show()
+                            Actor.strip()
+                            Player.strip()
+                            
+                            Sex(Actor, Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            Actor:attractiontoplayer += Random(1, 3)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
+                        
+                        Else 
+                        
+                            "He licks my vulva, annoys my clit, fucked me with his tongue, and then fuck me like a real pro.... wooaw I'm in heaven!"
+                            Sex(Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            
+                        EndIf
+                        
+                    Else
+                    
+                        PastorChris(Sad):: "Ok then..."   
                     
                     EndIf
                 
@@ -186,7 +288,7 @@ SceneStart()
                     0::"Yes"
                     99::"No"
                 
-                    if 0
+                    If 0
                     
                         "She jump on me and we start having sex right here!"
                         Player.strip()
@@ -253,55 +355,158 @@ SceneStart()
 
                 If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
-                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
-                    PastorChris (Serene) :: "I love the smell of a hot and humid penis!"
-                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru!"
+                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris(Serene) :: "I love the smell of a hot and humid penis!"
+                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
                     
                     If 0
 
-                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my dick... anyway..."
-                        "I pulled my pants down and he started licking my penis right away, like a popcycle for a few minutes and then sucking me like a real pro!"
+                        If Player.IsWithCompanion()
+
+                            Actor = getCompanion()
+                            PastorChris (Serene) :: "Let your companion join the party?"
+                            "Do I accept?"
+                            0:: Actor:perversion > 50 ::"Why not!"
+                            1::"No!"
+                            
+                            If 0
+
+                                Actor.dress()
+                                Actor.show(3)
+                                Actor.makeInterestedIn(Player)
+                                Actor.makeInterestedIn(PastorChris)
+                                Actor.movetoPersonStand(Player, 50)
+                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                
+                            EndIf
+                        
+                        EndIf
+                        
+                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he didn't fucked for a long time, his dick already leaking... anyway..."
+                        "I pulled my pants down and he started carressing my dick right away!"
                         Player.dressExcept(Bottom)
                         PastorChris.strip()
-                        Sex(Player, PastorChris)
-                        Filter(Blowjob)
-                        perversion += 0.35
-                        PastorChris:attractiontoplayer += Random(0, 1)
-                        passTime(0.15, 0.25)
+                        
+                        If TempAcceptance > 0
+                        
+                            Actor.isInterestedIn(PastorChris)
+                            Actor.show()
+                            Actor.strip()
+                            Player.strip()
+                        
+                            Sex(Actor, Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            Actor:attractiontoplayer += Random(1, 3)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
+                        
+                        Else
+                        
+                            "He lick my cock like a popcycle for a few minutes and we fucked each other like a real pros..."
+                            Sex(Player, PastorChris)
+                            Filter(Blowjob)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            
+                        EndIf
+                        
+                    Else
                     
+                        PastorChris(Sad):: "Ok then..."
+                        
                     EndIf
 
                 
                 ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
                 
-                    PastorChris (Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
-                    PastorChris (Serene) :: "I love the smell of a hot and humid vagina! "
-                    PastorChris (Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick your lovely vagina!"
+                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris(Serene) :: "I love the smell of a hot and humid vagina! "
+                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
                     
                     If 0
 
-                        "<PastorChris.name> <PastorChris.name_last> strip down... I think he wants more than my pussy... anyway..."
-                        "I pulled my pants down and he started licking my pussy right away, like a real pro!"
+                        If Player.IsWithCompanion()
+
+                            Actor = getCompanion()
+                            PastorChris (Serene) :: "Let your companion join the party?"
+                            "Do I accept?"
+                            0:: Actor:perversion > 50 ::"Why not!"
+                            1::"No!"
+                            
+                            If 0
+                                
+                                Actor.dress()
+                                Actor.show(3)
+                                Actor.makeInterestedIn(Player)
+                                Actor.makeInterestedIn(PastorChris)
+                                Actor.movetoPersonStand(Player, 50)
+                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                
+                            EndIf
+                            
+                        EndIf
+
+                        "<PastorChris.name> <PastorChris.name_last> strip down..."
+                        "I pulled my pants down and he started caressing my pussy right away!"
                         Player.dressExcept(Bottom)
                         PastorChris.strip()
                         
-                        "He licks my vulva, annoys my clit, fucked me with his tongue, .... wooaw I'm in heaven!"
-                        Sex(Player, PastorChris)
-                        Filter(Licking)
-                        perversion += 0.35
-                        PastorChris:attractiontoplayer += Random(0, 1)
-                        passTime(0.15, 0.25)
+                        If TempAcceptance > 0
+                        
+                            Actor.isInterestedIn(PastorChris)
+                            Actor.show()
+                            Actor.strip()
+                            Player.strip()
+                            
+                            Sex(Actor, Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                            Actor:attractiontoplayer += Random(1, 3)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
+                        
+                        Else 
+                        
+                            "He licks my vulva, annoys my clit, fucked me with his tongue, and then fuck me like a real pro.... wooaw I'm in heaven!"
+                            Sex(Player, PastorChris)
+                            perversion += 0.35
+                            PastorChris:attractiontoplayer += Random(0, 1)
+                        
+                            passTime(0.15, 0.25)
+                        
+                            PastorChris(Serene):: "That was good!"
+                            PastorChris.dress()
+                            
+                        EndIf
+                        
+                    Else
+                    
+                        PastorChris(Sad):: "Ok then..."   
                     
                     EndIf
                 
                 EndIf
                 
+                Actor.show()
                 PastorChris(Happy)::"That's it for now! Have a nice gaming!"
                 PastorChris:attractiontoplayer += Random(0, 1)
                 PastorChris.hide()

@@ -57,10 +57,10 @@ SceneStart()
         
         ElfyManaYes = random(0,20)
         
-        if ElfyManaYes > 10
+        If ElfyManaYes > 10
         
             "Elfy Mana just appears in my house,...!"
-            ElfyMana.show()
+            ElfyMana.show(2)
             ElfyMana.dressExcept(Outerwear, Top, Bottom)
         
             ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."

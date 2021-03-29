@@ -73,8 +73,6 @@ SceneStart()
             Player:energy += 3
             Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
             Player.animate()
-            
-            Counter = 0
 
             If SGIllumination < 50
     
@@ -86,7 +84,34 @@ SceneStart()
                 
             ElseIf TalkToEM > 0
             
-                "Go!"
+                ElfyManaYes = random(0,20)
+        
+                If ElfyManaYes > 10
+        
+                    "Elfy Mana just appears in my house,...!"
+                    ElfyMana.show()
+                    ElfyMana.dressExcept(Outerwear, Top, Bottom)
+        
+                    ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."
+                    ElfyMana(Serene)::"Let's start having fun together..."
+                    ElfyMana:attractiontoplayer += Random(1, 3)
+            
+                    Player.strip()
+                    ElfyMana.strip()
+                    Sex(ElfyMana, Player)
+            
+                    ElfyMana(Happy)::"It was fun! Next time you want to play, just meditate and think about me again! See ya!"
+                    Player:karma += 0.5
+                    Player:mood += 5
+
+                    ElfyMana.hide()
+        
+                Else
+                
+                    Player:karma += 0.5
+                    Player:mood += 3
+            
+                EndIf
         
             Else
                 
