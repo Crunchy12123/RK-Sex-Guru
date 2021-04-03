@@ -89,9 +89,9 @@ SceneStart()
  
                 If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
-                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
-                    PastorChris(Serene) :: "I love the smell of a hot and humid penis!"
-                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
+                    PastorChris(Serene):: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris(Serene):: "I love the smell of a hot and humid penis!"
+                    PastorChris(Serene):: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
@@ -101,7 +101,7 @@ SceneStart()
                         If Player.IsWithCompanion()
 
                             Actor = getCompanion()
-                            PastorChris (Serene) :: "Let your companion join the party?"
+                            PastorChris(Serene):: "Let your companion join the party?"
                             "Do I accept?"
                             0:: Actor:perversion > 50 ::"Why not!"
                             1::"No!"
@@ -110,8 +110,6 @@ SceneStart()
                                 
                                 Actor.dress()
                                 Actor.show(2)
-                                Actor.makeInterestedIn(Player)
-                                Actor.makeInterestedIn(PastorChris)
                                 Actor.movetoPersonStand(Player, 50)
                                 Actor.setActorVar(rk_SG_TempAcceptance, 1)
                                 
@@ -126,7 +124,8 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
-                            Actor.isInterestedIn(PastorChris)
+                            Actor.makeInterestedIn(Player)
+                            Actor.makeInterestedIn(PastorChris)
                             Actor.show()
                             Actor.strip()
                             Player.strip()
@@ -164,9 +163,9 @@ SceneStart()
 
                 ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
                 
-                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
-                    PastorChris(Serene) :: "I love the smell of a hot and humid vagina! "
-                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
+                    PastorChris(Serene):: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris(Serene):: "I love the smell of a hot and humid vagina! "
+                    PastorChris(Serene):: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
@@ -176,7 +175,7 @@ SceneStart()
                         If Player.IsWithCompanion()
 
                             Actor = getCompanion()
-                            PastorChris (Serene) :: "Let your companion join the party?"
+                            PastorChris(Serene):: "Let your companion join the party?"
                             "Do I accept?"
                             0:: Actor:perversion > 50 ::"Why not!"
                             1::"No!"
@@ -185,8 +184,6 @@ SceneStart()
 
                                 Actor.dress()
                                 Actor.show(2)
-                                Actor.makeInterestedIn(Player)
-                                Actor.makeInterestedIn(PastorChris)
                                 Actor.movetoPersonStand(Player, 50)
                                 Actor.setActorVar(rk_SG_TempAcceptance, 1)
                                 
@@ -201,7 +198,8 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
-                            Actor.isInterestedIn(PastorChris)
+                            Actor.makeInterestedIn(Player)
+                            Actor.makeInterestedIn(PastorChris)
                             Actor.show()
                             Actor.strip()
                             Player.strip()
@@ -355,9 +353,9 @@ SceneStart()
 
                 If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
                 
-                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
-                    PastorChris(Serene) :: "I love the smell of a hot and humid penis!"
-                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
+                    PastorChris(Serene):: "Hmmm! I don't know if it's me, but I can smell your testosterone from here, hot boy!"
+                    PastorChris(Serene):: "I love the smell of a hot and humid penis!"
+                    PastorChris(Serene):: "We're all horny here, so don't be shy, pull your pants down and let me suck your little guru and penetrate your small ass!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
@@ -376,8 +374,6 @@ SceneStart()
 
                                 Actor.dress()
                                 Actor.show(3)
-                                Actor.makeInterestedIn(Player)
-                                Actor.makeInterestedIn(PastorChris)
                                 Actor.movetoPersonStand(Player, 50)
                                 Actor.setActorVar(rk_SG_TempAcceptance, 1)
                                 
@@ -392,7 +388,8 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
-                            Actor.isInterestedIn(PastorChris)
+                            Actor.makeInterestedIn(Player)
+                            Actor.makeInterestedIn(PastorChris)
                             Actor.show()
                             Actor.strip()
                             Player.strip()
@@ -431,9 +428,9 @@ SceneStart()
                 
                 ElseIf [Player.isFemale() && Player:perversion > 75] || [Player.isFemale() && Player:arousal > 15]
                 
-                    PastorChris(Serene) :: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
-                    PastorChris(Serene) :: "I love the smell of a hot and humid vagina! "
-                    PastorChris(Serene) :: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
+                    PastorChris(Serene):: "Hmmm! I don't know if it's me, but I can smell your female hormones from here, hot girl!"
+                    PastorChris(Serene):: "I love the smell of a hot and humid vagina! "
+                    PastorChris(Serene):: "We're all horny here, so don't be shy, pull your pants down and let me lick and fuck your lovely vagina!"
                     "Do I accept the offer?"
                     0::"Yes"
                     99::"No"
@@ -452,8 +449,6 @@ SceneStart()
                                 
                                 Actor.dress()
                                 Actor.show(3)
-                                Actor.makeInterestedIn(Player)
-                                Actor.makeInterestedIn(PastorChris)
                                 Actor.movetoPersonStand(Player, 50)
                                 Actor.setActorVar(rk_SG_TempAcceptance, 1)
                                 
@@ -468,7 +463,8 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
-                            Actor.isInterestedIn(PastorChris)
+                            Actor.makeInterestedIn(Player)
+                            Actor.makeInterestedIn(PastorChris)
                             Actor.show()
                             Actor.strip()
                             Player.strip()

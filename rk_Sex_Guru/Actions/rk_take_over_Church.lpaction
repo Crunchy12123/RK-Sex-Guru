@@ -1,12 +1,12 @@
 ACTION_UNIQUEID: rk_take_over_Church
-ACTION_NAME: Take over the Church
+ACTION_NAME: Get SRS licence for selling
 WHERE: place_of_worship
 WHEN: 0 - 24
 MINUTES: 1 - 1
-TIMEOUT_MINUTES: 0
+TIMEOUT_MINUTES: 100
 ALSO_TIMEOUT:
 EFFECTS: 
-CONDITIONS: rkOpenedSexGuru >= 1 (STAT_COMPARE)
-MOVE_FIRST: true
+CONDITIONS: rkOpenedChurchLicence < 1 (STAT_COMPARE)
+MOVE_FIRST: false
 SCENE_ALWAYS: rk_take_over_Church
 ANIMATION: call

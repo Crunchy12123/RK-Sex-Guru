@@ -1,0 +1,12 @@
+ACTION_UNIQUEID: rk_SG_manage_Church
+ACTION_NAME: Manage church business
+WHERE: place_of_worship
+WHEN: 0 - 24
+MINUTES: 1 - 1
+TIMEOUT_MINUTES: 0
+ALSO_TIMEOUT:
+EFFECTS: 
+CONDITIONS: rkOpenedChurchLicence > 0 (STAT_COMPARE)
+MOVE_FIRST: false
+SCENE_ALWAYS: rk_SG_manage_Church
+ANIMATION:   

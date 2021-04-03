@@ -38,7 +38,7 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
     
-    If FrozenMealsStock > 0
+    If FrozenMealsStock >= 10
     
         stayInMenu = true
             

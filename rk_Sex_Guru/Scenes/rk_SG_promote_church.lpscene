@@ -14,23 +14,21 @@ SceneStart()
     
     "How I would like to promote my church products"
     0::"Organize a food party"
-    1::"Do a public tasting"
     60::"Sell calendars displaying our temple and models"
     99::"Do nothing!"
 
     If 0
     
-        "NOT IMPLEMENTED YET"
-		// followUp(rk_SG_Organize_Food_Party)
+        followUp(rk_SG_Organize_Food_Party)
     
     ElseIf 1
     
         "NOT IMPLEMENTED YET"
-		// followUp(rk_SG_Do_public_Degustation)
+        // followUp(rk_SG_Do_public_Degustation)
 
     ElseIf 60
 
-		followUp(rk_SG_Sell_Produced_Calendars)
+        followUp(rk_SG_Sell_Produced_Calendars)
     
     EndIf
 

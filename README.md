@@ -8,7 +8,7 @@
 <p>This version is not finished and contains some bugs, so try it on a new game.</p>
 <br>
 <p>- Contain 53 scenes</p>
-<p>- 37 new characters</p>
+<p>- 41 new characters</p>
 <p>- 1 popup scene</p>
 <br>
 <h3>Little resume:</h3>

@@ -81,7 +81,6 @@ SceneStart()
 
         If 0
 
-            
             If Player.IsWithCompanion()
 
                 Actor = getCompanion()
@@ -94,8 +93,6 @@ SceneStart()
 
                     Actor.dress()
                     Actor.show(3)
-                    Actor.makeInterestedIn(Player)
-                    Actor.makeInterestedIn(NunBertha)
                     Actor.movetoPersonStand(Player, 50)
                     Actor.setActorVar(rk_SG_TempAcceptance, 1)
 
@@ -108,10 +105,11 @@ SceneStart()
             Player.dressExcept(Bottom)
             NunBertha.strip()
 
-            If TempAcceptance >= 1
+            If TempAcceptance > 0
 
-                Actor.isInterestedIn(NunBertha)
-                Actor.show()
+                Actor.makeInterestedIn(Player)
+                Actor.makeInterestedIn(NunBertha)
+                Actor.show(4)
                 Actor.strip()
                 Player.strip()
 
@@ -169,8 +167,6 @@ SceneStart()
 
                     Actor.dress()
                     Actor.show(3)
-                    Actor.makeInterestedIn(Player)
-                    Actor.makeInterestedIn(NunBertha)
                     Actor.movetoPersonStand(Player, 50)
                     Actor.setActorVar(rk_SG_TempAcceptance, 1)
 
@@ -183,10 +179,11 @@ SceneStart()
             Player.dressExcept(Bottom)
             NunBertha.strip()
 
-            If TempAcceptance >= 1
+            If TempAcceptance > 0
 
-                Actor.isInterestedIn(NunBertha)
-                Actor.show()
+                Actor.makeInterestedIn(Player)
+                Actor.makeInterestedIn(NunBertha)
+                Actor.show(4)
                 Actor.strip()
                 Player.strip()
 

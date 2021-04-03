@@ -1,5 +1,5 @@
 WHAT: none
-WHERE: all
+WHERE: home, work
 WHEN: 0 - 24
 WHO: none
 OTHER: none
@@ -42,10 +42,9 @@ SceneStart()  // on wait
     
         "You don't have enough interpersonal skills, you need at least 75, because new religions are rarely accepted if your not a good talker..."
     
-    ElseIf DaysfromAccept <= 2
+    ElseIf DaysfromAccept <= 0
     
-        "I receive a call from the Sex Religious Society ..."
-        
+        "I receive a call from the Sex Religious Society, they invite me to a gurus conference where they talk about their religion and beliefs..."
         
     ElseIf DaysfromAccept == 3
 

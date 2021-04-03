@@ -1,5 +1,5 @@
 WHAT: none
-WHERE: none
+WHERE: place_of_worship
 WHEN: 0 - 24
 WHO: none
 OTHER: none
@@ -11,34 +11,41 @@ SceneStart()
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
     PriceChurchCommerce = Player.getActorVar(rk_PriceChurchCommerce)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
     
-    Rent = calculateRent()
-    RentConverted = Rent.convertToLocalCurrency(true)
+    Rental = Random(10000, 50000)
+    RentalConverted = Rental.convertToLocalCurrency()
     
-    "The rent of this church for commercial use is <RentConverted> per month, and the current pastor is not renewing."
-    "Do I lease it?"
+    "I decide to call the Sex Religious Society to get a licence for selling homemade products inside every churches of the city..."
+    Player.animate(call)
+    "The cost to get a licence for selling homemade products inside every churches of the city is <RentalConverted>."
+    "Do I take a licence?"
     0:: "Yes"
     1:: "No"
     
     If 0
-    
-        Player(happy)::"Yes, that will be perfect for selling our kinky homemade temple products!"
+
+        Player(happy)::"Yes, this licence will be perfect for selling our kinky homemade temple products!"
         ChanceOpening = Random(0, 5)
         
         Player.modifyActorVar(rk_SG_SexGuruReputation, ChanceOpening)
-        "I signed the lease on the property and took over the church."
+        "I signed to get the SRS licence for selling homemade products inside every churches."
         
         Player.setActorVar(rk_PriceChurchCommerce, Rent)
-        "What should I name this church?"
-        
-        enterBusinessName()
-        startBusiness()
+        // "What will be the name of your products brand name?"
+        // enterBusinessName()
         karma += 5
         
         Player.modifyActorVar(rk_discipleattractiontoplayer, ChanceOpening)
-        Player(Happy)::"Good, I own a church! Now I should start to produce some products to sell at my church!"
+        Player.modifyActorVar(rk_Churchbrand, ChanceOpening)
+        Player(Happy)::"Good, I own a SRS licence! Now I should start to produce some products to sell inside churches!"
         
         Player.setActorVar(rk_StartChurchCommerce, 1)
+        
+        Player:rkOpenedChurchLicence => 1
+        money -= Rental
+
+        Player.animate()
         
     Else
     

@@ -1,0 +1,45 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
+    StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
+    PriceChurchCommerce = Player.getActorVar(rk_PriceChurchCommerce)
+    Churchbargain = Player.getActorVar(rk_Churchbargain)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    
+    "What should I do?"
+    0::"Analyse Church performance"
+    1::"Deal with religious suppliers"
+    2::"Hire more employees"
+    3::"Promote product/temple awareness"
+    4::"Promote religion locally"
+    99::"Go back!"
+    
+    If 0
+    
+        followUp(rk_analyse_church_performance)
+    
+    ElseIf 1
+    
+        followUp(rk_SG_deal_church_suppliers)
+    
+    ElseIf 2
+    
+        followUp(rk_hire_more_Church_employees)
+    
+    ElseIf 3
+    
+        followUp(rk_SG_promote_church)
+    
+    ElseIf 4
+    
+        followUp(rk_promoteTemple_locally)
+    
+    EndIf
+
+SceneEnd()

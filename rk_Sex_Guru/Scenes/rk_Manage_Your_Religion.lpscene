@@ -307,6 +307,7 @@ SceneStart()
                     Player.setActorVar(rk_PlayerTemplePrice, 0)
                     Player.setActorVar(rk_SG_SexGuruIllumination, 0)
                     Player.setActorVar(rk_SG_SexGuruState, 0)
+                    
                     "Note, that not all of your guru's stats have been removed. If you want to reset Sex-Guru to its original state, click Yes!"
                     "Do I want I want to reset Sex-Guru mod?"
                     0::"Yes"
