@@ -9,47 +9,38 @@ SceneStart()
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
+    business_staffnumber = Player.getActorVar(rk_SG_ChurchesStaffnumber)
+    business_staffintelligence = Player.getActorVar(rk_SG_ChurchesStaffintelligence)
+    business_staffinterpersonal = Player.getActorVar(rk_SG_ChurchesStaffinterpersonal)
+    
     Revenue = calculateRevenue()
     RevenueC = Revenue.convertToLocalCurrency(true)
     "Estimated gross revenue for this month is <RevenueC>."
-    PriceChurchCommerce = Player.getActorVar(rk_PriceChurchCommerce)
-    RentC = PriceChurchCommerce.convertToLocalCurrency(true)
-    "Rent for the property is at <RentC>"
     Wages = calculateWages()
     WagesC = Wages.convertToLocalCurrency(true)
     "Wages for all employees total around <WagesC>."
     Expenses = calculateExpenses()
     ExpensesC = Expenses.convertToLocalCurrency(true)
     "Other expenses are projected at <ExpensesC>."
-    Profit = Revenue - PriceChurchCommerce - Wages - Expenses
+    Profit = Revenue - Wages - Expenses
     ProfitC = Profit.convertToLocalCurrency(true)
     ProfitMargin = Profit / Revenue
     
     "In the end, estimated net profit works out at <ProfitC> for this month." 
-    "Dig deeper into the church performance data?"
+    "Dig deeper into the homemade products performance data?"
     0:: "Yes"
     1:: "No"
     
     If 0
         "In terms of marketing ..."
         If Churchbrand < 25
-            "Your church's brand is virtually unknown. Most customers don't recognize it at all."
+            "Your homemade products brand is virtually unknown. Most customers don't recognize it at all. Publish more contents!"
         Elseif Churchbrand < 50
-            "Your church's brand is somewhat recognizable. Still, your brand isn't strong enough to be the deciding factor in the customers' minds."
+            "Your homemade products brand is somewhat recognizable. Still, your brand isn't strong enough to be the deciding factor in the customers' minds."
         Elseif Churchbrand < 75
-            "Your church's brand is strong. The majority of customers have heard of you and associated your brand with quality."
+            "Your homemade products brand is strong. The majority of customers have heard of you and associated your brand with quality."
         Else
-            "Your church is a household name. Everyone knows who you are and trusts the quality of your products."
-        Endif
-        
-        If business_reputation < 25
-            "This church is virtually unknown locally. You need to promote it more."
-        Elseif business_reputation < 50
-            "A fair percentage of local citizen know about this church, but have yet to try it out." 
-        Elseif business_reputation < 75
-            "This church is fairly well-known locally and has its fair share of repeat customers."
-        Else
-            "This church is a true local favourite place to visit and has its own legion of loyal customers."
+            "Your homemade products is a household name. Everyone knows who you are and trusts the quality of your products."
         Endif
         
         "In terms of religion ..."
@@ -65,27 +56,27 @@ SceneStart()
         
         "In terms of labour ..."       
         If business_staffnumber < 30
-            "This church is severely understaffed. You need to hire more people right away."
+            "This community is severely understaffed. You need to hire more people right away."
         Elseif business_staffnumber < 60
-            "This church still needs quite a few more employees to operate at an acceptable level"
+            "This community still needs quite a few more employees to operate at an acceptable level"
         Elseif business_staffnumber < 90
-            "This church is managing okay, although it's still somewhat understaffed."
+            "This community is managing okay, although it's still somewhat understaffed."
         Elseif business_staffnumber < 120
-            "The church seems to have just the right number of employees to handle everything."
+            "The community seems to have just the right number of employees to handle everything."
         Elseif business_staffnumber < 150
-            "The church is running smoothly, but there are too many employees on the premise at times."
+            "The community is running smoothly, but there are too many employees on the premise at times."
         Else
-            "The church seems to have more employees than customers - it seems an inefficient waste."
+            "The community seems to have more employees than customers - it seems an inefficient waste."
         Endif
         
         If business_staffintelligence < 25
-            "This church is full of clueless idiots ... might as well fire the whole staff."
+            "This community is full of clueless idiots ... might as well fire the whole staff."
         Elseif business_staffintelligence < 50
             "Your employees are fairly incompetent right now, but might improve with more training."
         Elseif business_staffintelligence < 75
             "Your employees are quite decent at their jobs, although there are room for improvements."
         Else
-            "This church is a well-oiled machine. Your employees know their shit and do their jobs well."
+            "This community is a well-oiled machine. Your employees know their shit and do their jobs well."
         Endif
         
         If business_staffinterpersonal < 25
@@ -110,14 +101,19 @@ SceneStart()
         Endif
         
         If Churchbargain < 25
-            "Your church business is a new kid on the block and frequently gets bullied by suppliers."
+            "Your homemade products business is a new kid on the block and frequently gets bullied by suppliers."
         Elseif Churchbargain < 50
-            "Your church business still has no bargaining power against the big suppliers, but smaller boutiques are quite happy to sell your products."
+            "Your homemade products business still has no bargaining power against the big suppliers, but smaller boutiques are quite happy to sell your products."
         Elseif Churchbargain < 75
-            "Your company now has some leverage in negotiating with suppliers. Still, you're not considered one of their most important customers."
+            "Your community now has some leverage in negotiating with suppliers. Still, you're not considered one of their most important customers."
         Else
-            "Your company has immense purchasing power. Most suppliers would do anything to work with you." 
+            "Your community has immense purchasing power. Most suppliers would do anything to work with you." 
         Endif
+    
+        passTime(1, 2)
+        
     Endif
+    
+    passTime(1, 2)
     
 SceneEnd()

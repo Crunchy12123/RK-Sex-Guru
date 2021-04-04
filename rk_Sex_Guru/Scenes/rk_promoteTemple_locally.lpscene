@@ -4,7 +4,7 @@ WHEN: 0 - 24
 WHO: none
 OTHER: none
 
-    SceneStart()
+SceneStart()
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
@@ -64,5 +64,5 @@ OTHER: none
         
     EndIf
     
-    SceneEnd()
-    timeout(2, promoteTemple_locally)
+SceneEnd()
+timeout(2, promoteTemple_locally)

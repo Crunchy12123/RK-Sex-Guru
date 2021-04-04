@@ -151,10 +151,11 @@ SceneStart()
         ElseIf 20
     
             "What do I want to produce?"
-            0::"Frozen desserts"
-            19::"Special temple drinks"
-            20::"XXX Calendars"
-            21::"XXX magazines"
+            0::"Create special frozen desserts"
+            19::"Create special temple drinks"
+            20::"Print X calendars displaying temple's models"
+            21::"Print X magazines displaying temple's models"
+            31::"Print X movies displaying temple's models"
             99::"Go back!"
         
             If 0
@@ -175,6 +176,11 @@ SceneStart()
             ElseIf 21
             
                 followUp(rk_SG_Produce_XXXMag)
+                lookingInventories = false
+            
+            ElseIf 31
+            
+                followUp(rk_SG_Produce_XXXVid)
                 lookingInventories = false
             
             EndIf
@@ -210,8 +216,6 @@ SceneStart()
                 lookingInventories = false
         
             ElseIf 20
-        
-               txtNameRelig = "Your religion is: <ReligionName>"
             
                 If rkAreASexGuru < 1
             

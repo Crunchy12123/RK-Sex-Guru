@@ -1,5 +1,5 @@
 WHAT: none
-WHERE: home, work
+WHERE: all, home
 WHEN: 0 - 24
 WHO: none
 OTHER: none
@@ -15,17 +15,6 @@ SceneStart()  // on wait
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
     AreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru)
     
-    Guru1 = generatePersonTemporary()
-    Guru2 = generatePersonTemporary()
-    Guru3 = generatePersonTemporary()
-    Guru4 = generatePersonTemporary()
-    Guru5 = generatePersonTemporary()
-    Guru11 = generatePersonTemporary()
-    Guru21 = generatePersonTemporary()
-    Guru31 = generatePersonTemporary()
-    Guru41 = generatePersonTemporary()
-    Guru51 = generatePersonTemporary()
-    
     SetAcceptDay = Player.getActorVar(rk_SG_AcceptDay)
     daysSinceBirth = (Player:Age * 365) // current date
     daysSinceBirth += 0.5
@@ -34,9 +23,6 @@ SceneStart()  // on wait
     
     PassDayCount = SetAcceptDay - daysSinceBirth
     DaysfromAccept = 1 + PassDayCount
-    
-    moveTo(university)
-    setBackground3D(Modules/vin_Base/World/university___vin01.lpworld)
 
     If Player:interpersonal < 75
     
@@ -44,12 +30,41 @@ SceneStart()  // on wait
     
     ElseIf DaysfromAccept <= 0
     
-        "I receive a call from the Sex Religious Society, they invite me to a gurus conference where they talk about their religion and beliefs..."
+        "I get a call from the Sex Religious Society, they invite me to a gurus conference, where they all talk about their religion and share their beliefs..."
+        "What should I do?"
+        0::"Accept invitation"
+        1::"Refuse invitation"
         
-    ElseIf DaysfromAccept == 3
+        If 0
+        
+            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player(Happy)::"Sure, I will be there!"
+            Player.setActorVar(rk_SG_AcceptDay, 0.5)
+            mood += 3
+            
+        Else
+        
+            Player(Happy)::"No, I got important things to do!"
+            Player.modifyActorVar(rk_SG_SexGuruReputation, -1)
+        
+        EndIf
+        
+    ElseIf DaysfromAccept >= 3
 
-        "I attend to the  ..."
-        
+        moveTo(university)
+        setBackground3D(Modules/vin_Base/World/university___vin01.lpworld)
+    
+        Guru1 = generatePersonTemporary()
+        Guru2 = generatePersonTemporary()
+        Guru3 = generatePersonTemporary()
+        Guru4 = generatePersonTemporary()
+        Guru5 = generatePersonTemporary()
+        Guru11 = generatePersonTemporary()
+        Guru21 = generatePersonTemporary()
+        Guru31 = generatePersonTemporary()
+        Guru41 = generatePersonTemporary()
+        Guru51 = generatePersonTemporary()
+        "I have now arrived at the conference. I can see that there are already a few gurus arrived..."
 
         dressFormal()
         Player.dress()
@@ -73,6 +88,8 @@ SceneStart()  // on wait
         Guru3.dress()
         Guru3.show(3)
         
+        "3 other gurus just arrived!"
+        
         Guru4.randomizeHairs()
         Guru4.randomizeFace()
         dressFormal()
@@ -91,6 +108,8 @@ SceneStart()  // on wait
         Guru11.dress()
         Guru11.show(1)
         
+        "I think we are supposed to be 10 gurus in total, because otherwise the conference would not take place! "
+        
         Guru21.randomizeHairs()
         Guru21.randomizeFace()
         dressFormal()
@@ -103,6 +122,8 @@ SceneStart()  // on wait
         Guru31.dress()
         Guru31.show(3)
         
+        "I guess they wait until all the gurus are there before starting the conference..."
+        
         Guru41.randomizeHairs()
         Guru41.randomizeFace()
         dressFormal()
@@ -114,11 +135,19 @@ SceneStart()  // on wait
         dressFormal()
         Guru51.dress()
         Guru51.show(5)
-        passTime(5,10)
+        
+        "1,2,3,4,... We all are now good!"
+        passTime(0.25, 0.5)
+        
+        
+        "The conference begin..."
+        
+        // "The conference ends..."
+        passTime(5, 10)
         
         Player.setActorVar(rk_SG_AcceptDay, 0)
     
     EndIf
 
 SceneEnd()
-timeout(80, rk_Gurus_Conference)
+timeout(24, rk_Gurus_Conference)

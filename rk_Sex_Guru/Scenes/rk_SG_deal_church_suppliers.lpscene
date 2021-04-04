@@ -18,61 +18,71 @@ SceneStart()
         Player.modifyActorVar(rk_Churchbargain, 0.1)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.1)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 11 && ChanceOfBargain < 20
     
         Player.modifyActorVar(rk_Churchbargain, 0.2)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.2)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 21 && ChanceOfBargain < 30
     
         Player.modifyActorVar(rk_Churchbargain, 0.3)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.3)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 31 && ChanceOfBargain < 40
     
         Player.modifyActorVar(rk_Churchbargain, 0.4)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.4)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 41 && ChanceOfBargain < 50
     
         Player.modifyActorVar(rk_Churchbargain, 0.5)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.5)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 51 && ChanceOfBargain < 60
     
         Player.modifyActorVar(rk_Churchbargain, 0.6)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.6)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 61 && ChanceOfBargain < 70
     
         Player.modifyActorVar(rk_Churchbargain, 0.7)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.7)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 71 && ChanceOfBargain < 80
     
         Player.modifyActorVar(rk_Churchbargain, 0.8)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.8)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 81 && ChanceOfBargain < 90
     
         Player.modifyActorVar(rk_Churchbargain, 0.9)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 0.9)
+        passTime(1, 8)
         
     ElseIf ChanceOfBargain > 91
     
         Player.modifyActorVar(rk_Churchbargain, 1)
         "You boost your bargain and your products brand level a little bit !"
         Player.modifyActorVar(rk_Churchbrand, 1)
+        passTime(1, 8)
     
     EndIf
-
+    
 SceneEnd()

@@ -24,10 +24,11 @@ SceneStart()
             
     While stayInMenu
     
-        "What kind of homemade meals I want to sell?"
+        "What type of homemade products I want to sell?"
         0::"Frozen Meals"
         1::"Special temple drinks"
         2::"Calendars/XXX magazines"
+        3::"XXX Videos"
         99::"Go back"
     
         If 0
@@ -41,6 +42,10 @@ SceneStart()
         ElseIf 2
         
             followUp(rk_SG_Sell_Calendars_Xmagazines)
+            
+        ElseIf 3
+        
+            followUp(rk_SG_Sell_SGVidX)
         
         Else
                 

@@ -22,7 +22,7 @@ SceneStart()
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     If TempleSize > 0
         moveTo(place_of_worship)
-        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+        setBackground3D(Modules/vin_Base/World/beverages___vin01.lpworld)
     EndIf
     
     "What I want to produce today?"

@@ -26,7 +26,7 @@ SceneStart()
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     If TempleSize > 0
         moveTo(Home)
-        setBackground3D(Modules/vin_Base/World/ice_cream___vin01.lpworld)
+        setBackground3D(Modules/vin_Base/World/books___vin01.lpworld)
     EndIf
     
     "To produce calendars you need at least 1 set of photos (20 pictures) of your desired type of shootings and you must add certain items if necessary!"

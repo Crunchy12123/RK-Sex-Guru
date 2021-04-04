@@ -1,0 +1,106 @@
+WHAT: none
+WHERE: none
+WHEN: 0 - 24
+WHO: none
+OTHER: none
+
+SceneStart()
+    
+    SoloShootingsInStock = Player.getActorVar(rk_SG_SoloShootingsInStock)
+    GayShootingsInStock = Player.getActorVar(rk_SG_GayShootingsInStock)
+    LesbianShootingsInStock = Player.getActorVar(rk_SG_LesbianShootingsInStock)
+    AmateurShootingsInStock = Player.getActorVar(rk_SG_AmateurShootingsInStock)
+    GangBangShootingsInStock = Player.getActorVar(rk_SG_GangBangShootingsInStock)
+    RevGangBangShootingsInStock = Player.getActorVar(rk_SG_RevGangBangShootingsInStock)
+    ThreesomeShootingsInStock = Player.getActorVar(rk_SG_ThreesomeShootingsInStock)
+    
+    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+    
+    // Go to the Temple if any
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+    If TempleSize > 0
+        moveTo(Home)
+        setBackground3D(Modules/vin_Base/World/modeling___vin01.lpworld)
+    EndIf
+    
+    "To produce 100 XXX videos, you need at least 1 set of your desired type of shootings and you must add certain items if necessary!"
+    PricePrinting = Random(0.15, 0.25)*1
+    PricePrintingLoc = PricePrinting.convertToLocalCurrency()
+    TotalCostPrinting = PricePrinting * 100
+    TotalCostPrintingLoc = TotalCostPrintingLoc.convertToLocalCurrency()
+    "The price for printing 100 copies is: <TotalCostPrintingLoc>"
+    "What type of XXX videos do you want to copies?"
+    0:: SoloShootingsInStock > 0 ::"Solo XXX videos"
+    1:: AmateurShootingsInStock > 0 ::"Amateur XXX videos"
+    2:: ThreesomeShootingsInStock > 0 ::"Threesome XXX videos"
+    3:: GangBangShootingsInStock > 0 ::"GangBang XXX videos"
+    4:: RevGangBangShootingsInStock > 0 ::"RevGangBang XXX videos"
+    5:: LesbianShootingsInStock > 0 ::"Lesbian XXX videos"
+    6:: GayShootingsInStock > 0 ::"Gay XXX videos"
+    99:: "Go back!"
+    
+    If 0
+    
+        "You have just printed 100 XXX videos of solo models!"
+        Player.modifyActorVar(rk_SG_SoloShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_SoloShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 1
+    
+        "You have just printed 100 XXX videos of Amateur models!"
+        Player.modifyActorVar(rk_SG_AmateurShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_AmateurShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 2
+    
+        "You have just printed 100 XXX videos of Threesome actions!"
+        Player.modifyActorVar(rk_SG_ThreesomeShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 3
+    
+        "You have just printed 100 XXX videos of GangBang Shootings!"
+        Player.modifyActorVar(rk_SG_GangBangShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_GangBangShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 4
+    
+        "You have just printed 100 calendars of RevGangBang Shootings!"
+        Player.modifyActorVar(rk_SG_RevGangBangShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 5
+    
+        "You have just printed 100 XXX videos of Lesbian models!"
+        Player.modifyActorVar(rk_SG_LesbianShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_LesbianShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    ElseIf 6
+    
+        "You have just printed 100 XXX videos of Gay models!"
+        Player.modifyActorVar(rk_SG_GayShootingsInStock, -1)
+        Player.modifyActorVar(rk_SG_GayShootings_SGVidX_InStock, 100)
+        Player:energy -= 5
+        money -= TotalCostPrinting
+    
+    EndIf
+    
+SceneEnd()

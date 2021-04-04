@@ -5,9 +5,11 @@ WHO: Actor = getSpecific(Employee); If Actor:intelligence < intelligence && Acto
 OTHER: none
 
     SceneStart()
+    business_staffintelligence = Player.getActorVar(rk_SG_ChurchesStaffintelligence)
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     Actor:intelligence += intelligence*0.005
     Actor.modifyActorVar(rk_discipleattraction, 1)
+    Actor.modifyActorVar(rk_SG_ChurchesStaffintelligence, 1)
     Actor.saveAndDelete()
     SceneEnd()
     timeout(2, rk_train_techC_skills)

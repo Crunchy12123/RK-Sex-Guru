@@ -6,8 +6,10 @@ OTHER: none
 
     SceneStart()
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
+    business_staffinterpersonal = Player.getActorVar(rk_SG_ChurchesStaffinterpersonal)
     Actor:interpersonal += interpersonal*0.005
     Actor.modifyActorVar(rk_discipleattraction, 1)
+    Actor.modifyActorVar(rk_SG_ChurchesStaffinterpersonal, 1)
     Actor.saveAndDelete()
     SceneEnd()
     timeout(2, rk_train_church_service)
