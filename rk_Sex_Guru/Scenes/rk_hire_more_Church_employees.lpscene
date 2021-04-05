@@ -5,6 +5,7 @@ WHO: none
 OTHER: none
 
 SceneStart()
+
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     Churchbargain = Player.getActorVar(rk_Churchbargain)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
@@ -14,10 +15,11 @@ SceneStart()
     dressFormal()
     Actor = generatePersonTemporary()
     
-    "Someone called <Actor.name> <Actor.name_last> applied for a position inside our church. The CV and cover letter looks promising enough. Should I invite <Actor.him_or_her> to an interview?"
+    "Someone called <Actor.name> <Actor.name_last> applied for a position inside our community as seller for our homemade products. The CV and cover letter looks promising enough."
+    "Should I invite <Actor.him_or_her> to an interview?"
     0:: "Yes"
     1:: "No"
-    2:: "Headhunt someone I know instead"
+    2:: "Search for someone else"
     
     If 0
         Actor.dress()
@@ -42,29 +44,29 @@ SceneStart()
         Elseif Actor:interpersonal < 50
             "<Actor.name> isn't the most confident candidates I've seen. <Actor.He_or_She> was clearly nervous the whole interview."
         Elseif Actor:interpersonal < 75
-            "<Actor.name> comes across as your average <Actor.Joe_or_Jane>, confident enough without being particularly articulate."
+            "<Actor.name> is borderline, confident enough but <Actor.he_or_she> don't talk that much!."
         Else
-            "<Actor.name> is extremely well spoken. <Actor.His_or_Her> confidence clearly shone through. I bet <Actor.he_or_she> would be a hit with both customers and colleagues."
+            "<Actor.name> is extremely well spoken. <Actor.His_or_Her> confidence clearly shone through. <Actor.He_or_She> will bring more sales I'm pretty sure!"
         Endif
         
         If Actor:intelligence < 25
             "<Actor.name> seems a brainless idiot that knows absolutely nothing about anything."
         Elseif Actor:intelligence < 50
-            "<Actor.name> isn't the brightest candidate I've seen, but again, I'm not looking to hire a rocket scientist."
+            "<Actor.name> isn't the brightest candidate I've seen, but again, I'm not looking to hire a scientist."
         Elseif Actor:intelligence < 75
             "<Actor.name> seems fairly intelligent and has a decent knowledge of what the job involves."
         Else
-            "<Actor.name> comes across as a smart cookie and has clearly done <Actor.his_or_her> homework on the role being offered."
+            "<Actor.name> is a real genius and <Actor.he_or_she> clearly able to get the job."
         Endif
         
         If Actor:perversion < 25
-            "<Actor.He_or_She> a real pussy, cold as ice! Not a good choice!"  
+            "<Actor.He_or_She> a real iceberg, cold as ice! Not a good choice!"  
         Elseif Actor:perversion < 50
             "<Actor.He_or_She> is not really focused on sex!"
         Elseif Actor:perversion < 74
             "<Actor.He_or_She> love doing sex sometime!"
         Elseif Actor:perversion > 75
-            "<Actor.He_or_She> is a real pervert!"
+            "I heard <Actor.he_or_she> is a real pervert!"
         Endif
         
         Sex = false
@@ -99,8 +101,10 @@ SceneStart()
                 Player(Surprised)::"What? Next time read the job posting carefully before you apply, sissy ... this is a sex community ...! "
                 "<Actor.name> stormed off from the interview room. I really screwed up here."
                 If Random(50, 1000) < Actor:intelligence
-                    "To make matters worse, <Actor.name> went straight to the press accusing me of sexual harassment. My church's reputation was damaged severely by this PR disaster."
-                    Churchbrand -= Random(0.5, 1)
+                    "To make matters worse, <Actor.name> went straight to the press accusing me of sexual harassment. My product's reputation was damaged severely by this PR disaster."
+                    CRandombrand = Random(0.5, 1)
+                    CRandTB = Churchbrand - CRandombrand
+                    Player.setActorVar(rk_Churchbrand, CRandTB)
                     Player.modifyActorVar(rk_SG_SexGuruReputation, -1)
                     Player.modifyActorVar(rk_discipleattractiontoplayer, -1)
                 Endif
@@ -116,7 +120,7 @@ SceneStart()
             
             "<Actor.name> is asking for a monthly salary of <SalaryConverted>."
             0:: "Give <Actor.him_or_her> what <Actor.he_or_she> wants"
-            1:: "Offer a low-ball salary"
+            1:: "Offer a low salary"
             
             If 0 || Sex || Random(0, 50) < Churchbargain
                 If 1
@@ -133,7 +137,7 @@ SceneStart()
         Endif
     Elseif 2
         Actor.delete()
-        "Who do I think would be interested in working for my company?"
+        "Who do I think would be interested in working for my community?"
         selectNPC()
         Actor = getSelectedNPC()
         If Actor.isRelative()

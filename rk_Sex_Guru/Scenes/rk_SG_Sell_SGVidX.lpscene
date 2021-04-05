@@ -6,7 +6,14 @@ OTHER: none
 
 SceneStart()
     
-	SoloShootingsInStock = Player.getActorVar(rk_SG_SoloShootingsInStock)
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    Churchbargain = Player.getActorVar(rk_Churchbargain)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    discipleAttraction = Actor.getActorVar(rk_discipleAttraction))
+    SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
+    
+    SoloShootingsInStock = Player.getActorVar(rk_SG_SoloShootingsInStock)
     GayShootingsInStock = Player.getActorVar(rk_SG_GayShootingsInStock)
     LesbianShootingsInStock = Player.getActorVar(rk_SG_LesbianShootingsInStock)
     AmateurShootingsInStock = Player.getActorVar(rk_SG_AmateurShootingsInStock)
@@ -60,7 +67,9 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> solo XXX video(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -79,10 +88,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
                         
             "You were able to sell <MSSnum> Amateur XXX video(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         ElseIf 2
         
@@ -98,10 +109,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
                         
             "You were able to sell <MSSnum> Threesome XXX video(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         ElseIf 3
         
@@ -117,10 +130,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
                         
             "You were able to sell <MSSnum> GangBang XXX video(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         ElseIf 4
         
@@ -136,10 +151,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
                         
             "You were able to sell <MSSnum> RevGangBang Shootings calendar(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         ElseIf 5
         
@@ -155,10 +172,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
                         
             "You were able to sell <MSSnum> Lesbian Shootings calendar(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         ElseIf 6
         
@@ -174,10 +193,12 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += TPrice_SGVidX
+            BonusBargain = TPrice_SGVidX + Churchbargain
+            money += BonusBargain
             
             "You were able to sell <MSSnum> Gay Shootings calendar(s) for a total in revenue: <Price_SGVidX_Loc>. <countSGVidX> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                 
         Else
         

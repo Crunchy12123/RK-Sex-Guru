@@ -6,6 +6,13 @@ OTHER: none
 
 SceneStart()
     
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    Churchbargain = Player.getActorVar(rk_Churchbargain)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    discipleAttraction = Actor.getActorVar(rk_discipleAttraction))
+    SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
+    
     Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
     Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
     Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
@@ -36,7 +43,7 @@ SceneStart()
         price_Sexzombiecocktail = Random(12, 15)
         price_Sexzombiecocktail_Loc = price_Sexzombiecocktail.convertToLocalCurrency()
         
-        "What type of drinks I want to sell?"
+        "What type of <rkSGCPBrand> drinks I want to sell?"
         0::Spermfilteredjuice > 20::"Sperm filtered juices <Spermfilteredjuice> in stock"
         1::Pussyfilteredjuice > 20::"Pussy filtered juices <Pussyfilteredjuice> in stock"
         2::Enersexenergydrinks > 20::"Enersex energy drinks <Enersexenergydrinks> in stock"
@@ -58,7 +65,9 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += price_Spermfilteredjuice
+            BonusBargain = price_Spermfilteredjuice + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> Sperm filtered juice(s) for a total in revenue: <price_Spermfilteredjuice_Loc>. <countSpermfilteredjuice> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -77,7 +86,9 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += price_Pussyfilteredjuice
+            BonusBargain = price_Pussyfilteredjuice + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> Pussy filtered juice(s) for a total in revenue: <price_Pussyfilteredjuice_Loc>. <countPussyfilteredjuice> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -96,7 +107,9 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += price_Enersexenergydrinks
+            BonusBargain = price_Enersexenergydrinks + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> Enersex energy drink(s) for a total in revenue: <price_Enersexenergydrinks_Loc>. <countEnersex> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -116,6 +129,9 @@ SceneStart()
             passTime(2,4)
             energy -= Random(5,10)
             money += price_SexJuicecocktail
+            BonusBargain = price_SexJuicecocktail + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> Sex Juice cocktail(s) for a total in revenue: <price_SexJuicecocktail_Loc>. <countSexJuicecocktail> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -134,7 +150,9 @@ SceneStart()
 
             passTime(2,4)
             energy -= Random(5,10)
-            money += price_Sexzombiecocktail
+            BonusBargain = price_Sexzombiecocktail + Churchbargain
+            money += BonusBargain
+            Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
             "You were able to sell <MSSnum> Sex zombie cocktail(s) for a total in revenue: <price_Sexzombiecocktail_Loc>. <countSexzombiecocktail> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)

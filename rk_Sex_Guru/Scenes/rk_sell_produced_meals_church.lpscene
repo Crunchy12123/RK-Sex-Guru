@@ -21,7 +21,6 @@ SceneStart()
     EndIf
         
     stayInMenu = true
-            
     While stayInMenu
     
         "What type of homemade products I want to sell?"
@@ -34,18 +33,22 @@ SceneStart()
         If 0
         
             followUp(rk_SG_Sell_Frozen_Food)
+            stayInMenu = false
             
         ElseIf 1
         
             followUp(rk_SG_Sell_Special_drinks)
+            stayInMenu = false
             
         ElseIf 2
         
             followUp(rk_SG_Sell_Calendars_Xmagazines)
+            stayInMenu = false
             
         ElseIf 3
         
             followUp(rk_SG_Sell_SGVidX)
+            stayInMenu = false
         
         Else
                 

@@ -28,7 +28,7 @@ SceneStart()
 
     ElseIf 60
 
-        followUp(rk_SG_Sell_Produced_Calendars)
+        followUp(rk_SG_Sell_Calendars_Xmagazines)
     
     EndIf
 

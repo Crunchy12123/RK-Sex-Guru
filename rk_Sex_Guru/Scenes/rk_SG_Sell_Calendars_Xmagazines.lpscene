@@ -5,6 +5,13 @@ WHO: none
 OTHER: none
 
 SceneStart()
+
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
+    discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    Churchbargain = Player.getActorVar(rk_Churchbargain)
+    Churchbrand = Player.getActorVar(rk_Churchbrand)
+    discipleAttraction = Actor.getActorVar(rk_discipleAttraction))
+    SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
     
     SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
     AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
@@ -36,8 +43,8 @@ SceneStart()
     While stayInMenu
         
         "What do I want to sell?"
-        0::"Calendars"
-        90::"XXX magazines"
+        0::"<rkSGCPBrand>'s Calendars"
+        90::"<rkSGCPBrand>'s XXX magazines"
         99::"Go back"
         
         If 0
@@ -81,7 +88,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_soloC
+                BonusBargain = Price_soloC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> solo Shootings calendar(s) for a total in revenue: <Price_soloC_Loc>. <countPrice_soloC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -100,7 +109,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_AmateurC
+                BonusBargain = Price_AmateurC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Amateur Shootings calendar(s) for a total in revenue: <Price_AmateurC_Loc>. <countAmateurC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -119,7 +130,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_ThreesomeC
+                BonusBargain = Price_ThreesomeC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Threesome Shootings calendar(s) for a total in revenue: <Price_ThreesomeC_Loc>. <countThreesomeC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -138,7 +151,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_GangBangC
+                BonusBargain = Price_GangBangC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> GangBang Shootings calendar(s) for a total in revenue: <Price_GangBangC_Loc>. <countGangBangC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -157,7 +172,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_RevGangBangC
+                BonusBargain = Price_RevGangBangC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> RevGangBang Shootings calendar(s) for a total in revenue: <Price_RevGangBangC_Loc>. <countRevGangBangC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -176,7 +193,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_LesbianC
+                BonusBargain = Price_LesbianC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Lesbian Shootings calendar(s) for a total in revenue: <Price_LesbianC_Loc>. <countLesbianC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -195,7 +214,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_GayC
+                BonusBargain = Price_GayC + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Gay Shootings calendar(s) for a total in revenue: <Price_GayC_Loc>. <countGayC> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -246,7 +267,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_soloX
+                BonusBargain = Price_soloX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> solo Shootings XXX magazine(s) for a total in revenue: <Price_soloX_Loc>. <countPrice_soloX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -265,7 +288,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_AmateurC
+                BonusBargain = Price_AmateurX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Amateur Shootings XXX magazine(s) for a total in revenue: <Price_AmateurX_Loc>. <countAmateurX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -284,7 +309,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_ThreesomeC
+                BonusBargain = Price_ThreesomeX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Threesome Shootings XXX magazine(s) for a total in revenue: <Price_ThreesomeX_Loc>. <countThreesomeX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -303,7 +330,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_GangBangX
+                BonusBargain = Price_GangBangX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> GangBang Shootings XXX magazine(s) for a total in revenue: <Price_GangBangX_Loc>. <countGangBangX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -322,7 +351,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_RevGangBangX
+                BonusBargain = Price_RevGangBangX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> RevGangBang Shootings XXX magazine(s) for a total in revenue: <Price_RevGangBangX_Loc>. <countRevGangBangX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -341,7 +372,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_LesbianX
+                BonusBargain = Price_LesbianX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Lesbian Shootings XXX magazine(s) for a total in revenue: <Price_LesbianX_Loc>. <countLesbianX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -360,7 +393,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_GayX
+                BonusBargain = Price_GayX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Gay Shootings XXX magazine(s) for a total in revenue: <Price_GayX_Loc>. <countGayX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -379,7 +414,9 @@ SceneStart()
 
                 passTime(2,4)
                 energy -= Random(5,10)
-                money += Price_MixedX
+                BonusBargain = Price_MixedX + Churchbargain
+                money += BonusBargain
+                Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                 "You were able to sell <MSSnum> Mixed Shootings XXX magazine(s) for a total in revenue: <Price_MixedX_Loc>. <countMixedX> remain in stock."
                 Player.modifyActorVar(rk_SG_SexGuruReputation, 1)

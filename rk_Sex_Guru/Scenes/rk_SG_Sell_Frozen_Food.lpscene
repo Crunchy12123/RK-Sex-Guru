@@ -8,8 +8,10 @@ SceneStart()
 
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
+    Churchbargain = Player.getActorVar(rk_Churchbargain)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
-    discipleAttraction = Actor.getActorVar(rk_discipleAttraction)
+    discipleAttraction = Actor.getActorVar(rk_discipleAttraction))
+    SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
     
     SGPussyJuice = Player.getActorVar(rk_SGPussyJuice)
     SGSpermJuice = Player.getActorVar(rk_SGSpermJuice)
@@ -44,7 +46,7 @@ SceneStart()
             
         While stayInMenu
         
-            "What type of homemade frozen meals I want to sell?"
+            "What type of <rkSGCPBrand> frozen meals I want to sell?"
             0::"Ice cream desserts <SpecialIceCreams> in stock"
             99::"Go back"
         
@@ -99,7 +101,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceMilkShakeStotalsell
+                        BonusBargain = priceMilkShakeStotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <MSSnum> Dicky Milk Shake(s) for a total in revenue: <priceMilkShakeStotalsellloc>. <countMilkShakeS> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -118,7 +122,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceMilkShakePtotalsell
+                        BonusBargain = priceMilkShakePtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <MSPnum> Milk Shake Pussy for a total in revenue: <priceMilkShakePtotalsellloc>. <countMilkShakeP> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -137,7 +143,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceCCDtotalsell
+                        BonusBargain = priceCCDtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <CCDnum> Cum Cream Delight(s) for a total in revenue: <priceCCDtotalsellloc>. <countCCD> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -156,7 +164,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceIcecreamPtotalsell
+                        BonusBargain = priceIcecreamPtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <PCDnum> Pussy Cream Delux for a total in revenue: <priceIcecreamPtotalsellloc>. <countIcecreamP> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -175,7 +185,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceAICtotalsell
+                        BonusBargain = priceAICtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <AICnum> Aphrodisiac ice cream(s) for a total in revenue: <priceAICtotalsellloc>. <countAIC> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -194,7 +206,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += pricePCFPtotalsell
+                        BonusBargain = pricePCFPtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <PCFPnum> Pussy creamy frozen Pie(s) for a total in revenue: <pricePCFPtotalsellloc>. <countPCFP> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -213,7 +227,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += priceCCLnumtotalsell
+                        BonusBargain = priceCCLnumtotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <CCLnum> Cream Cake(s) of love for a total in revenue: <priceCCLnumtotalsellloc>. <countCCL> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -232,7 +248,9 @@ SceneStart()
 
                         passTime(2,4)
                         energy -= Random(5,10)
-                        money += pricePMXStotalsell
+                        BonusBargain = pricePMXStotalsell + Churchbargain
+                        money += BonusBargain
+                        Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
                         
                         "You were able to sell <PMXSnum> Protein MilX Shake(s) for a total in revenue: <pricePMXStotalsellloc>. <countPMXS> remain in stock."
                         Player.modifyActorVar(rk_SG_SexGuruReputation, 1)

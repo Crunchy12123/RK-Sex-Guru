@@ -15,9 +15,8 @@ SceneStart()
     
     Rental = Random(10000, 50000)
     RentalConverted = Rental.convertToLocalCurrency()
-    
-    "I decide to call the Sex Religious Society to get a licence for selling homemade products inside every churches of the city..."
     Player.animate(call)
+    "I decide to call the Sex Religious Society to get a licence for selling homemade products inside every churches of the city..."
     "The cost to get a SRS licence for selling homemade products is <RentalConverted>."
     "Do I take a licence?"
     0:: "Yes"

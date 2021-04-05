@@ -1,35 +1,49 @@
-WHAT: none
-WHERE: all, home
+WHAT: all
+WHERE: all, home, -prison
 WHEN: 0 - 24
 WHO: none
 OTHER: none
 
-SceneStart()  // on wait
+SceneStart()
 
+    // rkOpenedSexGuru > 0
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
-    discipleattraction = Actor.getActorVar(rk_discipleattraction)
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
     AreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru)
-    
     SetAcceptDay = Player.getActorVar(rk_SG_AcceptDay)
-    daysSinceBirth = (Player:Age * 365) // current date
-    daysSinceBirth += 0.5
-    daysSinceBirth = daysSinceBirth.round()
-    daysSinceBirth -= 1  // arrondir la date
+    discipleAttractionG1 = Guru1.getActorVar(rk_discipleAttraction)
+    discipleAttractionG2 = Guru2.getActorVar(rk_discipleAttraction)
+    discipleAttractionG3 = Guru3.getActorVar(rk_discipleAttraction)
+    discipleAttractionG4 = Guru4.getActorVar(rk_discipleAttraction)
+    discipleAttractionG5 = Guru5.getActorVar(rk_discipleAttraction)
+    discipleAttractionG6 = Guru11.getActorVar(rk_discipleAttraction)
+    discipleAttractionG7 = Guru21.getActorVar(rk_discipleAttraction)
+    discipleAttractionG8 = Guru31.getActorVar(rk_discipleAttraction)
+    discipleAttractionG9 = Guru41.getActorVar(rk_discipleAttraction)
+    discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
     
-    PassDayCount = SetAcceptDay - daysSinceBirth
-    DaysfromAccept = 1 + PassDayCount
-
     If Player:interpersonal < 75
     
         "You don't have enough interpersonal skills, you need at least 75, because new religions are rarely accepted if your not a good talker..."
     
-    ElseIf DaysfromAccept <= 0
+    ElseIf SetAcceptDay > 0 && SetAcceptDay < 3
     
+        SRSAgent = generatePersonTemporary()
+        SRSAgent.hide()
+        Player.show()
+        Player.animate(call)
+        "I'm getting a call from the Sex Religious Society...???"
+        SRSAgent(Happy)::"Hi <Player.name>, just to remind you that you have a gurus conference in <SetAcceptDay> days..."
+        Player.modifyActorVar(rk_SG_AcceptDay, 1)
+    
+    ElseIf SetAcceptDay <= 0
+    
+        Player.show()
+        Player.animate(call)
         "I get a call from the Sex Religious Society, they invite me to a gurus conference, where they all talk about their religion and share their beliefs..."
         "What should I do?"
         0::"Accept invitation"
@@ -39,18 +53,21 @@ SceneStart()  // on wait
         
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
             Player(Happy)::"Sure, I will be there!"
-            Player.setActorVar(rk_SG_AcceptDay, 0.5)
+            Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
             mood += 3
             
         Else
         
             Player(Happy)::"No, I got important things to do!"
-            Player.modifyActorVar(rk_SG_SexGuruReputation, -1)
+            Player.modifyActorVar(rk_SG_SexGuruReputation, -2)
         
         EndIf
+        Player.animate()
         
-    ElseIf DaysfromAccept >= 3
-
+    ElseIf SetAcceptDay >= 3
+    
+        Player(Happy)::"Ok, it's now time to go to the guru conference..."
+        
         moveTo(university)
         setBackground3D(Modules/vin_Base/World/university___vin01.lpworld)
     
@@ -64,23 +81,36 @@ SceneStart()  // on wait
         Guru31 = generatePersonTemporary()
         Guru41 = generatePersonTemporary()
         Guru51 = generatePersonTemporary()
-        "I have now arrived at the conference. I can see that there are already a few gurus arrived..."
-
-        dressFormal()
-        Player.dress()
-        Player.show(0)
-
+        
+        "A while later..."
+        passTime(0.25, 0.5)
+        
         Guru1.randomizeHairs()
         Guru1.randomizeFace()
         dressFormal()
         Guru1.dress()
         Guru1.show(1)
         
+        Guru51.randomizeHairs()
+        Guru51.randomizeFace()
+        dressFormal()
+        Guru51.dress()
+        Guru51.show(5)
+        
+        "I have now arrived at the conference. I can see that there are already a few gurus arrived..."
+        passTime(0.25, 0.5)
+
+        dressFormal()
+        Player.dress()
+        Player.show(0)
+
         Guru2.randomizeHairs()
         Guru2.randomizeFace()
         dressFormal()
         Guru2.dress()
         Guru2.show(2)
+        Guru2(Happy)::"Hi, I wish to see you later..."
+        Guru2:attractiontoplayer += Random(0, 1)
         
         Guru3.randomizeHairs()
         Guru3.randomizeFace()
@@ -101,6 +131,8 @@ SceneStart()  // on wait
         dressFormal()
         Guru5.dress()
         Guru5.show(5)
+        Guru5(Happy)::"Oh hi, I heard about your new religion, look promising..."
+        Guru5:attractiontoplayer += Random(0, 1)
 
         Guru11.randomizeHairs()
         Guru11.randomizeFace()
@@ -130,24 +162,302 @@ SceneStart()  // on wait
         Guru41.dress()
         Guru41.show(4)
         
-        Guru51.randomizeHairs()
-        Guru51.randomizeFace()
-        dressFormal()
-        Guru51.dress()
-        Guru51.show(5)
-        
-        "1,2,3,4,... We all are now good!"
+        "The last guest just arrived..."
+        Player(Curious)::"1,2,3,4,... We all are here now, good!"
         passTime(0.25, 0.5)
         
+        "The conference begin...people are talking with each others..."
         
-        "The conference begin..."
+        timePassed = 0
+        If timePassed < 4
         
-        // "The conference ends..."
-        passTime(5, 10)
+            GetOutConf = "Leave before the ends"
+            
+        Else
         
-        Player.setActorVar(rk_SG_AcceptDay, 0)
-    
+            GetOutConf = "Leave the conference"
+        
+        EndIf
+        
+        Conferencegoing = true
+        While Conferencegoing
+            passTime(0.2, 0.6)
+            "What should I do now?"
+            0:: "Drink alcohol"
+            1:: "Talk with <Guru1.name>"
+            2:: "Talk with <Guru2.name>"
+            3:: "Talk with <Guru3.name>"
+            4:: "Talk with <Guru4.name>"
+            5:: "Talk with <Guru5.name>"
+            6:: "Talk with <Guru11.name>"
+            7:: "Talk with <Guru21.name>"
+            8:: "Talk with <Guru31.name>"
+            9:: "Talk with <Guru41.name>"
+            10:: "Talk with <Guru51.name>"
+            99:: "<GetOutConf>"
+        
+            If 0
+                intoxication += Random(0, 15)
+                "I grab a drink and enjoyed it thoroughly."
+                timePassed += 0.15
+        
+            ElseIf 99
+        
+                If timePassed < 2
+                    Guru1:rapportwithplayer -= Random(1, 2)
+                    Guru1.getActorVar(rk_discipleAttraction, -1)
+                    Guru2:rapportwithplayer -= Random(1, 2)
+                    Guru2.getActorVar(rk_discipleAttraction, -1)
+                    Player.modifyActorVar(rk_SG_SexGuruReputation, -5)
+                    "I decide to leave the conference, before it ends..."
+                    Guru4:rapportwithplayer -= Random(1, 2)
+                    Guru4.getActorVar(rk_discipleAttraction, -1)
+                    Guru11:rapportwithplayer -= Random(1, 2)
+                    Guru11.getActorVar(rk_discipleAttraction, -1)
+                    Player.modifyActorVar(rk_Churchbrand, -1)
+                    "The other gurus don't seem to like my departure..."
+                    Guru31:rapportwithplayer -= Random(1, 2)
+                    Guru31.getActorVar(rk_discipleAttraction, -1)
+                    Guru51:rapportwithplayer -= Random(1, 2)
+                    Guru51.getActorVar(rk_discipleAttraction, -1)
+                    Conferencegoing = false
+                    
+                ElseIf timePassed > 2 && timePassed  < 4 
+                
+                    Player.modifyActorVar(rk_SG_SexGuruReputation, -3)
+                    "I decide to leave the conference, before it ends..."
+                    Guru3:rapportwithplayer -= Random(1, 2)
+                    Guru3.getActorVar(rk_discipleAttraction, -1)
+                    Guru21:rapportwithplayer -= Random(1, 2)
+                    Guru21.getActorVar(rk_discipleAttraction, -1)
+                    Player.modifyActorVar(rk_Churchbrand, -0.5)
+                    "The other gurus don't seem to like my departure..."
+                    Guru31:rapportwithplayer -= Random(1, 2)
+                    Guru31.getActorVar(rk_discipleAttraction, -1)
+                    Conferencegoing = false
+                    
+                Else
+                
+                    Conferencegoing = false
+                
+                EndIf
+        
+            Else
+        
+                If 1
+                    TalkWith = Guru1
+                Elseif 2
+                    TalkWith = Guru2
+                Elseif 3
+                    TalkWith = Guru3
+                Elseif 4
+                    TalkWith = Guru4
+                Elseif 5
+                    TalkWith = Guru5
+                Elseif 6
+                    TalkWith = Guru11
+                Elseif 7
+                    TalkWith = Guru21
+                Elseif 8
+                    TalkWith = Guru31
+                Elseif 9
+                    TalkWith = Guru41
+                Elseif 10
+                    TalkWith = Guru51
+                Endif
+                
+                Player.moveToPerson(TalkWith)
+                "I chat some time with <TalkWith.name>"
+                
+                If TalkWith.IsInterestedIn(Player) && Random(0, 100) < attractiveness
+                    TalkWith:attractiontoplayer += Random(-1, 2)
+                Else
+                    TalkWith:rapportwithplayer += Random(-1, 2)
+                Endif
+                
+                If !TalkWith.isContactExchanged()
+                    If [TalkWith.IsDominantSex(Player) || !TalkWith.IsInterestedIn(Player)] && [TalkWith:attractiontoplayer > Random(0, 30) || TalkWith:rapportwithplayer > Random(0, 30)] && TalkWith:intelligence > 50 
+                        TalkWith(Happy):: "Hey, I really like chatting with you, we should exchange our numbers and meet one of these days, somewhere other than here..."
+                        0:: "Exchange contacts"
+                        1:: "Refuse"
+                    
+                        If 0
+                            Player(Excited):: "Of course! Let's exchange numbers!"
+                            exchangeContact(TalkWith)
+                            TalkWith:rapportwithplayer += Random(0, 5)
+                        Else
+                            Player(Sad):: "I'm afraid I don't know you well enough yet to give you my number."
+                            TalkWith:rapportwithplayer -= Random(0, 3)
+                        Endif
+                        
+                    Else
+                        "Should I ask <TalkWith.name> for <TalkWith.his_or_her> number?"
+                        0:: "Ask <TalkWith.him_or_her>"
+                        1:: "Maybe not"
+                    
+                        If 0
+                            Player(Happy):: "You know what <TalkWith.name>? Let's exchange numbers so that we can keep in touch after the conference."
+                            If [TalkWith:attractiontoplayer > Random(0, 30) || TalkWith:rapportwithplayer > Random(0, 30) || TalkWith:intoxication > Random(50, 100)] && Player:intelligence > 60
+                                TalkWith(Excited):: "Of course! Let's exchange numbers!"
+                                exchangeContact(TalkWith)
+                            Else
+                                
+                                If SexGuruReputation < 50
+                                    TalkWith(Sad):: "I'm afraid you don't have enough reputation. Maybe another time."
+                                ElseIf SexGuruDisciple < 19
+                                    TalkWith(Sad):: "I'm afraid you don't seem to know how to attract new disciples well enough. Maybe another time."
+                                Else
+                                    TalkWith(Sad):: "I'm afraid I don't know you well enough. Maybe another time."
+                                EndIf
+                                
+                            Endif
+                        Else
+                            "Not yet. I want to get to know <TalkWith.name> a bit better first ..."
+                        Endif
+                    Endif
+                    
+                    timePassed += 0.25
+                    
+                Endif
+                
+                If Random(0, 100) < TalkWith:perversion + TalkWith:attractiontoplayer + TalkWith:rapportwithplayer
+                    "<TalkWith.name> offered me a drink."
+                    "Do I accept the drink?"
+                Else
+                   "Should I offer <TalkWith.name> a drink?"
+                Endif
+                
+                0:: "Yes"
+                1:: "No"
+                
+                If 0
+                    intoxication += Random(0, 15)
+                    TalkWith:intoxication += Random(0, 15)
+                    timePassed += 0.15
+                    
+                Endif
+                
+                Chance2GetFck = Random(0, 5)
+                If Chance2GetFck > 4 && TalkWith.IsInterestedIn(Player) && Player.IsInterestedIn(TalkWith) && [TalkWith:attractiontoplayer > 50 || intoxication > 50] && TalkWith:perversion > 50 && TalkWith:arousal > 15
+                
+                    TalkWith.moveToPerson(Player)
+                    TalkWith(Flirty)::"Hey, do you want to relax a bit and make love right here?"
+                    0:: "Of course"
+                    1:: "Maybe not"
+                    
+                    If 0
+                    
+                        TalkWith.show()
+                        Player.show()
+                        perversion += Random(0, 0.2)
+                        Sex(TalkWith, Player)
+                        timePassed += Random(0.15, 0.5)
+                    
+                    EndIf
+                
+                EndIf
+                
+                If TalkWith.IsInterestedIn(Player) && Player.IsInterestedIn(TalkWith) && [TalkWith:attractiontoplayer > 50 || intoxication > 70]
+                    KissBack = false
+                
+                    If TalkWith.IsDominantSex(Player) && TalkWith:perversion + TalkWith:attractiontoplayer > Random(0, 200)
+                        AnimatePair(Player, TalkWith, Kissing)
+                        "All of a sudden, <TalkWith.name> grabbed me and start kissing me"
+                        TalkWith(Kiss):: "..."
+                        0:: "Kiss back"
+                        1:: "Turn <TalkWith.him_or_her> down"
+                    
+                        If 0
+                            KissBack = true
+                            AnimatePair(TalkWith, Player, Kissing)
+                            Player(Kiss):: "..."
+                            timePassed += 0.05
+                        Else
+                            "I pulled myself away from <TalkWith.him_or_her>. <TalkWith.He_or_She> was visibly surprised."
+                            TalkWith:attractiontoplayer -= Random(0, 1)
+                            "Maybe we are supposed to love each others....but not <TalkWith.him_or_her>."
+                            
+                        Endif
+                    Else
+                        "I think <TalkWith.name>, <TalkWith.he_or_she> is checking me out, I say this because <TalkWith.he_or_she> follows my every move. Should I make my move now and kiss <TalkWith.him_or_her>?"
+                        0:: "Kiss <TalkWith.name>"
+                        1:: "Maybe not"
+                        
+                        If 0
+                            AnimatePair(Player, TalkWith, Kissing)
+                            Player(Kiss):: "..."
+                            If TalkWith:intoxication > Random(50, 100) || [TalkWith:attractiontoplayer > Random(0, 100) && TalkWith:perversion > Random(0, 100)]
+                                AnimatePair(TalkWith, Player, Kissing)
+                                TalkWith(Kiss):: "..."
+                                timePassed += 0.05
+                                "Nice, <TalkWith.name> was totally receptive to my caress and kisses. If I'm not dreaming, <TalkWith.he_or_she> showed that <TalkWith.he_or_she> wanted more ..."
+                                KissBack = true
+                            Else
+                            
+                                TalkWith(Embarassed)::"Uh! What are you doing? I'm not interrested in you!"
+                                TalkWith:attractiontoplayer -= Random(0, 1)
+                                "<TalkWith.name> pulled me away and refuse my kiss. Embarassed, I stay quiet, pretending for the rest of the conference that nothing happened ..."
+                                
+                            Endif
+                        Else
+                            "Perhaps not ... It would be extremely embarrassing to be rejected in front of 8 gurus."
+                        Endif
+                    Endif
+                    
+                    If KissBack
+                    
+                        AnimatePair(Player, TalkWith, Kissing)
+                        Player(Kiss):: "..."
+                        "We indulged in a passionate kiss and we just can't stop fondling each other"
+                        TalkWith:attractiontoplayer += Random(0, 1)
+                        0:: "Have sex right here"
+                        2:: "Stop it there"
+                    
+                        If 0 
+                            "I really need to feel <TalkWith.him_or_her> right here, right now."
+                            "We stripped and started making out intensely and then it escalated very quickly ..."
+                            TalkWith.strip()
+                            Player.strip()
+                            perversion += Random(0, 0.2)
+                            Sex(TalkWith, Player)
+                            
+                            "The sex was amazing. We put our clothes back on and went back to rejoin the people."
+                            TalkWith.dress()
+                            Player.dress()
+                            timePassed += Random(0.15, 0.5)
+                            
+                        Else
+                            "I enjoyed the caress and the kiss but I didn't feel like going any further ..."
+                        Endif
+                    Endif
+                Endif
+            EndIf
+            
+            If Conferencegoing && timePassed > Random(4, 10)
+            
+                Player.setActorVar(rk_SG_AcceptDay, 0)
+                "The conference ends well and everyone left..."
+                ConfRep = Random(0, 2)
+                Player.modifyActorVar(rk_SG_SexGuruReputation, ConfRep)
+                Confattract = Random(0, 3)
+                Player.modifyActorVar(rk_discipleattractiontoplayer, Confattract)
+                Confbrand = Random(0, 2)
+                Player.modifyActorVar(rk_Churchbrand, Confbrand)
+                Conferencegoing = false
+            Endif
+        
+        EndWhile
+
     EndIf
 
 SceneEnd()
-timeout(24, rk_Gurus_Conference)
+
+If SetAcceptDay > 0 
+
+    timeoutprecise(20, rk_Gurus_Conference)
+    
+Else 
+
+    timeout(1000, rk_Gurus_Conference)
+    
+EndIf
