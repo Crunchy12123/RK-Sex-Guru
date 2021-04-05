@@ -12,7 +12,7 @@
 <p>- 4 popup scenes</p>
 <br>
 <h3>Little resume:</h3>
-<p>- Take over a church for commercial use</p>
+<p>- Get a SRS Licence for selling inside churches</p>
 <p>- Meditation</p>
 <p>- Recrute disciples</p>
 <p>- Receive donations</p>
