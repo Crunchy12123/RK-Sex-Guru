@@ -11,6 +11,7 @@ SceneStart()
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
+    setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     
     "By calling suppliers you boost your bargain and your products brand level a little bit !"
     ChanceOfBargain = Random(0, 100) + Churchbargain

@@ -14,7 +14,7 @@ SceneStart()
     Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
     Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
     Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
-    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+    Tstock_MilkShakeTOP = Player.getActorVar(Tstock_MilkShakeTOP)
     Tstock_spexial_Froz = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
     
     // current frozen desserts
@@ -50,7 +50,7 @@ SceneStart()
     Tstock_seafoodprod = Tstock_Oysters + Tstock_Shrimps + Tstock_Sushi + Tstock_Lobster + Tstock_Caviar
         
     Tfreezer_inventory = Tstock_icecreampop + Tstock_seafoodprod
-    
+
     If Tfreezer_inventory < 1
     
         Player(Anxious)::"We have nothing inside our freezer! I need to go shopping I guess!"

@@ -14,6 +14,50 @@ SceneStart()
     RevGangBangShootingsInStock = Player.getActorVar(rk_SG_RevGangBangShootingsInStock)
     ThreesomeShootingsInStock = Player.getActorVar(rk_SG_ThreesomeShootingsInStock)
     
+    // Calendars InStock
+    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+    
+    TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
+    
+    //XXXmag InStock
+    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+    
+    TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
+    
+    //Products InStock
+    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+    
+    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+    
+    //VidX  InStock
     SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
     AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
     ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
@@ -22,85 +66,145 @@ SceneStart()
     LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
     GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
     
-    // Go to the Temple if any
+    TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
+    
+    TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
+    Mel_Naina = generatePersonTemporary(rk_ModelF_Mel_Naina)
+    
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-    If TempleSize > 0
-        moveTo(Home)
-        setBackground3D(Modules/vin_Base/World/modeling___vin01.lpworld)
-    EndIf
+    setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
     
-    "To produce 100 XXX videos, you need at least 1 set of your desired type of shootings and you must add certain items if necessary!"
-    PricePrinting = Random(0.15, 0.25)*1
-    PricePrintingLoc = PricePrinting.convertToLocalCurrency()
-    TotalCostPrinting = PricePrinting * 100
-    TotalCostPrintingLoc = TotalCostPrintingLoc.convertToLocalCurrency()
-    "The price for printing 100 copies is: <TotalCostPrintingLoc>"
-    "What type of XXX videos do you want to copies?"
-    0:: SoloShootingsInStock > 0 ::"Solo XXX videos"
-    1:: AmateurShootingsInStock > 0 ::"Amateur XXX videos"
-    2:: ThreesomeShootingsInStock > 0 ::"Threesome XXX videos"
-    3:: GangBangShootingsInStock > 0 ::"GangBang XXX videos"
-    4:: RevGangBangShootingsInStock > 0 ::"RevGangBang XXX videos"
-    5:: LesbianShootingsInStock > 0 ::"Lesbian XXX videos"
-    6:: GayShootingsInStock > 0 ::"Gay XXX videos"
-    99:: "Go back!"
-    
-    If 0
-    
-        "You have just printed 100 XXX videos of solo models!"
-        Player.modifyActorVar(rk_SG_SoloShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_SoloShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 1
-    
-        "You have just printed 100 XXX videos of Amateur models!"
-        Player.modifyActorVar(rk_SG_AmateurShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_AmateurShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 2
-    
-        "You have just printed 100 XXX videos of Threesome actions!"
-        Player.modifyActorVar(rk_SG_ThreesomeShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 3
-    
-        "You have just printed 100 XXX videos of GangBang Shootings!"
-        Player.modifyActorVar(rk_SG_GangBangShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_GangBangShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 4
-    
-        "You have just printed 100 calendars of RevGangBang Shootings!"
-        Player.modifyActorVar(rk_SG_RevGangBangShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 5
-    
-        "You have just printed 100 XXX videos of Lesbian models!"
-        Player.modifyActorVar(rk_SG_LesbianShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_LesbianShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
-    
-    ElseIf 6
-    
-        "You have just printed 100 XXX videos of Gay models!"
-        Player.modifyActorVar(rk_SG_GayShootingsInStock, -1)
-        Player.modifyActorVar(rk_SG_GayShootings_SGVidX_InStock, 100)
-        Player:energy -= 5
-        money -= TotalCostPrinting
+    ChechupC = Mel_Naina.getActorVar(tag_SGDisciple)
+
+    If ChechupC <= 0
+
+        SGId = Mel_Naina.getID()
+        Mel_Naina.makeInterested(Player)
+        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+        Mel_Naina.setActorVar(tag_SGDisciple, 1)
+        Mel_Naina.modifyActorVar(rk_discipleAttraction, 15)
+        Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Mel_Naina.makePermanent()
+        exchangeContact(Mel_Naina)
     
     EndIf
+    
+    Mel_Naina.dressExcept(Outerwear, Headwear, Eyewear)
+    Mel_Naina.show()
+    Mel_Naina(Happy)::"Hy my dear master, do you need anything?"
+    Mel_Naina:rapportwithplayer += Random(5, 10)
+    Mel_Naina:perversion += 15
+    Mel_Naina:arousal += 10
+    
+    WhileProducing = true
+    While WhileProducing
+        
+        If TempleSize == 2 && TotalGoodsPInStock >= 9900
+        
+            Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
+            Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
+
+        ElseIf TempleSize == 3 && TotalGoodsPInStock < 19900
+        
+            Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
+            Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
+            
+        ElseIf TempleSize == 4 && TotalGoodsPInStock < 49900
+        
+            Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
+            Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
+            
+        ElseIf TempleSize == 5 && TotalGoodsPInStock < 99900
+        
+            Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
+            Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
+            
+        ElseIf TempleSize == 6 && TotalGoodsPInStock > 99901
+        
+            Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
+            Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
+    
+        Else
+    
+            "To produce 100 XXX videos, you need at least 1 set of your desired type of shootings and you must add certain items if necessary!"
+            PricePrinting = Random(0.15, 0.25)*1
+            PricePrintingLoc = PricePrinting.convertToLocalCurrency()
+            TotalCostPrinting = PricePrinting * 100
+            TotalCostPrintingLoc = TotalCostPrintingLoc.convertToLocalCurrency()
+            "The price for printing 100 copies is: <TotalCostPrintingLoc>"
+            "What type of XXX videos do you want to copies?"
+            0:: SoloShootingsInStock > 0 ::"Print me some Solo XXX videos"
+            1:: AmateurShootingsInStock > 0 ::"Print me some Amateur XXX videos"
+            2:: ThreesomeShootingsInStock > 0 ::"Print me some Threesome XXX videos"
+            3:: GangBangShootingsInStock > 0 ::"Print me some GangBang XXX videos"
+            4:: RevGangBangShootingsInStock > 0 ::"Print me some RevGangBang XXX videos"
+            5:: LesbianShootingsInStock > 0 ::"Print me some Lesbian XXX videos"
+            6:: GayShootingsInStock > 0 ::"Print me some Gay XXX videos"
+            99:: "Go back!"
+    
+            If 0
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of solo models!"
+                Player.modifyActorVar(rk_SG_SoloShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_SoloShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 1
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of Amateur models!"
+                Player.modifyActorVar(rk_SG_AmateurShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_AmateurShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 2
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of Threesome actions!"
+                Player.modifyActorVar(rk_SG_ThreesomeShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 3
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of GangBang Shootings!"
+                Player.modifyActorVar(rk_SG_GangBangShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_GangBangShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 4
+    
+                Mel_Naina(Happy)::"I have just printed 100 calendars of RevGangBang Shootings!"
+                Player.modifyActorVar(rk_SG_RevGangBangShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 5
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of Lesbian models!"
+                Player.modifyActorVar(rk_SG_LesbianShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_LesbianShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+            ElseIf 6
+    
+                Mel_Naina(Happy)::"I have just printed 100 XXX videos of Gay models!"
+                Player.modifyActorVar(rk_SG_GayShootingsInStock, -1)
+                Player.modifyActorVar(rk_SG_GayShootings_SGVidX_InStock, 100)
+                Player:energy -= 5
+                money -= TotalCostPrinting
+    
+
+            Else
+                WhileProducing = false
+            EndIf
+            
+        EndIf
+    EndWhile
+    Mel_Naina.hide()
     
 SceneEnd()

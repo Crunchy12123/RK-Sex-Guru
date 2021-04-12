@@ -13,6 +13,30 @@ SceneStart()
     Tstock_FrozenPie = Player.getActorVar(Tstock_FrozenPie)
     Tstock_IceCreamCake = Player.getActorVar(Tstock_IceCreamCake)
     
+    // Calendars InStock
+    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+    
+    TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
+    
+    //XXXmag InStock
+    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+    
+    TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
+    
+    //Products InStock
     Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
     Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
     Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
@@ -22,83 +46,194 @@ SceneStart()
     Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
     Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
     
-    // Go to the Temple if any
+    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+    
+    //VidX  InStock
+    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+    
+    TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
+    
+    TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
+    Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
+    
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-    If TempleSize > 0
-        moveTo(Home)
-        setBackground3D(Modules/vin_Base/World/ice_cream___vin01.lpworld)
+    setBackground3D(Modules/vin_Base/World/ice_cream___vin01.lpworld)
+    
+    ChechupC = Masha_Hugg.getActorVar(tag_SGDisciple)
+
+    If ChechupC <= 0
+        SGId = Masha_Hugg.getID()
+        Masha_Hugg.makeInterested(Player)
+        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+        Masha_Hugg.setActorVar(tag_SGDisciple, 1)
+        Masha_Hugg.modifyActorVar(rk_discipleAttraction, 15)
+        Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Masha_Hugg.makePermanent()
+        exchangeContact(Masha_Hugg)
+    
     EndIf
     
-    "To produce a frozen dessert, you must first add the necessary ingredients in the temple freezer!"
-    "What kind of frozen dessert I wanna make?"
-    0:: SGSpermJuice >= 1 && Tstock_MilkShake >= 1::"1 Milk Shake + 1 Sperm Juice"
-    1:: SGPussyJuice >= 1 && Tstock_MilkShake >= 1::"1 Milk Shake + 1 Pussy Juice"
-    2::SGSpermJuice >= 1 && Tstock_IcecreamCup >= 2::"2 Ice cream cups + 1 Sperm Juice"
-    3::SGPussyJuice >= 1 && Tstock_IcecreamCup >= 2::"2 Ice cream cups + 1 Pussy Juice"
-    4::Tstock_IcecreamP >= 1 && Tstock_IcecreamS >= 1::"1 Pussy Cream Delux + 1 Cum Cream Delight"
-    5::Tstock_IcecreamP >= 1 && Tstock_FrozenPie >= 1::"1 Pussy Cream Delux + 1 Frozen Margarita pie"
-    6::SGSpermJuice >= 1 && SGPussyJuice >= 1 && Tstock_IceCreamCake >= 1::"1 SpermJuice + 1 PussyJuice + 1 Icecreamcake"
-    7::SGPussyJuice >= 2 && SGSpermJuice >= 2 && Tstock_MilkShake >= 2::"2 Sperm Juice + 2 Pussy Juice + 2 Milk Shake"
-    99:: "Go back!"
-    
-    If 0
-    
-        Player.modifyActorVar(rk_SGSpermJuice, -1)
-        Player.modifyActorVar(Tstock_MilkShake, -1)
-        "You have just created 2 Dicky Milk Shakes!"
-        Player.modifyActorVar(Tstock_MilkShakeS, 2)
-    
-    ElseIf 1
-    
-        Player.modifyActorVar(rk_SGPussyJuice, -1)
-        Player.modifyActorVar(Tstock_MilkShake, -1)
-        "You have just created 2 Milk Shakes Pussy!"
-        Player.modifyActorVar(Tstock_MilkShakeP, 2)
-    
-    ElseIf 2
-    
-        Player.modifyActorVar(rk_SGSpermJuice, -1)
-        Player.modifyActorVar(Tstock_IcecreamCup, -2)
-        "You have just created 2 cups of Cum Creams Delight!"
-        Player.modifyActorVar(Tstock_IcecreamS, 2)
-    
-    ElseIf 3
-    
-        Player.modifyActorVar(rk_SGPussyJuice, -1)
-        Player.modifyActorVar(Tstock_IcecreamCup, -2)
-        "You have created 2 cups of Pussy Creams Delux!"
-        Player.modifyActorVar(Tstock_IcecreamP, 2)
-    
-    ElseIf 4
-    
-        Player.modifyActorVar(Tstock_IcecreamP, -1)
-        Player.modifyActorVar(Tstock_IcecreamS, -1)
-        "You have created 2 Aphrodisiac ice cream cups!"
-        Player.modifyActorVar(Tstock_ApIcecream, 2)
+    Masha_Hugg.dressExcept(Outerwear, Headwear, Eyewear)
+    Masha_Hugg.show()
+    Masha_Hugg:rapportwithplayer += Random(5, 10)
+    Masha_Hugg:perversion += 15
+    Masha_Hugg:arousal += 10
 
-    ElseIf 5
-    
-        Player.modifyActorVar(Tstock_IcecreamP, -1)
-        Player.modifyActorVar(Tstock_FrozenPie, -1)
-        "You have created a Pussy creamy frozen Pie!"
-        Player.modifyActorVar(Tstock_FrozenPiePC, 1)
-    
-    ElseIf 6
-    
-        Player.modifyActorVar(Tstock_IceCreamCake, -1)
-        Player.modifyActorVar(rk_SGSpermJuice, -1)
-        Player.modifyActorVar(rk_SGPussyJuice, -1)
-        "You have created 2 Cream Cake of love!"
-        Player.modifyActorVar(Tstock_CreamCake, 2)
-    
-    ElseIf 7
-    
-        Player.modifyActorVar(rk_SGPussyJuice, -2)
-        Player.modifyActorVar(rk_SGSpermJuice, -2)
-        Player.modifyActorVar(Tstock_MilkShake, -2)
-        "You have created 6 Protein MilX Shake!"
-        Player.modifyActorVar(Tstock_MilkShakeTOP, 6)
+    WhileProducing = true
+    While WhileProducing
+        
+        If TempleSize == 2 && TotalGoodsPInStock >= 9900
+        
+            Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
+            Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
 
-    EndIf
+        ElseIf TempleSize == 3 && TotalGoodsPInStock < 19900
+        
+            Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
+            Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
+            
+        ElseIf TempleSize == 4 && TotalGoodsPInStock < 49900
+        
+            Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
+            Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
+            
+        ElseIf TempleSize == 5 && TotalGoodsPInStock < 99900
+        
+            Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
+            Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
+            
+        ElseIf TempleSize == 6 && TotalGoodsPInStock > 99901
+        
+            Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
+            Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
+    
+        Else
+
+            Masha_Hugg(Happy)::"Yes my master, you need more frozen desserts?"
+            "To produce a frozen dessert, you must first add the necessary ingredients in the temple freezer!"
+            Masha_Hugg(Happy)::"What kind of frozen dessert you want?"
+            0:: SGSpermJuice >= 1 && Tstock_MilkShake >= 1::"2 Dicky Milk Shakes"
+            1:: SGPussyJuice >= 1 && Tstock_MilkShake >= 1::"2 Milk Shakes Pussy"
+            2:: SGSpermJuice >= 1 && Tstock_IcecreamCup >= 2::"2 cups of Cum Creams Delight"
+            3:: SGPussyJuice >= 1 && Tstock_IcecreamCup >= 2::"2 cups of Pussy Creams Delux"
+            4:: Tstock_IcecreamP >= 1 && Tstock_IcecreamS >= 1::"2 Aphrodisiac ice cream cups"
+            5:: Tstock_IcecreamP >= 1 && Tstock_FrozenPie >= 1::"1 Pussy creamy frozen Pie"
+            6:: SGSpermJuice >= 1 && SGPussyJuice >= 1 && Tstock_IceCreamCake >= 1::"2 Cream Cake of love"
+            7:: SGPussyJuice >= 2 && SGSpermJuice >= 2 && Tstock_MilkShake >= 2::"6 Protein MilX Shakes"
+            98::"I want to see recipes"
+            99:: "Go back!"
+    
+            If 0
+    
+                Player.modifyActorVar(rk_SGSpermJuice, -1)
+                Player.modifyActorVar(Tstock_MilkShake, -1)
+                Masha_Hugg(Happy)::"I have just created 2 Dicky Milk Shakes!"
+                Player.modifyActorVar(Tstock_MilkShakeS, 2)
+    
+            ElseIf 1
+    
+                Player.modifyActorVar(rk_SGPussyJuice, -1)
+                Player.modifyActorVar(Tstock_MilkShake, -1)
+                Masha_Hugg(Happy)::"I have just created 2 Milk Shakes Pussy!"
+                Player.modifyActorVar(Tstock_MilkShakeP, 2)
+    
+            ElseIf 2
+    
+                Player.modifyActorVar(rk_SGSpermJuice, -1)
+                Player.modifyActorVar(Tstock_IcecreamCup, -2)
+                Masha_Hugg(Happy)::"I have just created 2 cups of Cum Creams Delight!"
+                Player.modifyActorVar(Tstock_IcecreamS, 2)
+    
+            ElseIf 3
+    
+                Player.modifyActorVar(rk_SGPussyJuice, -1)
+                Player.modifyActorVar(Tstock_IcecreamCup, -2)
+                Masha_Hugg(Happy)::"I have created 2 cups of Pussy Creams Delux!"
+                Player.modifyActorVar(Tstock_IcecreamP, 2)
+    
+            ElseIf 4
+    
+                Player.modifyActorVar(Tstock_IcecreamP, -1)
+                Player.modifyActorVar(Tstock_IcecreamS, -1)
+                Masha_Hugg(Happy)::"I have created 2 Aphrodisiac ice cream cups!"
+                Player.modifyActorVar(Tstock_ApIcecream, 2)
+
+            ElseIf 5
+    
+                Player.modifyActorVar(Tstock_IcecreamP, -1)
+                Player.modifyActorVar(Tstock_FrozenPie, -1)
+                Masha_Hugg(Happy)::"I have created a Pussy creamy frozen Pie!"
+                Player.modifyActorVar(Tstock_FrozenPiePC, 2)
+    
+            ElseIf 6
+    
+                Player.modifyActorVar(Tstock_IceCreamCake, -1)
+                Player.modifyActorVar(rk_SGSpermJuice, -1)
+                Player.modifyActorVar(rk_SGPussyJuice, -1)
+                Masha_Hugg(Happy)::"I have created 2 Cream Cakes of love!"
+                Player.modifyActorVar(Tstock_CreamCake, 2)
+    
+            ElseIf 7
+    
+                Player.modifyActorVar(rk_SGPussyJuice, -2)
+                Player.modifyActorVar(rk_SGSpermJuice, -2)
+                Player.modifyActorVar(Tstock_MilkShake, -2)
+                Masha_Hugg(Happy)::"I have created 6 Protein MilX Shakes!"
+                Player.modifyActorVar(Tstock_MilkShakeTOP, 6)
+                
+            ElseIf 98
+            
+                Masha_Hugg(Happy)::"What type of recipe you want to know how to prepare?"
+                0:: "2 Dicky Milk Shakes"
+                1:: "2 Milk Shakes Pussy"
+                2:: "2 cups of Cum Creams Delight"
+                3:: "2 cups of Pussy Creams Delux"
+                4:: "2 Aphrodisiac ice cream cups"
+                5:: "2 Pussy creamy frozen Pies"
+                6:: "2 Cream Cakes of love"
+                7:: "6 Protein MilX Shakes"
+                99::"Go back"
+    
+                If 0
+                    Masha_Hugg(Happy)::"To produce 2 Dicky Milk Shakes, you need 1 Milk Shake and 1 Sperm Juice"
+                ElseIf 1
+                    Masha_Hugg(Happy)::"To produce 2 Milk Shakes Pussy, you need 1 Milk Shake and 1 Pussy Juice"
+                ElseIf 2
+                    Masha_Hugg(Happy)::"To produce 2 cups of Cum Creams Delight, you need 2 Ice cream cups and 1 Sperm Juice"
+                ElseIf 3
+                    Masha_Hugg(Happy)::"To produce cups of Pussy Creams Delux, you need 2 Ice cream cups and 1 Pussy Juice"
+                ElseIf 4
+                    Masha_Hugg(Happy)::"To produce Aphrodisiac ice cream cups, you need 1 Pussy Cream Delux and 1 Cum Cream Delight"
+                ElseIf 5
+                    Masha_Hugg(Happy)::"To produce 2 Pussy creamy frozen Pies, you need 1 Pussy Cream Delux and 1 Frozen Margarita pie"
+                ElseIf 6 
+                    Masha_Hugg(Happy)::"To produce 2 Cream Cakes of love, you need 1 SpermJuice, 1 PussyJuice and 1 Icecreamcake"
+                ElseIf 7
+                    Masha_Hugg(Happy)::"To produce 6 Protein MilX Shakes, you need 2 Sperm Juice, 2 Pussy Juice and 2 Milk Shake"
+                EndIf
+
+            Else
+                WhileProducing = false
+            EndIf
+            
+        EndIf
+
+    EndWhile
+    
+    Masha_Hugg.hide()
     
 SceneEnd()

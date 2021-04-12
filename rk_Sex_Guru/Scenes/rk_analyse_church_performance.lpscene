@@ -5,56 +5,226 @@ WHO: none
 OTHER: none
 
 SceneStart()
+    
     Churchbargain = Player.getActorVar(rk_Churchbargain)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
+    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     business_staffnumber = Player.getActorVar(rk_SG_ChurchesStaffnumber)
     business_staffintelligence = Player.getActorVar(rk_SG_ChurchesStaffintelligence)
     business_staffinterpersonal = Player.getActorVar(rk_SG_ChurchesStaffinterpersonal)
+    SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
     
-    Revenue = calculateRevenue()
-    RevenueC = Revenue.convertToLocalCurrency(true)
-    "Estimated gross revenue for this month is <RevenueC>."
-    Wages = calculateWages()
-    WagesC = Wages.convertToLocalCurrency(true)
-    "Wages for all employees total around <WagesC>."
-    Expenses = calculateExpenses()
-    ExpensesC = Expenses.convertToLocalCurrency(true)
-    "Other expenses are projected at <ExpensesC>."
-    Profit = Revenue - Wages - Expenses
-    ProfitC = Profit.convertToLocalCurrency(true)
-    ProfitMargin = Profit / Revenue
+    Dons_HealthyCookie = Player.getActorVar(rk_TDons_HealthyCookie)
+    Dons_BigBallHickey = Player.getActorVar(rk_TDons_BigBallHickey)
+    Dons_money = Player.getActorVar(rk_TDons_money)
+    Dons_Bread = Player.getActorVar(rk_TDons_Bread)
+    Dons_Sushi = Player.getActorVar(rk_TDons_Sushi)
     
-    "In the end, estimated net profit works out at <ProfitC> for this month." 
-    "Dig deeper into the homemade products performance data?"
-    0:: "Yes"
-    1:: "No"
+    // Calendars sold
+    SoldSoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_Sold)
+    SoldAmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_Sold)
+    SoldThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_Sold)
+    SoldGangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_Sold)
+    SoldRevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_Sold)
+    SoldLesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_Sold)
+    SoldGayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_Sold)
+    
+    TotalCalendarsSold = SoldSoloShootings_Calendars + SoldAmateurShootings_Calendars + SoldThreesomeShootings_Calendars + SoldGangBangShootings_Calendars + SoldRevGangBangShootings_Calendars + SoldLesbianShootings_Calendars + SoldGayShootings_Calendars
+    
+    // Calendars InStock
+    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+    
+    TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
+    
+    //XXXmag sold
+    SoldSoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_Sold)
+    SoldAmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_Sold)
+    SoldThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_Sold)
+    SoldGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_Sold)
+    SoldRevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_Sold)
+    SoldLesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_Sold)
+    SoldGayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_Sold)
+    SoldMixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_Sold)
+    
+    TotalXXXmagSold =  SoldSoloShootings_XXXmagazines + SoldAmateurShootings_XXXmagazines + SoldThreesomeShootings_XXXmagazines + SoldGangBangShootings_XXXmagazines + SoldRevGangBangShootings_XXXmagazines + SoldLesbianShootings_XXXmagazines + SoldGayShootings_XXXmagazines + SoldMixedShootings_XXXmagazines
+    
+    //XXXmag InStock
+    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+    
+    TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
+    
+    //Products InStock
+    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+    
+    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+    
+    Tstock_MilkShakeS_sold = Player.getActorVar(Tstock_MilkShakeS_sold)
+    Tstock_MilkShakeP_sold = Player.getActorVar(Tstock_MilkShakeP_sold)
+    Tstock_IcecreamS_sold = Player.getActorVar(Tstock_IcecreamS_sold)
+    Tstock_IcecreamP_sold = Player.getActorVar(Tstock_IcecreamP_sold)
+    Tstock_ApIcecream_sold = Player.getActorVar(Tstock_ApIcecream_sold)
+    Tstock_FrozenPiePC_sold = Player.getActorVar(Tstock_FrozenPiePC_sold)
+    Tstock_CreamCake_sold = Player.getActorVar(Tstock_CreamCake_sold)
+    Tstock_MilkShakeTOP_sold = Player.modifyActorVar(Tstock_MilkShakeTOP_sold)
+    
+    Sold_SpecialIceCreams = Tstock_MilkShakeS_sold + Tstock_MilkShakeP_sold + Tstock_IcecreamS_sold + Tstock_IcecreamP_sold + Tstock_ApIcecream_sold + Tstock_FrozenPiePC_sold + Tstock_CreamCake_sold + Tstock_MilkShakeTOP_sold
+    
+    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+    
+    Spermfilteredjuice_sold = Player.getActorVar(rk_Spermfilteredjuice_sold)
+    Pussyfilteredjuice_sold = Player.getActorVar(rk_Pussyfilteredjuice_sold)
+    Enersexenergydrinks_sold = Player.getActorVar(rk_Enersexenergydrinks_sold)
+    SexJuicecocktail_sold = Player.getActorVar(rk_SexJuicecocktail_sold)
+    Sexzombiecocktail_sold = Player.getActorVar(rk_Sexzombiecocktail_sold)
+    
+    TotalJuicesSold = Spermfilteredjuice_sold + Pussyfilteredjuice_sold + Enersexenergydrinks_sold + SexJuicecocktail_sold + Sexzombiecocktail_sold
+    
+    //VidX  InStock
+    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+    
+    TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
+    
+    //VidX sold
+    SoloShootings_SGVidXsold = Player.getActorVar(rk_SG_SoloShootings_SGVidX_sold)
+    AmateurShootings_SGVidXsold = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_sold)
+    ThreesomeShootings_SGVidXsold = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_sold)
+    GangBangShootings_SGVidXsold = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_sold)
+    RevGangBangShootings_SGVidXsold = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_sold)
+    LesbianShootings_SGVidXsold = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_sold)
+    GayShootings_SGVidXsold = Player.getActorVar(rk_SG_GayShootings_SGVidX_sold))
+    
+    SGVidXsold = SoloShootings_SGVidXsold + AmateurShootings_SGVidXsold + ThreesomeShootings_SGVidXsold + GangBangShootings_SGVidXsold + RevGangBangShootings_SGVidXsold + LesbianShootings_SGVidXsold + GayShootings_SGVidXsold
+    
+    TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
+    
+    Buffy_Pine = generatePersonTemporary(rk_ModelF_Buffy_Pine)
+    Buffy_Pine.show()
+    SGId = Buffy_Pine.getID()
+    Buffy_Pine.setActorVar(rk_SG_DiscipleSalary, 0)
+    daysSinceBirth = (Player:Age * 365) // get the current date
+    Buffy_Pine.setActorVar(rk_SG_LastSalaryNegotiation, daysSinceBirth) // remember last salary negotiation
+    Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+    Buffy_Pine.setActorVar(tag_SGDisciple, 1)
+    Buffy_Pine:attractiontoplayer => 50
+    Buffy_Pine:rapportwithplayer => 50
+    
+    If Buffy_Pine:discipleattraction < 20
+    
+        Buffy_Pine.modifyActorVar(rk_discipleattraction, 30)
+        
+    EndIf
+    
+    Buffy_Pine.dress()
+    Buffy_Pine.makePermanent()
+    Buffy_Pine.animate(socialize)
+    
+    Buffy_Pine(Flirty)::"Hi master <Player.name>, I'm happy to see you ...!"
+    Buffy_Pine(Flirty)::"Are you here to check my sex performance or your performance data?"
+    "What should I do?"
+    0:: "Check performance data"
+    1:: "Check her sex performance"
+    99:: "I changed my mind!"
+    
+    If 1
+    
+        Buffy_Pine.show()
+        Buffy_Pine.strip()
+        Player.strip()
+                            
+        Sex(Buffy_Pine, Player)
+        perversion += 0.35
+        Buffy_Pine:attractiontoplayer += Random(0, 1)
+        Buffy_Pine:rapportwithplayer += Random(0, 1)
+                        
+        passTime(0.15, 0.25)
+                        
+        Buffy_Pine(Serene):: "That was amazing!"
+        
+        Buffy_Pine.dress()
+        NGHadSex = true
+    
+    EndIf
+    
+    If NGHadSex
+        Player(Happy)::"Yeah that was good! Let's get back to work and let see brand and products performance data ..."
+    Else
+        Player(Happy)::"Nah, I'm here to check my brand and products performance data ..."
+    EndIf
+    
+    Buffy_Pine(Flirty)::"What type of report you want, master <Player.name>?"
+    1:: "A resume"
+    0:: "A long report"
     
     If 0
-        "In terms of marketing ..."
+        
+        Player(Curious)::"In terms of production, where are we?"
+        Buffy_Pine(Flirty)::"Hmmm! Are you sure you want me to go there, honey ... because I'm going to have to tell you the performance of each product and it can take time..."
+        1:: "Tell me about my production"
+        99:: "Ok skip it!"
+        
+        If 1
+            
+            
+            
+        EndIf
+        
+        Player(Curious)::"In terms of marketing ..."
         If Churchbrand < 25
-            "Your homemade products brand is virtually unknown. Most customers don't recognize it at all. Publish more contents!"
+            Buffy_Pine(Flirty)::"Our homemade products brand <rkSGCPBrand> is virtually unknown. Most customers don't recognize it at all. Publish more contents!"
         Elseif Churchbrand < 50
-            "Your homemade products brand is somewhat recognizable. Still, your brand isn't strong enough to be the deciding factor in the customers' minds."
+            Buffy_Pine(Flirty)::"Our homemade products brand <rkSGCPBrand> is somewhat recognizable. Still, our brand isn't strong enough to be the deciding factor in the customers' minds."
         Elseif Churchbrand < 75
-            "Your homemade products brand is strong. The majority of customers have heard of you and associated your brand with quality."
+            Buffy_Pine(Flirty)::"Our homemade products brand <rkSGCPBrand> is strong. The majority of customers have heard of us and associated our brand with quality."
         Else
-            "Your homemade products is a household name. Everyone knows who you are and trusts the quality of your products."
+            Buffy_Pine(Flirty)::"Our homemade products <rkSGCPBrand> is a household name. Everyone knows who we are and trusts the quality of our products."
         Endif
         
-        "In terms of religion ..."
+        Player(Curious)::"About our religion reputation ..."
         If SexGuruReputation < 25
-            "Your religion is virtually unknown locally. You need to promote it more."
+            Buffy_Pine(Flirty)::"Our religion is virtually unknown locally. We must promote it more."
         Elseif SexGuruReputation < 50
-            "A fair percentage of local citizen know about your religion." 
+            Buffy_Pine(Flirty)::"A fair percentage of local citizen know about our religion." 
         Elseif SexGuruReputation < 75
-            "Your religion is fairly well-known locally."
+            Buffy_Pine(Flirty)::"Our religion is fairly well-known locally."
         Else
-            "This religion is really known by most of the citizen."
+            Buffy_Pine(Flirty)::"Our religion is really known by most of the citizen."
         Endif
         
-        "In terms of labour ..."       
+        Player(Curious)::"In terms of labour ..."       
         If business_staffnumber < 30
             "This community is severely understaffed. You need to hire more people right away."
         Elseif business_staffnumber < 60
@@ -89,7 +259,9 @@ SceneStart()
             "Your employees show excellent level of teamwork and take good care of your customers."
         Endif
         
-        "In terms of suppliers ..."
+        "In terms of production ..."
+        
+        Player(Curious)::"In terms of suppliers ..."
         If interpersonal < 25   
             "You're hopeless at negotiating with suppliers. They rip you off on a regular basis."
         Elseif interpersonal < 50
@@ -109,8 +281,23 @@ SceneStart()
         Else
             "Your community has immense purchasing power. Most suppliers would do anything to work with you." 
         Endif
+        
+    ElseIf 1
     
-        passTime(1, 2)
+        "NOT IMPLEMENTED YET"
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        0::""
+        99:: "I'm done!"
+    
+        passTime(0.5, 1)
         
     Endif
     

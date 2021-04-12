@@ -18,6 +18,14 @@ SceneStart()
     Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
     SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
     Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+    
+    Spermfilteredjuice_sold = Player.getActorVar(rk_Spermfilteredjuice_sold)
+    Pussyfilteredjuice_sold = Player.getActorVar(rk_Pussyfilteredjuice_sold)
+    Enersexenergydrinks_sold = Player.getActorVar(rk_Enersexenergydrinks_sold)
+    SexJuicecocktail_sold = Player.getActorVar(rk_SexJuicecocktail_sold)
+    Sexzombiecocktail_sold = Player.getActorVar(rk_Sexzombiecocktail_sold)
 
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
@@ -68,6 +76,7 @@ SceneStart()
             BonusBargain = price_Spermfilteredjuice + Churchbargain
             money += BonusBargain
             Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
+            Player.modifyActorVar(rk_Spermfilteredjuice_sold, MSSnum)
                         
             "You were able to sell <MSSnum> Sperm filtered juice(s) for a total in revenue: <price_Spermfilteredjuice_Loc>. <countSpermfilteredjuice> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -89,6 +98,7 @@ SceneStart()
             BonusBargain = price_Pussyfilteredjuice + Churchbargain
             money += BonusBargain
             Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
+            Player.modifyActorVar(rk_Pussyfilteredjuice_sold, MSSnum)
                         
             "You were able to sell <MSSnum> Pussy filtered juice(s) for a total in revenue: <price_Pussyfilteredjuice_Loc>. <countPussyfilteredjuice> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -110,6 +120,7 @@ SceneStart()
             BonusBargain = price_Enersexenergydrinks + Churchbargain
             money += BonusBargain
             Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
+            Player.modifyActorVar(rk_Enersexenergydrinks_sold, MSSnum)
                         
             "You were able to sell <MSSnum> Enersex energy drink(s) for a total in revenue: <price_Enersexenergydrinks_Loc>. <countEnersex> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -132,6 +143,7 @@ SceneStart()
             BonusBargain = price_SexJuicecocktail + Churchbargain
             money += BonusBargain
             Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
+            Player.modifyActorVar(rk_SexJuicecocktail_sold, MSSnum)
                         
             "You were able to sell <MSSnum> Sex Juice cocktail(s) for a total in revenue: <price_SexJuicecocktail_Loc>. <countSexJuicecocktail> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
@@ -153,6 +165,7 @@ SceneStart()
             BonusBargain = price_Sexzombiecocktail + Churchbargain
             money += BonusBargain
             Player.modifyActorVar(rk_SG_ChurchSellingPower, MSSnum)
+            Player.modifyActorVar(rk_Sexzombiecocktail_sold, MSSnum)
                         
             "You were able to sell <MSSnum> Sex zombie cocktail(s) for a total in revenue: <price_Sexzombiecocktail_Loc>. <countSexzombiecocktail> remain in stock."
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)

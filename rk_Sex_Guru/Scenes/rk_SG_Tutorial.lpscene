@@ -22,9 +22,19 @@ SceneStart()
     // Go to a place_of_worship
     moveTo(place_of_worship)
     setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+    
+    rk_ClickFromSSG = ClickFromSSG.getGlobal()
 
-    "I ask to see someone to get more information about the Sex-Guru mod..."
-    Player.animate(socialize)
+    If rk_ClickFromSSG > 0
+    
+        Player(Curious)::"Hurry to see how she looks like?"
+    
+    Else
+    
+        "I ask to see someone to get more information about the Sex-Guru mod..."
+        Player.animate(socialize)
+        
+    EndIf
 
     "After a while... someone arrive!"
     passTime(0.01, 0.25)
@@ -38,37 +48,106 @@ SceneStart()
     NunBertha:rapportwithplayer += Random(5, 10)
 
     NunBertha(Happy)::"Hi, my name is <NunBertha.name> <NunBertha.name_last>, I'm the person who will tell you how the Sex-Guru mod works..."
-    NunBertha(Serene)::"First thing you need to do to become a sex guru is to meditate and write gospels, until you reach an enlightenment."
-    NunBertha(Serene)::"Click on 'Become a sex guru' to start the process to enlightenment."
-    NunBertha(Serene)::"You will need to meditate a lot to be able to reach your enlightenment. You need 50 points.... you got <SGIllumination>/50"
-    NunBertha(Serene)::"When you meditate you boost a little bit your enlightenment level. But, be aware that when you meditate, you always undress yourself completely!"
-    NunBertha(Serene)::"When you wrote a gospel you boost a little bit your enlightenment level."
-    Player(Curious):: "Ok but, how will I know that I've reached the enlightenment level?"
-    NunBertha(Wink)::"You will know, I can tell you... So, let me finish..."
-    NunBertha(Serene)::"The Gospels is needed when you do public presentations, preach to your followers and for other events."
-    NunBertha(Serene)::"When you do a public presentation or other events, it boost your enlightenment level and your religion reputation."
-    NunBertha(Serene)::"You need 50 points of religion reputation.... your reputation is <SexGuruReputation>/50"
-    NunBertha(Serene)::"You must write 10 gospels and keep them in reserve until you are ready to become a guru."
-    NunBertha(Serene)::"You also need to improve your interpersonal skills to 75, because new religions are rarely accepted if your not a good talker..."
-    NunBertha(Serene)::"After all these, you will then unlock the possibility to find disciples."
-    NunBertha(Serene)::"You will need to find at least 10 disciples who will be glad to join your community!"
-    NunBertha(Serene)::"Finally, rent a building, a house,... to make it your temple."
-    NunBertha(Serene)::"Not a easy task, it's an expensive business,... but you will end up millionaire if you don't do crazy things!"
-    NunBertha(Serene)::"I got a lot more to explain, do I continue or you have enough for now?"
-    "What do I say?"
-    0::"Tell her to continue"
-    1::"No, I have enough"
+    NunBertha(Serene)::"First I will go straight, What you will need to do first is..."
+    NunBertha(Serene)::"Become a sex guru, once you are successful, start your religion, then rent a temple and finally produce products for sale ..."
+    NunBertha(Serene)::"But I don't think you're here to listen to me repeat what the Pastor just said ... So what are your questions?"
     
-    If 0
+    FAQRolling = true
+    While FAQRolling
+    
+        "What informations I need?"
+        0::"Becoming a sex guru"
+        1::"For starting my religion"
+        2::"About the temple"
+        3::"How buy equipment and manage employees"
+        4::"How promote my religion"
+        5::"How to receive donations"
+        6::"Managing inventories"
+        7::"Selling your brand products"
+        99::"Got enough tanks!"
+    
+        If 0
+        
+            NunBertha(Annoyed)::"Ok then, I will repeat..."
+            NunBertha(Happy)::"First thing you need to do to become a sex guru is to click on 'Become a sex guru' to start the process to enlightenment."
+            NunBertha(Serene)::"You will need to meditate a lot to be able to reach your enlightenment. You need 50 points."
+            NunBertha(Serene)::"When you meditate you boost a little bit your enlightenment level. But, be aware that when you meditate, you always undress."
+            NunBertha(Serene)::"The Gospels is needed when you do public presentations, preach to your followers and for other events or actions."
+            NunBertha(Serene)::"When you wrote a gospel you boost a little bit your reputation. But when you do a public presentation it boost a little more."
+            NunBertha(Serene)::"When you do a public presentation or other events, it boost your enlightenment level and your religion reputation."
+            NunBertha(Serene)::"You must write 10 gospels and keep them in reserve until you are ready to become a guru."
+            NunBertha(Serene)::"You need to keep your interpersonal skills to 75 or higher, because new religions are rarely accepted if your not a good talker..."
+            NunBertha(Serene)::"After all these, you will then unlock the possibility to find disciples."
+            NunBertha(Serene)::"You need to find at least ten disciples who will be glad to join your religious community!"
+            NunBertha(Serene)::"To be short honey, you need 10 disciples, 10 gospels in inventory, 50 illumination points and 50 points for your religion reputation."
+            NunBertha(Flirty)::"Not a easy task, it's an expensive business,... but you will end up millionaire if you don't do crazy things!"
+            
+        ElseIf 1
+        
+            NunBertha(Serene)::"You need all above requirement (Becoming a sex guru)."
+            NunBertha(Serene)::"You need to be a sex guru."
+            NunBertha(Serene)::"You need a licence from the Sex Religious Society to start your religion."
+            NunBertha(Serene)::"Choose a name for your religion."
+            NunBertha(Serene)::"And you're ready to start!"
+            
+        ElseIf 2
+        
+            NunBertha(Serene)::"When you've become a sex guru"
+            NunBertha(Serene)::"You will have to rent a temple,... A religion without a meeting place is not worth much ..."
+            NunBertha(Serene)::"The temple is needed if you want your religion to be recognized and to receive donations."
+            NunBertha(Serene)::"As donations, you will received sometimes sperm and pussy juices, they are needed to produce your homemade products."
+            NunBertha(Serene)::"The temple is also needed to produce all your brand products."
+            
+        ElseIf 3
+        
+            NunBertha(Serene)::"First, you need to be a sex guru before buying anything!"
+            NunBertha(Serene)::"Some equipment are needed for some events, so you will need buy them."
+            
+        ElseIf 4
+        
+            NunBertha(Serene)::"You can do it by talking to people."
+            NunBertha(Serene)::"Doing a public presentation."
+            NunBertha(Serene)::"Launch a website."
+            NunBertha(Serene)::"Publish gospels, pictures or videos or your website."
+            NunBertha(Serene)::"Promote your brand products."
+            NunBertha(Serene)::"Promote your religion locally or online."
+            NunBertha(Serene)::"Organize dinner party."
+            NunBertha(Serene)::"Selling products."
+            
+        ElseIf 5
+        
+            NunBertha(Serene)::"You need a temple."
+            NunBertha(Serene)::"You need a holy statue."
+            NunBertha(Serene)::"You need a sex juice collector."
+            NunBertha(Serene)::"To collect donnations, click 'Manage community' and then click 'Show donations'."
+            NunBertha(Serene)::"To receive new donations you have to wait at least 24 hours."
+            NunBertha(Serene)::"You receive donations each 24 hours and they are not cumulative."
+            
+        ElseIf 6
 
-        NunBertha(Happy)::"The temple is needed if you want your religion to be recognized and to receive donations."
-        NunBertha:attractiontoplayer += Random(0, 1)
-        NunBertha(Serene)::"As donations, you will received sometimes sperm and pussy juices, they are needed to produce your homemade products."
-        NunBertha(Serene)::"You also need to own a church to sell your homemade products."
-        NunBertha(Serene)::"Each time you sell your homemade products, you boost your reputation and make money."
-        NunBertha:rapportwithplayer += Random(1, 5)
-
-    EndIf
+            NunBertha(Serene)::"'Show temple equipment' : is for checking what you have in hand inside your temple as equipments."
+            NunBertha(Serene)::"'Show temple stockroom' : is for checking how many special ingredients and produced brand products you have in stock."
+            NunBertha(Serene)::"'Show Holy book inventory' : is for checking how many gospels you have."
+            NunBertha(Serene)::"'Show temple pantry' : is for checking how many gospels you have."
+            NunBertha(Serene)::"'Show temple refrigerator' : is for checking how many gospels you have."
+            NunBertha(Serene)::"'Show temple freezer' : is for checking how many gospels you have."
+            NunBertha(Serene)::"'Show Bitcoin inventory' : is for checking how many Bitcoin you have. But, you need rk_Weed_biz mod to be enable."
+        
+        ElseIf 7
+        
+            NunBertha(Serene)::"You need to own another SRS licence to be able to sell your own products."
+            NunBertha(Serene)::"Choose a brand name for your products."
+            NunBertha(Serene)::"Start to produce some brand product like, foods, calendars, X movies, XXX magazines,..."
+            NunBertha(Serene)::"For selling your products, visit any churches and click 'Manage church business'."
+            NunBertha(Serene)::"Each time you sell your homemade products, you boost your reputation and make money."
+        
+        Else
+        
+            FAQRolling = false
+        
+        EndIf
+    
+    EndWhile
     
     If [Player.isMale() && Player:perversion > 75] || [Player.isMale() &&  Player:arousal > 15]
 

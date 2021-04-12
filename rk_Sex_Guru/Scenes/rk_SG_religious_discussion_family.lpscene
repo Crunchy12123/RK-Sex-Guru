@@ -54,6 +54,7 @@ OTHER: isAtHome() && Random(0, 200) < intelligence
 
             Else
             
+                "Bad idea. It's not good for the business to be accused of incest or create a toxic atmosphere within the disciples. This would do more harm than good."
                 Player(Sad):: "Sorry, but I don't normally accept family members inside my community!"
                 Actor:rapportwithplayer -= Random(0, 2)
                 Actor.modifyActorVar(rk_discipleAttraction, -1)

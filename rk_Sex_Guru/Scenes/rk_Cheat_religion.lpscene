@@ -21,7 +21,8 @@ OTHER: none
         While StayInMenu
             
             "Be aware that cheating can have consequences on your stats!"
-            "What I want to do?"
+            "More cheats will be added...by your suggestions."
+            "What you want to do?"
             0::"Add 25 to my perversion"
             1::"Add 25 to my religion attraction"
             2::"Add 25 to my illumination"

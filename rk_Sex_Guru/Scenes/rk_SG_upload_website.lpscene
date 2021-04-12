@@ -32,8 +32,8 @@ OTHER: none
             
             "What I should do?"
             0:: SexGuruGospels > 0 :: "Post a gospel"
-            1:: SGpendingPhotoCount > 0 :: "Post a picture"
-            2:: SGpendingVideoCount > 0 :: "Post a video"
+            1:: SGpendingPhotoCount > 0 :: "Post picture set(s)"
+            2:: SGpendingVideoCount > 0 :: "Post video(s)"
             99::"Do nothing!"
            
             If 0
@@ -48,10 +48,34 @@ OTHER: none
                 Player.modifyActorVar(rk_SG_GPostCount, 1)
                 
                 "Ok, that's enough for now, let's do something else!"
+                
                 ChanceOfIntess = random(-1, 2)
                 Player.modifyActorVar(rk_SG_InterestGPost, ChanceOfIntess)
+                
                 If StartChurchCommerce > 0
                     Player.modifyActorVar(rk_Churchbrand, 0.05)
+                EndIf
+                
+                ChanceOfGetDiscip = random(0, 99)
+                
+                If intGPost > 99 && ChanceOfGetDiscip > 90
+                
+                    Actor = generatePersonTemporary()
+                    Actor.randomizeHairs()
+                    Actor.randomizeFace()
+                    Actor.hide()
+                    "One new member have decided to join our religious community...."
+                    SGId = Actor.getID()
+                    Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                    Player.modifyActorVar(rk_discipleattractiontoplayer, 0.5)
+                    "<Actor.His_or_Her> name is <Actor.name> <Actor.name_last>..."
+                    Actor:rapportwithplayer => Random(50, 80)
+                    Actor.modifyActorVar(rk_discipleAttraction, 50)
+                    "<Actor.name> is now part of our religious community..."
+                    Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                    Actor.makePermanent()
+                    exchangeContact(Actor)
+                    
                 EndIf
         
             ElseIf 1
@@ -83,21 +107,19 @@ OTHER: none
                         Actor.setActorVar(rk_SG_PhotoCountPending,0)
                         Actor.setActorVar(rk_SG_PhotoValuePending, 0)
                     
-                        If detailModeEnabled > 0
-                            secondScreenIfHidden(Actor)
-                            // Actor.dress() // Lets keep them naked for now... is faster and looks better ^^
-                            Actor.show()
+                        secondScreenIfHidden(Actor)
+                        // Actor.dress() // Lets keep them naked for now... is faster and looks better ^^
+                        Actor.show()
                         
-                            Random
-                                Player::"I have uploaded <SGpendingUploadsP> new pictures of <Actor.Name>. Let's see how these perform tomorrow."
-                                Player::"I added <SGpendingUploadsP> pictures of <Actor.Name>. Hope our visitors enjoy <Actor.o>."
-                                Player::"<SGpendingUploadsP> new pictures from <Actor.Name> added. Our horny users will be happy."
-                            EndRandom
+                        Random
+                            Player::"I have uploaded and published <SGpendingUploadsP> new pictures of <Actor.Name> on the community website. Let's see how these perform tomorrow."
+                            Player::"I added and posted <SGpendingUploadsP> pictures of <Actor.Name> on the community website. Hope our visitors enjoy <Actor.o>."
+                            Player::"<SGpendingUploadsP> new pictures from <Actor.Name> added to the community website. Our horny users will be happy."
+                        EndRandom
                         
-                            secondScreen()
-                            Actor.hide()
-                            Actor.saveAndDelete()
-                        EndIf
+                        secondScreen()
+                        Actor.hide()
+                        Actor.saveAndDelete()
                     
                         passTime(0.1, 0.3)      // every pictures consumes time and energy
                         Player:energy -= Random(2,5)
@@ -134,21 +156,19 @@ OTHER: none
                         Actor.setActorVar(rk_SG_VideoCountPending,0)
                         Actor.setActorVar(rk_SG_VideosValuePending, 0)
                     
-                        If detailModeEnabled > 0
-                            secondScreenIfHidden(Actor)
-                            // Actor.dress() // Lets keep them naked for now... is faster and looks better ^^
-                            Actor.show()
+                        secondScreenIfHidden(Actor)
+                        // Actor.dress() // Lets keep them naked for now... is faster and looks better ^^
+                        Actor.show()
                         
-                            Random
-                                Player::"I have uploaded <SGpendingUploads> new videos of <Actor.Name>. Let's see how these perform tomorrow."
-                                Player::"I added <SGpendingUploads> videos of <Actor.Name>. Hope our visitors enjoy <Actor.o>."
-                                Player::"<SGpendingUploads> new videos from <Actor.Name> added. Our horny users will be happy."
-                            EndRandom
+                        Random
+                            Player::"I have uploaded and published <SGpendingUploadsP> new videos of <Actor.Name> on the community website. Let's see how these perform tomorrow."
+                            Player::"I added and posted <SGpendingUploadsP> videos of <Actor.Name> on the community website. Hope our visitors enjoy <Actor.o>."
+                            Player::"<SGpendingUploadsP> new videos from <Actor.Name> added to the community website. Our horny users will be happy."
+                        EndRandom
                         
-                            secondScreen()
-                            Actor.hide()
-                            Actor.saveAndDelete()
-                        EndIf
+                        secondScreen()
+                        Actor.hide()
+                        Actor.saveAndDelete()
                     
                         passTime(0.1, 0.3)      // every video consumes time and energy
                         Player:energy -= Random(2,5)
@@ -185,9 +205,9 @@ OTHER: none
             SGcurrentAdvertisingMode = Player.getActorVar(rk_SGOnlineAdvertisingMode)
             If( SGcurrentAdvertisingMode<1 )
                 Random
-                    Player(Curious)::"Maybe I should do some advertising as well?"
+                    Player(Curious)::"Maybe I should do some advertising for those picture sets as well?"
                     Player(Curious)::"If I book some ads for those new pictures, I might increase the number of visitors..."
-                    Player(Curious)::"Some online advertising could help increase our visitor number."
+                    Player(Curious)::"Some online advertising for those picture sets could help increase our visitor number."
                 EndRandom
             EndIf
 
@@ -199,7 +219,7 @@ OTHER: none
                 Random
                     Player(Curious)::"Maybe I should do some advertising for those videos?"
                     Player(Curious)::"If I book some ads, I might increase the number of visitors..."
-                    Player(Curious)::"Some online advertising could help increase our visitor number."
+                    Player(Curious)::"Some online advertising for those videos could help increase our visitor number."
                 EndRandom
             EndIf
             

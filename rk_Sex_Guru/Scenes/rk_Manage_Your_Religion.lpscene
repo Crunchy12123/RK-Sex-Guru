@@ -17,6 +17,12 @@ SceneStart()
     GPostCount = Player.getActorVar(rk_SG_GPostCount)
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
     
+    // If the player is dating someone we need to end the date, so we can check this NPCs stats as well
+    If CurrentCompanion.isValid()
+        Player::"<CurrentCompanion.Name>, I need to take care of my community. See you later!"
+        endDate()
+    EndIf
+    
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     If TempleSize > 0

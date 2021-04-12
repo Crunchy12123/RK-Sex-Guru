@@ -12,11 +12,17 @@ SceneStart()
     Churchbargain = Player.getActorVar(rk_Churchbargain)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     
+    // If the player is dating someone we need to end the date, so we can check this NPCs stats as well
+    If CurrentCompanion.isValid()
+        Player::"<CurrentCompanion.Name>, I need to take care of my community. See you later!"
+        endDate()
+    EndIf
+    
     "What should I do?"
-    0::"Analyse Church performance"
+    0::"Analyse products brand performance"
     1::"Deal with religious suppliers"
-    2::"Hire more employees"
-    3::"Promote product/temple awareness"
+    2::"Sell homemade products"
+    3::"Promote brand awareness"
     4::"Promote religion locally"
     99::"Go back!"
     
@@ -30,7 +36,7 @@ SceneStart()
     
     ElseIf 2
     
-        followUp(rk_hire_more_Church_employees)
+        followUp(rk_sell_produced_meals_church)
     
     ElseIf 3
     

@@ -26,18 +26,21 @@ SceneStart()
     discipleAttractionG9 = Guru41.getActorVar(rk_discipleAttraction)
     discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
     
-    If Player:interpersonal < 75
-    
-        "You don't have enough interpersonal skills, you need at least 75, because new religions are rarely accepted if your not a good talker..."
-    
-    ElseIf SetAcceptDay > 0 && SetAcceptDay < 3
+    If SetAcceptDay > 0 && SetAcceptDay < 3
     
         SRSAgent = generatePersonTemporary()
         SRSAgent.hide()
         Player.show()
         Player.animate(call)
+        SetDaypass = 3 - SetAcceptDay
         "I'm getting a call from the Sex Religious Society...???"
-        SRSAgent(Happy)::"Hi <Player.name>, just to remind you that you have a gurus conference in <SetAcceptDay> days..."
+        
+        If SetDaypass >= 1
+            SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in <SetDaypass> day(s)..."
+        Else
+            SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in few hours..."
+        EndIf
+        Player(Happy)::"Ok, no problem I'll be there!"
         Player.modifyActorVar(rk_SG_AcceptDay, 1)
     
     ElseIf SetAcceptDay <= 0
@@ -454,7 +457,7 @@ SceneEnd()
 
 If SetAcceptDay > 0 
 
-    timeoutprecise(20, rk_Gurus_Conference)
+    timeoutprecise(12, rk_Gurus_Conference)
     
 Else 
 

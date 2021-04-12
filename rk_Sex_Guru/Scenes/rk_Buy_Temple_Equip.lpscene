@@ -8,6 +8,7 @@ SceneStart()
     
     // Get current equipment types
     
+    SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     JuiceCollectorType = Player.getActorVar(rk_SG_JuiceCollectorType)
     HolyStatueType = Player.getActorVar(rk_SG_HolyStatueTypeType)
     videoCamType = Player.getActorVar(rk_SG_VideoCameraEquipmentType)
@@ -50,9 +51,9 @@ SceneStart()
                 
                 "The sex juice collectors are used to collect pussy juices and sperm!"
                 Player(Excited)::"Which sex juice collector should I get or upgrade?"
-                1:: JuiceCollectorType == 0:: "Small sex juice collector vaccum pump for <price1>"
-                2:: JuiceCollectorType == 1:: "Medium sex juice collector vaccum pump for <price2>"
-                3:: JuiceCollectorType == 2:: "The Premium sex juice collector vaccum pump for <price3>"
+                1:: JuiceCollectorType == 0:: "Basic sex juice collector vaccum pump for <price1>"
+                2:: JuiceCollectorType == 1:: "Stainless steel sex juice collector vaccum pump for <price2>"
+                3:: JuiceCollectorType == 2:: "The Titanium sex juice collector vaccum pump for <price3>"
                 4:: JuiceCollectorType == 3:: "The ultimate sex juice collector vaccum pump for <price4>"
                 5:: "Don't buy anything"
                 
@@ -60,21 +61,28 @@ SceneStart()
                     Player.setActorVar(rk_SG_JuiceCollectorType, 1)
                     money -= 2000;
                     Player(Excited)::"Maybe not the best but it's perfect for my needs!"
+                    mood += 0.5
                     
                 ElseIf 2
                     Player.setActorVar(rk_SG_JuiceCollectorType, 2)
                     money -= 6000;
                     Player(Excited)::"For this price, it's better to do a good job!"
+                    mood += 1
+                    
                     
                 ElseIf 3
                     Player.setActorVar(rk_SG_JuiceCollectorType, 3)
                     money -= 12000;
-                    Player(Excited)::"Premium juice extractor added to my inventory!"
+                    Player(Excited)::"Titanium juice extractor added to my inventory!"
+                    mood += 1.5
+                    
                     
                 ElseIf 4
                     Player.setActorVar(rk_SG_JuiceCollectorType, 4)
                     money -= 24000;
                     Player(Excited)::"The ultimate sex juice collector vaccum pump, for the perfect taste...!"
+                    mood += 2
+                    
                     
                 EndIf
                 
@@ -91,7 +99,7 @@ SceneStart()
                 price3 = 30000.convertToLocalCurrency()
                 price4 = 70000.convertToLocalCurrency()
                 Player(Excited)::"Which Holy statue should I get or upgrade?"
-                1:: HolyStatueType == 0:: "Medium Holy statue for (<price1>)"
+                1:: HolyStatueType == 0:: "Iron Holy statue for (<price1>)"
                 2:: HolyStatueType == 1:: "Bronze Holy statue for (<price2>)"
                 3:: HolyStatueType == 2:: "Silver Holy statue for (<price3>)"
                 4:: HolyStatueType == 3:: "Golden Vinfamy Holy statue for (<price4>)"
@@ -102,24 +110,36 @@ SceneStart()
                     Player.setActorVar(rk_SG_HolyStatueTypeType, 1)
                     money -= 2000;
                     Player(Excited)::"I wish my disciples will like this Holy statue!"
+                    mood += 1
+                    CountItemTemp = SexGuruReputation + 1
+                    Player.setActorVar(rk_SG_SexGuruReputation, CountItemTemp)
                     
                 ElseIf 2
                 
                     Player.setActorVar(rk_SG_HolyStatueTypeType, 2)
                     money -= 10000;
                     Player(Excited)::"I'm pretty sure my disciples will love this Holy statue!"
+                    mood += 2
+                    CountItemTemp = SexGuruReputation + 3
+                    Player.setActorVar(rk_SG_SexGuruReputation, CountItemTemp)
                     
                 ElseIf 3
                 
                     Player.setActorVar(rk_SG_HolyStatueTypeType, 3)
                     money -= 30000;
                     Player(Excited)::"My disciples will totally love this Holy statue!"
+                    mood += 3
+                    CountItemTemp = SexGuruReputation + 5
+                    Player.setActorVar(rk_SG_SexGuruReputation, CountItemTemp)
                     
                 ElseIf 4
                 
                     Player.setActorVar(rk_SG_HolyStatueTypeType, 4)
                     money -= 70000;
                     Player(Excited)::"With this Holy statue, no one can ignore your instance and oppulence!"
+                    mood += 5
+                    CountItemTemp = SexGuruReputation + 10
+                    Player.setActorVar(rk_SG_SexGuruReputation, CountItemTemp)
                     
                 EndIf
                 
@@ -133,7 +153,7 @@ SceneStart()
                     price2 = 900.convertToLocalCurrency()
                     price3 = 1000.convertToLocalCurrency()
                     price4 = 3000.convertToLocalCurrency()
-                    Player(Excited)::"Which digital camera upgrade should I get for my photograher?"
+                    Player(Excited)::"Which digital camera should I get or upgrade for my photograher?"
                     1:: photoCamType == 0:: "Xanon - EOS Rebel T7 DSLR Camera (<price1>)"
                     2:: photoCamType == 1:: "Kony - Alpha a6000 Mirrorless Two Lens Kit (<price2>)"
                     3:: photoCamType == 2:: "Nixkon Z50 (<price3>)"
@@ -141,30 +161,43 @@ SceneStart()
                     5:: "Don't buy anything" 
                 
                     If 1
+                    
                         Player.setActorVar(rk_SG_PhotoEquipmentType, 1)
                         money -= 500;
                         Player(Excited)::"I wish I will be able to make professional-looking photos with this!"
                         Player(Excited)::"It a little bit better than my smart phone produces..."
+                        mood += 1
+                        
                     ElseIf 2
+                    
                         Player.setActorVar(rk_SG_PhotoEquipmentType, 2)
                         money -= 900;
                         Player(Excited)::"This camera gets the job done for what I need it for!"
                         Player(Excited)::"Maybe low quality but this mirrorless camera allows you to capture sharp, realistic pictures!"
+                        mood += 1.5
+                        
                     ElseIf 3
+                    
                         Player.setActorVar(rk_SG_PhotoEquipmentType, 3)
                         money -= 1000;
                         Player(Excited)::"The perfect mid-range mirrorless upgrade for DSLR owners!"
                         Player(Excited)::"Maybe medium quality but produces great photos..."
+                        mood += 2
+                        
                     ElseIf 4
+                    
                         Player.setActorVar(rk_SG_PhotoEquipmentType, 4)
                         money -= 3000;
                         Player(Excited)::"The best smaller alternative for those looking for a mirrorless all-rounder!"
                         Player(Excited)::"The best all-round camera you can buy !"
+                        mood += 3
+                        
                     EndIf
                 
                 EndIf
             
             ElseIf 3
+            
                 If videoCamType >= 4
                     Player(Sad)::"I already own the ultimate video camera that exists on this planet - at least for now."
                 Else
@@ -173,7 +206,7 @@ SceneStart()
                     price2 = 4000.convertToLocalCurrency()
                     price3 = 50000.convertToLocalCurrency()
                     price4 = 100000.convertToLocalCurrency()
-                    Player(Excited)::"Which video camera upgrade should I get?"
+                    Player(Excited)::"Which video camera should I get or upgrade for my film maker?"
                     1:: videoCamType == 0:: "Blackmagic Pocket Cinema Camera 4K (<price1>)"
                     2:: videoCamType == 1:: "Panasonix Illumix S1H (<price2>)"
                     3:: videoCamType == 2:: "XPhantom Flex8K (<price3>)"
@@ -181,25 +214,37 @@ SceneStart()
                     5:: "Don't buy anything"
                 
                     If 1
+                    
                         Player.setActorVar(rk_SG_VideoCameraEquipmentType, 1)
                         money -= 2000;
                         Player(Excited)::"Best affordable camera to shoot 4K videos..."
                         Player(Excited)::"90s looks, but packed with the latest tech..."
+                        mood += 1
+                        
                     ElseIf 2
+                    
                         Player.setActorVar(rk_SG_VideoCameraEquipmentType, 2)
                         money -= 4000;
                         Player(Excited)::"Video quality is practically perfect in all conditions, with excellent noise performance..."
                         Player(Excited)::"A cinematic 6K camera that’s good enough for Sexflix"
+                        mood += 1.5
+                        
                     ElseIf 3
+                    
                         Player.setActorVar(rk_SG_VideoCameraEquipmentType, 3)
                         money -= 50000;
                         Player(Excited)::"The best for filming outside. Night vision included!"
                         Player(Excited)::"It has special prices as well."
+                        mood += 2
+                        
                     ElseIf 4
+                    
                         Player.setActorVar(rk_SG_VideoCameraEquipmentType, 4)
                         money -= 100000;
                         Player(Excited)::"Better quality movie you can get and used by only major Hollywood productions..."
                         Player(Excited)::"But my dear customers... it's one of the most expensive cameras in the world."
+                        mood += 3
+                        
                     EndIf
                 
                 EndIf

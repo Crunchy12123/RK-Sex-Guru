@@ -21,7 +21,7 @@ SceneStart()
 
     "What type of event/party you want to organize?"
     0::"Organize a spaghetti dinner to raise funds"
-    1::"Hello"
+    1:: VariableWithhNoValue > 99:: "More parties will be added next versions"
     99::"Back to the game!"
     
     If 0
@@ -59,8 +59,8 @@ SceneStart()
         "The reservation cost for <TicketSold> persons is: <costreservationLoc>, but the owner is willing to rent it for free if I sleep with <RestoOwner.him_or_her>!"
         Player.animate()
         
-        "The total cost for this event: <PrepareTotalCost>.  You will earn <EarningTick> or more if someone just wants to attend and cancels their meal."
-        "The reservation cost will be aplly if you don't sleep with the owner!"
+        "The total cost for this event: <PrepareTotalCost>. You will earn <EarningTick> or more if someone just wants to attend and cancels their meal."
+        "The reservation cost will be aply if you don't sleep with the owner!"
         "Do you still want to organize this event"
         0::money > PersonsTotalCost ::"Yes"
         1::"No"
@@ -79,6 +79,9 @@ SceneStart()
             Actor3 = generatePersonTemporary()
             Actor3.dress()
             Actor3.show(3)
+            
+            "..."
+            
             Actor4 = generatePersonTemporary()
             Actor4.dress()
             Actor4.show(4)
@@ -91,6 +94,9 @@ SceneStart()
             Actor7 = generatePersonTemporary()
             Actor7.dress()
             Actor7.show(7)
+            
+            "..."
+            
             Actor8 = generatePersonTemporary()
             Actor8.dress()
             Actor8.show(8)
@@ -100,6 +106,8 @@ SceneStart()
             Actor10 = generatePersonTemporary()
             Actor10.dress()
             Actor10.show(10)
+            
+            "..."
                 
             If TicketSold == 11
                 Actor11 = generatePersonTemporary()
@@ -124,6 +132,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 
             ElseIf TicketSold == 14
                 Actor11 = generatePersonTemporary()
@@ -138,6 +149,9 @@ SceneStart()
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
+            
+                "..."
+            
                 
             ElseIf TicketSold == 15
                 Actor11 = generatePersonTemporary()
@@ -149,6 +163,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -166,6 +183,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -186,6 +206,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -198,6 +221,9 @@ SceneStart()
                 Actor17 = generatePersonTemporary()
                 Actor17.dress()
                 Actor17.show(17)
+            
+                "..."
+            
 
             ElseIf TicketSold == 18
                 Actor11 = generatePersonTemporary()
@@ -209,6 +235,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+               "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -221,6 +250,9 @@ SceneStart()
                 Actor17 = generatePersonTemporary()
                 Actor17.dress()
                 Actor17.show(17)
+            
+                "..."
+            
                 Actor18 = generatePersonTemporary()
                 Actor18.dress()
                 Actor18.show(18)
@@ -235,6 +267,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -247,6 +282,9 @@ SceneStart()
                 Actor17 = generatePersonTemporary()
                 Actor17.dress()
                 Actor17.show(17)
+            
+                "..."
+            
                 Actor18 = generatePersonTemporary()
                 Actor18.dress()
                 Actor18.show(18)
@@ -264,6 +302,9 @@ SceneStart()
                 Actor13 = generatePersonTemporary()
                 Actor13.dress()
                 Actor13.show(13)
+            
+                "..."
+            
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
                 Actor14.show(14)
@@ -276,6 +317,9 @@ SceneStart()
                 Actor17 = generatePersonTemporary()
                 Actor17.dress()
                 Actor17.show(17)
+            
+                "..."
+            
                 Actor18 = generatePersonTemporary()
                 Actor18.dress()
                 Actor18.show(18)
@@ -285,6 +329,9 @@ SceneStart()
                 Actor20 = generatePersonTemporary()
                 Actor20.dress()
                 Actor20.show(20)
+            
+                "..."
+            
                 
             EndIf
             passTime(0.15, 0.5)

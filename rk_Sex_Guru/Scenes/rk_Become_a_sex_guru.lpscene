@@ -122,12 +122,12 @@ SceneStart()
                 ElfyMana.dress()
                 dressFormal()
         
-                ElfyMana(Serene)::"Hello my dear, I am appearing to you because you have now reached your enlightenment, I will tell you now how to reach your enlightenment."
+                ElfyMana(Serene)::"Hello my dear, I am appearing to you, to tell you now how to reach your enlightenment."
                 Player:mood += 10
         
-                Player(Excited):: "I did not know that it was possible to achieve enlightenment after all the meditations I have done! I'm all ears, I'm listening to you ...!"
+                Player(Annoyed):: "I though I had already achieve my enlightenment after all the meditations I have done! Damn, what else...?"
                 ElfyMana(Serene):: "Yeah sort of, but not yet, you need the sexual energy of God and I'm the only one right now who can give you this opportunity..."
-                Player(Surprised):: "Ok, how we proceed?"
+                Player(Surprised):: "Ok, how we proceed? I'm all ears, I'm listening to you ...!"
                 ElfyMana(Serene):: "It's very simple, you just need to play sex wit me!"
                 Player(Wink):: "Ok, if it's really necessary!"
         
@@ -137,6 +137,7 @@ SceneStart()
         
                 "After she give me the sexual energy, she said..."
                 ElfyMana(Happy)::"Ahahah, dumb human! There's no sexual energy, the sex was not necessary, but it was fun!"
+                ElfyMana(Flirty)::"You already have reached your enlightenment, I just want some sex!" 
                 ElfyMana(Happy)::"Next time you want to play, just meditate and think about me! See ya!"
                 Player(Embarassed)::"We'll see!"
                 ElfyMana.hide()
@@ -154,10 +155,12 @@ SceneStart()
             "You've written a gospel that will inspire your followers, that's for sure!"
             Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
             Player:intelligence += Random(0, 1)
+            Player:perversion += Random(0, 1)
     
             "1 gospel added to your Holy book!"
             Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
-            Player:energy -= Random(0, 1)
+            Player:energy -= Random(0, 2)
+            Player:arousal += Random(0, 1)
             passTime(0.5, 2)
         
         ElseIf 3
@@ -178,6 +181,8 @@ SceneStart()
         
         ElfyMana(Happy)::"Congratulations, you are now a sex guru! You can now manage your religious community as you wish!"
         ElfyMana(Flirty)::"You don't really have to meditate anymore, but if you meditate with me in mind, I'll be happy! "
+        ElfyMana:attractiontoplayer += Random(1, 2)
+        ElfyMana:rapportwithplayer => Random(50, 70)
         ElfyMana(Flirty)::"So now that you're a sex guru, are you tempted to celebrate with me?"
         "What do you answer?"
         1::"Yeah sure, let's celebrate!"

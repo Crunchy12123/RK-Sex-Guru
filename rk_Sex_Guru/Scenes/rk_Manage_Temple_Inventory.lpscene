@@ -13,30 +13,7 @@ SceneStart()
     videoCamType = Player.getActorVar(rk_SG_VideoCameraEquipmentType)
     photoCamType = Player.getActorVar(rk_SG_PhotoEquipmentType)
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
-    
-    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
-    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
-    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
-    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
-    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
-    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
-    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
-    
-    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
-    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
-    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
-    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
-    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
-    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
-    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
-    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
-    
-    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
-    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
-    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
-    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
-    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
-    
+
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     If TempleSize > 0
@@ -63,7 +40,7 @@ SceneStart()
                     
                     If HolyStatueType == 1
                         
-                        "You own 1 medium Holy statue."
+                        "You own 1 iron Holy statue."
                         
                     ElseIf HolyStatueType == 2
                         
@@ -85,15 +62,15 @@ SceneStart()
                     
                     If JuiceCollectorType == 1
                         
-                        "You own the small sex juice collector vaccum pump."
+                        "You own the Basic sex juice collector vaccum pump."
                         
                     ElseIf JuiceCollectorType == 2
                         
-                        "You own the medium sex juice collector vaccum pump."
+                        "You own the Stainless steel sex juice collector vaccum pump."
                         
                     ElseIf JuiceCollectorType == 3 
                         
-                        "You own the premium sex juice collector vaccum pump."
+                        "You own the Titanium sex juice collector vaccum pump."
                         
                     ElseIf JuiceCollectorType == 4
                         
@@ -151,44 +128,108 @@ SceneStart()
 
                 ElseIf 1
                 
+                    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+                    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+                    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+                    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+                    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+                    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+                    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+    
+                    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+                    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+                    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+                    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+                    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+                    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+                    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+                    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+    
+                    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+                    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+                    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+                    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+                    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+                    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+                    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+    
+                    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+                    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+                    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+                    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+                    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+    
+                    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+                    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+                    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+                    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+                    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+                    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+                    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+                    Tstock_MilkShakeTOP = Player.getActorVar(Tstock_MilkShakeTOP)
+                    
                     0::"You have <SGPussyJuice> bottle(s) of pussy juice"
                     0::"You have <SGSpermJuice> bottle(s) of sperm juice"
-                    50::"Show special drinks inventory"
-                    60::"Show my calendars inventory"
-                    61::"Show my XXX magazines inventory"
+                    50::"Show special frozen foods inventory"
+                    51::"Show special drinks inventory"
+                    60::"Show calendars inventory"
+                    61::"Show XXX magazines inventory"
+                    62::"Show XXX videos inventory"
                     99::"Go back"
                     
                     If 50
                     
-                        0::"Sperm filtered juices <Spermfilteredjuice> in stock"
-                        0::"Pussy filtered juices <Pussyfilteredjuice> in stock"
-                        0::"Enersex energy drinks <Enersexenergydrinks> in stock"
-                        0::"Sex Juice cocktails <SexJuicecocktail> in stock"
-                        0::"Sex zombie cocktails <Sexzombiecocktail> in stock"
+                        0::"<Tstock_MilkShakeS> Dicky Milk Shake(s) in stock"
+                        0::"<Tstock_MilkShakeP> Milk Shake(s) Pussy in stock"
+                        0::"<Tstock_IcecreamS> Cum Cream Delight(s) in stock"
+                        0::"<Tstock_IcecreamP> Pussy Cream(s) Delux in stock"
+                        0::"<Tstock_ApIcecream> Aphrodisiac ice cream(s) in stock"
+                        0::"<Tstock_FrozenPiePC> Pussy creamy frozen Pie(s) in stock"
+                        0::"<Tstock_CreamCake> Cream Cake(s) of love in stock"
+                        0::"<Tstock_MilkShakeTOP> Protein MilX Shake(s) in stock"
                         99::"Go back"
-                    
+                        
+                    ElseIf 51
+
+                        0::"<Spermfilteredjuice> Sperm filtered juice(s) in stock"
+                        0::"<Pussyfilteredjuice> Pussy filtered juice(s) in stock"
+                        0::"<Enersexenergydrinks> Enersex energy drink(s) in stock"
+                        0::"<SexJuicecocktail> Sex Juice cocktail(s) in stock"
+                        0::"<Sexzombiecocktail> Sex zombie cocktail(s) in stock"
+                        99::"Go back"
                     
                     ElseIf 60
                     
-                        0:: "Solo Shootings calendar <SoloShootings_Calendars> in stock"
-                        0:: "Amateur Shootings calendar <AmateurShootings_Calendars> in stock"
-                        0:: "Threesome Shootings calendar <ThreesomeShootings_Calendars> in stock"
-                        0:: "GangBang Shootings calendar <GangBangShootings_Calendars> in stock"
-                        0:: "RevGangBang Shootings calendar <RevGangBangShootings_Calendars> in stock"
-                        0:: "Lesbian Shootings calendar <LesbianShootings_Calendars> in stock"
-                        0:: "Gay Shootings calendar <GayShootings_Calendars> in stock"
+                        0:: "<SoloShootings_Calendars> Solo Shootings calendar(s) in stock"
+                        0:: "<AmateurShootings_Calendars> Amateur Shootings calendar(s) in stock"
+                        0:: "<ThreesomeShootings_Calendars> Threesome Shootings calendar(s) in stock"
+                        0:: "<GangBangShootings_Calendars> GangBang Shootings calendar(s) in stock"
+                        0:: "<RevGangBangShootings_Calendars> RevGangBang Shootings calendar(s) in stock"
+                        0:: "<LesbianShootings_Calendars> Lesbian Shootings calendar(s) in stock"
+                        0:: "<GayShootings_Calendars> Gay Shootings calendar(s) in stock"
                         99::"Go back"
                     
                     Else 61
                     
-                        0:: "Mixed Shootings XXX magazine <MixedShootings_XXXmagazines> in stock"
-                        0:: "Solo Shootings XXX magazine <SoloShootings_XXXmagazines> in stock"
-                        0:: "Amateur Shootings XXX magazine <AmateurShootings_XXXmagazines> in stock"
-                        0:: "Threesome Shootings XXX magazine <ThreesomeShootings_XXXmagazines> in stock"
-                        0:: "GangBang Shootings XXX magazine <GangBangShootings_XXXmagazines> in stock"
-                        0:: "RevGangBang Shootings XXX magazine <RevGangBangShootings_XXXmagazines> in stock"
-                        0:: "Lesbian Shootings XXX magazine <LesbianShootings_XXXmagazines> in stock"
-                        0:: "Gay Shootings XXX magazine <GayShootings_XXXmagazines> in stock"
+                        0:: "<MixedShootings_XXXmagazines> Mixed Shootings XXX magazine(s) in stock"
+                        0:: "<SoloShootings_XXXmagazines> Solo Shootings XXX magazine(s) in stock"
+                        0:: "<AmateurShootings_XXXmagazines> Amateur Shootings XXX magazine(s) in stock"
+                        0:: "<ThreesomeShootings_XXXmagazines> Threesome Shootings XXX magazine(s) in stock"
+                        0:: "<GangBangShootings_XXXmagazines> GangBang Shootings XXX magazine(s) in stock"
+                        0:: "<RevGangBangShootings_XXXmagazines> RevGangBang Shootings XXX magazine(s) in stock"
+                        0:: "<LesbianShootings_XXXmagazines> Lesbian Shootings XXX magazine(s) in stock"
+                        0:: "<GayShootings_XXXmagazines> Gay Shootings XXX magazine(s) in stock"
+                        99::"Go back"
+                    
+                    ElseIf 62
+
+                        0:: "<SoloShootings_SGVidX> Solo Shootings XXX video(s) in stock"
+                        0:: "<AmateurShootings_SGVidX> Amateur Shootings video(s) in stock"
+                        0:: "<ThreesomeShootings_SGVidX> Threesome Shootings video(s) in stock"
+                        0:: "<GangBangShootings_SGVidX> GangBang Shootings video(s) in stock"
+                        0:: "<RevGangBangShootings_SGVidX> RevGangBang Shootings video(s) in stock"
+                        0:: "<LesbianShootings_SGVidX> Lesbian Shootings video(s) in stock"
+                        0:: "<GayShootings_SGVidX> Gay Shootings video(s) in stock"
                         99::"Go back"
 
                     EndIf

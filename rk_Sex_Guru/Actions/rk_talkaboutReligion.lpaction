@@ -10,4 +10,4 @@ CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE)
 MOVE_FIRST: true
 SCENE_ALWAYS: rk_talkaboutReligion
 ANIMATION:
-WHO: Actor = getTarget(); If !Actor.isCreature()
+WHO: Actor = getTarget(); If !Actor.isTemporary() && !Actor.isCreature()
