@@ -84,6 +84,7 @@ SceneStart()
         Mel_Naina.setActorVar(tag_SGDisciple, 1)
         Mel_Naina.modifyActorVar(rk_discipleAttraction, 15)
         Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Mel_Naina.setActorVar(rk_SG_DiscipleSalary, 0)
         Mel_Naina.makePermanent()
         exchangeContact(Mel_Naina)
     

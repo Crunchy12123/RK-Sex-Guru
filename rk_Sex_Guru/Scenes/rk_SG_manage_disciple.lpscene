@@ -29,7 +29,7 @@ OTHER: none
         MainActor.dress()
         MainActor.show(1)
         
-        traningPrice = 3000 * Random(0.8 , 1)   // Some discount?
+        traningPrice = 3000 * Random(0.8, 1)   // Some discount?
         traningPriceLocal = traningPrice.convertToLocalCurrency(true)
         
         Player::"What do I want to do?"

@@ -2,11 +2,10 @@ WHAT: all
 WHERE: all, home, -prison
 WHEN: 0 - 24
 WHO: none
-OTHER: none
+OTHER: rkOpenedSexGuru > 0
 
 SceneStart()
 
-    // rkOpenedSexGuru > 0
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
@@ -32,6 +31,7 @@ SceneStart()
         SRSAgent.hide()
         Player.show()
         Player.animate(call)
+        
         SetDaypass = 3 - SetAcceptDay
         "I'm getting a call from the Sex Religious Society...???"
         
@@ -41,7 +41,7 @@ SceneStart()
             SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in few hours..."
         EndIf
         Player(Happy)::"Ok, no problem I'll be there!"
-        Player.modifyActorVar(rk_SG_AcceptDay, 1)
+        Player.modifyActorVar(rk_SG_AcceptDay, 1.5)
     
     ElseIf SetAcceptDay <= 0
     
@@ -70,8 +70,7 @@ SceneStart()
     ElseIf SetAcceptDay >= 3
     
         Player(Happy)::"Ok, it's now time to go to the guru conference..."
-        
-        moveTo(university)
+        moveTo(Home)
         setBackground3D(Modules/vin_Base/World/university___vin01.lpworld)
     
         Guru1 = generatePersonTemporary()
@@ -85,8 +84,8 @@ SceneStart()
         Guru41 = generatePersonTemporary()
         Guru51 = generatePersonTemporary()
         
-        "A while later..."
         passTime(0.25, 0.5)
+        "A while later..."
         
         Guru1.randomizeHairs()
         Guru1.randomizeFace()
@@ -112,8 +111,8 @@ SceneStart()
         dressFormal()
         Guru2.dress()
         Guru2.show(2)
-        Guru2(Happy)::"Hi, I wish to see you later..."
-        Guru2:attractiontoplayer += Random(0, 1)
+        Guru2(Happy)::"Hi, my name is <Guru2.name>, I wish to see you later..."
+        Guru2:attractiontoplayer += Random(0, 2)
         
         Guru3.randomizeHairs()
         Guru3.randomizeFace()
@@ -133,8 +132,8 @@ SceneStart()
         Guru5.randomizeFace()
         dressFormal()
         Guru5.dress()
-        Guru5.show(5)
-        Guru5(Happy)::"Oh hi, I heard about your new religion, look promising..."
+        Guru5.show(6)
+        Guru5(Happy)::"Oh hi, I'm <Guru5.name> <Guru2.name_last>, I heard about your new religion, look promising..."
         Guru5:attractiontoplayer += Random(0, 1)
 
         Guru11.randomizeHairs()
@@ -143,7 +142,7 @@ SceneStart()
         Guru11.dress()
         Guru11.show(1)
         
-        "I think we are supposed to be 10 gurus in total, because otherwise the conference would not take place! "
+        "I think we are supposed to be 10 gurus in total, because otherwise the conference would not take place!"
         
         Guru21.randomizeHairs()
         Guru21.randomizeFace()
@@ -157,7 +156,7 @@ SceneStart()
         Guru31.dress()
         Guru31.show(3)
         
-        "I guess they wait until all the gurus are there before starting the conference..."
+        "I guess they wait until all the gurus are arrived before starting the conference..."
         
         Guru41.randomizeHairs()
         Guru41.randomizeFace()
@@ -165,11 +164,11 @@ SceneStart()
         Guru41.dress()
         Guru41.show(4)
         
-        "The last guest just arrived..."
-        Player(Curious)::"1,2,3,4,... We all are here now, good!"
         passTime(0.25, 0.5)
-        
-        "The conference begin...people are talking with each others..."
+        "Oh, another guest just arrived..."
+        "How many are we now? 1,2,3,4,... We all are here now, good, it will start soon!"
+        "Suddenly, a gong sounded out of nowhere to announce the start of the conference ... "
+        "The conference begins ... people discuss and share their beliefs with each other ..."
         
         timePassed = 0
         If timePassed < 4
@@ -223,6 +222,7 @@ SceneStart()
                     Guru31.getActorVar(rk_discipleAttraction, -1)
                     Guru51:rapportwithplayer -= Random(1, 2)
                     Guru51.getActorVar(rk_discipleAttraction, -1)
+                    Player.modifyActorVar(rk_SG_AcceptDay, 0)
                     Conferencegoing = false
                     
                 ElseIf timePassed > 2 && timePassed  < 4 
@@ -237,6 +237,7 @@ SceneStart()
                     "The other gurus don't seem to like my departure..."
                     Guru31:rapportwithplayer -= Random(1, 2)
                     Guru31.getActorVar(rk_discipleAttraction, -1)
+                    Player.modifyActorVar(rk_SG_AcceptDay, 0)
                     Conferencegoing = false
                     
                 Else
@@ -292,7 +293,7 @@ SceneStart()
                             Player(Sad):: "I'm afraid I don't know you well enough yet to give you my number."
                             TalkWith:rapportwithplayer -= Random(0, 3)
                         Endif
-                        
+                    
                     Else
                         "Should I ask <TalkWith.name> for <TalkWith.his_or_her> number?"
                         0:: "Ask <TalkWith.him_or_her>"
@@ -452,15 +453,15 @@ SceneStart()
         EndWhile
 
     EndIf
+    
+    If SetAcceptDay > 0 
+
+        timeout(10, rk_Gurus_Conference)
+    
+    ElseIf SetAcceptDay <= 0 
+
+        timeout(1000, rk_Gurus_Conference)
+    
+    EndIf
 
 SceneEnd()
-
-If SetAcceptDay > 0 
-
-    timeoutprecise(12, rk_Gurus_Conference)
-    
-Else 
-
-    timeout(1000, rk_Gurus_Conference)
-    
-EndIf

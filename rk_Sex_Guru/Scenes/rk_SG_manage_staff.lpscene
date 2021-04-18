@@ -115,7 +115,7 @@ SceneStart()
     stayInMenu = true
     While stayInMenu
         
-        If MainActor.isValid() && manageDiscipleType == 1
+        If manageDiscipleType == 1
             Player(Serene):: "What about my <TempleJobTitle>?"
             1:: MainActor.isValid():: "Try to negotiate on donation (<DiscipleAskingPriceLocal>/month)"
             2:: MainActor.isValid():: "Send <DiscipleName> to a bootcamp training for <traningPriceLocal>"
@@ -297,6 +297,7 @@ SceneStart()
             ElseIf 10
             
                 // Switch scene
+                SGManageDiscipleJobType.setGlobal(choice)
                 SGHireNewDiscipleJobType.setGlobal(manageDiscipleType)
                 followUp(rk_SG_hire_disciple)
             
@@ -537,6 +538,7 @@ SceneStart()
             ElseIf 10
             
                 // Switch scene
+                SGManageDiscipleJobType.setGlobal(choice)
                 SGHireNewDiscipleJobType.setGlobal(manageDiscipleType)
                 followUp(rk_SG_hire_employee)
             

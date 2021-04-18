@@ -82,6 +82,7 @@ SceneStart()
         Sen_Suale.setActorVar(tag_SGDisciple, 1)
         Sen_Suale.modifyActorVar(rk_discipleAttraction, 15)
         Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Sen_Suale.setActorVar(rk_SG_DiscipleSalary, 0)
         Sen_Suale.makePermanent()
         exchangeContact(Sen_Suale)
     EndIf

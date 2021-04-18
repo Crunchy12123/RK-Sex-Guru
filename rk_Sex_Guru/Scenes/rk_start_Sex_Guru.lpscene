@@ -413,6 +413,7 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
+                            Actor = getCompanion()
                             Actor.makeInterestedIn(Player)
                             Actor.makeInterestedIn(PastorChris)
                             PastorChris.makeInterestedIn(Player)
@@ -421,7 +422,7 @@ SceneStart()
                             Actor.strip()
                             Player.strip()
                         
-                            Sex(Actor, Player, PastorChris)
+                            Sex(Player, Actor, PastorChris)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
@@ -490,6 +491,7 @@ SceneStart()
                         
                         If TempAcceptance > 0
                         
+                            Actor = getCompanion()
                             Actor.makeInterestedIn(Player)
                             Actor.makeInterestedIn(PastorChris)
                             PastorChris.makeInterestedIn(Player)
@@ -498,7 +500,7 @@ SceneStart()
                             Actor.strip()
                             Player.strip()
                             
-                            Sex(Actor, Player, PastorChris)
+                            Sex(Player, Actor, PastorChris)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)

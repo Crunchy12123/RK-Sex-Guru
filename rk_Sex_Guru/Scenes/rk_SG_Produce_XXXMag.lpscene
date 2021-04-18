@@ -84,6 +84,7 @@ SceneStart()
         Cindy_Bound.setActorVar(tag_SGDisciple, 1)
         Cindy_Bound.modifyActorVar(rk_discipleAttraction, 15)
         Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Cindy_Bound.setActorVar(rk_SG_DiscipleSalary, 0)
         Cindy_Bound.makePermanent()
         exchangeContact(Cindy_Bound)
         

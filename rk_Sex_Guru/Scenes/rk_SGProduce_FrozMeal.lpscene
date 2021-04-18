@@ -82,6 +82,7 @@ SceneStart()
         Masha_Hugg.setActorVar(tag_SGDisciple, 1)
         Masha_Hugg.modifyActorVar(rk_discipleAttraction, 15)
         Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Masha_Hugg.setActorVar(rk_SG_DiscipleSalary, 0)
         Masha_Hugg.makePermanent()
         exchangeContact(Masha_Hugg)
     

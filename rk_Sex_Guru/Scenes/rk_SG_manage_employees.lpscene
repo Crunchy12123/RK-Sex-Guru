@@ -8,6 +8,7 @@ SceneStart()
     
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+    rkAreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru) // yes/no
 
     If Player.isNaked()
         Player.dress()
@@ -26,18 +27,17 @@ SceneStart()
         While stayInMenu
             Player(Serene):: "Which employees do I want to manage?"
             1:: "Disciples"
-            40:: "Community models"
-            5:: "Maid"
-            30:: "Instructors"
-            50:: "Photographer"
-            60:: "Filmmaker"
-            70:: "Assistant guru"
-            80:: "Web administrator"
-            90:: "Henchmens/Henchgirls"
+            40:: rkAreASexGuru > 0 ::"Community models"
+            5:: rkAreASexGuru > 0 ::"Maid"
+            50:: rkAreASexGuru > 0 ::"Photographer"
+            60:: rkAreASexGuru > 0 ::"Filmmaker"
+            70:: rkAreASexGuru > 0 ::"Assistant guru"
+            80:: rkAreASexGuru > 0 ::"Web administrator"
+            90:: rkAreASexGuru > 0 ::"Henchmens/Henchgirls"
             99:: "All done"
     
             If 40 
-                SGManageDiscipleJobType.setGlobal(choice)
+                //SGManageDiscipleJobType.setGlobal(choice)
                 followUp(rk_SG_manage_disciple) // not paid but give you gifts
                 stayInMenu = false
 

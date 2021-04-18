@@ -8,6 +8,6 @@ ALSO_TIMEOUT:
 EFFECTS: perversion +0.05 (DURATION), arousal +1 (DURATION), perversion +0.02 (INTERRUPTED), mood +1 (END), karma +0.25 (END), Interacting:rapportwithplayer +2 (END)
 CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE), perversion > 50 (STAT_COMPARE)
 MOVE_FIRST: true
-SCENE_ALWAYS:
+SCENE_ALWAYS: rk_SG_Meditate_together
 ANIMATION: pray
-WHO: Actor = getTarget(); If WHERE == place_of_worship && !Actor.isCreature()
+WHO: Actor = getTarget(); If !Actor.isTemporary() && WHERE == place_of_worship && !Actor.isCreature()

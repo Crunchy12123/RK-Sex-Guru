@@ -25,8 +25,8 @@ OTHER: none
 
         TempleJobTitle = "Disciple"
         currentDiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
-        DisciplejobBasePayment = 0
-        DisciplejobRandomPayment = 0
+        DisciplejobBasePayment = 50
+        DisciplejobRandomPayment = 100
 
     Else
 
@@ -122,7 +122,7 @@ OTHER: none
                     ElseIf DiscipleSkillLvl >= 50
                         skillText = "well known in the community for is reading of my gospels to others"
                     ElseIf DiscipleSkillLvl >= 35
-                        skillText = "somewhat known in the community, some say is in adoration with my religion"
+                        skillText = "somewhat known in the community, some say <MainActor.he_or_she> is in adoration with my religion"
                     ElseIf DiscipleSkillLvl >= 25
                         skillText = "little known in the community"
                     ElseIf DiscipleSkillLvl >= 10
@@ -200,13 +200,6 @@ OTHER: none
             Else
                 MainActor = 0
             EndIf
-        EndIf
-
-        // Check if MainActor can pay the negotiated salary
-        If MainActor.isValid() && MainActor:money < askingPrice
-            MainActor(Sad)::"I don't have enough money to pay <MainActor.Name>."
-            MainActor(Curious)::"I need make some money first!"
-            MainActor = 0
         EndIf
 
         // It the actor is still valid, all checks were OK, so join him

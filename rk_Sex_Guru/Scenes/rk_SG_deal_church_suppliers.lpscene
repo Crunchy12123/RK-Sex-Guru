@@ -11,6 +11,63 @@ SceneStart()
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation)
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     SellingPower = Player.getActorVar(rk_SG_ChurchSellingPower) // number of sales made
+    
+    // Calendars sold
+    SoldSoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_Sold)
+    SoldAmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_Sold)
+    SoldThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_Sold)
+    SoldGangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_Sold)
+    SoldRevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_Sold)
+    SoldLesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_Sold)
+    SoldGayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_Sold)
+    
+    TotalCalendarsSold = SoldSoloShootings_Calendars + SoldAmateurShootings_Calendars + SoldThreesomeShootings_Calendars + SoldGangBangShootings_Calendars + SoldRevGangBangShootings_Calendars + SoldLesbianShootings_Calendars + SoldGayShootings_Calendars
+    
+    // XXXmag sold
+    SoldSoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_Sold)
+    SoldAmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_Sold)
+    SoldThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_Sold)
+    SoldGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_Sold)
+    SoldRevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_Sold)
+    SoldLesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_Sold)
+    SoldGayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_Sold)
+    SoldMixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_Sold)
+    
+    TotalXXXmagSold =  SoldSoloShootings_XXXmagazines + SoldAmateurShootings_XXXmagazines + SoldThreesomeShootings_XXXmagazines + SoldGangBangShootings_XXXmagazines + SoldRevGangBangShootings_XXXmagazines + SoldLesbianShootings_XXXmagazines + SoldGayShootings_XXXmagazines + SoldMixedShootings_XXXmagazines
+    
+    //Products Sold
+    Tstock_MilkShakeS_sold = Player.getActorVar(Tstock_MilkShakeS_sold)
+    Tstock_MilkShakeP_sold = Player.getActorVar(Tstock_MilkShakeP_sold)
+    Tstock_IcecreamS_sold = Player.getActorVar(Tstock_IcecreamS_sold)
+    Tstock_IcecreamP_sold = Player.getActorVar(Tstock_IcecreamP_sold)
+    Tstock_ApIcecream_sold = Player.getActorVar(Tstock_ApIcecream_sold)
+    Tstock_FrozenPiePC_sold = Player.getActorVar(Tstock_FrozenPiePC_sold)
+    Tstock_CreamCake_sold = Player.getActorVar(Tstock_CreamCake_sold)
+    Tstock_MilkShakeTOP_sold = Player.modifyActorVar(Tstock_MilkShakeTOP_sold)
+    
+    Sold_SpecialIceCreams = Tstock_MilkShakeS_sold + Tstock_MilkShakeP_sold + Tstock_IcecreamS_sold + Tstock_IcecreamP_sold + Tstock_ApIcecream_sold + Tstock_FrozenPiePC_sold + Tstock_CreamCake_sold + Tstock_MilkShakeTOP_sold
+
+    Spermfilteredjuice_sold = Player.getActorVar(rk_Spermfilteredjuice_sold)
+    Pussyfilteredjuice_sold = Player.getActorVar(rk_Pussyfilteredjuice_sold)
+    Enersexenergydrinks_sold = Player.getActorVar(rk_Enersexenergydrinks_sold)
+    SexJuicecocktail_sold = Player.getActorVar(rk_SexJuicecocktail_sold)
+    Sexzombiecocktail_sold = Player.getActorVar(rk_Sexzombiecocktail_sold)
+    
+    TotalJuicesSold = Spermfilteredjuice_sold + Pussyfilteredjuice_sold + Enersexenergydrinks_sold + SexJuicecocktail_sold + Sexzombiecocktail_sold
+
+    //VidX sold
+    SoloShootings_SGVidXsold = Player.getActorVar(rk_SG_SoloShootings_SGVidX_sold)
+    AmateurShootings_SGVidXsold = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_sold)
+    ThreesomeShootings_SGVidXsold = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_sold)
+    GangBangShootings_SGVidXsold = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_sold)
+    RevGangBangShootings_SGVidXsold = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_sold)
+    LesbianShootings_SGVidXsold = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_sold)
+    GayShootings_SGVidXsold = Player.getActorVar(rk_SG_GayShootings_SGVidX_sold))
+    
+    SGVidXsold = SoloShootings_SGVidXsold + AmateurShootings_SGVidXsold + ThreesomeShootings_SGVidXsold + GangBangShootings_SGVidXsold + RevGangBangShootings_SGVidXsold + LesbianShootings_SGVidXsold + GayShootings_SGVidXsold
+    
+    SellingPower = TotalCalendarsSold + TotalXXXmagSold + Sold_SpecialIceCreams + TotalJuicesSold + SGVidXsold
+    
     setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     
     "By calling suppliers you boost your bargain and your products brand level a little bit !"
@@ -26,13 +83,13 @@ SceneStart()
     Player.animate(write)
     
     If ChanceOfBargain < 10
-    
-        "The suppliers I found didn't want to give me any deals... it was a real waste of time..."
-        If SellingPower > 5000
-            "You boost your bargain and your products brand level a little bit !"
-            Player.modifyActorVar(rk_Churchbrand, 0.5)
-            Player.modifyActorVar(rk_SG_SexGuruReputation, -0.5)
-        EndIf
+
+        Player.modifyActorVar(rk_Churchbrand, -1)
+        Player.modifyActorVar(rk_SG_SexGuruReputation, -1)
+        Player.modifyActorVar(rk_Churchbargain, -1)
+
+        "The suppliers I found didn't want to give me any deals... Worst then that, I screw up all deals... it was a real waste of time..."
+
         passTime(1, 8)
         
     ElseIf ChanceOfBargain > 11 && ChanceOfBargain < 20

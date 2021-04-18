@@ -85,6 +85,7 @@ SceneStart()
         Erny_Quert.setActorVar(tag_SGDisciple, 1)
         Erny_Quert.modifyActorVar(rk_discipleAttraction, 15)
         Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
         Erny_Quert.makePermanent()
         exchangeContact(Erny_Quert)
     
