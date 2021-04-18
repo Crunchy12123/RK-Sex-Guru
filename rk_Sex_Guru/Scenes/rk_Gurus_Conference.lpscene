@@ -460,7 +460,7 @@ SceneStart()
     
     ElseIf SetAcceptDay <= 0 
 
-        timeout(1000, rk_Gurus_Conference)
+        timeout(3000, rk_Gurus_Conference)
     
     EndIf
 
