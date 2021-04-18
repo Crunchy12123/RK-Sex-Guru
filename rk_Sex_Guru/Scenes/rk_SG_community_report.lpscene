@@ -96,21 +96,19 @@ OTHER: none
 
             // The Disciples
             DiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
-            DiscipleId = getPerson()
+            DiscipleId = getSpecific(DiscipleId)
             SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
-            SGDisciple = getSpecific(DiscipleId)
+            SGId = DiscipleId.getID()
             
-            While DiscipleId.isValid()
-                
-                If SGDisciple.isValid()
-                    price =  SGDisciple.getActorVar(rk_SG_DiscipleSalary)
+            SGDisciple = getPerson(tag_SGDisciple)
+            While SGDisciple.isValid()
+                If DiscipleId.isValid()
+                    price = DiscipleId.getActorVar(rk_SG_DiscipleSalary)
                     price /= 30
                     price *= SGdaysSinceLastCheck
-                    TotalP = price
+                    
+                    SGearningsTotal += price
                 EndIf
-                CalcTotalP = TotalP * SexGuruDisciple
-                money += CalcTotalP - [75/100]
-                
             EndWhile
                 
             // The Assistant Guru
@@ -931,23 +929,20 @@ OTHER: none
         localSGexpensesTotal = SGexpensesTotal.convertToLocalCurrency(true)
         localSGearningsTotal = SGearningsTotal.convertToLocalCurrency(true)
             
-        If detailModeEnabled > 0
+        If result > 0 
+            Player::"We have <totalVideoCount> videos and <totalPhotoCount> photos sets."
             Player(Curious)::"I spend <localSGexpensesTotal> and earned <localSGearningsTotal> in <SGdaysSinceLastCheck> days. This sums up as <localResult>."
             Player(Curious)::"Visitor change due to satisfaction of our content: <visitorChange>%."
-                
-        Else
-            If result > 0 
-                Player::"We have <totalVideoCount> videos and <totalPhotoCount> photos sets."
                     
-                Random
-                    Player(Happy)::"My religious community earned <localResult> in <SGdaysSinceLastCheck> days. Yeah!"
-                    Player(Happy)::"We earned <localResult> in <SGdaysSinceLastCheck> days. Cool!"
-                    Player(Happy)::"Revenue <localResult> in <SGdaysSinceLastCheck> days. Easy money!"
-                EndRandom
-            Else
-                Player(Sad)::"Well, my religious community made a loss of <localResult> in the last <SGdaysSinceLastCheck> days."
-                Player(Sad)::"I need to upload some more content to my website or make more sales."
-            EndIf
+            Random
+                Player(Happy)::"My religious community earned <localResult> in <SGdaysSinceLastCheck> days. Yeah!"
+                Player(Happy)::"We earned <localResult> in <SGdaysSinceLastCheck> days. Cool!"
+                Player(Happy)::"Revenue <localResult> in <SGdaysSinceLastCheck> days. Easy money!"
+            EndRandom
+        Else
+            Player(Sad)::"Well, my religious community made a loss of <localResult> in the last <SGdaysSinceLastCheck> days."
+            Player(Sad)::"I need to upload some more content to my website or make more sales."
+            
         EndIf
         
         TotalResult = TotalR4Gospels + result

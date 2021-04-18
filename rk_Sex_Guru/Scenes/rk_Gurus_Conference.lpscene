@@ -70,6 +70,7 @@ SceneStart()
     ElseIf SetAcceptDay >= 3
     
         Player(Happy)::"Ok, it's now time to go to the guru conference..."
+        
         moveTo(Home)
         setBackground3D(Modules/vin_Base/World/university___vin01.lpworld)
     
@@ -111,6 +112,7 @@ SceneStart()
         dressFormal()
         Guru2.dress()
         Guru2.show(2)
+        Guru2.movetoPersonStand(Player, 50)
         Guru2(Happy)::"Hi, my name is <Guru2.name>, I wish to see you later..."
         Guru2:attractiontoplayer += Random(0, 2)
         
@@ -133,6 +135,7 @@ SceneStart()
         dressFormal()
         Guru5.dress()
         Guru5.show(6)
+        Guru5.movetoPersonStand(Player, 60)
         Guru5(Happy)::"Oh hi, I'm <Guru5.name> <Guru2.name_last>, I heard about your new religion, look promising..."
         Guru5:attractiontoplayer += Random(0, 1)
 
@@ -140,7 +143,7 @@ SceneStart()
         Guru11.randomizeFace()
         dressFormal()
         Guru11.dress()
-        Guru11.show(1)
+        Guru11.show(7)
         
         "I think we are supposed to be 10 gurus in total, because otherwise the conference would not take place!"
         
@@ -148,13 +151,13 @@ SceneStart()
         Guru21.randomizeFace()
         dressFormal()
         Guru21.dress()
-        Guru21.show(2)
+        Guru21.show(8)
         
         Guru31.randomizeHairs()
         Guru31.randomizeFace()
         dressFormal()
         Guru31.dress()
-        Guru31.show(3)
+        Guru31.show(9)
         
         "I guess they wait until all the gurus are arrived before starting the conference..."
         
@@ -162,7 +165,7 @@ SceneStart()
         Guru41.randomizeFace()
         dressFormal()
         Guru41.dress()
-        Guru41.show(4)
+        Guru41.show(10)
         
         passTime(0.25, 0.5)
         "Oh, another guest just arrived..."
@@ -185,7 +188,7 @@ SceneStart()
         While Conferencegoing
             passTime(0.2, 0.6)
             "What should I do now?"
-            0:: "Drink alcohol"
+            0:: "Get a drink"
             1:: "Talk with <Guru1.name>"
             2:: "Talk with <Guru2.name>"
             3:: "Talk with <Guru3.name>"
@@ -199,9 +202,44 @@ SceneStart()
             99:: "<GetOutConf>"
         
             If 0
-                intoxication += Random(0, 15)
-                "I grab a drink and enjoyed it thoroughly."
-                timePassed += 0.15
+                
+                "Which one I will choose?"
+                1:: "Drink alcohol"
+                2:: "Enersex energy drink"
+                3:: "Sex Juice cocktail"
+                4:: "Sex zombie cocktail"
+                
+                If 1
+                    intoxication += Random(0, 15)
+                    "I grab a drink and enjoyed it thoroughly."
+                    timePassed += 0.15
+                ElseIf 2
+                    mood += 3
+                    energy += 10
+                    fitness += 1
+                    perversion += Random(1, 5)
+                    arousal += 5
+                    "I grab a Enersex energy drink and enjoyed it thoroughly."
+                    timePassed += 0.15
+                ElseIf 3
+                    arousal += 3
+                    fitness -= 1
+                    intoxication += 2
+                    mood += 4
+                    energy -= 1
+                    perversion += Random(1, 5)
+                    "I grab a Sex Juice cocktail and enjoyed it thoroughly."
+                    timePassed += 0.15
+                ElseIf 4
+                    arousal += 5
+                    intoxication += 2
+                    fitness -= 1
+                    mood += 5
+                    energy -= 1
+                    perversion += Random(1, 6)
+                    "I grab a Sex zombie cocktail and enjoyed it thoroughly."
+                    timePassed += 0.15
+                EndIf
         
             ElseIf 99
         
@@ -270,7 +308,7 @@ SceneStart()
                     TalkWith = Guru51
                 Endif
                 
-                Player.moveToPerson(TalkWith)
+                Player.moveToPerson(TalkWith, 50)
                 "I chat some time with <TalkWith.name>"
                 
                 If TalkWith.IsInterestedIn(Player) && Random(0, 100) < attractiveness
@@ -325,19 +363,165 @@ SceneStart()
                 Endif
                 
                 If Random(0, 100) < TalkWith:perversion + TalkWith:attractiontoplayer + TalkWith:rapportwithplayer
-                    "<TalkWith.name> offered me a drink."
-                    "Do I accept the drink?"
+                    PervChoi = Random(1, 4)
+                    PervChoi = PervChoi.round()
+                    TalkWith.moveToPerson(Player, 50)
+                    If PervChoi == 1
+                        "<TalkWith.name> offered me a drink of alcohol."
+                        "Do I accept the drink?"
+                        0:: "Yes"
+                        1:: "No"
+                        
+                        If 0
+                            intoxication += Random(0, 15)
+                            "I chat some time with <TalkWith.name>"
+                            timePassed += 0.15
+                        Else
+                            Player(Sad)::"No thanks, maybe later!"
+                        EndIf
+                        
+                    ElseIf PervChoi == 2
+                        "<TalkWith.name> offered me a Enersex energy drink."
+                        "Do I accept the drink?"
+                        0:: "Yes"
+                        1:: "No"
+                        
+                        If 0
+                            mood += 3
+                            energy += 10
+                            fitness += 1
+                            perversion += Random(1, 5)
+                            arousal += 5
+                            "I chat some time with <TalkWith.name>"
+                            TalkWith:perversion += Random(0, 5)
+                            timePassed += 0.15
+                           
+                        Else
+                            Player(Sad)::"No thanks, maybe later!"
+                        EndIf
+                    ElseIf PervChoi == 3
+                        "<TalkWith.name> offered me a Sex Juice cocktail."
+                        "Do I accept the drink?"
+                        0:: "Yes"
+                        1:: "No"
+                        
+                        If 0
+                            arousal += 3
+                            fitness -= 1
+                            intoxication += 2
+                            mood += 4
+                            energy -= 1
+                            perversion += Random(1, 5)
+                            "I chat some time with <TalkWith.name>"
+                            TalkWith:perversion += Random(0, 5)
+                            timePassed += 0.15
+                        Else
+                            Player(Sad)::"No thanks, maybe later!"
+                        EndIf
+                    ElseIf PervChoi == 4
+                        "<TalkWith.name> offered me a Sex zombie cocktail."
+                        "Do I accept the drink?"
+                        0:: "Yes"
+                        1:: "No"
+                        
+                        If 0
+                            arousal += 5
+                            intoxication += 2
+                            fitness -= 1
+                            mood += 5
+                            energy -= 1
+                            perversion += Random(1, 6)
+                            "I chat some time with <TalkWith.name>"
+                            TalkWith:perversion += Random(0, 6)
+                            timePassed += 0.15
+                        Else
+                            Player(Sad)::"No thanks, maybe later!"
+                        EndIf
+                    EndIf
+
                 Else
-                   "Should I offer <TalkWith.name> a drink?"
-                Endif
+                    "Should I offer <TalkWith.name> a drink?"
+                    0:: "Yes"
+                    1:: "No"
+                    
+                    If 0
+                        Player.moveToPerson(TalkWith, 50)
+                        "Which one I will offer?"
+                        1:: "Alcohol"
+                        2:: "Enersex energy drink"
+                        3:: "Sex Juice cocktail"
+                        4:: "Sex zombie cocktail"
                 
-                0:: "Yes"
-                1:: "No"
-                
-                If 0
-                    intoxication += Random(0, 15)
-                    TalkWith:intoxication += Random(0, 15)
-                    timePassed += 0.15
+                        If 1
+                            
+                            Player(Flirty)::"Would you like a drink?"
+                            IfActorSayYes = Random(0, 5)
+                            If IfActorSayYes >= 3
+                                TalkWith:intoxication += Random(0, 15)
+                                TalkWith(Happy)::"Of course thanks!"
+                                "I give a drink to <TalkWith.name> and <TalkWith.he_or_she> enjoyed it thoroughly."
+                            Else
+                                TalkWith(Sad)::"No thanks, maybe later!"
+                            EndIf
+                            "I chat some time with <TalkWith.name>"
+                            timePassed += 0.15
+                            
+                        ElseIf 2
+                            
+                            Player(Flirty)::"Would you like a Enersex energy drink?"
+                            IfActorSayYes = Random(0, 5)
+                            If IfActorSayYes >= 3
+                                TalkWith:mood += 3
+                                TalkWith:energy += 10
+                                TalkWith:fitness += 1
+                                TalkWith:perversion += Random(1, 5)
+                                TalkWith:arousal += 5
+                                TalkWith(Happy)::"Of course thanks!"
+                                "I give a Enersex energy drink to <TalkWith.name> and <TalkWith.he_or_she> enjoyed it thoroughly."
+                            Else
+                                TalkWith(Sad)::"No thanks, maybe later!"
+                            EndIf
+                            "I chat some time with <TalkWith.name>"
+                            timePassed += 0.15
+                        ElseIf 3
+                            
+                            Player(Flirty)::"Would you like a Sex Juice cocktail?"
+                            IfActorSayYes = Random(0, 5)
+                            If IfActorSayYes >= 3
+                                TalkWith:arousal += 3
+                                TalkWith:fitness -= 1
+                                TalkWith:intoxication += 2
+                                TalkWith:mood += 4
+                                TalkWith:energy -= 1
+                                TalkWith:perversion += Random(1, 5)
+                                TalkWith(Happy)::"Of course thanks!"
+                                "I give a Sex Juice cocktail to <TalkWith.name> and <TalkWith.he_or_she> enjoyed it thoroughly."
+                            Else
+                                TalkWith(Sad)::"No thanks, maybe later!"
+                            EndIf
+                            "I chat some time with <TalkWith.name>"
+                            timePassed += 0.15
+                        ElseIf 4
+                            
+                            Player(Flirty)::"Would you like a Sex zombie cocktail?"
+                            IfActorSayYes = Random(0, 5)
+                            If IfActorSayYes >= 3
+                                TalkWith:arousal += 5
+                                TalkWith:intoxication += 2
+                                TalkWith:fitness -= 1
+                                TalkWith:mood += 5
+                                TalkWith:energy -= 1
+                                TalkWith:perversion += Random(1, 6)
+                                TalkWith(Happy)::"Of course thanks!"
+                                "I give a Sex zombie cocktail to <TalkWith.name> and <TalkWith.he_or_she> enjoyed it thoroughly."
+                            Else
+                                TalkWith(Sad)::"No thanks, maybe later!"
+                            EndIf
+                            "I chat some time with <TalkWith.name>"
+                            timePassed += 0.15
+                        EndIf
+                    
+                    Endif
                     
                 Endif
                 
@@ -435,6 +619,28 @@ SceneStart()
                         Endif
                     Endif
                 Endif
+                
+                Chance2SeeFck = Random(0, 5)
+                If Chance2SeeFck > 3 && TalkWith:intoxication > Random(70, 100) && TalkWith:perversion > 50 && TalkWith:arousal > 15
+
+                    TalkWith.moveToPerson(Player)
+                    TalkWith(Flirty)::"Hey, look! I'm so wasted, I fuck myself, Uh !"
+                    0:: "Look"
+                    1:: "Ignore"
+                    
+                    If 0
+                    
+                        TalkWith.show()
+                        TalkWith.strip()
+                        perversion += Random(0, 2)
+                        Filter(Solo)
+                        Sex(TalkWith)
+                        timePassed += Random(0.15, 0.5)
+                    
+                    EndIf
+                
+                EndIf
+                
             EndIf
             
             If Conferencegoing && timePassed > Random(4, 10)

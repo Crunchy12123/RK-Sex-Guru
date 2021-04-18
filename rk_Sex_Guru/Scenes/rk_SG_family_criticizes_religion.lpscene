@@ -2,7 +2,7 @@ WHAT: all, -sleep, -nap
 WHERE: home
 WHEN: 17 - 21
 WHO: Actor = getRelative(Parent, StepParent, GrandParent); If Actor:rapportwithplayer < 70 && Random(0, 200) < Actor:interpersonal + Actor:intelligence
-OTHER: isAtHome() && jobexperience < Random(0, 40)*Random(0, 1)*Random(0, 1)
+OTHER: isAtHome() && rkOpenedSexGuru > 0
 
     SceneStart()
     discipleattraction = Actor.getActorVar(rk_discipleattraction)

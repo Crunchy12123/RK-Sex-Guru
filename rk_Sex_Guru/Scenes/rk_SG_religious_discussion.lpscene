@@ -1,12 +1,10 @@
 WHAT: all, -go_to_the_bathroom
-WHERE: place_of_worship
+WHERE: all, -home
 WHEN: 0-24
 WHO: none
-OTHER:
+OTHER: rkOpenedSexGuru > 0
 
     SceneStart()
-
-    // rkOpenedSexGuru > 0
 
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) 
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
