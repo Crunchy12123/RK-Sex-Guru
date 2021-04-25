@@ -68,7 +68,6 @@ SceneStart()
     TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
     
     TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-    Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
     
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     setBackground3D(Modules/vin_Base/World/ice_cream___vin01.lpworld)
@@ -76,6 +75,8 @@ SceneStart()
     ChechupC = Masha_Hugg.getActorVar(tag_SGDisciple)
 
     If ChechupC <= 0
+        
+        Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
         SGId = Masha_Hugg.getID()
         Masha_Hugg.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -88,6 +89,7 @@ SceneStart()
     
     EndIf
     
+    Masha_Hugg = getPerson(true)
     Masha_Hugg.dressExcept(Outerwear, Headwear, Eyewear)
     Masha_Hugg.show()
     Masha_Hugg:rapportwithplayer += Random(5, 10)

@@ -23,7 +23,7 @@ SceneStart()
     
     // Find a companion
     If MainActor.isValid()
-        Player::"I'm currently accompanied by <MainActor.Name>. Do I ask <MainActor.o> to be my main actor?"
+        Player(Happy)::"I'm currently accompanied by <MainActor.Name>. Do I ask <MainActor.o> to be my main actor?"
         0:: "Yes, ask <MainActor.Name> to be my main actor"
         1:: "No, let's check my contacts first"
         99:: "I changed my mind. I don't want to do a shooting"
@@ -38,7 +38,7 @@ SceneStart()
             MainActor = 0
         EndIf
     Else
-        Player::"I need a main actor for my shooting. Let's check my contacts."
+        Player(Curious)::"I need a main actor for my shooting. Let's check my contacts."
         selectNPC()
         MainActor = getSelectedNPC()
     EndIf
@@ -54,7 +54,7 @@ SceneStart()
             
             If currentId == camOpId || currentId == sceneId
                 
-                Player::"I need <MainActor.Name> to do the shooting. So <MainActor.s> cannot be the main actor."
+                Player(Sad)::"I need <MainActor.Name> to do the shooting. So <MainActor.s> cannot be the main actor at the same time."
                 MainActor = 0
             EndIf
         EndIf
@@ -66,9 +66,9 @@ SceneStart()
             participationState = MainActor.getActorVar(rk_SG_DeclinedDoingShootings)
             
             If hasDoneShootings < 1
-                Player::"Let's ask <MainActor.name> if <MainActor.s> is interested in a shooting..."
+                Player(Curious)::"Let's ask <MainActor.name> if <MainActor.s> is interested in a shooting..."
             Else
-                Player::"Let's ask <MainActor.name> if <MainActor.s> is interested in another shooting."
+                Player(Curious)::"Let's ask <MainActor.name> if <MainActor.s> is interested in another shooting."
             EndIf
             
             MainActor.dress()

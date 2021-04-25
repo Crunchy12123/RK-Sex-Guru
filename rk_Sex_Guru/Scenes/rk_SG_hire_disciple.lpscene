@@ -6,235 +6,446 @@ OTHER: none
 
     SceneStart()
 
-    discipleattraction = MainActor.getActorVar(rk_discipleattraction)
-    SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+        discipleattraction = MainActor.getActorVar(rk_discipleattraction)
+        SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
+        
+        If Player.isNaked()
+            Player.dress()
+        EndIf
+        
+        // Go to the Temple if any
+        TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+        If TempleSize > 0
+            moveTo(Home)
+               setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+        EndIf
+            
+        MainActor = CurrentCompanion
+        ActorChanceDisciple = Random(1, 10)
     
-    // local variables for hiring people...
-    TempleJobTitle = ""
-    currentDiscipleId = 0
-    DiscipleIsGenerated = false
-    DiscipleAskingPrice = 0
-    DisciplejobBasePayment = 50
-    DisciplejobRandomPayment = 100
-    DiscipleSkillLvl = 1
+        // Find a companion
+        If MainActor.isValid()
+            "I'm currently accompanied by <MainActor.Name>. Ask <MainActor.o> to be my main actor?"
+            0:: "Yes, ask <MainActor.Name> to be my disciple"
+            1:: "No, let's check my contacts"
+            2:: "Check if someone apply"
+            99:: "I changed my mind"
+        
+            If 2
+            
+                Player::"Listen <MainActor.Name> I have some work to do. Thanks for being with me. See you later!"
+                endDate()
+                
+                MainActor = 0
+                
+                Player(Curious)::"Let's see if someone has applied as a disciple?"
+                If ActorChanceDisciple > 7
+                
+                    Actor = generatePersonTemporary()
+                    Actor.randomizeHairs()
+                    Actor.randomizeFace()
+                    Actor.modifyActorVar(rk_discipleAttraction, 20)
+                        
+                    Actor:discipleattraction => DiscipleSkillLvl
 
-    // Find out what to hire...
-    hireType = SGHireNewDiscipleJobType.getGlobal()
-
-    If hireType == 1
-
-        TempleJobTitle = "Disciple"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
-        DisciplejobBasePayment = 50
-        DisciplejobRandomPayment = 100
-
-    Else
-
-        "PANIC!! rk_SG_hire_Disciple.lpscene called with unknown job type (<hireType>)!"
-
-    EndIf
-
-    Player.dress()
-    Player.show(0)
-
-    // Test if we already got this employee
-    MainActor = getSpecific(currentDiscipleId)
-
-    // Already have a employee of this type?
-    If MainActor.isValid()
-        MainActor.dress()
-        secondScreenIfHidden(MainActor)
-        MainActor.show()
-        Player::"I already have hired <MainActor.Name> as a <TempleJobTitle>."
-        Player::"If I want to hire someone else, I need to fire <MainActor.o> first."
-
-        secondScreen()
-        MainActor.hide()
-    Else
-
-        // Go find a new one
-        MainActor = 0
-        Player(Wink)::"Should I ask one of my contacts or hire someone?"
-        0:: "Ask one of my contacts"
-        1:: "Hire someone else"
-        2:: "I don't need a <TempleJobTitle>"
-
-        If 0
-            foundEmployee = false
-            While !foundEmployee
-                selectNPC()
-                MainActor = getSelectedNPC()
-
-                // Test if the selected actor is already employed
-                If MainActor.isValid()
-                    currentSalary = MainActor.getActorVar(rk_SG_DiscipleSalary)
-                    If currentSalary > 0
-                        // Test if this id still is assigned to an employee slot
-                        cannotHire = false
-                        If MainActor.getID() == Player.getActorVar(rk_SG_EmployedDiscipleId)
-                            cannotHire = true
-
-                            //Sanity check!
-                            MainActor.setActorVar(tag_SGDisciple, 1)
-
-                        EndIf
-
-                        If cannotHire
-                            Player::"<MainActor.Name> is already working for me. I cannot offer <MainActor.o> another job!"
-                            MainActor.hide()
-                            MainActor = 0
-                        Else
-                            foundEmployee = true
-                        EndIf
-                    Else
-                        foundEmployee = true
-                    EndIf
-                Else
-                    // User cancelled
-                    foundEmployee = true
-                EndIf
-            EndWhile
-        ElseIf 1
-            MainActor = generatePersonTemporary()
-
-            foundEmployee = false
-            While !foundEmployee
-
-                MainActor.dress()
-                secondScreenIfHidden(MainActor)
-                MainActor.show()
-
-                DiscipleSkillLvl = Random(1,100)
-                skillText = "has no skill"
-
-                // write the stat that controls the skill level
-                If hireType == 1
-                    
-                    MainActor:discipleattraction => DiscipleSkillLvl
-
-                    skillText = "never heard about us before!"
+                    skillText = "cool, but never heard about us before!"
                     If DiscipleSkillLvl >= 90
-                        skillText = "a <MainActor.god_or_goddess> in sex"
+                        skillText = "a <Actor.god_or_goddess> in sex"
                     ElseIf DiscipleSkillLvl >= 80
-                        skillText = "very famous, the community, some ask me to let <MainActor.o> join"
+                        skillText = "very famous, the community, some ask me to let <Actor.o> join"
                     ElseIf DiscipleSkillLvl >= 65
                         skillText = "famous in the community."
                     ElseIf DiscipleSkillLvl >= 50
                         skillText = "well known in the community for is reading of my gospels to others"
                     ElseIf DiscipleSkillLvl >= 35
-                        skillText = "somewhat known in the community, some say <MainActor.he_or_she> is in adoration with my religion"
+                        skillText = "somewhat known in the community, some say <Actor.he_or_she> is in adoration with my religion"
                     ElseIf DiscipleSkillLvl >= 25
                         skillText = "little known in the community"
                     ElseIf DiscipleSkillLvl >= 10
                         skillText = "very little known in the community"
                     EndIf
+                        
+                    Player::"<Actor.Name> is available to hire. <Actor.S> is <skillText>. Invite <Actor.o> to a job interview?"
+                    0:: "Yes"
+                    99:: "No"
 
-                EndIf
+                    If 0
+                    
+                        DisciplejobBasePayment = 100
+                        DisciplejobRandomPayment = 1
+                        askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
+                        priceLocal = askingPrice.convertToLocalCurrency(true)
 
-                Player::"<MainActor.Name> is available to hire. <MainActor.S> is <skillText>. Invite <MainActor.o> to a job interview?"
-                0:: "Yes"
-                1:: "No"
+                        Player::"<Actor.Name> is available to join and wants to give me <priceLocal> / month, for my wisdom and kindness. Join <Actor.o>?"
+                        0:: "Yes, <Actor.Name> can join"
+                        1:: "Try to negotiate on donation"
+                        99:: "No, not interested!"
+                            
+                        If 0
+                        
+                            SGId = Actor.getID()
+                            Actor.makeInterested(Player)
+                            Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                            Actor.setActorVar(tag_SGDisciple, 1)
+                            "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                            exchangeContact(Actor)
+                            Actor.makePermanent()
+                            
+                        ElseIf 1
+                        
+                            chance = Random(1, 5)
+                            
+                            If chance >= 3
+                            
+                                askingPrice += (chance*100)
+                                If askingPrice < 1000
+                                    askingPrice = 1000
+                                EndIf
+                                askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+                                Player(Wink)::"I was able to talk <Actor.Name> to higher to <askingPriceLocal>."
+                                
+                                SGId = Actor.getID()
+                                Actor.makeInterested(Player)
+                                Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                                Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                                Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                                Actor.setActorVar(tag_SGDisciple, 1)
+                                "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                                exchangeContact(Actor)
+                                Actor.makePermanent()
+                                
+                            Else
+                            
+                                Random
+                                    Player(Annoyed)::"<Actor.Name> was not willing to negotiate."
+                                    Player(Annoyed)::"My negotiations were unlucky."
+                                    Player(Annoyed)::"<Actor.Name> says this is <Actor.p> minimum."
+                                EndRandom
 
-                If 0
-                    foundEmployee = true
-                Else
-                    MainActor.hide()
-                    MainActor = generatePersonTemporary()
-                EndIf
-            EndWhile
-            actorIsGenerated = true
-        EndIf
+                                Player(Annoyed)::"I will have to accept what <Actor.o> offer or find another <TempleJobTitle> that I can offer."
+                                0:: "Accept what <Actor.s> offer"
+                                1:: "Don't accept <Actor.o> offer"
 
-        // If we found someone for the job interview
-        If MainActor.isValid()
+                                If 0
+                                
+                                    SGId = Actor.getID()
+                                    Actor.makeInterested(Player)
+                                    Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                                    Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                                    Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                                    Actor.setActorVar(tag_SGDisciple, 1)
+                                    "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                                    exchangeContact(Actor)
+                                    Actor.makePermanent()
+                                    
+                                EndIf
+                                
+                            EndIf
+                                
+                        EndIf
 
-            // Go to the Temple if any
-            TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-            If TempleSize > 0
-                moveTo(Home)
-                setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
-            EndIf
-
-            // get the stat that controls the skill level
-            If hireType == 1
-                // "Disciple"
-                DiscipleSkillLvl = MainActor.getActorVar(rk_discipleattraction)
-            EndIf
-
-            askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
-            priceLocal = askingPrice.convertToLocalCurrency(true)
-
-            Player::"<MainActor.Name> is available to join and wants to give you <priceLocal> / month, for your wisdom and kindness. Join <MainActor.o>?"
-            0:: "Yes, <MainActor.Name> can join"
-            1:: "Try to negotiate on donation"
-            2:: "No, look for someone else"
-
-            If 0
-                // All good
-            ElseIf 1
-                chance = Random(1,5)
-                If chance >= 3
-                    askingPrice += (chance*100)
-                    If askingPrice < 1000
-                        askingPrice = 1000
                     EndIf
-                    askingPriceLocal = askingPrice.convertToLocalCurrency(true)
-                    Player(Wink)::"I was able to talk <MainActor.Name> to higher to <askingPriceLocal>."
+                Else
+                
+                    Player(Sad)::"No one applied!"
+                    followUp(rk_SG_manage_employees)
+                
+                EndIf
+            
+            ElseIf 1
+            
+                Player::"Listen <MainActor.Name> I have some work to do. Thanks for being with me. See you later!"
+                endDate()
+            
+                selectNPC()
+                MainActor = getSelectedNPC()
+                
+            ElseIf 99
+            
+                MainActor = 0
+                
+            EndIf
+            
+        Else
+
+            Player(Curious)::"I need to hire more disciple!<ActorChanceDisciple>"
+            0:: "Let's check my contacts"
+            1:: "Check if someone apply"
+            99:: "I changed my mind"
+            
+            If 0
+                selectNPC()
+                MainActor = getSelectedNPC()
+                
+            ElseIf 1
+            
+                MainActor = 0
+                
+                Player(Curious)::"Let's see if someone has applied as a disciple?"
+                If ActorChanceDisciple > 7
+                
+                    Actor = generatePersonTemporary()
+                    Actor.randomizeHairs()
+                    Actor.randomizeFace()
+                    Actor.modifyActorVar(rk_discipleAttraction, 20)
+                        
+                    Actor:discipleattraction => DiscipleSkillLvl
+
+                    skillText = "never heard about us before!"
+                    If DiscipleSkillLvl >= 90
+                        skillText = "a <Actor.god_or_goddess> in sex"
+                    ElseIf DiscipleSkillLvl >= 80
+                        skillText = "very famous, the community, some ask me to let <Actor.o> join"
+                    ElseIf DiscipleSkillLvl >= 65
+                        skillText = "famous in the community."
+                    ElseIf DiscipleSkillLvl >= 50
+                        skillText = "well known in the community for is reading of my gospels to others"
+                    ElseIf DiscipleSkillLvl >= 35
+                        skillText = "somewhat known in the community, some say <Actor.he_or_she> is in adoration with my religion"
+                    ElseIf DiscipleSkillLvl >= 25
+                        skillText = "little known in the community"
+                    ElseIf DiscipleSkillLvl >= 10
+                        skillText = "very little known in the community"
+                    EndIf
+                        
+                    Player::"<Actor.Name> is available to hire. <Actor.S> is <skillText>. Invite <Actor.o> to a job interview?"
+                    0:: "Yes"
+                    99:: "No"
+
+                    If 0
+                    
+                        DisciplejobBasePayment = 100
+                        DisciplejobRandomPayment = 1
+                        askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
+                        priceLocal = askingPrice.convertToLocalCurrency(true)
+
+                        Player::"<Actor.Name> is available to join and wants to give me <priceLocal> / month, for my wisdom and kindness. Join <Actor.o>?"
+                        0:: "Yes, <Actor.Name> can join"
+                        1:: "Try to negotiate on donation"
+                        99:: "No, not interested!"
+                            
+                        If 0
+                        
+                            SGId = Actor.getID()
+                            Actor.makeInterested(Player)
+                            Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                            Actor.setActorVar(tag_SGDisciple, 1)
+                            "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                            exchangeContact(Actor)
+                            Actor.makePermanent()
+                            
+                        ElseIf 1
+                        
+                            chance = Random(1, 5)
+                            
+                            If chance >= 3
+                            
+                                askingPrice += (chance*100)
+                                If askingPrice < 1000
+                                    askingPrice = 1000
+                                EndIf
+                                askingPriceLocal = askingPrice.convertToLocalCurrency(true)
+                                Player(Wink)::"I was able to talk <Actor.Name> to higher to <askingPriceLocal>."
+                                
+                                SGId = Actor.getID()
+                                Actor.makeInterested(Player)
+                                Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                                Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                                Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                                Actor.setActorVar(tag_SGDisciple, 1)
+                                "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                                exchangeContact(Actor)
+                                Actor.makePermanent()
+                                
+                            Else
+                            
+                                Random
+                                    Player(Annoyed)::"<Actor.Name> was not willing to negotiate."
+                                    Player(Annoyed)::"My negotiations were unlucky."
+                                    Player(Annoyed)::"<Actor.Name> says this is <Actor.p> minimum."
+                                EndRandom
+
+                                Player(Annoyed)::"I will have to accept what <Actor.o> offer or find another <TempleJobTitle> that I can offer."
+                                0:: "Accept what <Actor.s> offer"
+                                1:: "Don't accept <Actor.o> offer"
+
+                                If 0
+                                
+                                    SGId = Actor.getID()
+                                    Actor.makeInterested(Player)
+                                    Actor.setActorVar(rk_SG_DiscipleSalary, 0)
+                                    Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                                    Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                                    Actor.setActorVar(tag_SGDisciple, 1)
+                                    "<Actor.Name>, <Actor.he_or_she> is now part of our religious community!"
+                                    exchangeContact(Actor)
+                                    Actor.makePermanent()
+                                    
+                                EndIf
+                                
+                            EndIf
+                                
+                        EndIf
+
+                    EndIf
+                Else
+                
+                    Player(Sad)::"No one applied!"
+                    followUp(rk_SG_manage_employees)
+                
+                EndIf
+            
+            EndIf
+            
+        EndIf
+    
+        If MainActor.isValid() 
+            // Check if MainActor is an employee that cannot participate
+            salary = MainActor.getActorVar(rk_SG_DiscipleSalary)
+            If salary > 0 
+            
+                DiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
+                currentId = MainActor.getID()
+            
+                If currentId == DiscipleId
+                
+                    "<MainActor.Name> is already my disciple!"
+                    MainActor = 0
+                EndIf
+                    
+            EndIf
+        
+            // Check if the actor already did shootings and if not ask to do one
+            If MainActor.isValid() && !MainActor.isProstitute() // sex workers won't decline...
+
+                participationStateD = MainActor.getActorVar(rk_SG_DeclinedBeDisciple)
+            
+                Player(Curious)::"Let's ask <MainActor.name> if <MainActor.s> is interested to be my disciple..."
+                MainActor.dress()
+                MainActor.show(1)
+            
+                // If perverted enough will join
+                If MainActor:perversion >= 55 && discipleattraction > 30
+                    Random
+                        MainActor(Posing)::"Hm... I always wanted to do a nude shooting. Count me in!"
+                        MainActor(Serene)::"I was waiting for you to ask me to join. Sure thing I will!"
+                        MainActor(Flirty)::"Well, you know I am a little pervert. Sure count me in!"
+                    EndRandom
+                        
+                    MainActor.modifyActorVar(rk_discipleAttraction, 20)
+                    SGId = MainActor.getID()
+                    MainActor.makeInterested(Player)
+                    MainActor.setActorVar(rk_SG_DiscipleSalary, 0)
+                    Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                    Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                    MainActor.setActorVar(tag_SGDisciple, 1)
+                    "<MainActor.Name>, <MainActor.he_or_she> is now part of our religious community!"
+                    exchangeContact(MainActor)
+                    MainActor.makePermanent()
+                        
                 Else
                     Random
-                        Player(Annoyed)::"<MainActor.Name> was not willing to negotiate."
-                        Player(Annoyed)::"My negotiations were unlucky."
-                        Player(Annoyed)::"<MainActor.Name> says this is <MainActor.p> minimum."
+                        MainActor(Embarassed)::"I am not convinced."
+                        MainActor(Shocked)::"I don't think I will like that."
+                        MainActor(Shocked)::"I knew you would ask me that, but I'm not interested."
+                        MainActor(Irritated)::"I did that once in my dreams and it had a very bad ending."
+                    EndRandom
+            
+                    Random
+                        Player(Wink)::"Should I try to convince <MainActor.Name> to be my disciple?"
+                        Player(Wink)::"Should I use my charm and talk to <MainActor.Name> to be my disciple?"
+                    EndRandom
+                    
+                    0:: "Yes"
+                    1:: "No"
+                    
+                    If 0
+                        Random
+                            Player(Flirty)::"Listen honey, you are so beautiful. Not being my disciple would be a sin."
+                            Player(Flirty)::"You are such a beautiful and sexy person. You will be my queen!"
+                            Player(Wink)::"There is nothing wrong of being a disciple."
+                        EndRandom
+                        
+                        chance = Random(1, 4)
+                        
+                        If chance >= 3
+                            Random
+                                MainActor(Excited)::"Ok. You got me!"
+                                MainActor(Shy)::"You could be right. Ok! Let's do that."
+                            EndRandom
+                            MainActor.modifyActorVar(rk_discipleAttraction, 20)
+                            SGId = MainActor.getID()
+                            MainActor.makeInterested(Player)
+                            MainActor.setActorVar(rk_SG_DiscipleSalary, 0)
+                            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+                            MainActor.setActorVar(tag_SGDisciple, 1)
+                            "<MainActor.Name>, <MainActor.he_or_she> is now part of our religious community!"
+                            exchangeContact(MainActor)
+                            MainActor.makePermanent()
+                                
+                        Else
+                            Random
+                                MainActor(Sad)::"Well you have good points, but I am way too reputable for that."
+                                MainActor(Sad)::"I don't want to be a disciple and reserved my body to you!"
+                                MainActor(Irritated)::"I think I am not really ready for that. Give me some time..."
+                                MainActor(Irritated)::"Uhh... My brain says yes. But my body says no."
+                            EndRandom
+                            
+                            Random
+                                "Ok, this time <MainActor.s> declined. But I should ask <MainActor.o> again some time..."
+                                "Looks like <MainActor.Name> is really too shy at the moment. Let's open <MainActor.p> mind a bit and ask <MainActor.o> again later..."
+                                "I need to find some better arguments to turn <MainActor.Name> into a disciple. Let me try again later..."
+                                "Seems <MainActor.Name> really doesn't know what's good for <MainActor.o>. I need to talk to <MainActor.o> again."
+                                "This time I failed. I need to try again later."
+                            EndRandom
+                            MainActor.modifyActorVar(rk_discipleAttraction, -5)
+                            MainActor.modifyActorVar(rk_SG_DeclinedBeDisciple, 1)
+                            
+                            // Not taking part
+                            MainActor = 0
+                        EndIf
+                    Else
+                    // Not taking part
+                    MainActor = 0
+                EndIf
+                
+                If participationStateD == 10  // Already asked!
+                    Random
+                        MainActor(Angry)::"Are you deaf or what?! I already said NO! - NO, do you understand?!!!"
+                        MainActor(Angry)::"OK. I see you are trying hard but: Thanks. I already said NO!"
+                        MainActor(Angry)::"NOT IN MY LIFE! - Got it?"
+                        MainActor(Irritated)::"Do you remember what I said last time?! No means no."
+                        MainActor(Flirty)::"He he! Nice try. Go find someone else!"
+                        MainActor(Shocked)::"Really an interesting offer but I am not into these things."
+                        MainActor(Shocked)::"Ah come on! Get lost! Go find someone else!"
                     EndRandom
 
-                    Player(Annoyed)::"I will have to accept what <MainActor.o> offer or find another <TempleJobTitle> that I can offer."
-                    0:: "Accept what <MainActor.s> offer"
-                    1:: "Don't accept <MainActor.o> offer"
-
-                    If 1
-                        MainActor = 0
-                    Else
-                        // All good
-                    EndIf
+                    Random
+                        Player(Annoyed)::"All right, seems <MainActor.Name> really is not going to be my disciple."
+                        Player(Annoyed)::"Oops... I better find someone else to be my disciple..."
+                        Player(Sad)::"Damn! That was a definitive 'NO'. Luckily there are more people around."
+                        Player(Sad)::"Bad for me. I will have to look for someone else."
+                        Player(Sarcastic)::"Hah! If <MainActor.s> does not know whats good for <MainActor.o>! I will go find someone else."
+                    EndRandom
+                    MainActor.modifyActorVar(rk_discipleAttraction, -10)
+                    
+                    // Not taking part
+                    MainActor.setActorVar(rk_SG_DeclinedBeDisciple, 10)
+                    MainActor = 0
                 EndIf
-            Else
-                MainActor = 0
             EndIf
         EndIf
 
-        // It the actor is still valid, all checks were OK, so join him
-        If MainActor.isValid()
+        secondScreen()
 
-            If actorIsGenerated
-                MainActor.makePermanent()
-                exchangeContact(MainActor)
-            EndIf
+        passTime(1, 2)
 
-            SGId = MainActor.getID()
-            MainActor.setActorVar(rk_SG_DiscipleSalary, askingPrice)
-            daysSinceBirth = (Player:Age * 365) // get the current date
-            MainActor.setActorVar(rk_SG_LastSalaryNegotiation, daysSinceBirth) // remember last salary negotiation
-
-            // Persist the new employee
-            If hireType == 1
-                Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-                MainActor.setActorVar(tag_SGDisciple, 1)
-                MainActor.modifyActorVar(rk_discipleattraction, 10)
-
-            Else
-                "PANIC!!? rk_SG_hire_employee.lpscene called with unknown job type!"
-            EndIf
-
-            Player(Happy)::"<MainActor.Name> and I signed the contract. <MainActor.S> is now working as my <TempleJobTitle>."
-            Player(Happy)::"I added <MainActor.Name> to my address book."
-        EndIf
-    EndIf
-
-    secondScreen()
-
-    passTime(1,2)
-
-    // Go back to the scene that called us...
-    followUp(rk_SG_manage_employees)
+        // Go back to the scene that called us...
+        followUp(rk_SG_manage_employees)
 
     SceneEnd()

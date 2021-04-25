@@ -28,19 +28,19 @@ SceneStart()
     If rkAreASexGuru <= 0
 
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
-        If SexGuruReputation >= 50
+        If SexGuruReputation >= 49
             Player(Happy)::"Perfect, my religion have a good reputation... <SexGuruReputation>/50"
         Else
             "I need to higher my religion reputation a little bit more, I don't have enough... <SexGuruReputation>/50"
         EndIf
         
-        If SGIllumination >= 50
+        If SGIllumination >= 49
             Player(Happy)::"Good, my enlightenment level is enough... <SGIllumination>/50"
         Else
             "I need to higher my enlightenment level, I don't have enough... <SGIllumination>/50"
         EndIf
         
-        If SexGuruDisciple >= 10
+        If SexGuruDisciple >= 9
             Player(Happy)::"Excellent, I now have at least 10 disciples..."
         Else
             "I also need 10 disciples to become a guru,... <SexGuruDisciple>/10"
@@ -91,6 +91,7 @@ SceneStart()
                     "Elfy Mana just appears in my house,...!"
                     ElfyMana.show()
                     ElfyMana.dressExcept(Outerwear, Top, Bottom)
+                    ElfyMana.movetoPersonStand(Player, 50)
         
                     ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."
                     ElfyMana(Serene)::"Let's start having fun together..."
@@ -153,14 +154,32 @@ SceneStart()
             Player.animate(write)
     
             "You've written a gospel that will inspire your followers, that's for sure!"
-            Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
             Player:intelligence += Random(0, 1)
             Player:perversion += Random(0, 1)
+            ChanceOfGospels = Random(0, 3)
+            ChanceOfGospels = ChanceOfGospels.round()
+
+            If SGIllumination > 50 && ChanceOfGospels > 2
+
+                ChanceGospels = Random(2, 3)
+                ChanceGospels = ChanceGospels.round()
+                "While writing my gospel, I had an enlightenment that enabled me to write <ChanceGospels> gospels."
+                Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
+                Player:energy -= Random(0, 2)
+                Player:arousal += Random(0, 1)
+                "<ChanceGospels> gospels added to your Holy book!"
+                Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
+        
+            Else
     
-            "1 gospel added to your Holy book!"
-            Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
-            Player:energy -= Random(0, 2)
-            Player:arousal += Random(0, 1)
+                Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
+                "1 gospel added to your Holy book!"
+                Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
+                Player:energy -= Random(0, 2)
+                Player:arousal += Random(0, 1)
+    
+            EndIf
+    
             passTime(0.5, 2)
         
         ElseIf 3
@@ -169,7 +188,7 @@ SceneStart()
             
         ElseIf 4
         
-            followUp(rk_SG_manage_employees)
+            followUp(rk_SG_hire_disciple)
         
         EndIf
         

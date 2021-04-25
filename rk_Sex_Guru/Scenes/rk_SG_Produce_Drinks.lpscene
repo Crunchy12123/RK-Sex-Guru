@@ -67,7 +67,6 @@ SceneStart()
     TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
     
     TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-    Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
     
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     setBackground3D(Modules/vin_Base/World/beverages___vin01.lpworld)
@@ -76,6 +75,7 @@ SceneStart()
 
     If ChechupC <= 0
 
+        Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
         SGId = Sen_Suale.getID()
         Sen_Suale.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -87,6 +87,7 @@ SceneStart()
         exchangeContact(Sen_Suale)
     EndIf
         
+    Sen_Suale = getPerson(true)
     Sen_Suale.dressExcept(Outerwear, Headwear, Eyewear)
     Sen_Suale.show()
     Sen_Suale(Happy)::"Hi master, really happy to see you!"

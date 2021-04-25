@@ -39,6 +39,7 @@ OTHER: none
             0:: "Check disciple's statistics"
             1:: "Book some ads to promote <MainActor.Name> for <traningPriceLocal>"
             2:: "Do a shooting with <MainActor.Name>"
+            97:: "Hire a disciple"
             98:: "Select other disciple"
             99:: "Return"
             
@@ -160,6 +161,12 @@ OTHER: none
                 MainActor.passOn()
                 followUp(rk_SG_do_shooting)
                 stayInMenu = false
+                
+            ElseIf 97
+                
+                followUp(rk_SG_hire_disciple)
+                stayInMenu = false
+                
             ElseIf 98
                 
                 // Back to model selection 

@@ -192,6 +192,16 @@ SceneStart()
         EndIf
         
         passTime(1, 8)
+        
+    Else
+
+        Player.modifyActorVar(rk_Churchbrand, -1)
+        Player.modifyActorVar(rk_SG_SexGuruReputation, -1)
+        Player.modifyActorVar(rk_Churchbargain, -1)
+
+        "The suppliers I found didn't want to give me any deals... Worst then that, I screw up all deals... it was a real waste of time..."
+
+        passTime(1, 8)
     
     EndIf
     energy -= 5

@@ -18,7 +18,8 @@ SceneStart()
         Player.modifyActorVar(rk_Churchbrand, 0.25)
     EndIf
     
-    "You begin to discuss with the person about your religion and its benefits!"
+    Player.movetoPersonStand(Actor, 50)
+    "You begin to discuss with <Actor.name> about your religion and its benefits!"
     Player.modifyActorVar(rk_discipleattractiontoplayer, 0.25)
     Actor.modifyActorVar(rk_discipleattraction, 1)
     Player:mood += 1

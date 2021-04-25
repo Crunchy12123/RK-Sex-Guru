@@ -42,6 +42,9 @@ SceneStart()
         EndIf
         Player(Happy)::"Ok, no problem I'll be there!"
         Player.modifyActorVar(rk_SG_AcceptDay, 1.5)
+            
+        sceneEnd()
+        timeout(10, rk_Gurus_Conference)
     
     ElseIf SetAcceptDay <= 0
     
@@ -56,8 +59,10 @@ SceneStart()
         
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
             Player(Happy)::"Sure, I will be there!"
-            Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
+            Player.modifyActorVar(rk_SG_AcceptDay, 0.6)
             mood += 3
+            timeout(10, rk_Gurus_Conference)
+            sceneEnd()
             
         Else
         

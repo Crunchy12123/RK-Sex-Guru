@@ -60,8 +60,8 @@ SceneStart()
     While stayInMenu
         
         "What do I want to sell?"
-        0::"<rkSGCPBrand>'s Calendars"
-        90::"<rkSGCPBrand>'s XXX magazines"
+        0::"Calendars"
+        90::"XXX magazines"
         99::"Go back"
         
         If 0

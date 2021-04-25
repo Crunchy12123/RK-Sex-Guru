@@ -59,9 +59,11 @@ SceneStart()
         
         If ElfyManaYes > 10
         
+            ElfyMana = getPerson(true)
             "Elfy Mana just appears in my house,...!"
-            ElfyMana.show(2)
+            ElfyMana.show()
             ElfyMana.dressExcept(Outerwear, Top, Bottom)
+            ElfyMana.movetoPersonStand(Player, 50)
         
             ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."
             ElfyMana(Serene)::"Let's start having fun together..."

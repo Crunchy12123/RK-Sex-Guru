@@ -69,7 +69,6 @@ SceneStart()
     TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
     
     TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-    Mel_Naina = generatePersonTemporary(rk_ModelF_Mel_Naina)
     
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
@@ -78,6 +77,7 @@ SceneStart()
 
     If ChechupC <= 0
 
+        Mel_Naina = generatePersonTemporary(rk_ModelF_Mel_Naina)
         SGId = Mel_Naina.getID()
         Mel_Naina.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -90,6 +90,7 @@ SceneStart()
     
     EndIf
     
+    Mel_Naina = getPerson(true)
     Mel_Naina.dressExcept(Outerwear, Headwear, Eyewear)
     Mel_Naina.show()
     Mel_Naina(Happy)::"Hy my dear master, do you need anything?"

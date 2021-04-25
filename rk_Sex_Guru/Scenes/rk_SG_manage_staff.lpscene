@@ -4,310 +4,107 @@ WHEN: 0 - 24
 WHO: none
 OTHER: none
 
-SceneStart()
+    SceneStart()
 
-    // Go to the Temple if any
-    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-    If TempleSize > 0
-        moveTo(place_of_worship)
-        setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
-    EndIf
+        // Go to the Temple if any
+        TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+        If TempleSize > 0
+            moveTo(place_of_worship)
+            setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+        EndIf
     
-    // local variables for hiring people...
-    TempleJobTitle = ""
-    currentDiscipleId = 0
-    DiscipleAskingPrice = 0
-    DiscipleSkillLvl = 1
-    discipleLevel = 0
-    DiscipleName = "nobody"
+        // local variables for hiring people...
+        TempleJobTitle = ""
+        currentDiscipleId = 0
+        DiscipleAskingPrice = 0
+        DiscipleSkillLvl = 1
+        discipleLevel = 0
+        DiscipleName = "nobody"
     
-    // Find out what to hire...
-    manageDiscipleType = SGManageDiscipleJobType.getGlobal()
+        // Find out what to hire...
+        manageDiscipleType = SGManageDiscipleJobType.getGlobal()
     
-    If manageDiscipleType == 1
-        TempleJobTitle = "Disciple"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedDiscipleId)
-        jobTrainingCost = 500
-        
-    ElseIf manageDiscipleType == 5
-        TempleJobTitle = "Maid"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedMaidId)
-        jobTrainingCost = 1500
+        If manageDiscipleType == 5
+           TempleJobTitle = "Maid"
+            currentDiscipleId = Player.getActorVar(rk_SG_EmployedMaidId)
+            jobTrainingCost = 1500
     
-    ElseIf manageDiscipleType == 50
-        TempleJobTitle = "Photographer"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedPhotographerId)
-        jobTrainingCost = 5000
-    
-    ElseIf manageDiscipleType == 60
-        TempleJobTitle = "Filmaker"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedFilmakerId)
-        jobTrainingCost = 7000
-
-    ElseIf manageDiscipleType == 70
-        TempleJobTitle = "Assistant guru"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedAssistantId)
-        jobTrainingCost = 500
-    
-    ElseIf manageDiscipleType == 80
-        TempleJobTitle = "web administrator"
-        currentDiscipleId = Player.getActorVar(rk_SG_EmployedWebAdminId)
-        jobTrainingCost = 6500
-        
-    Else
-        "PANIC!! rk_SG_manage_staff.lpscene called with unknown job type (<manageDiscipleType>)!"
-    EndIf
-    
-    DiscipleName = "my <TempleJobTitle>"
-    traningPrice = jobTrainingCost * Random(0.8 , 1)   // Some discount?
-    
-    MainActor = getSpecific(currentDiscipleId)
-    If MainActor.isValid()
-        // get the stat that controls the skill level
-        If manageDiscipleType == 1
-        
-            DiscipleSkillLvl = MainActor.getActorVar(rk_discipleattraction)
-        
-        ElseIf manageDiscipleType == 5
-            // "Maid"
-            DiscipleSkillLvl = MainActor:interpersonal
-            
         ElseIf manageDiscipleType == 50
-        
-            // "Photographer"
-            DiscipleSkillLvl = MainActor:pornfame
-            
+            TempleJobTitle = "Photographer"
+            currentDiscipleId = Player.getActorVar(rk_SG_EmployedPhotographerId)
+            jobTrainingCost = 5000
+    
         ElseIf manageDiscipleType == 60
+            TempleJobTitle = "Filmaker"
+            currentDiscipleId = Player.getActorVar(rk_SG_EmployedFilmakerId)
+            jobTrainingCost = 7000
+
+        ElseIf manageDiscipleType == 70
+            TempleJobTitle = "Assistant guru"
+            currentDiscipleId = Player.getActorVar(rk_SG_EmployedAssistantId)
+            jobTrainingCost = 500
+    
+        ElseIf manageDiscipleType == 80
+            TempleJobTitle = "web administrator"
+            currentDiscipleId = Player.getActorVar(rk_SG_EmployedWebAdminId)
+            jobTrainingCost = 6500
+        
+        Else
+            "PANIC!! rk_SG_manage_staff.lpscene called with unknown job type (<manageDiscipleType>)!"
+        EndIf
+    
+        DiscipleName = "my <TempleJobTitle>"
+        traningPrice = jobTrainingCost * Random(0.8 , 1)   // Some discount?
+    
+        MainActor = getSpecific(currentDiscipleId)
+        If MainActor.isValid()
+            // get the stat that controls the skill level
+            If manageDiscipleType == 5
+                // "Maid"
+                DiscipleSkillLvl = MainActor:interpersonal
+            
+            ElseIf manageDiscipleType == 50
+        
+                // "Photographer"
+                DiscipleSkillLvl = MainActor:pornfame
+            
+            ElseIf manageDiscipleType == 60
         
             // "Filmaker"
             DiscipleSkillLvl = MainActor:pornfame
             
-        ElseIf manageDiscipleType == 70
+            ElseIf manageDiscipleType == 70
         
-            // "Assistant guru"
-            DiscipleSkillLvl = MainActor:perversion
+                // "Assistant guru"
+                DiscipleSkillLvl = MainActor:perversion
             
-        ElseIf manageDiscipleType == 80
+            ElseIf manageDiscipleType == 80
         
-            // "web administrator"
-            DiscipleSkillLvl = MainActor:intelligence
+                // "web administrator"
+                DiscipleSkillLvl = MainActor:intelligence
             
-        EndIf
-        
-        traningPrice += DiscipleSkillLvl * (Random(1,2)*10)   // Increase training price if employee already has good skill lvl
-        
-        MainActor.dress()
-        secondScreenIfHidden(MainActor)
-        MainActor.show()
-
-        DiscipleAskingPrice = MainActor.getActorVar(rk_SG_DiscipleSalary)
-        DiscipleAskingPriceLocal = DiscipleAskingPrice.convertToLocalCurrency(true)
-        DiscipleName = "<MainActor.name>"
-        
-        Player()::"<MainActor.Name> is my current <TempleJobTitle>. <MainActor.P> current salary is <DiscipleAskingPriceLocal>/month. <MainActor.O> skill level is <DiscipleSkillLvl>%."
-    EndIf
-    
-    traningPriceLocal = traningPrice.convertToLocalCurrency(true)
-    
-    Player.dress()
-    Player.show()
-    
-    stayInMenu = true
-    While stayInMenu
-        
-        If manageDiscipleType == 1
-            Player(Serene):: "What about my <TempleJobTitle>?"
-            1:: MainActor.isValid():: "Try to negotiate on donation (<DiscipleAskingPriceLocal>/month)"
-            2:: MainActor.isValid():: "Send <DiscipleName> to a bootcamp training for <traningPriceLocal>"
-            0:: MainActor.isValid():: "Expel <DiscipleName>"
-            10:: !MainActor.isValid()::"Hire a <TempleJobTitle>"
-            99:: "Back"
-            
-            If 0
-                "Do I am sure to expel <MainActor.Name> from our community?"
-                0:: "Yes"
-                1:: "No"
-            
-                If 0
-                    willFireEmployee = true
-                 
-                    Random
-                        Player(Sad)::"Listen, <MainActor.Name>. I'm sorry to tell you, but we do not need your services any more inside our community."
-                        Player(Sad)::"<MainActor.Name>, I have bad news for you. You need to grab your stuff and get out!"
-                        Player(Sad)::"I don't know how to start <MainActor.Name>... I will have to expel you from our community..."
-                    EndRandom
-                    
-                    Player(Sad)::"I wish you all the best in your future endeavours."
-                
-                    Random
-                        MainActor(Sad)::"Oh no. You almost a god for me, I had so much fun working for you. Why? Why?"
-                        MainActor(Confused)::"What? I did my very best to suit your needs? What I did wrong?"
-                        MainActor(Confused)::"Eh? I wish you are joking, are you?"
-                    EndRandom
-                
-                    Player(Bored)::"What I can tell you, my dear <MainActor.Name>...?"
-                    0:: "It's not you. I cannot afford any disciples at the moment."
-                    1:: "Honestly, your results are pretty good, but I met someone who is more devoted and perverted."
-                    2:: "I found out that you fucked one of my employees staff. That is against our rules!"
-                
-                    If 0
-                        chance = Random(1,5)
-                        If chance >= 3 && DiscipleAskingPrice > 1500
-                            cutDown = (chance * 100)
-                            DiscipleAskingPrice += cutDown
-                        
-                            DiscipleAskingPriceLocal = DiscipleAskingPrice.convertToLocalCurrency(true)
-                            cutDownLocal = cutDown.convertToLocalCurrency(true)
-                        
-                            MainActor(Sad)::"Ok, how about I higher my donation by <cutDownLocal>?"
-                        
-                            Player(Serene)::"What do I reply? With the change <MainActor.s> will give <DiscipleAskingPriceLocal>/month."
-                            0:: "Wow, that is really nice of you. Thanks for helping me out, I accept!"
-                            1:: "Well that is a great offer, but I still cannot accept even with that reduction."
-                        
-                            If 0
-                                willFireEmployee = false
-                                MainActor.setActorVar(rk_SG_DiscipleSalary, DiscipleAskingPrice)
-                                daysSinceBirth = (Player:Age * 365) // get the current date 
-                                MainActor.setActorVar(rk_SG_LastSalaryNegotiation, daysSinceBirth) // remember last negotiation
-                            
-                            EndIf
-                        Else
-                            Random
-                                MainActor(Angry)::"Oh Well! I don't think I will find a better management community than here, but I accept your decision!"
-                                MainActor(Angry)::"Really? Why? For all I did for you...!"
-                                MainActor(Sad)::"I really need to be here. Oh well, I'll try to get lucky somewhere else...and try to find a job."
-                            EndRandom
-                        EndIf
-                    ElseIf 1
-                        Random
-                            MainActor(Angry)::"What? You must be joking! Get happy with your <TempleJobTitle>s. I'm out!"
-                            MainActor(Sad)::"Oh, I see. That is bad for me. Hope you will never remember me, if you have a new jobs."
-                        EndRandom
-                        Player(Drained)::"What ever <MainActor.Name> have a nice day!"
-                        
-                    ElseIf 2
-                        Random
-                            MainActor(Angry)::"Yeah, but that employees was begging for that!"
-                            MainActor(Embarassed)::"I just wanted to taste something forbiden, I know it's against rules...!"
-                        EndRandom
-                    EndIf
-                
-                    If willFireEmployee
-                        Player(Drained)::"<MainActor.Name> accepted <MainActor.p> fate and I kicked <MainActor.himor_her> out."
-                    
-                        If manageDiscipleType == 1
-                    
-                            Player.setActorVar(rk_SG_EmployedMaidId, 0)
-                            MainActor.setActorVar(tag_SGMaid, 0)
-                        
-                        Else
-                            "PANIC!! rk_SG_manage_staff.lpscene called with unknown job type (<manageDiscipleType>)!"
-                        EndIf
-                    
-                        MainActor.setActorVar(rk_SG_DiscipleSalary, 0)
-                        MainActor.setActorVar(rk_SG_LastSalaryNegotiation, 0)
-                        MainActor.setActorVar(rk_SG_LastJobTraining, 0)
-                    
-                        MainActor.hide()
-                        MainActor = 0
-                    
-                        DiscipleName = "my <TempleJobTitle>"
-                    EndIf
-                EndIf
-            
-            ElseIf 1
-                last = MainActor.getActorVar(rk_SG_LastSalaryNegotiation)
-                daysSinceBirth = (Player:Age * 365) // get the current date 
-                MainActor.setActorVar(rk_SG_LastSalaryNegotiation, daysSinceBirth) // remember last negotiation
-                delta = daysSinceBirth - last
-                If delta < 30
-                    timeToWait = 30 - delta
-                    Player(Annoyed)::"I already negotiated on <MainActor.Name>'s donation this month. I will have to wait <timeToWait> days."
-                Else
-                    chance = Random(1,5)
-                    If chance >= 3
-                        DiscipleAskingPrice += (chance * 100)
-                        If DiscipleAskingPrice < 1000
-                            DiscipleAskingPrice = 1000
-                        EndIf
-                        DiscipleAskingPriceLocal = DiscipleAskingPrice.convertToLocalCurrency(true)
-                        Player(Wink)::"I was able to ask to <MainActor.Name> to higher is donation to <DiscipleAskingPriceLocal>."
-                    
-                        MainActor.setActorVar(rk_SG_DiscipleSalary, DiscipleAskingPrice)
-                    Else
-                        Random
-                            Player(Annoyed)::"<MainActor.Name> was not willing to negotiate."
-                            Player(Annoyed)::"My negotiations were unlucky."
-                            Player(Annoyed)::"<MainActor.Name> says this is <MainActor.p> minimum."
-                        EndRandom
-                    EndIf
-                EndIf
-            
-            ElseIf 2    // job training
-                last = MainActor.getActorVar(rk_SG_LastJobTraining)
-                daysSinceBirth = (Player:Age * 365) // get the current date 
-                delta = daysSinceBirth - last
-            
-                If delta < 7
-                    timeToWait = 7 - delta
-                    Player(Annoyed)::"<MainActor.Name> already had a job training this week. I will have to wait <timeToWait> days."
-                Else
-                    Player(Serene)::"A job training improves <MainActor.Name>'s skills. Pay <traningPriceLocal> for <MainActor.p> training?"
-                    0:: "Yes"
-                    1:: "No"
-                
-                    If 0
-                        MainActor.setActorVar(rk_SG_LastJobTraining, daysSinceBirth) // remember last training
-                    
-                        MainActor.dress()
-                        MainActor.show(1)
-                    
-                        Random
-                            Player(Serene)::"Listen, <MainActor.Name> I want you to attend this job training."
-                            Player(Serene)::"<MainActor.Name> I got that offering for a job training and want you to attend."
-                            Player(Serene)::"<MainActor.Name> how about improving your skills a little?"
-                        EndRandom
-                    
-                        discipleAttraction = MainActor.getActorVar(rk_discipleAttraction)
-                        money -= traningPrice
-                        gain = Random(0.5,5)
-                        MainActor.modifyActorVar(rk_discipleAttraction, gain)
-                    
-                        // get the stat that controls the skill level
-                        If manageDiscipleType == 1
-
-                            MainActor:interpersonal += gain
-                        
-                            // Limit Maid interpersonal to 100%
-                            If MainActor:interpersonal > 100
-                                MainActor:interpersonal = 100
-                            EndIf
-
-                        EndIf
-                    
-                        Random
-                            MainActor(Serene)::"Thanks for the job training. I learned a lot at the boot camp!"
-                            MainActor(Serene)::"That was a really cool boot camp. I really need to try out the things I learned today!"
-                            MainActor(Serene)::"That was an awesome boot camp. Thanks for having me attend it!"
-                        EndRandom
-                    EndIf
-                EndIf
-            
-            ElseIf 10
-            
-                // Switch scene
-                SGManageDiscipleJobType.setGlobal(choice)
-                SGHireNewDiscipleJobType.setGlobal(manageDiscipleType)
-                followUp(rk_SG_hire_disciple)
-            
-                sceneEnd()
-            
-            ElseIf 99
-                stayInMenu = false
             EndIf
         
-        Else
+            traningPrice += DiscipleSkillLvl * (Random(1,2)*10)   // Increase training price if employee already has good skill lvl
+        
+            MainActor.dress()
+            secondScreenIfHidden(MainActor)
+            MainActor.show()
+
+            DiscipleAskingPrice = MainActor.getActorVar(rk_SG_DiscipleSalary)
+            DiscipleAskingPriceLocal = DiscipleAskingPrice.convertToLocalCurrency(true)
+        
+            Player()::"<MainActor.Name> is my current <TempleJobTitle>. <MainActor.P> current salary is <DiscipleAskingPriceLocal>/month. <MainActor.O> skill level is <DiscipleSkillLvl>%."
+        EndIf
+    
+        traningPriceLocal = traningPrice.convertToLocalCurrency(true)
+    
+        Player.dress()
+        Player.show()
+    
+        stayInMenu = true
+        While stayInMenu
+
             Player(Serene):: "What about my <TempleJobTitle>?"
             1:: MainActor.isValid():: "Try to negotiate on salary (<DiscipleAskingPriceLocal>/month)"
             2:: MainActor.isValid():: "Send <DiscipleName> to a bootcamp training for <traningPriceLocal>"
@@ -548,13 +345,13 @@ SceneStart()
                 stayInMenu = false
             EndIf
             
-        EndIf
         
-    EndWhile
+        
+        EndWhile
     
-    secondScreen()
+        secondScreen()
     
-    // Back to main employee menu
-    followUp(rk_SG_manage_employees)
+        // Back to main employee menu
+        followUp(rk_SG_manage_employees)
     
-SceneEnd()
+    SceneEnd()

@@ -19,12 +19,12 @@ SceneStart()
     
     PricePrinting = Random(0.05, 0.10)
     TotalCostPrinting = PricePrinting * 20000
-    TotalCostPrintingLoc = TotalCostPrintingLoc.convertToLocalCurrency()
+    TotalCostPrintingLoc = TotalCostPrinting.convertToLocalCurrency()
     
-    Player(Serene)::"Online advertising increases the visitor interest in our brand products and the best way to attract new disciples."
+    Player(Serene)::"Advertising increases the visitor interest in our brand products and the best way to attract new disciples."
     
     "How I will promote my temple products?"
-    0:: money > TotalCostPrinting && SexGuruGospels >= 10 ::"Distribute 20000 flyers cost:10 gospels snd <TotalCostPrintingLoc>"
+    0:: money > TotalCostPrinting && SexGuruGospels >= 10 ::"Distribute 20000 flyers cost:10 gospels and <TotalCostPrintingLoc>"
     1:: money > PricePromoRadio ::"Ads on Radio <PricePromoRadioLoc>"
     2:: money > PricePromoTV ::"Ads on TV <PricePromoTVLoc>"
     99:: "Not now!"
@@ -87,7 +87,7 @@ SceneStart()
             Player.modifyActorVar(rk_SG_SexGuruReputation, 4)
         EndIf
         
-        "I decided to do a promotional interview via my phone, about my religion and its benefits, on the most popular radio station in town '99.9 LifePlay'..."
+        "I decided to do a promotional interview via my phone, about my religion and its benefits, on the most popular TV program in town 'LifePlay TalkShow'..."
         passTime(0.25, 0.5)
         
         "I spoke at length with the interviewer and I was able to answer several questions from the listeners. This made it possible to make my religious community known to everyone ... ..."

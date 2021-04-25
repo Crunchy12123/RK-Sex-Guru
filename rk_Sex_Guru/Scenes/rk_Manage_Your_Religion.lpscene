@@ -66,8 +66,7 @@ SceneStart()
                 lookingInventories = false
 
             ElseIf 70
-
-                "If you own a church to sell your homemade products, you get an extra bonus!"
+            
                 followUp(rk_promoteTemple_locally)
                 lookingInventories = false
         

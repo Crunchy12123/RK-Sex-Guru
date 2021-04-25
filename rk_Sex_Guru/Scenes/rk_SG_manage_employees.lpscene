@@ -27,6 +27,7 @@ SceneStart()
         While stayInMenu
             Player(Serene):: "Which employees do I want to manage?"
             1:: "Disciples"
+            2:: "Hire a disciple"
             40:: rkAreASexGuru > 0 ::"Community models"
             5:: rkAreASexGuru > 0 ::"Maid"
             50:: rkAreASexGuru > 0 ::"Photographer"
@@ -36,12 +37,17 @@ SceneStart()
             90:: rkAreASexGuru > 0 ::"Henchmens/Henchgirls"
             99:: "All done"
     
-            If 40 
+            If 1 || 40 
                 //SGManageDiscipleJobType.setGlobal(choice)
-                followUp(rk_SG_manage_disciple) // not paid but give you gifts
+                followUp(rk_SG_manage_disciple)
+                stayInMenu = false
+            
+            ElseIf 2
+            
+                followUp(rk_SG_hire_disciple)
                 stayInMenu = false
 
-            ElseIf 1 || 5 || 50 || 60 || 70 || 80
+            ElseIf 5 || 50 || 60 || 70 || 80
                 SGManageDiscipleJobType.setGlobal(choice)
                 followUp(rk_SG_manage_staff)
                 stayInMenu = false
@@ -61,9 +67,11 @@ SceneStart()
         
                 If 91 || 92 || 93 || 94
         
-                SGManageDiscipleJobType.setGlobal(choice)
-                followUp(rk_SG_manage_Henchmens)
-                stayInMenu = false
+                    SGManageDiscipleJobType.setGlobal(choice)
+                    followUp(rk_SG_manage_Henchmens)
+                    stayInMenu = false
+                    
+                EndIf
             
             Else
             

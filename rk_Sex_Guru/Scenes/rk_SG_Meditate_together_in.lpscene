@@ -16,7 +16,7 @@ OTHER: none
         If Actor:rapportwithplayer > 50 && Actor:attractiontoplayer > 50
 
             Actor(Happy)::"Yeah sure, meditation is always relieving for the body ...!"
-            Actor(Flirty)::"Cool, to begin, we undress, it allows the energies to penetrate our bodies ...!"
+            Actor(Flirty)::"Cool, to begin, we need to undress, it allows the energies to penetrate our bodies ...!"
             
             If Actor:arousal > 15 && Actor:perversion > 50
             
@@ -24,15 +24,15 @@ OTHER: none
             
                 Player.show()
                 Player.strip()
-                Player.animate(pray)
                 
                 Actor.show()
                 Actor.strip()
-                Actor.animate(pray)
     
                 Player(Happy)::"Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
+                Player.animate(pray)
                 Player:arousal += 5
                 Actor(Happy)::"Aaaah Hmmmm ..., Aaaah Hummmm, ... Aaaah Hmmmm, ..."
+                Actor.animate(pray)
                 Actor:arousal += 5
 
                 "After a while..."
@@ -55,6 +55,7 @@ OTHER: none
                 
                 If Actor:arousal > 35
                 
+                    Actor.strip()
                     Actor(Flirty)::"You know what?"
                     Actor(Flirty)::"Seeing us naked during this session make me totally horny and the only thing I have in mind is to fuck with you!"
                     "Do I accept?"
@@ -80,6 +81,9 @@ OTHER: none
                     Actor(Happy)::"Sorry, I'm not in the mood to meditate totally naked..."
                     Actor(Happy)::"Why always naked?? No, not now!"
                 EndRandom
+                Actor:arousal += 0.5
+                Actor:rapportwithplayer += Random(1, 3)
+                Actor:attractiontoplayer += Random(1, 3)
         
             EndIf
     

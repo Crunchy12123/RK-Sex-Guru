@@ -11,6 +11,7 @@ SceneStart()
     PriceChurchCommerce = Player.getActorVar(rk_PriceChurchCommerce)
     Churchbargain = Player.getActorVar(rk_Churchbargain)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
+    rkAreASexGuru = Player.getActorVar(rk_SG_rkAreASexGuru) // yes/no
     
     // If the player is dating someone we need to end the date, so we can check this NPCs stats as well
     If CurrentCompanion.isValid()
@@ -18,34 +19,100 @@ SceneStart()
         endDate()
     EndIf
     
-    "What should I do?"
-    0::"Analyse products brand performance"
-    1::"Deal with religious suppliers"
-    2::"Sell homemade products"
-    3::"Promote brand awareness"
-    4::"Promote religion locally"
-    99::"Go back!"
+    manageChurchB = true
+    While manageChurchB
+        "What should I do?"
+        0::"Analyse products brand performance"
+        1::"Deal with religious suppliers"
+        20:: rkAreASexGuru > 0 && StartChurchCommerce > 0:: "Manage your production"
+        2::"Sell homemade products"
+        3::"Promote brand awareness"
+        4::"Promote religion locally"
+        99::"Go back!"
     
-    If 0
+        If 0
     
-        followUp(rk_analyse_church_performance)
+            followUp(rk_analyse_church_performance)
+            manageChurchB = false
     
-    ElseIf 1
+        ElseIf 1
     
-        followUp(rk_SG_deal_church_suppliers)
+            followUp(rk_SG_deal_church_suppliers)
+            manageChurchB = false
     
-    ElseIf 2
+        ElseIf 2
     
-        followUp(rk_sell_produced_meals_church)
+            followUp(rk_sell_produced_meals_church)
+            manageChurchB = false
     
-    ElseIf 3
+        ElseIf 20
     
-        followUp(rk_SG_promote_church)
+            "Going back to the temple..."
+            passTime(0.25, 1)
+        
+            // Go to the Temple if any
+            TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+            If TempleSize > 0
+                moveTo(Home)
+                setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
+            EndIf
+        
+            manageChurchP = true
+            While manageChurchP
+                "What do I want to produce?"
+                0::"Create special frozen desserts"
+                19::"Create special temple drinks"
+                20::"Print X calendars displaying temple's models"
+                21::"Print X magazines displaying temple's models"
+                31::"Print X movies displaying temple's models"
+                99::"Go back!"
+        
+                If 0
+            
+                    followUp(rk_SGProduce_FrozMeal)
+                    manageChurchP = false
+                
+                ElseIf 19
+            
+                    followUp(rk_SG_Produce_Drinks)
+                    manageChurchP = false
+            
+                ElseIf 20
+            
+                    followUp(rk_SG_Produce_Calendar)
+                    manageChurchP = false
+            
+                ElseIf 21
+            
+                    followUp(rk_SG_Produce_XXXMag)
+                    manageChurchP = false
+            
+                ElseIf 31
+            
+                    followUp(rk_SG_Produce_XXXVid)
+                    manageChurchP = false
+                Else
+            
+                    manageChurchP = false
+            
+                EndIf
+            
+            EndWhile
     
-    ElseIf 4
+        ElseIf 3
     
-        followUp(rk_promoteTemple_locally)
+            followUp(rk_SG_promote_church)
+            manageChurchB = false
     
-    EndIf
+        ElseIf 4
+    
+            followUp(rk_promoteTemple_locally)
+            manageChurchB = false
+        Else
+            
+            manageChurchB = false
+    
+        EndIf
+    EndWhile
 
 SceneEnd()

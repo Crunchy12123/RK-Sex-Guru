@@ -69,7 +69,6 @@ SceneStart()
     TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
     
     TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-    Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
     
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
@@ -79,6 +78,7 @@ SceneStart()
 
     If ChechupC <= 0
 
+        Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
         SGId = Erny_Quert.getID()
         Erny_Quert.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -91,6 +91,7 @@ SceneStart()
     
     EndIf
     
+    Erny_Quert = getPerson(true)
     Erny_Quert.dressExcept(Outerwear, Headwear, Eyewear)
     Erny_Quert.show()
     Erny_Quert(Happy)::"Hi my master, happy to see you!"

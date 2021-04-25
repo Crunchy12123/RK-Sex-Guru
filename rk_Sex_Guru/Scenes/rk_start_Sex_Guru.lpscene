@@ -10,7 +10,6 @@ SceneStart()
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple) // Disciples
     SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination) // Illumination
-    TempAcceptance = Actor.getActorVar(rk_SG_TempAcceptance)
 
     PastorChris = generatePersonTemporary(rk_ModelM_Pastor_Chris)
     PastorChris.hide()
@@ -116,11 +115,10 @@ SceneStart()
                             1::"No!"
                             
                             If 0
-                                
-                                Actor.dress()
-                                Actor.show(2)
+
+                                Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
-                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                TempAcceptance = 1
                                 
                             EndIf
                         
@@ -150,7 +148,6 @@ SceneStart()
                         
                             PastorChris(Serene):: "That was good!"
                             PastorChris.dress()
-                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
                         
                         Else
                         
@@ -193,10 +190,9 @@ SceneStart()
                             
                             If 0
 
-                                Actor.dress()
-                                Actor.show(2)
+                                Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
-                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                TempAcceptance = 1
                                 
                             EndIf
                             
@@ -226,7 +222,6 @@ SceneStart()
                         
                             PastorChris(Serene):: "That was good!"
                             PastorChris.dress()
-                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
                         
                         Else 
                         
@@ -397,17 +392,15 @@ SceneStart()
                             
                             If 0
 
-                                Actor.dress()
                                 Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
-                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                TempAcceptance = 1
                                 
                             EndIf
                         
                         EndIf
                         
                         "<PastorChris.name> <PastorChris.name_last> strip down... I think he didn't fucked for a long time, his dick already leaking... anyway..."
-                        "I pulled my pants down and he started carressing my dick right away!"
                         Player.dressExcept(Bottom)
                         PastorChris.strip()
                         
@@ -422,7 +415,7 @@ SceneStart()
                             Actor.strip()
                             Player.strip()
                         
-                            Sex(Player, Actor, PastorChris)
+                            Sex(Actor, PastorChris, Player)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
@@ -431,10 +424,10 @@ SceneStart()
                         
                             PastorChris(Serene):: "That was good!"
                             PastorChris.dress()
-                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
                         
                         Else
                         
+                            "I pulled my pants down and he started carressing my dick right away!"
                             "He lick my cock like a popcycle for a few minutes and we fucked each other like a real pros..."
                             Sex(Player, PastorChris)
                             Filter(Blowjob)
@@ -468,17 +461,16 @@ SceneStart()
                         If Player.IsWithCompanion()
 
                             Actor = getCompanion()
-                            PastorChris (Serene) :: "Let your companion join the party?"
+                            PastorChris (Serene):: "Let your companion join the party?"
                             "Do I accept?"
                             0:: Actor:perversion > 50 ::"Why not!"
                             1::"No!"
                             
                             If 0
-                                
-                                Actor.dress()
+
                                 Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
-                                Actor.setActorVar(rk_SG_TempAcceptance, 1)
+                                TempAcceptance = 1
                                 
                             EndIf
                             
@@ -500,7 +492,7 @@ SceneStart()
                             Actor.strip()
                             Player.strip()
                             
-                            Sex(Player, Actor, PastorChris)
+                            Sex(Actor, PastorChris, Player)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
@@ -509,7 +501,6 @@ SceneStart()
                         
                             PastorChris(Serene):: "That was good!"
                             PastorChris.dress()
-                            Actor.setActorVar(rk_SG_TempAcceptance, 0)
                         
                         Else 
                         

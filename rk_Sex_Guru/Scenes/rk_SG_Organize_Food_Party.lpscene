@@ -18,6 +18,7 @@ SceneStart()
     SGIllumination = Player.getActorVar(rk_SG_SexGuruIllumination)
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
+    discipleattraction = Actor.getActorVar(rk_discipleattraction)
 
     "What type of event/party you want to organize?"
     0::"Organize a spaghetti dinner to raise funds"
@@ -80,7 +81,7 @@ SceneStart()
             Actor3.dress()
             Actor3.show(3)
             
-            "..."
+            "3 person just arrived!"
             
             Actor4 = generatePersonTemporary()
             Actor4.dress()
@@ -95,7 +96,7 @@ SceneStart()
             Actor7.dress()
             Actor7.show(7)
             
-            "..."
+            "Few more...!"
             
             Actor8 = generatePersonTemporary()
             Actor8.dress()
@@ -107,7 +108,7 @@ SceneStart()
             Actor10.dress()
             Actor10.show(10)
             
-            "..."
+            "10 person are now arrived and talking with others...!"
                 
             If TicketSold == 11
                 Actor11 = generatePersonTemporary()
@@ -432,6 +433,112 @@ SceneStart()
             passTime(2, 4)
             
             "The event ended pretty well, people listened to my speech in silence and no one complained about the food..."
+            Actor1.hide()
+            Actor2.hide()
+            Actor3.hide()
+            Actor4.hide()
+            
+            Actor5(Happy)::"Bye guru <Player.name>, it was a nice event!"
+            Actor5.modifyActorVar(rk_discipleattraction, 1)
+            Actor5.hide()
+            Actor6.hide()
+            Actor7.hide()
+            
+            Actor8(Happy)::"Bye guru <Player.name>, I really like your speech!"
+            Actor8.modifyActorVar(rk_discipleattraction, 1)
+            Actor8.hide()
+            
+            Actor9.hide()
+            
+            Actor10(Happy)::"Bye guru <Player.name>, it was a nice meal!"
+            Actor10.modifyActorVar(rk_discipleattraction, 1)
+            Actor10.hide()
+                
+            If TicketSold == 11
+                Actor11.hide()
+                
+            ElseIf TicketSold == 12
+                Actor11.hide()
+                Actor12.hide()
+                
+            ElseIf TicketSold == 13
+                Actor11.hide()
+                Actor12.hide()
+                Actor13(Happy)::"Bye guru <Player.name>, I really like your speech!"
+                Actor13.modifyActorVar(rk_discipleattraction, 2)
+                Actor13.hide()
+                
+            ElseIf TicketSold == 14
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                
+            ElseIf TicketSold == 15
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15(Happy)::"Bye guru <Player.name>, it was a nice event!"
+                Actor15.modifyActorVar(rk_discipleattraction, 3)
+                Actor15.hide()
+                
+            ElseIf TicketSold == 16
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15.hide()
+                Actor16.hide()
+
+            ElseIf TicketSold == 17
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15.hide()
+                Actor16.hide()
+                Actor17.hide()
+
+            ElseIf TicketSold == 18
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15.hide()
+                Actor16.hide()
+                Actor17(Happy)::"Bye guru <Player.name>, it was a nice meal!"
+                Actor17.modifyActorVar(rk_discipleattraction, 4)
+                Actor17.hide()
+                Actor18.hide()
+
+            ElseIf TicketSold == 19
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15.hide()
+                Actor16.hide()
+                Actor17.hide()
+                Actor18.hide()
+                Actor19.hide()
+
+            ElseIf TicketSold == 20
+                Actor11.hide()
+                Actor12.hide()
+                Actor13.hide()
+                Actor14.hide()
+                Actor15.hide()
+                Actor16.hide()
+                Actor17.hide()
+                Actor18.hide()
+                Actor19(Happy)::"Bye guru <Player.name>, it was a good meal and a nice event!"
+                Actor19.modifyActorVar(rk_discipleattraction, 5)
+                Actor19.hide()
+                Actor20.hide()
+                
+            EndIf
+            
             PersonCM = Random(0, TicketSold)
             CMSold = Random(0, PersonCM)
             PersonBuy = CMSold * 10

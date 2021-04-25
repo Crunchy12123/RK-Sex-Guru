@@ -91,8 +91,8 @@ SceneStart()
         
         If SexGuruReputation < 10 // unknown
         
-            SGChanceRep = Random(0,1)
-            SGChanceAtt = Random(0,2)
+            SGChanceRep = Random(0, 1)
+            SGChanceAtt = Random(0, 2)
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
@@ -124,19 +124,21 @@ SceneStart()
         
         ElseIf SexGuruReputation < 30 // unknown but some heard about
         
-            SGChanceRep = Random(0,1)
-            SGChanceAtt = Random(0,5)
+            SGChanceRep = Random(0, 1)
+            SGChanceAtt = Random(0, 5)
+            SGChanceRep = SGChanceRep.round()
+            SGChanceAtt = SGChanceAtt.round()
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
             
-            "You've increased your reputation by <SGChanceAtt> points!"
+            "You've increased your 'disciple attraction' by <SGChanceAtt> points!"
             Player.modifyActorVar(rk_discipleattractiontoplayer, SGChanceAtt)
             Player:interpersonal += 1
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt == 6 && Player:discipleattractiontoplayer > 50
+            If TotalRepAtt > 4
                
                FindDisciple = 1
                
@@ -183,19 +185,21 @@ SceneStart()
         
         ElseIf SexGuruReputation < 50  // I see some adds in newspapers
         
-            SGChanceRep = Random(0,2)
-            SGChanceAtt = Random(0,3.5)
+            SGChanceRep = Random(0, 2)
+            SGChanceAtt = Random(0, 3.5)
+            SGChanceRep = SGChanceRep.round()
+            SGChanceAtt = SGChanceAtt.round()
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
             
-            "You've increased your reputation by <SGChanceAtt> points!"
+            "You've increased your 'disciple attraction' by <SGChanceAtt> points!"
             Player.modifyActorVar(rk_discipleattractiontoplayer, SGChanceAtt)
             Player:interpersonal += 2
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt == 5.5 && Player:discipleattractiontoplayer > 50
+            If TotalRepAtt > 3
                
                FindDisciple = 1
                
@@ -242,19 +246,21 @@ SceneStart()
         
         ElseIf SexGuruReputation < 70  // Known by fews
         
-            SGChanceRep = Random(0,2)
-            SGChanceAtt = Random(0,3)
+            SGChanceRep = Random(0, 2)
+            SGChanceAtt = Random(0, 3)
+            SGChanceRep = SGChanceRep.round()
+            SGChanceAtt = SGChanceAtt.round()
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
             
-            "You've increased your reputation by <SGChanceAtt> points!"
+            "You've increased your 'disciple attraction' by <SGChanceAtt> points!"
             Player.modifyActorVar(rk_discipleattractiontoplayer, SGChanceAtt)
             Player:interpersonal += 3
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt == 5 && Player:discipleattractiontoplayer > 60
+            If TotalRepAtt > 4
                
                FindDisciple = 1
                
@@ -301,19 +307,21 @@ SceneStart()
         
         ElseIf SexGuruReputation < 90  // known
         
-            SGChanceRep = Random(0,2)
-            SGChanceAtt = Random(0,2)
+            SGChanceRep = Random(0, 2)
+            SGChanceAtt = Random(0, 2)
+            SGChanceRep = SGChanceRep.round()
+            SGChanceAtt = SGChanceAtt.round()
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
             
-            "You've increased your reputation by <SGChanceAtt> points!"
+            "You've increased your 'disciple attraction' by <SGChanceAtt> points!"
             Player.modifyActorVar(rk_discipleattractiontoplayer, SGChanceAtt)
             Player:interpersonal += 4
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt == 4 && Player:discipleattractiontoplayer > 70
+            If TotalRepAtt > 3
                
                FindDisciple = 1
                
@@ -360,19 +368,21 @@ SceneStart()
         
         ElseIf SexGuruReputation < 120  // really known
         
-            SGChanceRep = Random(0,3)
-            SGChanceAtt = Random(0,3)
+            SGChanceRep = Random(0, 3)
+            SGChanceAtt = Random(0, 3)
+            SGChanceRep = SGChanceRep.round()
+            SGChanceAtt = SGChanceAtt.round()
             
             "You've increased your reputation by <SGChanceRep> points!"
             Player.modifyActorVar(rk_SG_SexGuruReputation, SGChanceRep)
             
-            "You've increased your reputation by <SGChanceAtt> points!"
+            "You've increased your 'disciple attraction' by <SGChanceAtt> points!"
             Player.modifyActorVar(rk_discipleattractiontoplayer, SGChanceAtt)
             Player:interpersonal += 5
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
 
-            If TotalRepAtt == 6
+            If TotalRepAtt > 4
             
                 SGId = Guest5.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -393,7 +403,7 @@ SceneStart()
                 Guest3:rapportwithplayer += Random(5, 10)
                 Guest3.makeInterested(Player)
                 
-            ElseIf TotalRepAtt == 3
+            ElseIf TotalRepAtt > 3
             
                 SGId = Guest1.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)

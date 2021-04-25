@@ -58,6 +58,7 @@ OTHER: rkOpenedSexGuru > 0
                 "<Actor.name> is now part of your sex community!"
                 Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
                 Actor.setActorVar(tag_SGDisciple, 1)
+                Actor.setActorVar(rk_SG_DiscipleSalary, 0)
                 Actor:attractiontoplayer += Random(0, 2)
 
             Else
