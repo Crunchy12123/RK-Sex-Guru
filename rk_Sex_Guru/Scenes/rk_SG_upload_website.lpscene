@@ -22,7 +22,7 @@ OTHER: none
         StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
         discipleAttraction = Actor.getActorVar(rk_discipleAttraction)
 
-        If Player:SGOpenedTempleWebsite >= 1
+        If SGOpenedTempleWebsite >= 1
             
             // If the player is dating someone we need to end the date, so we can check this NPCs stats as well
             If CurrentCompanion.isValid()

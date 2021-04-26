@@ -55,13 +55,13 @@ SceneStart()
         Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
         Player.animate()
         
-        ElfyManaYes = random(0,20)
+        ElfyManaYes = random(0, 20)
         
         If ElfyManaYes > 10
         
-            ElfyMana = getPerson(true)
+            ElfyMana = generatePersonTemporary(rk_modelF_Elfy_Mana)
             "Elfy Mana just appears in my house,...!"
-            ElfyMana.show()
+            ElfyMana.show(2)
             ElfyMana.dressExcept(Outerwear, Top, Bottom)
             ElfyMana.movetoPersonStand(Player, 50)
         

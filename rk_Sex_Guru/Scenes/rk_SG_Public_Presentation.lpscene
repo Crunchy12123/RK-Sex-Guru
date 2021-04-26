@@ -12,11 +12,6 @@ SceneStart()
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
-    discipleAttraction1 = Guest1.getActorVar(rk_discipleAttraction)
-    discipleAttraction2 = Guest2.getActorVar(rk_discipleAttraction)
-    discipleAttraction3 = Guest3.getActorVar(rk_discipleAttraction)
-    discipleAttraction4 = Guest4.getActorVar(rk_discipleAttraction)
-    discipleAttraction5 = Guest5.getActorVar(rk_discipleAttraction)
     Guest1 = generatePersonTemporary()
     Guest2 = generatePersonTemporary()
     Guest3 = generatePersonTemporary()
@@ -86,7 +81,9 @@ SceneStart()
         
         "The experience was a decent boost for my religion."
         If StartChurchCommerce > 0
+        
             Player.modifyActorVar(rk_Churchbrand, 1)
+            
         EndIf
         
         If SexGuruReputation < 10 // unknown
@@ -138,7 +135,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 4
+            If TotalRepAtt > 5
                
                FindDisciple = 1
                
@@ -186,7 +183,7 @@ SceneStart()
         ElseIf SexGuruReputation < 50  // I see some adds in newspapers
         
             SGChanceRep = Random(0, 2)
-            SGChanceAtt = Random(0, 3.5)
+            SGChanceAtt = Random(0, 4)
             SGChanceRep = SGChanceRep.round()
             SGChanceAtt = SGChanceAtt.round()
             
@@ -199,7 +196,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 3
+            If TotalRepAtt > 5
                
                FindDisciple = 1
                
@@ -382,7 +379,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
 
-            If TotalRepAtt > 4
+            If TotalRepAtt > 5
             
                 SGId = Guest5.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -403,7 +400,7 @@ SceneStart()
                 Guest3:rapportwithplayer += Random(5, 10)
                 Guest3.makeInterested(Player)
                 
-            ElseIf TotalRepAtt > 3
+            ElseIf TotalRepAtt > 4
             
                 SGId = Guest1.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)

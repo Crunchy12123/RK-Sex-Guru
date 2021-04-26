@@ -89,7 +89,7 @@ SceneStart()
                 If ElfyManaYes > 10
         
                     "Elfy Mana just appears in my house,...!"
-                    ElfyMana.show()
+                    ElfyMana.show(2)
                     ElfyMana.dressExcept(Outerwear, Top, Bottom)
                     ElfyMana.movetoPersonStand(Player, 50)
         

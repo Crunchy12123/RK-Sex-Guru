@@ -25,7 +25,7 @@ OTHER: none
     
         // Find a companion
         If MainActor.isValid()
-            "I'm currently accompanied by <MainActor.Name>. Ask <MainActor.o> to be my main actor?"
+            "I'm currently accompanied by <MainActor.Name>. Ask <MainActor.o> to be my disciple?"
             0:: "Yes, ask <MainActor.Name> to be my disciple"
             1:: "No, let's check my contacts"
             2:: "Check if someone apply"
@@ -170,7 +170,7 @@ OTHER: none
             
         Else
 
-            Player(Curious)::"I need to hire more disciple!<ActorChanceDisciple>"
+            Player(Curious)::"I need to hire more disciple!"
             0:: "Let's check my contacts"
             1:: "Check if someone apply"
             99:: "I changed my mind"
