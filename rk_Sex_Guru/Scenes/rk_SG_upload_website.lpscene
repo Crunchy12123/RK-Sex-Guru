@@ -21,6 +21,40 @@ OTHER: none
         Churchbrand = Player.getActorVar(rk_Churchbrand)
         StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
         discipleAttraction = Actor.getActorVar(rk_discipleAttraction)
+        
+        // Calculate interest in different video set types
+        SGintSolo = Player.getActorVar(rk_SG_InterestSoloSets)
+        SGintGay = Player.getActorVar(rk_SG_InterestGaySets)
+        SGintAmateur = Player.getActorVar(rk_SG_InterestAmateurSets)
+        SGintLesbian = Player.getActorVar(rk_SG_InterestLesbianSets)
+        SGintGangBang = Player.getActorVar(rk_SG_InterestGangBangSets)
+        SGintRevGangBang = Player.getActorVar(rk_SG_InterestRevGangBangSets)
+        SGintThreesome = Player.getActorVar(rk_SG_InterestThreesomeSets)
+    
+        SGsumSolo = Player.getActorVar(rk_SG_SoloShootingsSum)
+        SGsumGay = Player.getActorVar(rk_SG_GayShootingsSum)
+        SGsumLesbian = Player.getActorVar(rk_SG_LesbianShootingsSum)
+        SGsumAmateur = Player.getActorVar(rk_SG_AmateurShootingsSum)
+        SGsumGangBang = Player.getActorVar(rk_SG_GangBangShootingsSum)
+        SGsumRevGangBang = Player.getActorVar(rk_SG_RevGangBangShootingsSum)
+        SGsumThreesome = Player.getActorVar(rk_SG_ThreesomeShootingsSum)
+    
+        // Calculate interest in different photo set types
+        SGintSoloP = Player.getActorVar(rk_SG_InterestSoloSetsP)
+        SGintGayP = Player.getActorVar(rk_SG_InterestGaySetsP)
+        SGintAmateurP = Player.getActorVar(rk_SG_InterestAmateurSetsP)
+        SGintLesbianP = Player.getActorVar(rk_SG_InterestLesbianSetsP)
+        SGintGangBangP = Player.getActorVar(rk_SG_InterestGangBangSetsP)
+        SGintRevGangBangP = Player.getActorVar(rk_SG_InterestRevGangBangSetsP)
+        SGintThreesomeP = Player.getActorVar(rk_SG_InterestThreesomeSetsP)
+    
+        SGsumSoloP = Player.getActorVar(rk_SG_SoloShootingsSumP)
+        SGsumGayP = Player.getActorVar(rk_SG_GayShootingsSumP)
+        SGsumLesbianP = Player.getActorVar(rk_SG_LesbianShootingsSumP)
+        SGsumAmateurP = Player.getActorVar(rk_SG_AmateurShootingsSumP)
+        SGsumGangBangP = Player.getActorVar(rk_SG_GangBangShootingsSumP)
+        SGsumRevGangBangP = Player.getActorVar(rk_SG_RevGangBangShootingsSumP)
+        SGsumThreesomeP = Player.getActorVar(rk_SG_ThreesomeShootingsSumP)
 
         If SGOpenedTempleWebsite >= 1
             
@@ -73,6 +107,7 @@ OTHER: none
                     Actor.modifyActorVar(rk_discipleAttraction, 50)
                     "<Actor.name> is now part of our religious community..."
                     Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                    Actor.setActorVar(tag_SGDisciple, 1)
                     Actor.makePermanent()
                     exchangeContact(Actor)
                     
@@ -116,6 +151,10 @@ OTHER: none
                             Player::"I added and posted <SGpendingUploadsP> pictures of <Actor.Name> on the community website. Hope our visitors enjoy <Actor.o>."
                             Player::"<SGpendingUploadsP> new pictures from <Actor.Name> added to the community website. Our horny users will be happy."
                         EndRandom
+                        
+                        ChanceOfIntess = random(-1, 2)
+                        Player.modifyActorVar(rk_SG_InterestPSets, ChanceOfIntess)
+                        Player.modifyActorVar(rk_SG_PSetsSum, SGpendingUploadsP)
                         
                         secondScreen()
                         Actor.hide()
@@ -161,10 +200,14 @@ OTHER: none
                         Actor.show()
                         
                         Random
-                            Player::"I have uploaded and published <SGpendingUploadsP> new videos of <Actor.Name> on the community website. Let's see how these perform tomorrow."
-                            Player::"I added and posted <SGpendingUploadsP> videos of <Actor.Name> on the community website. Hope our visitors enjoy <Actor.o>."
-                            Player::"<SGpendingUploadsP> new videos from <Actor.Name> added to the community website. Our horny users will be happy."
+                            Player::"I have uploaded and published <SGpendingUploads> new videos of <Actor.Name> on the community website. Let's see how these perform tomorrow."
+                            Player::"I added and posted <SGpendingUploads> videos of <Actor.Name> on the community website. Hope our visitors enjoy <Actor.o>."
+                            Player::"<SGpendingUploads> new videos from <Actor.Name> added to the community website. Our horny users will be happy."
                         EndRandom
+                        
+                        ChanceOfIntess = random(-1, 2)
+                        Player.modifyActorVar(rk_SG_InterestVSets, ChanceOfIntess)
+                        Player.modifyActorVar(rk_SG_VSetsSum, SGpendingUploads)
                         
                         secondScreen()
                         Actor.hide()

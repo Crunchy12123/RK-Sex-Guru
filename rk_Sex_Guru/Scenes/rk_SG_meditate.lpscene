@@ -60,7 +60,7 @@ SceneStart()
         If ElfyManaYes > 10
         
             ElfyMana = generatePersonTemporary(rk_modelF_Elfy_Mana)
-            "Elfy Mana just appears in my house,...!"
+            "Elfy Mana just appears,...!"
             ElfyMana.show(2)
             ElfyMana.dressExcept(Outerwear, Top, Bottom)
             ElfyMana.movetoPersonStand(Player, 50)

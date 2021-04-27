@@ -9,7 +9,6 @@ SceneStart()
     discipleAttraction = MainActor.getActorVar(rk_discipleAttraction)
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
     
-    // Get the desired location, main location for this code: nn_pe_scene_organize_shooting.lpscene
     SGdesiredShootingLocation = rk_SG_NextShootingLocation.getGlobal()
     
     If SGdesiredShootingLocation == 1 // home
@@ -25,14 +24,14 @@ SceneStart()
     If MainActor.isValid()
         Player(Happy)::"I'm currently accompanied by <MainActor.Name>. Do I ask <MainActor.o> to be my main actor?"
         0:: "Yes, ask <MainActor.Name> to be my main actor"
-        1:: "No, let's check my contacts first"
+        1:: "No, let's check my disciple contacts first"
         99:: "I changed my mind. I don't want to do a shooting"
         
         If 1
             Player::"Listen <MainActor.Name> I have some work to do for the community. Thanks for being with me. See you later!"
             endDate()
             
-            selectNPC()
+            selectNPC(SGDisciple)
             MainActor = getSelectedNPC()
         ElseIf 99
             MainActor = 0

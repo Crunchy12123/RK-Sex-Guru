@@ -26,7 +26,7 @@ SceneStart()
             
         While stayInMenu
             Player(Serene):: "Which employees do I want to manage?"
-            1:: "Disciples"
+            1:: rkAreASexGuru > 0 ::"Disciples"
             2:: "Hire a disciple"
             40:: rkAreASexGuru > 0 ::"Community models"
             5:: rkAreASexGuru > 0 ::"Maid"

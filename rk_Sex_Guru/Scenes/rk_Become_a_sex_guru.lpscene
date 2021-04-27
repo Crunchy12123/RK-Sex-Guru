@@ -88,7 +88,7 @@ SceneStart()
         
                 If ElfyManaYes > 10
         
-                    "Elfy Mana just appears in my house,...!"
+                    "Elfy Mana just appears,...!"
                     ElfyMana.show(2)
                     ElfyMana.dressExcept(Outerwear, Top, Bottom)
                     ElfyMana.movetoPersonStand(Player, 50)
@@ -125,6 +125,7 @@ SceneStart()
         
                 ElfyMana(Serene)::"Hello my dear, I am appearing to you, to tell you now how to reach your enlightenment."
                 Player:mood += 10
+                ElfyMana.movetoPersonStand(Player, 50)
         
                 Player(Annoyed):: "I though I had already achieve my enlightenment after all the meditations I have done! Damn, what else...?"
                 ElfyMana(Serene):: "Yeah sort of, but not yet, you need the sexual energy of God and I'm the only one right now who can give you this opportunity..."

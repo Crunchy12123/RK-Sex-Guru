@@ -1,11 +1,12 @@
 WHAT: all
-WHERE: all, home, -prison
+WHERE: all, -prison
 WHEN: 0 - 24
 WHO: none
 OTHER: rkOpenedSexGuru > 0
 
 SceneStart()
-
+    
+    //rkAreASexGuru
     SexGuruReputation = Player.getActorVar(rk_SG_SexGuruReputation) // Reputation
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
     SexGuruDisciple = Player.getActorVar(rk_SG_SexGuruDisciple)
@@ -24,8 +25,8 @@ SceneStart()
     discipleAttractionG8 = Guru31.getActorVar(rk_discipleAttraction)
     discipleAttractionG9 = Guru41.getActorVar(rk_discipleAttraction)
     discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
-    
-    If SetAcceptDay > 0 && SetAcceptDay < 3
+
+    If SetAcceptDay > 0 && SetAcceptDay <= 3
     
         SRSAgent = generatePersonTemporary()
         SRSAgent.hide()
@@ -41,7 +42,7 @@ SceneStart()
             SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in few hours..."
         EndIf
         Player(Happy)::"Ok, no problem I'll be there!"
-        Player.modifyActorVar(rk_SG_AcceptDay, 1.5)
+        Player.modifyActorVar(rk_SG_AcceptDay, 1)
             
         sceneEnd()
         timeout(10, rk_Gurus_Conference)
@@ -59,7 +60,7 @@ SceneStart()
         
             Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
             Player(Happy)::"Sure, I will be there!"
-            Player.modifyActorVar(rk_SG_AcceptDay, 0.6)
+            Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
             mood += 3
             timeout(10, rk_Gurus_Conference)
             sceneEnd()
@@ -665,13 +666,13 @@ SceneStart()
 
     EndIf
     
-    If SetAcceptDay > 0 
-
-        timeout(10, rk_Gurus_Conference)
-    
-    ElseIf SetAcceptDay <= 0 
+    If SetAcceptDay <= 0 
 
         timeout(3000, rk_Gurus_Conference)
+    
+    ElseIf SetAcceptDay >= 0.5 
+
+        timeout(10, rk_Gurus_Conference)
     
     EndIf
 

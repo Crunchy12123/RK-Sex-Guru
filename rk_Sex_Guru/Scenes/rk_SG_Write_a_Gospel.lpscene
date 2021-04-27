@@ -14,10 +14,10 @@ SceneStart()
     "You've written a gospel that will inspire your followers, that's for sure!"
     Player:intelligence += Random(0, 1)
     Player:perversion += Random(0, 1)
-    ChanceOfGospels = Random(0, 3)
+    ChanceOfGospels = Random(0, 4)
     ChanceOfGospels = ChanceOfGospels.round()
 
-    If SGIllumination > 50 && ChanceOfGospels > 2
+    If SGIllumination > 50 && ChanceOfGospels > 3
 
         ChanceGospels = Random(2, 3)
         ChanceGospels = ChanceGospels.round()

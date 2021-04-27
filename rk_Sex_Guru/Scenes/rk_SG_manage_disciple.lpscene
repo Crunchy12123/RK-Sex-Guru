@@ -21,7 +21,7 @@ OTHER: none
     Player.show()
     
     "Please select the disciple that you want to manage."
-    selectNPC(SGDisciple)
+    selectNPC()
     MainActor = getSelectedNPC()
     
     If MainActor.isValid()

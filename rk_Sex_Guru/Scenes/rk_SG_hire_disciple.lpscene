@@ -193,7 +193,7 @@ OTHER: none
                         
                     Actor:discipleattraction => DiscipleSkillLvl
 
-                    skillText = "never heard about us before!"
+                    skillText = "cool, but never heard about us before!"
                     If DiscipleSkillLvl >= 90
                         skillText = "a <Actor.god_or_goddess> in sex"
                     ElseIf DiscipleSkillLvl >= 80
