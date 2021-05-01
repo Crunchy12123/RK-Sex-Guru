@@ -27,6 +27,7 @@ SceneStart()
     
     If 0
     
+        TicketSoldSp = Player.getActorVar(rk_Spag_TicketSold)
         costPperson = 25
         costPpersonLoc = costPperson.convertToLocalCurrency()
         costPprepare = Random(7.5, 8.5)
@@ -50,9 +51,12 @@ SceneStart()
         
         EarningTick = PersonsTotalCost - PrepareTotalCost
         
+        setBackground(street)
         "So I walk around town to sell tickets for my spaguetti event."
         "After few hours of walking and trying to sell tickets for my event, I was able to sell <TicketSold> tickets, so <TicketSold> persons are supposed to come!"
+        Player.setActorVar(rk_Spag_TicketSold, TicketSold)
         passTime(2, 4)
+        
         energy -= Random(3, 8)
         Player.show()
         Player.animate(call)
@@ -61,13 +65,14 @@ SceneStart()
         Player.animate()
         
         "The total cost for this event: <PrepareTotalCost>. You will earn <EarningTick> or more if someone just wants to attend and cancels their meal."
-        "The reservation cost will be aply if you don't sleep with the owner!"
+        "The reservation cost will be apply if you don't sleep with the owner!"
         "Do you still want to organize this event"
         0::money > PersonsTotalCost ::"Yes"
         1::"No"
 
         If 0
 
+            TicketSoldSp = Player.getActorVar(rk_Spag_TicketSold)
             moveTo(restaurant)
             setBackground(restaurant)
                 
@@ -110,12 +115,12 @@ SceneStart()
             
             "10 person are now arrived and talking with others...!"
                 
-            If TicketSold == 11
+            If TicketSoldSp <= 11
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
                 
-            ElseIf TicketSold == 12
+            ElseIf TicketSoldSp <= 12
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -123,7 +128,7 @@ SceneStart()
                 Actor12.dress()
                 Actor12.show(12)
                 
-            ElseIf TicketSold == 13
+            ElseIf TicketSoldSp <= 13
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -137,7 +142,7 @@ SceneStart()
                 "..."
             
                 
-            ElseIf TicketSold == 14
+            ElseIf TicketSoldSp <= 14
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -154,7 +159,7 @@ SceneStart()
                 "..."
             
                 
-            ElseIf TicketSold == 15
+            ElseIf TicketSoldSp <= 15
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -174,7 +179,7 @@ SceneStart()
                 Actor15.dress()
                 Actor15.show(15)
                 
-            ElseIf TicketSold == 16
+            ElseIf TicketSoldSp <= 16
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -197,7 +202,7 @@ SceneStart()
                 Actor16.dress()
                 Actor16.show(16)
 
-            ElseIf TicketSold == 17
+            ElseIf TicketSoldSp <= 17
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -226,7 +231,7 @@ SceneStart()
                 "..."
             
 
-            ElseIf TicketSold == 18
+            ElseIf TicketSoldSp <= 18
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -258,7 +263,7 @@ SceneStart()
                 Actor18.dress()
                 Actor18.show(18)
 
-            ElseIf TicketSold == 19
+            ElseIf TicketSoldSp <= 19
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -293,7 +298,7 @@ SceneStart()
                 Actor19.dress()
                 Actor19.show(19)
 
-            ElseIf TicketSold == 20
+            ElseIf TicketSoldSp <= 20
                 Actor11 = generatePersonTemporary()
                 Actor11.dress()
                 Actor11.show(11)
@@ -333,7 +338,6 @@ SceneStart()
             
                 "..."
             
-                
             EndIf
             passTime(0.15, 0.5)
             "Everyone is now here and ready to eat and listen to my speech!"
@@ -350,32 +354,32 @@ SceneStart()
             Actor9.animate(eat)
             Actor10.animate(eat)
                 
-            If TicketSold == 11
+            If TicketSoldSp <= 11
                 Actor11.animate(eat)
                 
-            ElseIf TicketSold == 12
+            ElseIf TicketSoldSp <= 12
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 
-            ElseIf TicketSold == 13
+            ElseIf TicketSoldSp <= 13
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
                 
-            ElseIf TicketSold == 14
+            ElseIf TicketSoldSp <= 14
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
                 Actor14.animate(eat)
                 
-            ElseIf TicketSold == 15
+            ElseIf TicketSoldSp <= 15
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
                 Actor14.animate(eat)
                 Actor15.animate(eat)
                 
-            ElseIf TicketSold == 16
+            ElseIf TicketSoldSp <= 16
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
@@ -383,7 +387,7 @@ SceneStart()
                 Actor15.animate(eat)
                 Actor16.animate(eat)
 
-            ElseIf TicketSold == 17
+            ElseIf TicketSoldSp <= 17
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
@@ -392,7 +396,7 @@ SceneStart()
                 Actor16.animate(eat)
                 Actor17.animate(eat)
 
-            ElseIf TicketSold == 18
+            ElseIf TicketSoldSp <= 18
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
@@ -402,7 +406,7 @@ SceneStart()
                 Actor17.animate(eat)
                 Actor18.animate(eat)
 
-            ElseIf TicketSold == 19
+            ElseIf TicketSoldSp <= 19
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
@@ -413,7 +417,7 @@ SceneStart()
                 Actor18.animate(eat)
                 Actor19.animate(eat)
 
-            ElseIf TicketSold == 20
+            ElseIf TicketSoldSp <= 20
                 Actor11.animate(eat)
                 Actor12.animate(eat)
                 Actor13.animate(eat)
@@ -428,7 +432,7 @@ SceneStart()
             EndIf
             
             
-            //pendant le souper
+            // Content needed here...
             
             passTime(2, 4)
             
@@ -454,27 +458,27 @@ SceneStart()
             Actor10.modifyActorVar(rk_discipleattraction, 1)
             Actor10.hide()
                 
-            If TicketSold == 11
+            If TicketSoldSp <= 11
                 Actor11.hide()
                 
-            ElseIf TicketSold == 12
+            ElseIf TicketSoldSp <= 12
                 Actor11.hide()
                 Actor12.hide()
                 
-            ElseIf TicketSold == 13
+            ElseIf TicketSoldSp <= 13
                 Actor11.hide()
                 Actor12.hide()
                 Actor13(Happy)::"Bye guru <Player.name>, I really like your speech!"
                 Actor13.modifyActorVar(rk_discipleattraction, 2)
                 Actor13.hide()
                 
-            ElseIf TicketSold == 14
+            ElseIf TicketSoldSp <= 14
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
                 Actor14.hide()
                 
-            ElseIf TicketSold == 15
+            ElseIf TicketSoldSp <= 15
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -483,7 +487,7 @@ SceneStart()
                 Actor15.modifyActorVar(rk_discipleattraction, 3)
                 Actor15.hide()
                 
-            ElseIf TicketSold == 16
+            ElseIf TicketSoldSp <= 16
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -491,7 +495,7 @@ SceneStart()
                 Actor15.hide()
                 Actor16.hide()
 
-            ElseIf TicketSold == 17
+            ElseIf TicketSoldSp <= 17
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -500,7 +504,7 @@ SceneStart()
                 Actor16.hide()
                 Actor17.hide()
 
-            ElseIf TicketSold == 18
+            ElseIf TicketSoldSp <= 18
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -512,7 +516,7 @@ SceneStart()
                 Actor17.hide()
                 Actor18.hide()
 
-            ElseIf TicketSold == 19
+            ElseIf TicketSoldSp <= 19
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -523,7 +527,7 @@ SceneStart()
                 Actor18.hide()
                 Actor19.hide()
 
-            ElseIf TicketSold == 20
+            ElseIf TicketSoldSp <= 20
                 Actor11.hide()
                 Actor12.hide()
                 Actor13.hide()
@@ -539,7 +543,7 @@ SceneStart()
                 
             EndIf
             
-            PersonCM = Random(0, TicketSold)
+            PersonCM = Random(0, TicketSoldSp)
             CMSold = Random(0, PersonCM)
             PersonBuy = CMSold * 10
             PersonBuyCMLoc = PersonBuy.convertToLocalCurrency()
@@ -551,9 +555,9 @@ SceneStart()
             DrinkCost = 2
             DrinkCostLoc = DrinkCost.convertToLocalCurrency()
             
-            DessertSale =  Random(0, TicketSold)
-            CandySale = Random(0, TicketSold)
-            DrinkSale = Random(0, TicketSold)
+            DessertSale =  Random(0, TicketSoldSp)
+            CandySale = Random(0, TicketSoldSp)
+            DrinkSale = Random(0, TicketSoldSp)
             bonusSaleCount = DessertSale + CandySale + DrinkSale
 
             DessertSaleAmount = DessertSale * DessertCost
@@ -582,13 +586,15 @@ SceneStart()
             mood += Random(3, 5)
         
             "You decide to clean the place a bit..."
-            Player.dress
-            Player.show
+            Player.dress()
+            Player.show()
             Player.animate(sweep)
+            Player.setActorVar(rk_Spag_TicketSold, 0)
         
             RestoOwner = generatePersonTemporary()
-            RestoOwner.dress
-            RestoOwner.show
+            RestoOwner.dress()
+            RestoOwner.show()
+            RestoOwner.moveToPersonStand(Player, 50)
             "After few minutes, the restaurant owner appear in front of me and said..."
             RestoOwner(Curious)::"So! Has your event ended? Did you make your choice on the cost of my reservation? Pay with sex or in cash?"
             Player(Attentive)::"Yeah, my event ended few minutes ago..."
@@ -615,7 +621,6 @@ SceneStart()
                 RestoOwner(Happy)::"Good, you can leave I will do the rest of the clean up... Have a nice day!"
             
             EndIf
-        
         
         EndIf
     

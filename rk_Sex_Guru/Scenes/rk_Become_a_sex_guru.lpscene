@@ -25,7 +25,7 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
 
-    If rkAreASexGuru <= 0
+    If SexGuruDisciple < 10 && SexGuruReputation < 50 && SGIllumination < 50 && SexGuruGospels < 10
 
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
         If SexGuruReputation >= 49
@@ -227,10 +227,6 @@ SceneStart()
         Player.setActorVar(rk_SG_rkAreASexGuru, 1)
         ElfyMana.makeInterested(Player)
         ElfyMana.hide()
-    
-    Else
-    
-        "Something is missing to becoming a sex guru! Do you have enough disciples or gospels, your reputation is it higher enough,..."
         
     EndIf
 

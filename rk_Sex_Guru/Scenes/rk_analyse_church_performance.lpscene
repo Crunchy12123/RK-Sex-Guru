@@ -130,9 +130,9 @@ OTHER: none
     
         TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
 
-        ChechupC = Buffy_Pine.getActorVar(tag_SGDisciple)
+        ChechupBuffy = Buffy_Pine.getActorVar(tag_SGDisciple)
 
-        If ChechupC <= 0
+        If ChechupBuffy <= 0
 
             Buffy_Pine = generatePersonTemporary(rk_ModelF_Buffy_Pine)
             SGId = Buffy_Pine.getID()
@@ -156,12 +156,6 @@ OTHER: none
         Else
     
             Buffy_Pine = getPerson(true)
-            If Buffy_Pine:discipleattraction < 20
-    
-                Buffy_Pine.modifyActorVar(rk_discipleattraction, 30)
-        
-            EndIf
-    
             Buffy_Pine.show()
             Buffy_Pine.dress()
             Buffy_Pine.animate(socialize)
@@ -291,7 +285,32 @@ OTHER: none
                 Else
                     Buffy_Pine(Flirty)::"Our community has immense purchasing power. Most suppliers would do anything to work with us." 
                 Endif
+                
+                Buffy_Pine(Flirty)::"Ok, that's it for now, my master!"
+                Buffy_Pine(Flirty)::"Would you like to check my sex performance before leaving?"
+                "What should I do?"
+                0:: "Good idea"
+                99:: "Maybe later"
     
+                If 0
+    
+                    Buffy_Pine.show()
+                    Buffy_Pine.strip()
+                    Player.strip()
+                            
+                    Sex(Buffy_Pine, Player)
+                    perversion += 0.35
+                    Buffy_Pine:attractiontoplayer += Random(0, 1)
+                    Buffy_Pine:rapportwithplayer += Random(0, 1)
+                        
+                    passTime(0.15, 0.25)
+                            
+                    Buffy_Pine(Serene):: "That was amazing!"
+        
+                    Buffy_Pine.dress()
+                    NGHadSex = true
+                Endif
+                
                 passTime(1, 2)
         
             Endif

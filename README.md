@@ -3,31 +3,28 @@
 <p>https://github.com/vinfamy/LifePlay</p>
 <br>
 <h3>rk_Sex_Guru :</h3>
-<p>Version: 0.0.1 --- BETA AND BUGGY</p>
-<p>The mod is not completely done but is working!</p>
-<p>This version is not finished and contains some bugs, so try it on a new game.</p>
+<p>Version: 0.0.1  --- <strong>For testing purpose - Still Buggy</strong></p>
 <br>
-<p>- Contain 54 scenes</p>
-<p>- 44 new characters</p>
+<p>- Contain 51 scenes</p>
+<p>- 46 new characters</p>
 <p>- 4 popup scenes</p>
 <br>
 <h3>Little resume:</h3>
 <p>- Get a SRS Licence for selling inside churches</p>
-<p>- Meditation</p>
+<p>- Do meditation</p>
 <p>- Recrute disciples</p>
 <p>- Receive donations</p>
 <p>- Promote your religion</p>
 <p>- Talk about your religion</p>
-<p>- Manage community</p>
+<p>- Manage your religious community</p>
 <p>- Manage disciples/employees</p>
 <p>- Community website</p>
 <p>- Produce foods and items</p>
-<p>- Eat/sell meals that you produced</p>
-<p>- Cheats/reset</p>
 <p>- Write Gospels</p>
-<p>- Produce Videos</p>
-<p>- Produce Photos</p>
+<p>- Produce X Videos</p>
+<p>- Produce X Photos</p>
 <p>- 5 new Drinks, 8 new frozen desserts</p>
+<p>- Eat/sell what you have produced</p>
 <p>- Sell temple calendars</p>
 <p>- Sell temple XXX magazines</p>
 <p>- Sex juice collector</p>
@@ -37,6 +34,7 @@
 <p>- Temple pantry</p>
 <p>- Temple refrigerator</p>
 <p>- Transfer foods from your home to temple, vice-versa</p>
+<p>- Cheats/reset</p>
 <br>
 <h3>Disciple title:</h3>
 <p>- Disciples</p>
@@ -57,7 +55,7 @@ And a lots more to come!
 <ul><li>rk_ShopAddons - for selling foods</li>
 <li>rk_MoneyMaker - for cash deposit</li></ul>
 <br>
-Optional: rk_Weed_biz - Next release...
+Optional: rk_Weed_biz - for Bitcoin.
 <br>
 <hr>
 <br>

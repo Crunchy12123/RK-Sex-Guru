@@ -71,7 +71,7 @@ SceneStart()
     PSetsSum = Player.getActorVar(rk_SG_PSetsSum)
     InterestPSets = Player.getActorVar(rk_SG_InterestPSets)
     InterestVSets = Player.getActorVar(rk_SG_InterestVSets)
-    TotalPostsMade = GPostCount + VSetsSum + PSetsSum 
+    TotalPostsMade = GPostCount + VSetsSum + PSetsSum
     TotalInterestPosts = intGPost + InterestVSets + InterestPSets
     
     If TotalPostsMade > TotalInterestPosts
@@ -84,49 +84,49 @@ SceneStart()
         
     EndIf
     
-    txtSolo = "not satisfied, you need at least 2 more videos."
+    txtSolo = "not satisfied, you need more videos."
     If SGdeltaSolo < 0 
         txtSolo = "satisfied."
     elseIf SGdeltaSolo <= -5
         txtSolo = "over saturated."
     EndIf
     
-    txtAmateur = "not satisfied, you need at least 2 more videos."
+    txtAmateur = "not satisfied, you need videos."
     If SGdeltaAmateur < 0 
         txtAmateur = "satisfied."
     elseIf SGdeltaAmateur <= -5
         txtAmateur = "over saturated."
     EndIf
     
-    txtGay = "not satisfied, you need at least 2 more videos."
+    txtGay = "not satisfied, you need more videos."
     If SGdeltaGay < 0 
         txtGay = "satisfied."
     elseIf SGdeltaGay <= -5
         txtGay = "over saturated."
     EndIf
     
-    txtLesbian = "not satisfied, you need at least 2 more videos."
+    txtLesbian = "not satisfied, you need more videos."
     If SGdeltaLesbian < 0 
         txtLesbian = "satisfied."
     elseIf SGdeltaLesbian <= -5
         txtLesbian = "over saturated."
     EndIf
     
-    txtThreesome = "not satisfied, you need at least 2 more videos."
+    txtThreesome = "not satisfied, you need more videos."
     If SGdeltaThreesome < 0 
         txtThreesome = "satisfied."
     elseIf SGdeltaThreesome <= -5
         txtThreesome = "over saturated."
     EndIf
     
-    txtRevGangBang = "not satisfied, you need at least 2 more videos."
+    txtRevGangBang = "not satisfied, you need more videos."
     If SGdeltaRevGangBang < 0 
         txtRevGangBang = "satisfied."
     elseIf SGdeltaRevGangBang <= -5
         txtRevGangBang = "over saturated."
     EndIf
     
-    txtGangBang = "not satisfied, you need at least 2 more videos."
+    txtGangBang = "not satisfied, you need more videos."
     If SGdeltaGangBang < 0 
         txtGangBang = "satisfied."
     elseIf SGdeltaGangBang <= -5
@@ -135,57 +135,67 @@ SceneStart()
     
     // oooooooooooooooooooooo
     
-    txtSolo = "not satisfied, you need at least 20 more photos."
+    txtSoloP = "not satisfied, you need more photos."
     If SGdeltaSoloP < 0 
-        txtSolo = "satisfied."
+        txtSoloP = "satisfied."
     elseIf SGdeltaSoloP <= -50
-        txtSolo = "over saturated."
+        txtSoloP = "over saturated."
     EndIf
     
-    txtAmateur = "not satisfied, you need at least 20 more photos."
+    txtAmateurP = "not satisfied, you need more photos."
     If SGdeltaAmateurP < 0 
-        txtAmateur = "satisfied."
+        txtAmateurP = "satisfied."
     elseIf SGdeltaAmateurP <= -50
-        txtAmateur = "over saturated."
+        txtAmateurP = "over saturated."
     EndIf
     
-    txtGay = "not satisfied, you need at least 20 more photos."
+    txtGayP = "not satisfied, you need more photos."
     If SGdeltaGayP < 0 
-        txtGay = "satisfied."
+        txtGayP = "satisfied."
     elseIf SGdeltaGayP <= -50
-        txtGay = "over saturated."
+        txtGayP = "over saturated."
     EndIf
     
-    txtLesbian = "not satisfied, you need at least 20 more photos."
+    txtLesbianP = "not satisfied, you need more photos."
     If SGdeltaLesbianP < 0 
-        txtLesbian = "satisfied."
+        txtLesbianP = "satisfied."
     elseIf SGdeltaLesbianP <= -50
-        txtLesbian = "over saturated."
+        txtLesbianP = "over saturated."
     EndIf
     
-    txtThreesome = "not satisfied, you need at least 20 more photos."
+    txtThreesomeP = "not satisfied, you need more photos."
     If SGdeltaThreesomeP < 0 
-        txtThreesome = "satisfied."
+        txtThreesomeP = "satisfied."
     elseIf SGdeltaThreesomeP <= -50
-        txtThreesome = "over saturated."
+        txtThreesomeP = "over saturated."
     EndIf
     
-    txtRevGangBang = "not satisfied, you need at least 20 more photos."
+    txtRevGangBangP = "not satisfied, you need more photos."
     If SGdeltaRevGangBangP < 0 
-        txtRevGangBang = "satisfied."
+        txtRevGangBangP = "satisfied."
     elseIf SGdeltaRevGangBangP <= -50
-        txtRevGangBang = "over saturated."
+        txtRevGangBangP = "over saturated."
     EndIf
     
-    txtGangBang = "not satisfied, you need at least 20 more photos."
+    txtGangBangP = "not satisfied, you need more photos."
     If SGdeltaGangBangP < 0 
-        txtGangBang = "satisfied."
+        txtGangBangP = "satisfied."
     elseIf SGdeltaGangBangP <= -50
-        txtGangBang = "over saturated."
+        txtGangBangP = "over saturated."
     EndIf
 
     0:: "You have published a total of <GPostCount> gospel(s)"
     0:: "Actual gospels interest on your website: <intGPost>"
+    0:: "Interest in solo shootings is <txtSoloP>"
+    0:: "Interest in amateur shootings is <txtAmateurP>"
+    0:: "Interest in lesbian shootings is <txtLesbianP>"
+    0:: "Interest in threesome shootings is <txtThreesomeP>"
+    0:: "Interest in gang bang shootings is <txtGangBangP>"
+    0:: "Interest in reverse gang bang shootings is <txtRevGangBangP>"
+    0:: "Interest in gay shootings is <txtGayP>"
+    0:: "Click to continue..."
+    
+    "And for videos..."
     0:: "Interest in solo shootings is <txtSolo>"
     0:: "Interest in amateur shootings is <txtAmateur>"
     0:: "Interest in lesbian shootings is <txtLesbian>"

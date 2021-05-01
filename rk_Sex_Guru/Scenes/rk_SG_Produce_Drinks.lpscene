@@ -71,11 +71,10 @@ SceneStart()
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     setBackground3D(Modules/vin_Base/World/beverages___vin01.lpworld)
     
-    ChechupC = Sen_Suale.getActorVar(tag_SGDisciple)
+    ChechupCSuale = Sen_Suale.getActorVar(tag_SGDisciple)
 
-    If ChechupC <= 0
+    If ChechupCSuale <= 0 && !Sen_Suale.isContactExchanged()
 
-        Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
         SGId = Sen_Suale.getID()
         Sen_Suale.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -85,9 +84,11 @@ SceneStart()
         Sen_Suale.setActorVar(rk_SG_DiscipleSalary, 0)
         Sen_Suale.makePermanent()
         exchangeContact(Sen_Suale)
+        Sen_Suale.saveAndDelete()
+        
     EndIf
         
-    Sen_Suale = getPerson(true)
+    Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
     Sen_Suale.dressExcept(Outerwear, Headwear, Eyewear)
     Sen_Suale.show()
     Sen_Suale(Happy)::"Hi master, really happy to see you!"
@@ -95,10 +96,12 @@ SceneStart()
     Sen_Suale:perversion += 15
     Sen_Suale:arousal += 10
 
-    WhileProducing = true
-    While WhileProducing
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
-        If TempleSize == 2 && TotalGoodsPInStock >= 9900
+            Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
+            Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
+        
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
@@ -206,11 +209,11 @@ SceneStart()
                    Sen_Suale(Happy):: "To produce 40 Sex zombie cocktails, you need 10 juices, 10 alcohols, 10 bottles of Sperm juices and 10 bottles of Pussy juices"
                 EndIf
             Else
-                WhileProducing = false
+            
+                followUp(rk_Manage_Your_Religion)
             EndIf
         EndIf
-        
-    EndWhile
-    Sen_Suale.hide()
+
+        Sen_Suale.hide()
 
 SceneEnd()

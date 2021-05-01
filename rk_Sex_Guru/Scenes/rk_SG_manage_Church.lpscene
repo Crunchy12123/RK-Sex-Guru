@@ -19,6 +19,12 @@ SceneStart()
         endDate()
     EndIf
     
+    If rkAreASexGuru < 1 && StartChurchCommerce < 1
+        "You need to be guru first, and after, buy a SRS license inside any churches, before being able to manage a religious business..."
+        SceneEnd()
+        
+    EndIf
+    
     manageChurchB = true
     While manageChurchB
         "What should I do?"

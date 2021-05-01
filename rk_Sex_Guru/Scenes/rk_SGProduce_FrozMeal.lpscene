@@ -72,11 +72,10 @@ SceneStart()
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
     setBackground3D(Modules/vin_Base/World/ice_cream___vin01.lpworld)
     
-    ChechupC = Masha_Hugg.getActorVar(tag_SGDisciple)
+    ChechupCMasha = Masha_Hugg.getActorVar(tag_SGDisciple)
 
-    If ChechupC <= 0
-        
-        Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
+    If ChechupCMasha <= 0 && !Masha_Hugg.isContactExchanged()
+
         SGId = Masha_Hugg.getID()
         Masha_Hugg.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -86,20 +85,23 @@ SceneStart()
         Masha_Hugg.setActorVar(rk_SG_DiscipleSalary, 0)
         Masha_Hugg.makePermanent()
         exchangeContact(Masha_Hugg)
+        Masha_Hugg.saveAndDelete()
     
     EndIf
     
-    Masha_Hugg = getPerson(true)
+    Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
     Masha_Hugg.dressExcept(Outerwear, Headwear, Eyewear)
     Masha_Hugg.show()
     Masha_Hugg:rapportwithplayer += Random(5, 10)
     Masha_Hugg:perversion += 15
     Masha_Hugg:arousal += 10
 
-    WhileProducing = true
-    While WhileProducing
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
-        If TempleSize == 2 && TotalGoodsPInStock >= 9900
+            Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
+            Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
+        
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
@@ -229,14 +231,14 @@ SceneStart()
                     Masha_Hugg(Happy)::"To produce 6 Protein MilX Shakes, you need 2 Sperm Juice, 2 Pussy Juice and 2 Milk Shake"
                 EndIf
 
-            Else
-                WhileProducing = false
+            ElseIf 99
+            
+                followUp(rk_Manage_Your_Religion)
+                
             EndIf
             
         EndIf
-
-    EndWhile
     
-    Masha_Hugg.hide()
+        Masha_Hugg.hide()
     
 SceneEnd()

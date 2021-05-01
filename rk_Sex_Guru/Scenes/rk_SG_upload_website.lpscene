@@ -21,40 +21,10 @@ OTHER: none
         Churchbrand = Player.getActorVar(rk_Churchbrand)
         StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
         discipleAttraction = Actor.getActorVar(rk_discipleAttraction)
-        
-        // Calculate interest in different video set types
-        SGintSolo = Player.getActorVar(rk_SG_InterestSoloSets)
-        SGintGay = Player.getActorVar(rk_SG_InterestGaySets)
-        SGintAmateur = Player.getActorVar(rk_SG_InterestAmateurSets)
-        SGintLesbian = Player.getActorVar(rk_SG_InterestLesbianSets)
-        SGintGangBang = Player.getActorVar(rk_SG_InterestGangBangSets)
-        SGintRevGangBang = Player.getActorVar(rk_SG_InterestRevGangBangSets)
-        SGintThreesome = Player.getActorVar(rk_SG_InterestThreesomeSets)
-    
-        SGsumSolo = Player.getActorVar(rk_SG_SoloShootingsSum)
-        SGsumGay = Player.getActorVar(rk_SG_GayShootingsSum)
-        SGsumLesbian = Player.getActorVar(rk_SG_LesbianShootingsSum)
-        SGsumAmateur = Player.getActorVar(rk_SG_AmateurShootingsSum)
-        SGsumGangBang = Player.getActorVar(rk_SG_GangBangShootingsSum)
-        SGsumRevGangBang = Player.getActorVar(rk_SG_RevGangBangShootingsSum)
-        SGsumThreesome = Player.getActorVar(rk_SG_ThreesomeShootingsSum)
-    
-        // Calculate interest in different photo set types
-        SGintSoloP = Player.getActorVar(rk_SG_InterestSoloSetsP)
-        SGintGayP = Player.getActorVar(rk_SG_InterestGaySetsP)
-        SGintAmateurP = Player.getActorVar(rk_SG_InterestAmateurSetsP)
-        SGintLesbianP = Player.getActorVar(rk_SG_InterestLesbianSetsP)
-        SGintGangBangP = Player.getActorVar(rk_SG_InterestGangBangSetsP)
-        SGintRevGangBangP = Player.getActorVar(rk_SG_InterestRevGangBangSetsP)
-        SGintThreesomeP = Player.getActorVar(rk_SG_InterestThreesomeSetsP)
-    
-        SGsumSoloP = Player.getActorVar(rk_SG_SoloShootingsSumP)
-        SGsumGayP = Player.getActorVar(rk_SG_GayShootingsSumP)
-        SGsumLesbianP = Player.getActorVar(rk_SG_LesbianShootingsSumP)
-        SGsumAmateurP = Player.getActorVar(rk_SG_AmateurShootingsSumP)
-        SGsumGangBangP = Player.getActorVar(rk_SG_GangBangShootingsSumP)
-        SGsumRevGangBangP = Player.getActorVar(rk_SG_RevGangBangShootingsSumP)
-        SGsumThreesomeP = Player.getActorVar(rk_SG_ThreesomeShootingsSumP)
+        VSetsSum = Player.getActorVar(rk_SG_VSetsSum)
+        PSetsSum = Player.getActorVar(rk_SG_PSetsSum)
+        InterestPSets = Player.getActorVar(rk_SG_InterestPSets)
+        InterestVSets = Player.getActorVar(rk_SG_InterestVSets)
 
         If SGOpenedTempleWebsite >= 1
             
@@ -139,7 +109,7 @@ OTHER: none
                         Actor.setActorVar(rk_SG_PhotoValue, actorShootVal)
                     
                         // Reset pending
-                        Actor.setActorVar(rk_SG_PhotoCountPending,0)
+                        Actor.setActorVar(rk_SG_PhotoCountPending, 0)
                         Actor.setActorVar(rk_SG_PhotoValuePending, 0)
                     
                         secondScreenIfHidden(Actor)
@@ -192,7 +162,7 @@ OTHER: none
                         Actor.setActorVar(rk_SG_VideosValue, actorShootVal)
                     
                         // Reset pending
-                        Actor.setActorVar(rk_SG_VideoCountPending,0)
+                        Actor.setActorVar(rk_SG_VideoCountPending, 0)
                         Actor.setActorVar(rk_SG_VideosValuePending, 0)
                     
                         secondScreenIfHidden(Actor)

@@ -6,7 +6,7 @@ MINUTES: 1 - 1
 TIMEOUT_MINUTES: 100
 ALSO_TIMEOUT:
 EFFECTS: 
-CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE), rkOpenedChurchLicence < 1 (STAT_COMPARE)
+CONDITIONS: rkAreASexGuru > 0 (STAT_COMPARE), rkOpenedChurchLicence < 1 (STAT_COMPARE)
 MOVE_FIRST: false
 SCENE_ALWAYS: rk_take_over_Church
 ANIMATION: call

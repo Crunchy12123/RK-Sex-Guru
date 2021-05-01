@@ -6,103 +6,110 @@ OTHER: none
 
 SceneStart()
     
-    SoloShootingsInStockP = Player.getActorVar(rk_SG_SoloShootingsInStockP)
-    GayShootingsInStockP = Player.getActorVar(rk_SG_GayShootingsInStockP)
-    LesbianShootingsInStockP = Player.getActorVar(rk_SG_LesbianShootingsInStockP)
-    AmateurShootingsInStockP = Player.getActorVar(rk_SG_AmateurShootingsInStockP)
-    GangBangShootingsInStockP = Player.getActorVar(rk_SG_GangBangShootingsInStockP)
-    RevGangBangShootingsInStockP = Player.getActorVar(rk_SG_RevGangBangShootingsInStockP)
-    ThreesomeShootingsInStockP = Player.getActorVar(rk_SG_ThreesomeShootingsInStockP)
+        SoloShootingsInStockP = Player.getActorVar(rk_SG_SoloShootingsInStockP)
+        GayShootingsInStockP = Player.getActorVar(rk_SG_GayShootingsInStockP)
+        LesbianShootingsInStockP = Player.getActorVar(rk_SG_LesbianShootingsInStockP)
+        AmateurShootingsInStockP = Player.getActorVar(rk_SG_AmateurShootingsInStockP)
+        GangBangShootingsInStockP = Player.getActorVar(rk_SG_GangBangShootingsInStockP)
+        RevGangBangShootingsInStockP = Player.getActorVar(rk_SG_RevGangBangShootingsInStockP)
+        ThreesomeShootingsInStockP = Player.getActorVar(rk_SG_ThreesomeShootingsInStockP)
     
-    // Calendars InStock
-    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
-    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
-    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
-    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
-    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
-    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
-    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+        // Calendars InStock
+        SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+        AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+        ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+        GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+        RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+        LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+        GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
     
-    TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
+        TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
     
-    //XXXmag InStock
-    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
-    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
-    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
-    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
-    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
-    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
-    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
-    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+        //XXXmag InStock
+        SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+        AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+        ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+        GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+        RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+        LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+        GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+        MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
     
-    TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
+        TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
     
-    //Products InStock
-    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
-    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
-    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
-    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
-    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
-    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
-    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
-    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+        //Products InStock
+        Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+        Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+        Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+        Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+        Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+        Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+        Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+        Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
     
-    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+        SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
     
-    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
-    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
-    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
-    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
-    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+        Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+        Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+        Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+        SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+        Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
     
-    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+        SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
     
-    //VidX  InStock
-    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
-    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
-    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
-    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
-    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
-    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
-    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+        //VidX  InStock
+        SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+        AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+        ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+        GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+        RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+        LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+        GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
     
-    TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
+        TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
     
-    TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
+        TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
     
-    // Go to the Temple if any
-    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-    setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
+        // Go to the Temple if any
+        TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+        setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
     
-    ChechupC = Erny_Quert.getActorVar(tag_SGDisciple)
+        ChechupErny_Quert = Erny_Quert.getActorVar(tag_SGDisciple)
 
-    If ChechupC <= 0
+        If ChechupErny_Quert <= 0 && !Erny_Quert.isContactExchanged()
 
-        Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
-        SGId = Erny_Quert.getID()
-        Erny_Quert.makeInterested(Player)
-        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-        Erny_Quert.setActorVar(tag_SGDisciple, 1)
-        Erny_Quert.modifyActorVar(rk_discipleAttraction, 15)
-        Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
-        Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
-        Erny_Quert.makePermanent()
-        exchangeContact(Erny_Quert)
-    
-    EndIf
-    
-    Erny_Quert = getPerson(true)
-    Erny_Quert.dressExcept(Outerwear, Headwear, Eyewear)
-    Erny_Quert.show()
-    Erny_Quert(Happy)::"Hi my master, happy to see you!"
-    Erny_Quert:rapportwithplayer += Random(5, 10)
-    Erny_Quert:perversion += 15
-    Erny_Quert:arousal += 10
-    
-    WhileProducing = true
-    While WhileProducing
+            SGId = Erny_Quert.getID()
+            Erny_Quert.makeInterested(Player)
+            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+            Erny_Quert.setActorVar(tag_SGDisciple, 1)
+            Erny_Quert.modifyActorVar(rk_discipleAttraction, 15)
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+            Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
+            Erny_Quert.makePermanent()
+            exchangeContact(Erny_Quert)
+            Erny_Quert.saveAndDelete()
         
-        If TempleSize == 2 && TotalGoodsPInStock >= 9900
+        Else
+    
+            Erny_Quert:rapportwithplayer += Random(5, 10)
+            Erny_Quert:perversion += 15
+            Erny_Quert:arousal += 10
+    
+        EndIf
+        
+        Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
+    
+        Erny_Quert.dressExcept(Outerwear, Headwear, Eyewear)
+        Erny_Quert.show()
+        Erny_Quert.moveToPersonStand(Player, 50)
+        Erny_Quert(Happy)::"Hi my master, happy to see you!"
+        
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
+        
+            Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
+            Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
+        
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
@@ -129,20 +136,22 @@ SceneStart()
     
         Else
     
-            "To produce calendars you need at least 1 set of photos (20 pictures) of your desired type of shootings and you must add certain items if necessary!"
-            PricePrinting = Random(0.05, 0.15)*20
+            Erny_Quert(Serene)::"To produce calendars you need at least 1 set of photos (20 pictures) of your desired type of shootings and you must add certain items if necessary!"
+            PriceTransform = Random(0.05, 0.15)*20
+            PricePrinting = PriceTransform * 6
             PricePrintingLoc = PricePrinting.convertToLocalCurrency()
+            Erny_Quert(Serene)::"The price per calendars is: <PricePrintingLoc>"
             TotalCostPrinting = PricePrinting * 100
-            TotalCostPrintingLoc = TotalCostPrintingLoc.convertToLocalCurrency()
-            "The price for printing 100 calendars is: <TotalCostPrintingLoc>"
-            "What type of shoot do you want to show in your calendar?"
-            0:: SoloShootingsInStockP > 20 ::"Print me some Solo Shootings calendars"
-            1:: AmateurShootingsInStockP > 20 ::"Print me some Amateur Shootings calendars"
-            2:: ThreesomeShootingsInStockP > 20 ::"Print me some Threesome Shootings calendars"
-            3:: GangBangShootingsInStockP > 20 ::"Print me some GangBang Shootings calendars"
-            4:: RevGangBangShootingsInStockP > 20 ::"Print me some RevGangBang Shootings calendars"
-            5:: LesbianShootingsInStockP > 20 ::"Print me some Lesbian Shootings calendars"
-            6:: GayShootingsInStockP > 20 ::"Print me some Gay Shootings calendars"
+            TotalCostPrintingLoc = TotalCostPrinting.convertToLocalCurrency()
+            Erny_Quert(Serene)::"The price for printing 100 calendars is: <TotalCostPrintingLoc>"
+            Erny_Quert(Serene)::"What type of shoot do you want to show in our calendar?"
+            0:: SoloShootingsInStockP > 19 ::"Print me some Solo Shootings calendars"
+            1:: AmateurShootingsInStockP > 19 ::"Print me some Amateur Shootings calendars"
+            2:: ThreesomeShootingsInStockP > 19 ::"Print me some Threesome Shootings calendars"
+            3:: GangBangShootingsInStockP > 19 ::"Print me some GangBang Shootings calendars"
+            4:: RevGangBangShootingsInStockP > 19 ::"Print me some RevGangBang Shootings calendars"
+            5:: LesbianShootingsInStockP > 19 ::"Print me some Lesbian Shootings calendars"
+            6:: GayShootingsInStockP > 19 ::"Print me some Gay Shootings calendars"
             99:: "Go back!"
     
             If 0
@@ -200,14 +209,15 @@ SceneStart()
                 Player.modifyActorVar(rk_SG_GayShootings_Calendars_InStock, 100)
                 Player:energy -= 5
                 money -= TotalCostPrinting
-                
+
             Else
-                WhileProducing = false
-            EndIf
             
+                followUp(rk_Manage_Your_Religion)
+            
+            EndIf
+
         EndIf
-        
-    EndWhile
-    Erny_Quert.hide()
+    
+        Erny_Quert.hide()
     
 SceneEnd()
