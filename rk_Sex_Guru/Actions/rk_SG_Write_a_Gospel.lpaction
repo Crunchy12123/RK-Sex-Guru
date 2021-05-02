@@ -1,0 +1,12 @@
+ACTION_UNIQUEID: rk_SG_Write_a_Gospel
+ACTION_NAME: Write a gospel
+WHERE: place_of_worship, prison, home
+WHEN: 0 - 24
+MINUTES: 30 - 60 
+TIMEOUT_MINUTES: 0
+ALSO_TIMEOUT: 
+EFFECTS: 
+CONDITIONS: rkOpenedSexGuru > 0 (STAT_COMPARE)
+MOVE_FIRST: true
+SCENE_ALWAYS: rk_SG_Write_a_Gospel
+ANIMATION:
