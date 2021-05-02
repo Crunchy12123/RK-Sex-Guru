@@ -135,7 +135,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 5
+            If TotalRepAtt >= 5
                
                FindDisciple = 1
                
@@ -196,7 +196,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 5
+            If TotalRepAtt >= 5
                
                FindDisciple = 1
                
@@ -257,7 +257,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 4
+            If TotalRepAtt >= 4
                
                FindDisciple = 1
                
@@ -318,7 +318,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
             
-            If TotalRepAtt > 3
+            If TotalRepAtt >= 3
                
                FindDisciple = 1
                
@@ -379,7 +379,7 @@ SceneStart()
             
             TotalRepAtt = SGChanceRep + SGChanceAtt
 
-            If TotalRepAtt > 5
+            If TotalRepAtt >= 5
             
                 SGId = Guest5.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -400,7 +400,7 @@ SceneStart()
                 Guest3:rapportwithplayer += Random(5, 10)
                 Guest3.makeInterested(Player)
                 
-            ElseIf TotalRepAtt > 4
+            ElseIf TotalRepAtt >= 4
             
                 SGId = Guest1.getID()
                 Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)

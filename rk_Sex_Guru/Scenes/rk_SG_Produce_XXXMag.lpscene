@@ -75,7 +75,7 @@ SceneStart()
     
     ChechupCindy = Cindy_Bound.getActorVar(tag_SGDisciple)
 
-    If ChechupCindy <= 0 && !Cindy_Bound.isContactExchanged()
+    If !Cindy_Bound.isContactExchanged()
 
         SGId = Cindy_Bound.getID()
         Cindy_Bound.makeInterested(Player)
@@ -86,7 +86,6 @@ SceneStart()
         Cindy_Bound.setActorVar(rk_SG_DiscipleSalary, 0)
         Cindy_Bound.makePermanent()
         exchangeContact(Cindy_Bound)
-        Cindy_Bound.saveAndDelete()
         
     EndIf
     

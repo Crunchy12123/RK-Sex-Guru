@@ -84,7 +84,6 @@ SceneStart()
         Sen_Suale.setActorVar(rk_SG_DiscipleSalary, 0)
         Sen_Suale.makePermanent()
         exchangeContact(Sen_Suale)
-        Sen_Suale.saveAndDelete()
         
     EndIf
         

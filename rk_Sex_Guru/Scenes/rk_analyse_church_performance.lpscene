@@ -132,9 +132,8 @@ OTHER: none
 
         ChechupBuffy = Buffy_Pine.getActorVar(tag_SGDisciple)
 
-        If ChechupBuffy <= 0
+        If ChechupBuffy <= 0 && !Buffy_Pine.isContactExchanged()
 
-            Buffy_Pine = generatePersonTemporary(rk_ModelF_Buffy_Pine)
             SGId = Buffy_Pine.getID()
             Buffy_Pine.makeInterested(Player)
             Buffy_Pine.setActorVar(rk_SG_DiscipleSalary, 0)
@@ -155,7 +154,7 @@ OTHER: none
             
         Else
     
-            Buffy_Pine = getPerson(true)
+            Buffy_Pine = generatePersonTemporary(rk_ModelF_Buffy_Pine)
             Buffy_Pine.show()
             Buffy_Pine.dress()
             Buffy_Pine.animate(socialize)

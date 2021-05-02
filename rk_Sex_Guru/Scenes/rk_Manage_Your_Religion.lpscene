@@ -29,10 +29,7 @@ SceneStart()
         moveTo(Home)
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
-    
-    lookingInventories = true
-    While lookingInventories
-    
+
         "What should I do?"
         1::"Write a gospel"
         2::"Meditate"
@@ -350,7 +347,5 @@ SceneStart()
             lookingInventories = false
     
         EndIf
-        
-    EndWhile
 
 SceneEnd()

@@ -57,7 +57,7 @@ SceneStart()
         Player.setActorVar(rk_Spag_TicketSold, TicketSold)
         passTime(2, 4)
         
-        energy -= Random(3, 8)
+        energy -= Random(3, 5)
         Player.show()
         Player.animate(call)
         "So I made a few calls and after a few minutes I found a good restaurant nearby, I immediately made a reservation for <TicketSold> persons."
@@ -66,9 +66,9 @@ SceneStart()
         
         "The total cost for this event: <PrepareTotalCost>. You will earn <EarningTick> or more if someone just wants to attend and cancels their meal."
         "The reservation cost will be apply if you don't sleep with the owner!"
-        "Do you still want to organize this event"
-        0::money > PersonsTotalCost ::"Yes"
-        1::"No"
+        "Do you still want to organize this event?"
+        0:: money > PersonsTotalCost ::"Yes"
+        1:: "No"
 
         If 0
 
@@ -101,7 +101,7 @@ SceneStart()
             Actor7.dress()
             Actor7.show(7)
             
-            "Few more...!"
+            "Few more arrived...!"
             
             Actor8 = generatePersonTemporary()
             Actor8.dress()
@@ -139,7 +139,7 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                "3 more person just arrived!"
             
                 
             ElseIf TicketSoldSp <= 14
@@ -156,8 +156,10 @@ SceneStart()
                 Actor14.dress()
                 Actor14.show(14)
             
-                "..."
-            
+                Actor14(Happy)::"Hi, I'm <Actor14.name>, it's an honnor to see you!"
+                Actor14.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor14.modifyActorVar(rk_discipleattraction, 15)
                 
             ElseIf TicketSoldSp <= 15
                 Actor11 = generatePersonTemporary()
@@ -170,7 +172,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -190,7 +195,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -213,7 +221,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -242,7 +253,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-               "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -274,7 +288,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -309,7 +326,10 @@ SceneStart()
                 Actor13.dress()
                 Actor13.show(13)
             
-                "..."
+                Actor13(Happy)::"Hi, I'm <Actor13.name>, it's an honnor to see you!"
+                Actor13.moveToPersonStand(Player, 50)
+                Player(Happy)::"Good to see you too, I wish you will like my 2 new gospels....!"
+                Actor13.modifyActorVar(rk_discipleattraction, 15)
             
                 Actor14 = generatePersonTemporary()
                 Actor14.dress()
@@ -336,12 +356,15 @@ SceneStart()
                 Actor20.dress()
                 Actor20.show(20)
             
-                "..."
+                Player(Happy)::"Wow, all the guests have come, the restaurant is packed ..."
             
             EndIf
             passTime(0.15, 0.5)
-            "Everyone is now here and ready to eat and listen to my speech!"
+            "Everyone is now here, ready to eat and listen to my speech!"
             "People are all served, so I can start my speech"
+            
+            Player.show()
+            Player.animate(socialize)
             
             Actor1.animate(eat)
             Actor2.animate(eat)
@@ -437,19 +460,20 @@ SceneStart()
             passTime(2, 4)
             
             "The event ended pretty well, people listened to my speech in silence and no one complained about the food..."
+            "People are starting to leave quietly ..."
             Actor1.hide()
             Actor2.hide()
             Actor3.hide()
             Actor4.hide()
             
             Actor5(Happy)::"Bye guru <Player.name>, it was a nice event!"
-            Actor5.modifyActorVar(rk_discipleattraction, 1)
+            Actor5.modifyActorVar(rk_discipleattraction, 8)
             Actor5.hide()
             Actor6.hide()
             Actor7.hide()
             
             Actor8(Happy)::"Bye guru <Player.name>, I really like your speech!"
-            Actor8.modifyActorVar(rk_discipleattraction, 1)
+            Actor8.modifyActorVar(rk_discipleattraction, 15)
             Actor8.hide()
             
             Actor9.hide()
@@ -469,7 +493,7 @@ SceneStart()
                 Actor11.hide()
                 Actor12.hide()
                 Actor13(Happy)::"Bye guru <Player.name>, I really like your speech!"
-                Actor13.modifyActorVar(rk_discipleattraction, 2)
+                Actor13.modifyActorVar(rk_discipleattraction, 20)
                 Actor13.hide()
                 
             ElseIf TicketSoldSp <= 14
@@ -484,7 +508,7 @@ SceneStart()
                 Actor13.hide()
                 Actor14.hide()
                 Actor15(Happy)::"Bye guru <Player.name>, it was a nice event!"
-                Actor15.modifyActorVar(rk_discipleattraction, 3)
+                Actor15.modifyActorVar(rk_discipleattraction, 13)
                 Actor15.hide()
                 
             ElseIf TicketSoldSp <= 16
@@ -537,14 +561,15 @@ SceneStart()
                 Actor17.hide()
                 Actor18.hide()
                 Actor19(Happy)::"Bye guru <Player.name>, it was a good meal and a nice event!"
-                Actor19.modifyActorVar(rk_discipleattraction, 5)
+                Actor19.modifyActorVar(rk_discipleattraction, 25)
                 Actor19.hide()
                 Actor20.hide()
                 
             EndIf
             
-            PersonCM = Random(0, TicketSoldSp)
-            CMSold = Random(0, PersonCM)
+            Player(Curious)::"Everyone's gone, let's see if the evening paid off?"
+            PersonCM = Random(0, TicketSoldSp) // person cancel meal
+            CMSold = Random(0, PersonCM) // meal sold per person cancel meal
             PersonBuy = CMSold * 10
             PersonBuyCMLoc = PersonBuy.convertToLocalCurrency()
 
@@ -568,10 +593,10 @@ SceneStart()
             
             If BonusSaleAmount > 0
             
+                BonusM = BonusSaleAmount - [85/100]
                 "During the dinner and the speech, you were able to make more sales with the owner's vending machines... The owner gives you 15% on the sales..."
                 "You made <bonusSaleCount> sale(s), <BonusSaleAmountLoc> and a cash back of <BonusM>"
                 "You have sold <DessertSale> dessert, <CandySale> candies and <DrinkSale> drinks"
-                BonusM = BonusSaleAmount - [85/100]
             
             EndIf
             
@@ -582,14 +607,18 @@ SceneStart()
             EndIf
             
             TotalFunds = EarningTick + BonusM
+            TotalFundsLoc = TotalFunds.convertToLocalCurrency()
             money += TotalFunds
             mood += Random(3, 5)
+            Player(Happy)::"So, I made <TotalFundsLoc> with this event!"
         
             "You decide to clean the place a bit..."
+            energy -= Random(1, 5)
             Player.dress()
             Player.show()
             Player.animate(sweep)
             Player.setActorVar(rk_Spag_TicketSold, 0)
+            passTime(0.25, 1)
         
             RestoOwner = generatePersonTemporary()
             RestoOwner.dress()
@@ -600,9 +629,9 @@ SceneStart()
             Player(Attentive)::"Yeah, my event ended few minutes ago..."
             Player.animate()
             
-            "What do I do, pay with sex or in cash?"
+            "What should I do, pay with sex or with cash?"
             0::"Pay with sex"
-            1:: money > costreservation ::"Pay in cash"
+            1:: money > costreservation ::"Pay with cash (<costreservationLoc>)"
             
             If 0
                 
@@ -616,7 +645,7 @@ SceneStart()
                 
             ElseIf 1
                 
-                Player(Wink)::"I choose to pay in cash!"
+                Player(Wink)::"I choose to pay with cash! Here your <costreservationLoc>!"
                 money -= costreservation
                 RestoOwner(Happy)::"Good, you can leave I will do the rest of the clean up... Have a nice day!"
             

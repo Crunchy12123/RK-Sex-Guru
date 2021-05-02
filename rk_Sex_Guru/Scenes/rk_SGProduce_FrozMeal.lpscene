@@ -85,7 +85,6 @@ SceneStart()
         Masha_Hugg.setActorVar(rk_SG_DiscipleSalary, 0)
         Masha_Hugg.makePermanent()
         exchangeContact(Masha_Hugg)
-        Masha_Hugg.saveAndDelete()
     
     EndIf
     

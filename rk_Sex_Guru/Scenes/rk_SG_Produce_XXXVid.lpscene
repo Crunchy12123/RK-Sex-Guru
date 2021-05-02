@@ -86,7 +86,6 @@ SceneStart()
         Mel_Naina.setActorVar(rk_SG_DiscipleSalary, 0)
         Mel_Naina.makePermanent()
         exchangeContact(Mel_Naina)
-        Mel_Naina.saveAndDelete()
     
     EndIf
     

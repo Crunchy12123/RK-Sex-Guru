@@ -16,7 +16,7 @@ OTHER: none
         If Actor:rapportwithplayer > 50 && Actor:attractiontoplayer > 50
 
             Actor(Happy)::"Yeah sure, meditation is always relieving for the body ...!"
-            Actor(Flirty)::"Cool, to begin, we need to undress, it allows the energies to penetrate our bodies ...!"
+            Player(Flirty)::"Cool, to begin, we need to undress, it allows the energies to penetrate our bodies ...!"
             
             If Actor:arousal > 15 && Actor:perversion > 50
             
