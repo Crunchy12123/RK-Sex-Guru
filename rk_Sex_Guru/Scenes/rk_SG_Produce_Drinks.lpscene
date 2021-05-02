@@ -73,7 +73,7 @@ SceneStart()
     
     ChechupCSuale = Sen_Suale.getActorVar(tag_SGDisciple)
 
-    If ChechupCSuale <= 0 && !Sen_Suale.isContactExchanged()
+    If !Sen_Suale.isContactExchanged()
 
         SGId = Sen_Suale.getID()
         Sen_Suale.makeInterested(Player)
@@ -88,7 +88,7 @@ SceneStart()
     EndIf
         
     Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
-    Sen_Suale.dressExcept(Outerwear, Headwear, Eyewear)
+    Sen_Suale.strip()
     Sen_Suale.show()
     Sen_Suale(Happy)::"Hi master, really happy to see you!"
     Sen_Suale:rapportwithplayer += Random(5, 10)
@@ -212,6 +212,30 @@ SceneStart()
                 followUp(rk_Manage_Your_Religion)
             EndIf
         EndIf
+        
+        Sen_Suale(Flirty)::"Would you like to play sex with me, before leaving?"
+        "What should I do?"
+        0:: "Good idea"
+        99:: "Maybe later"
+    
+        If 0
+    
+            Sen_Suale.show()
+            Sen_Suale.strip()
+            Player.strip()
+                            
+            Sex(Sen_Suale, Player)
+            perversion += 0.35
+            Sen_Suale:attractiontoplayer += Random(0, 1)
+            Sen_Suale:rapportwithplayer += Random(0, 1)
+                        
+            passTime(0.15, 0.25)
+                            
+            Sen_Suale(Serene):: "That was amazing!"
+            
+        Endif
+                
+        passTime(1, 2)
 
         Sen_Suale.hide()
 

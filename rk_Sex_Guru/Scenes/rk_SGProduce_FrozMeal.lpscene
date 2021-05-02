@@ -74,7 +74,7 @@ SceneStart()
     
     ChechupCMasha = Masha_Hugg.getActorVar(tag_SGDisciple)
 
-    If ChechupCMasha <= 0 && !Masha_Hugg.isContactExchanged()
+    If !Masha_Hugg.isContactExchanged()
 
         SGId = Masha_Hugg.getID()
         Masha_Hugg.makeInterested(Player)
@@ -89,7 +89,7 @@ SceneStart()
     EndIf
     
     Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
-    Masha_Hugg.dressExcept(Outerwear, Headwear, Eyewear)
+    Masha_Hugg.strip()
     Masha_Hugg.show()
     Masha_Hugg:rapportwithplayer += Random(5, 10)
     Masha_Hugg:perversion += 15
@@ -237,6 +237,30 @@ SceneStart()
             EndIf
             
         EndIf
+        
+        Masha_Hugg(Flirty)::"Would you like to play sex with me, before leaving?"
+        "What should I do?"
+        0:: "Good idea"
+        99:: "Maybe later"
+    
+        If 0
+    
+            Masha_Hugg.show()
+            Masha_Hugg.strip()
+            Player.strip()
+                            
+            Sex(Masha_Hugg, Player)
+            perversion += 0.35
+            Masha_Hugg:attractiontoplayer += Random(0, 1)
+            Masha_Hugg:rapportwithplayer += Random(0, 1)
+                        
+            passTime(0.15, 0.25)
+                            
+            Masha_Hugg(Serene):: "That was amazing!"
+            
+        Endif
+                
+        passTime(1, 2)
     
         Masha_Hugg.hide()
     

@@ -75,7 +75,7 @@ SceneStart()
     
     ChechupNaina = Mel_Naina.getActorVar(tag_SGDisciple)
 
-    If ChechupNaina <= 0 && !Mel_Naina.isContactExchanged()
+    If !Mel_Naina.isContactExchanged()
 
         SGId = Mel_Naina.getID()
         Mel_Naina.makeInterested(Player)
@@ -90,7 +90,7 @@ SceneStart()
     EndIf
     
     Mel_Naina = generatePersonTemporary(rk_ModelF_Mel_Naina)
-    Mel_Naina.dressExcept(Outerwear, Headwear, Eyewear)
+    Mel_Naina.strip()
     Mel_Naina.show()
     Mel_Naina(Happy)::"Hy my dear master, do you need anything?"
     Mel_Naina:rapportwithplayer += Random(5, 10)
@@ -208,6 +208,30 @@ SceneStart()
             EndIf
             
         EndIf
+        
+        Mel_Naina(Flirty)::"Would you like to play sex with me, before leaving?"
+        "What should I do?"
+        0:: "Good idea"
+        99:: "Maybe later"
+    
+        If 0
+    
+            Mel_Naina.show()
+            Mel_Naina.strip()
+            Player.strip()
+                            
+            Sex(Mel_Naina, Player)
+            perversion += 0.35
+            Mel_Naina:attractiontoplayer += Random(0, 1)
+            Mel_Naina:rapportwithplayer += Random(0, 1)
+                        
+            passTime(0.15, 0.25)
+                            
+            Mel_Naina(Serene):: "That was amazing!"
+            
+        Endif
+                
+        passTime(1, 2)
 
         Mel_Naina.hide()
     

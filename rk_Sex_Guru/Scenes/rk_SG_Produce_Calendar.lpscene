@@ -74,10 +74,10 @@ SceneStart()
         TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
         setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
     
-        ChechupErny_Quert = Erny_Quert.getActorVar(tag_SGDisciple)
+        ChechupErnyQuert = Erny_Quert.getActorVar(tag_SGDisciple)
 
         If !Erny_Quert.isContactExchanged()
-
+        
             SGId = Erny_Quert.getID()
             Erny_Quert.makeInterested(Player)
             Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
@@ -87,21 +87,17 @@ SceneStart()
             Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
             Erny_Quert.makePermanent()
             exchangeContact(Erny_Quert)
-        
-        Else
-    
-            Erny_Quert:rapportwithplayer += Random(5, 10)
-            Erny_Quert:perversion += 15
-            Erny_Quert:arousal += 10
     
         EndIf
-        
+
         Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
-    
-        Erny_Quert.dressExcept(Outerwear, Headwear, Eyewear)
+        Erny_Quert.strip()
         Erny_Quert.show()
         Erny_Quert.moveToPersonStand(Player, 50)
         Erny_Quert(Happy)::"Hi my master, happy to see you!"
+        Erny_Quert:rapportwithplayer += Random(5, 10)
+        Erny_Quert:perversion += 15
+        Erny_Quert:arousal += 10
         
         If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
@@ -216,6 +212,30 @@ SceneStart()
             EndIf
 
         EndIf
+        
+        Erny_Quert(Flirty)::"Would you like to play sex with me, before leaving?"
+        "What should I do?"
+        0:: "Good idea"
+        99:: "Maybe later"
+    
+        If 0
+    
+            Erny_Quert.show()
+            Erny_Quert.strip()
+            Player.strip()
+                            
+            Sex(Erny_Quert, Player)
+            perversion += 0.35
+            Erny_Quert:attractiontoplayer += Random(0, 1)
+            Erny_Quert:rapportwithplayer += Random(0, 1)
+                        
+            passTime(0.15, 0.25)
+                            
+            Erny_Quert(Serene):: "That was amazing!"
+            
+        Endif
+                
+        passTime(1, 2)
     
         Erny_Quert.hide()
     

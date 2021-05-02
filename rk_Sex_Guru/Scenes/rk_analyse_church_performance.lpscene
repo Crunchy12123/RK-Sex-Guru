@@ -132,7 +132,7 @@ OTHER: none
 
         ChechupBuffy = Buffy_Pine.getActorVar(tag_SGDisciple)
 
-        If ChechupBuffy <= 0 && !Buffy_Pine.isContactExchanged()
+        If !Buffy_Pine.isContactExchanged()
 
             SGId = Buffy_Pine.getID()
             Buffy_Pine.makeInterested(Player)
@@ -180,17 +180,14 @@ OTHER: none
                 passTime(0.15, 0.25)
                             
                 Buffy_Pine(Serene):: "That was amazing!"
+                Player(Happy)::"Yeah that was good! Let's get back to work and let see brand and products performance data ..."
         
                 Buffy_Pine.dress()
-                NGHadSex = true
+                followUp(rk_analyse_church_performance)
     
             ElseIf 0
     
-                If NGHadSex
-                    Player(Happy)::"Yeah that was good! Let's get back to work and let see brand and products performance data ..."
-                Else
-                    Player(Happy)::"Nah, I'm here to check my brand and products performance data ..."
-                EndIf
+                Player(Happy)::"Nah, I'm here to check my brand and products performance data ..."
     
                 TotalProduceC = TotalCalendarsSold + TotalCalendarsInStock
                 TotalProduceIce = Sold_SpecialIceCreams + SpecialIceCreams
@@ -307,7 +304,6 @@ OTHER: none
                     Buffy_Pine(Serene):: "That was amazing!"
         
                     Buffy_Pine.dress()
-                    NGHadSex = true
                 Endif
                 
                 passTime(1, 2)

@@ -90,7 +90,7 @@ SceneStart()
     EndIf
     
     Cindy_Bound = generatePersonTemporary(rk_ModelF_Cindy_Bound)
-    Cindy_Bound.dressExcept(Outerwear, Headwear, Eyewear)
+    Cindy_Bound.strip()
     Cindy_Bound.show()
     Cindy_Bound(Happy)::"Hi lovely master, do you want to print something?"
     Cindy_Bound:rapportwithplayer += Random(5, 10)
@@ -220,6 +220,30 @@ SceneStart()
             EndIf
             
         EndIf
+        
+        Cindy_Bound(Flirty)::"Would you like to play sex with me, before leaving?"
+        "What should I do?"
+        0:: "Good idea"
+        99:: "Maybe later"
+    
+        If 0
+    
+            Cindy_Bound.show()
+            Cindy_Bound.strip()
+            Player.strip()
+                            
+            Sex(Cindy_Bound, Player)
+            perversion += 0.35
+            Cindy_Bound:attractiontoplayer += Random(0, 1)
+            Cindy_Bound:rapportwithplayer += Random(0, 1)
+                        
+            passTime(0.15, 0.25)
+                            
+            Cindy_Bound(Serene):: "That was amazing!"
+            
+        Endif
+                
+        passTime(1, 2)
 
         Cindy_Bound.hide()
     
