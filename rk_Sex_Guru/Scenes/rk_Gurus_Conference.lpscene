@@ -26,7 +26,7 @@ SceneStart()
     discipleAttractionG9 = Guru41.getActorVar(rk_discipleAttraction)
     discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
 
-    If SetAcceptDay > 0 && SetAcceptDay <= 3
+    If SetAcceptDay > 0.1 && SetAcceptDay <= 3
     
         SRSAgent = generatePersonTemporary()
         SRSAgent.hide()
@@ -62,8 +62,9 @@ SceneStart()
             Player(Happy)::"Sure, I will be there!"
             Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
             mood += 3
-            timeout(10, rk_Gurus_Conference)
+            
             sceneEnd()
+            timeout(10, rk_Gurus_Conference)
             
         Else
         
@@ -670,7 +671,7 @@ SceneStart()
 
         timeout(3000, rk_Gurus_Conference)
     
-    ElseIf SetAcceptDay >= 0.5 
+    ElseIf SetAcceptDay >= 0.4 
 
         timeout(10, rk_Gurus_Conference)
     

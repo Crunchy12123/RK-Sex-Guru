@@ -62,9 +62,7 @@ SceneStart()
                 moveTo(Home)
                 setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
             EndIf
-        
-            manageChurchP = true
-            While manageChurchP
+
                 "What do I want to produce?"
                 0::"Create special frozen desserts"
                 19::"Create special temple drinks"
@@ -76,34 +74,24 @@ SceneStart()
                 If 0
             
                     followUp(rk_SGProduce_FrozMeal)
-                    manageChurchP = false
                 
                 ElseIf 19
             
                     followUp(rk_SG_Produce_Drinks)
-                    manageChurchP = false
             
                 ElseIf 20
             
                     followUp(rk_SG_Produce_Calendar)
-                    manageChurchP = false
             
                 ElseIf 21
             
                     followUp(rk_SG_Produce_XXXMag)
-                    manageChurchP = false
             
                 ElseIf 31
             
                     followUp(rk_SG_Produce_XXXVid)
-                    manageChurchP = false
-                Else
-            
-                    manageChurchP = false
             
                 EndIf
-            
-            EndWhile
     
         ElseIf 3
     

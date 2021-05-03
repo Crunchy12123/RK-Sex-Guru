@@ -25,22 +25,22 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
 
-    If SexGuruDisciple <= 9 || SexGuruReputation <= 49 || SGIllumination <= 49 || SexGuruGospels <= 9
+    If SexGuruDisciple <= 9 && SexGuruReputation <= 49 && SGIllumination <= 49 && SexGuruGospels <= 9
 
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
-        If SexGuruReputation >= 49
+        If SexGuruReputation >= 50
             Player(Happy)::"Perfect, my religion have a good reputation... <SexGuruReputation>/50"
         Else
             "I need to higher my religion reputation a little bit more, I don't have enough... <SexGuruReputation>/50"
         EndIf
         
-        If SGIllumination >= 49
+        If SGIllumination >= 50
             Player(Happy)::"Good, my enlightenment level is enough... <SGIllumination>/50"
         Else
             "I need to higher my enlightenment level, I don't have enough... <SGIllumination>/50"
         EndIf
         
-        If SexGuruDisciple >= 9
+        If SexGuruDisciple >= 10
             Player(Happy)::"Excellent, I now have at least 10 disciples..."
         Else
             "I also need 10 disciples to become a guru,... <SexGuruDisciple>/10"
@@ -193,7 +193,7 @@ SceneStart()
         
         EndIf
         
-    ElseIf SexGuruDisciple >= 10 && SexGuruReputation >= 50 && SGIllumination >= 50 && SexGuruGospels >= 10
+    ElseIf SexGuruDisciple >= 10
 
         ElfyMana.show()
         ElfyMana.dress()

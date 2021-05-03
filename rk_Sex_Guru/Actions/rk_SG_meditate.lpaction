@@ -2,7 +2,7 @@ ACTION_UNIQUEID: rk_SG_meditate
 ACTION_NAME: Meditate on my beliefs
 WHERE: place_of_worship, prison, home
 WHEN: 0 - 24
-MINUTES: 30 - 60 
+MINUTES: 5 - 10 
 TIMEOUT_MINUTES: 0
 ALSO_TIMEOUT: 
 EFFECTS: 
