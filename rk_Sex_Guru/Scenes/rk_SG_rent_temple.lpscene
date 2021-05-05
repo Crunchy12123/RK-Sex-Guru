@@ -84,7 +84,7 @@ OTHER: none
         If 0
             If sceneType = Player.getActorVar(rk_TempleEquipmentType)
             If [sceneType == 4 && TnumSize <= 5] || [sceneType == 3 && TnumSize <= 2]
-                Player(Sad)::"Well I got too much weed and equipment to fit into this small temple. I need to find a larger one."
+                Player(Sad)::"Well I got too much equipment and homemade products to fit into this small temple. I need to find a larger one."
             Else
                 looking = false
                 

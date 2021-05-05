@@ -53,7 +53,7 @@ SceneStart()
     
         ElseIf 20
     
-            "Going back to the temple..."
+            "Going back to my temple..."
             passTime(0.25, 1)
         
             // Go to the Temple if any

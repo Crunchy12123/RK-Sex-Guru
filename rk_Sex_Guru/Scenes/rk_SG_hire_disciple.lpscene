@@ -37,10 +37,11 @@ OTHER: none
                 endDate()
                 
                 MainActor = 0
+                discipleattraction = Actor.getActorVar(rk_discipleattraction)
                 
                 Player(Curious)::"Let's see if someone has applied as a disciple?"
                 If ActorChanceDisciple > 7
-                
+
                     Actor = generatePersonTemporary()
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
@@ -182,6 +183,7 @@ OTHER: none
             ElseIf 1
             
                 MainActor = 0
+                discipleattraction = Actor.getActorVar(rk_discipleattraction)
                 
                 Player(Curious)::"Let's see if someone has applied as a disciple?"
                 If ActorChanceDisciple > 7

@@ -36,6 +36,18 @@ SceneStart()
         Player:karma += 0.5
         Player:mood += 5
         
+        If arousal > 50 && perversion > 75
+        
+            "Ok, too much meditation I guess... I have an uncontrollable desire to play with my body!"
+            Player.strip()
+            Filter(Solo)
+            Sex(Player)
+            Player(Happy)::"That was good!"
+            Player:mood += 3
+            Player:arousal -= 15
+        
+        EndIf
+        
     ElseIf 1
     
         Player.show()
@@ -61,7 +73,7 @@ SceneStart()
         
             ElfyMana = generatePersonTemporary(rk_modelF_Elfy_Mana)
             "Elfy Mana just appears,...!"
-            ElfyMana.show(2)
+            ElfyMana.show()
             ElfyMana.dressExcept(Outerwear, Top, Bottom)
             ElfyMana.movetoPersonStand(Player, 50)
         

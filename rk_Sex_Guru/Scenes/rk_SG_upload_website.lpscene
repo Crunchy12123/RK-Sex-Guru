@@ -237,7 +237,7 @@ OTHER: none
             EndIf
             
         Else
-            Player(Sad)::"Nothing to upload this time. I need to create more contents (gospels, pictures, videos,...)."
+            Player(Sad)::"Nothing else to publish... I need to create or upload more contents (gospels, pictures, videos,...)."
         EndIf
     
     SceneEnd()

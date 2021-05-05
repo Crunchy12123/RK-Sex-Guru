@@ -80,7 +80,7 @@ SceneStart()
                 If hasDoneShootings > 0 || SGisAgencyModel > 0
                     If MainActor:perversion >= 55 || SGisAgencyModel > 0
                         Random
-                            MainActor(Serene)::"Glad you ask again. I loved the last shooting. Yeah I'm in!"
+                            MainActor(Serene)::"Glad you ask again. I love shooting. Yeah I'm in!"
                             MainActor(Serene)::"I was waiting for you to ask me again. Sure thing I will!"
                             MainActor(Posing)::"One day I will be your most wanted disciple! Let's go."
                         EndRandom

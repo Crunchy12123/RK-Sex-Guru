@@ -22,7 +22,7 @@ SceneStart()
         ChanceGospels = Random(2, 3)
         ChanceGospels = ChanceGospels.round()
         "While writing my gospel, I had an enlightenment that enabled me to write <ChanceGospels> gospels."
-        Player.modifyActorVar(rk_SG_SexGuruIllumination, 0.25)
+        Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
         Player:energy -= Random(0, 2)
         Player:arousal += Random(0, 1)
         "<ChanceGospels> gospels added to your Holy book!"

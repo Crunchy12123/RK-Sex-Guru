@@ -18,6 +18,7 @@ OTHER: rkOpenedSexGuru > 0
     Actor.randomizeFace()
     Actor.dress()
     Actor.show(2)
+    Actor.movetoPersonStand(Player, 50)
     Actor(Excited):: "What do you think God would think about your religion?"
     0:: "Play it safe"
     1:: "Show off my religious convictions"
@@ -36,7 +37,7 @@ OTHER: rkOpenedSexGuru > 0
             Player.modifyActorVar(rk_Churchbrand, 0.15)
         EndIf
         
-        If Player:intelligence > Random(0, 100) && Actor:discipleattraction > 50 && Actor:perversion > 50
+        If Player:intelligence > Random(0, 100) && discipleattraction > 50 && Actor:perversion > 50
             
             Actor(Happy):: "It's rare nowadays to meet someone with the same spiritual approach to life. Let's exchange numbers and can I join your community."
             0:: "Yes"

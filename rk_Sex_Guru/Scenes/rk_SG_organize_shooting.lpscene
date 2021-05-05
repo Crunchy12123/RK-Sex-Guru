@@ -7,11 +7,11 @@ OTHER: none
 SceneStart()
     
     // Find a location - more locations will come
-    hasOffice = Player.getActorVar(rk_PlayerTempleLocationSize)
+    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
 
     Player::"Where do I want to do the shooting?"
     0:: "Right here"
-    1:: PlayerHasHome()::"In my bedroom"
+    1:: PlayerHasHome()::"In my temple"
     100::"I changed my mind!"
     
     If choice >= 0 && choice < 99

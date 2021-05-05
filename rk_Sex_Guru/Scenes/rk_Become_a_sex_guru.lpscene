@@ -25,7 +25,7 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
 
-    If SexGuruDisciple <= 9 && SexGuruReputation <= 49 && SGIllumination <= 49 && SexGuruGospels <= 9
+    If rkAreASexGuru < 1
 
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
         If SexGuruReputation >= 50
@@ -193,7 +193,7 @@ SceneStart()
         
         EndIf
         
-    ElseIf SexGuruDisciple >= 10
+    ElseIf SexGuruDisciple >= 10 && SexGuruReputation >= 50 && SGIllumination >= 50 && SexGuruGospels >= 10
 
         ElfyMana.show()
         ElfyMana.dress()
