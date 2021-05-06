@@ -2,7 +2,7 @@ ACTION_UNIQUEID: rk_SG_Write_a_Gospel
 ACTION_NAME: Write a gospel
 WHERE: place_of_worship, prison, home
 WHEN: 0 - 24
-MINUTES: 30 - 60 
+MINUTES: 10 - 30 
 TIMEOUT_MINUTES: 0
 ALSO_TIMEOUT: 
 EFFECTS: 

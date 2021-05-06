@@ -72,8 +72,8 @@ OTHER: none
 
                     If 0
                     
-                        DisciplejobBasePayment = 100
-                        DisciplejobRandomPayment = 1
+                        DisciplejobBasePayment = Random(100, 300)
+                        DisciplejobRandomPayment = 50
                         askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
                         priceLocal = askingPrice.convertToLocalCurrency(true)
 
@@ -218,8 +218,8 @@ OTHER: none
 
                     If 0
                     
-                        DisciplejobBasePayment = 100
-                        DisciplejobRandomPayment = 1
+                        DisciplejobBasePayment = Random(100, 300)
+                        DisciplejobRandomPayment = 50
                         askingPrice = DisciplejobBasePayment + (DisciplejobRandomPayment * (Random(0.35, 0.5) + (DiscipleSkillLvl/100)))
                         priceLocal = askingPrice.convertToLocalCurrency(true)
 

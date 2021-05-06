@@ -25,8 +25,44 @@ SceneStart()
         setBackground3D(Modules/vin_Base/World/place_of_worship___vin01.lpworld)
     EndIf
 
-    If rkAreASexGuru < 1
+    If SexGuruGospels >= 10 && SexGuruDisciple >= 10 && SexGuruReputation >= 50 && SGIllumination >= 50
 
+        ElfyMana.show()
+        ElfyMana.dress()
+        dressFormal()
+        
+        ElfyMana(Happy)::"Congratulations, you are now a sex guru! You can now manage your religious community as you wish!"
+        ElfyMana(Flirty)::"You don't really have to meditate anymore, but if you meditate with me in mind, I'll be happy! "
+        ElfyMana:attractiontoplayer  => Random(70, 80)
+        ElfyMana:rapportwithplayer => Random(50, 70)
+        ElfyMana(Flirty)::"So now that you're a sex guru, are you tempted to celebrate with me?"
+        "What do you answer?"
+        1::"Yeah sure, let's celebrate!"
+        2::"No thanks!"
+        
+        If 1
+            
+            ElfyMana.makeInterested(Player)
+            "We strip right away and start having sex right here!"
+            Player.strip()
+            ElfyMana.strip()
+            Sex(ElfyMana, Player)
+            
+            ElfyMana(Happy)::"It was fun! Next time you want to play with me, just meditate and think about me again!"
+            ElfyMana:attractiontoplayer += Random(1, 2)
+            ElfyMana:rapportwithplayer += Random(1, 2)
+        
+        EndIf
+        
+        ElfyMana(Happy)::"That's it my dear, I wish you a beautiful and growing community... See ya!"
+        Player:rkAreASexGuru => 1
+        
+        Player(Excited)::"I need to find a temple and buy some equipment for it..."
+        Player.setActorVar(rk_SG_rkAreASexGuru, 1)
+        ElfyMana.hide()
+    
+    Else
+    
         "So if I want to become a guru, I have to get my hands dirty and start my journey towards enlightenment."
         If SexGuruReputation >= 50
             Player(Happy)::"Perfect, my religion have a good reputation... <SexGuruReputation>/50"
@@ -96,6 +132,7 @@ SceneStart()
                     ElfyMana(Serene)::"Hello my dear, I am appearing to you because you call me during your meditation..."
                     ElfyMana(Serene)::"Let's start having fun together..."
                     ElfyMana:attractiontoplayer += Random(1, 3)
+                    ElfyMana:rapportwithplayer += Random(1, 3)
             
                     Player.strip()
                     ElfyMana.strip()
@@ -192,41 +229,6 @@ SceneStart()
             followUp(rk_SG_hire_disciple)
         
         EndIf
-        
-    ElseIf SexGuruDisciple >= 10 && SexGuruReputation >= 50 && SGIllumination >= 50 && SexGuruGospels >= 10
-
-        ElfyMana.show()
-        ElfyMana.dress()
-        dressFormal()
-        
-        ElfyMana(Happy)::"Congratulations, you are now a sex guru! You can now manage your religious community as you wish!"
-        ElfyMana(Flirty)::"You don't really have to meditate anymore, but if you meditate with me in mind, I'll be happy! "
-        ElfyMana:attractiontoplayer += Random(1, 2)
-        ElfyMana:rapportwithplayer => Random(50, 70)
-        ElfyMana(Flirty)::"So now that you're a sex guru, are you tempted to celebrate with me?"
-        "What do you answer?"
-        1::"Yeah sure, let's celebrate!"
-        2::"No thanks!"
-        
-        If 1
-        
-            "We strip right away and start having sex right here!"
-            Player.strip()
-            ElfyMana.strip()
-            Sex(ElfyMana, Player)
-            
-            ElfyMana(Happy)::"It was fun! Next time you want to play with me, just meditate and think about me again!"
-            ElfyMana:attractiontoplayer += Random(1, 2)
-        
-        EndIf
-        
-        ElfyMana(Happy)::"That's it my dear, I wish you a beautiful and growing community... See ya!"
-        Player:rkAreASexGuru => 1
-        
-        Player(Excited)::"I need to find a temple and buy some equipment for it..."
-        Player.setActorVar(rk_SG_rkAreASexGuru, 1)
-        ElfyMana.makeInterested(Player)
-        ElfyMana.hide()
         
     EndIf
 
