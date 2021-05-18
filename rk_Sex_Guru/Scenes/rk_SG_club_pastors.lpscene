@@ -89,4 +89,4 @@ OTHER: Random(0, 1000) < attractiveness
         Endif
     
     SceneEnd()
-    timeout(200, club_model)
+    timeout(200, rk_SG_club_pastors)
