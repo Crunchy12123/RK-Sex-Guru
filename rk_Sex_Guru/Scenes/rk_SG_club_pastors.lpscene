@@ -1,0 +1,92 @@
+WHAT: all, -go_to_the_bathroom
+WHERE: nightclub
+WHEN: 0 - 24
+WHO: none
+OTHER: Random(0, 1000) < attractiveness
+
+    SceneStart()
+    
+        "I'm at a rather fancy club in town where I notice a group of 4 beautiful guys dressed like pastors, having their own VIP table and drinking the best wine in the house, their arms around girls who appear to be nuns."
+        "There is no doubt that these are high level pastors or priests of the SRS, who try to impress their most caring followers by paying them drinks and throwing away their money."
+        "We know all how it ends ... Anyway, they seem to have fun!"
+        "Do I try to join them?"
+        0:: "Approach their table"
+        1:: "Ignore"
+    
+        If 0
+            If Random(0, 100) < attractiveness
+            
+                "As soon as I approach the table, one of the <Player.girls_or_guys> waves to me and invites me to sit with them."
+                "Cool, it worked!" 
+                "I have a lot of fun with these beautiful pastors, they pay us free drinks while discussing life and its wonders."
+                "After a while the girls left..."
+                intoxication += Random(30, 90)
+                RapeChance = Random(0, 10)
+                
+                If RapeChance > 5 && intoxication > 60
+
+                    "I'm so drunk, I think they put something in my glass... I'm fucking dizzy... I cannot move..."
+                    "Everything is getting dark and suddenly ..."
+                    count = 0
+                    While count < 7
+                        Actor = generatePerson()
+                        Actor:perversion += 50
+                        Actor:arousal += 50
+                        Player.strip()
+                        Actor.strip()
+                        Filter(Aggressive)
+                        SexNoAffair(Actor, Player)
+                        count += 1
+                    Endwhile
+                    RapeDone = 1
+                    passTime(1.50, 2.50)
+                
+                Else
+                    count = 0
+                    While count < 5
+                        Actor = generatePerson()
+                        Actor:intelligence += 30
+                        Actor:interpersonal += 50
+                        exchangeContact(Actor)
+                        count += 1
+                    Endwhile
+
+                    interpersonal += Random(0, 0.5)
+                    
+                EndIf
+                
+                If RapeDone > 0
+                
+                    Player(Disgusted)::"WTF..."
+                    Player(Disgusted)::"I've been raped by these bastards! It gushes literally out of my <Player.ass_or_pussy>..."
+                    passTime(2, 3.50)
+                    "No need to call the police, it's too late the damage is done!"
+                    "My ass hurts and my <Player.dick_or_pussy> is bright red in color ... I just want to go take a shower and go to bed."
+                    mood => 0
+                    energy => 5
+                    "I wiped a bit my <Player.ass_or_pussy> and put my clothes back on... and going back home!"
+                    Player.dress()
+                    moveTo(home)
+                
+                Else
+                
+                    "The night end well, I even managed to get some numbers."
+                    passTime(2, 3.50)
+                
+                EndIf
+
+            Else
+            
+                "I walked over to the table but unfortunately none of them paid attention to me. Finally, I understood quite quickly that it was not my place ..."
+                mood -= Random(0, 10)
+                
+            Endif
+            
+        Else
+        
+            "I don't care about them, they can I have fun without me! All far too pretentious for my taste."
+            
+        Endif
+    
+    SceneEnd()
+    timeout(200, club_model)
