@@ -87,6 +87,7 @@ SceneStart()
         2:: "Write a gospel"
         3:: SexGuruGospels >= 2 ::"Do a public presentation"
         4:: SGIllumination > 49 ::"Find Disciple"
+        5::"Visit Bertha (Tutorial)"
         99::"I changed my mind!"
         
         If 1
@@ -227,6 +228,10 @@ SceneStart()
         ElseIf 4
         
             followUp(rk_SG_hire_disciple)
+        
+        ElseIf 5
+        
+            followUp(rk_SG_Tutorial)
         
         EndIf
         

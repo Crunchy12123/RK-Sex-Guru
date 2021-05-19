@@ -57,7 +57,7 @@ SceneStart()
 
                 PastorChris.show()
                 dressFormal()
-                PastorChris.dress()
+                PastorChris.dress(Priest-Robe_1)
 
                 "Why not? This is an adult game, having disciples who will give me money and sex in exchange of my wisdom..."
                 "Let's start my own religion!"
@@ -144,10 +144,10 @@ SceneStart()
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                         
                         Else
                         
@@ -156,10 +156,10 @@ SceneStart()
                             Filter(Blowjob)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                             
                         EndIf
                         
@@ -218,10 +218,10 @@ SceneStart()
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                         
                         Else 
                         
@@ -230,10 +230,10 @@ SceneStart()
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                             
                         EndIf
                         
@@ -263,7 +263,7 @@ SceneStart()
                 NunDixie(Happy)::"Hello dear, my name is <NunDixie.name> <NunDixie.name_last>. I came to see you to make you signed some papers about your process of creating a religion..."
                 NunDixie.show(1)
                 dressFormal()
-                NunDixie.dress()
+                NunDixie.dress(Une-Petit-Fleur-Robe_1_F)
                 NunDixie.animate(socialize)
                 NunDixie.makeInterested(Player)
                 NunDixie:attractiontoplayer += Random(0, 2)
@@ -299,18 +299,72 @@ SceneStart()
                 
                     If 0
                     
-                        "She jump on me and we start having sex right here!"
-                        Player.strip()
-                        NunDixie.strip()
-                        Sex(NunDixie, Player)
-                        NunDixie:attractiontoplayer += Random(1, 3)
-                        NunDixie:rapportwithplayer += Random(5, 10)
+                        If Player.IsWithCompanion()
+
+                            Actor = getCompanion()
+                            NunDixie(Serene):: "Let your companion join the party?"
+                            "Do I accept?"
+                            0:: Actor:perversion > 50 ::"Why not!"
+                            1::"No!"
+                            99::"I change my mind!"
+                            
+                            If 0
+
+                                Actor.show(3)
+                                Actor.movetoPersonStand(Player, 50)
+                                TempAcceptance = 1
+                            ElseIf 99
+                            
+                                SceneStart()
+                                SceneEnd()
+                                
+                            EndIf
+                            
+                            If TempAcceptance > 0
                         
+                                Actor.makeInterestedIn(Player)
+                                Actor.makeInterestedIn(NunDixie)
+                                NunDixie.makeInterestedIn(Player)
+                                NunDixie.makeInterestedIn(Actor)
+                                Actor.show()
+                                Actor.strip()
+                                Player.strip()
+                            
+                                Sex(Actor, Player, NunDixie)
+                                perversion += 0.35
+                                NunDixie:attractiontoplayer += Random(0, 1)
+                                Actor:attractiontoplayer += Random(1, 3)
+                        
+                                passTime(0.5, 1)
+                                NunDixie.dress(Priest-Robe_1)
+                        
+                            Else 
+                        
+                                "She jump on me and we start having sex right here!"
+                                Player.strip()
+                                NunDixie.strip()
+                                Sex(NunDixie, Player)
+                                NunDixie:attractiontoplayer += Random(1, 3)
+                                NunDixie:rapportwithplayer += Random(5, 10)
+                        
+                                passTime(0.5, 1)
+                                NunDixie.dress(Priest-Robe_1)
+                            
+                            EndIf
+                            
+                            
+                            NunDixie.dress(Une-Petit-Fleur-Robe_1_F)
+                            NunDixie.animate(socialize)
+                            NunDixie(Happy)::"That was a good fuck! Call me any time! See ya!"
+                            exchangeContact(NunDixie)
+                            "We exchanged contact and she left right after..."
+                            
+                        EndIf
+
                     EndIf       
                     
                 EndIf
-
-                exchangeContact(NunDixie)
+                
                 NunDixie.hide()
             
                 Player(Serene):: "Now I should find a temple, more disciples and start ripping off some people!"
@@ -326,7 +380,7 @@ SceneStart()
             
                 PastorChris.show()
                 dressFormal()
-                PastorChris.dress()
+                PastorChris.dress(Priest-Robe_1)
                 PastorChris.animate(socialize)
                 Player.moveToPersonStand(PastorChris, 50)
             
@@ -358,6 +412,7 @@ SceneStart()
                     "<PastorChris.name> <PastorChris.name_last>'s phone rang...."
                     NunBertha = generatePersonTemporary(rk_ModelF_Bertha_Clever)
                     NunBertha.hide()
+                    PastorChris.animate()
                     PastorChris(Serene)::"Ok, so I will introduce you to my friend, Nun Bertha, she will explain everything to you!"
                     NunBertha.moveToPersonStand(Player, 70)
                     NunBertha:attractiontoplayer += Random(5, 10)
@@ -389,12 +444,17 @@ SceneStart()
                             "Do I accept?"
                             0:: Actor:perversion > 50 ::"Why not!"
                             1::"No!"
+                            99::"I change my mind!"
                             
                             If 0
 
                                 Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
                                 TempAcceptance = 1
+                            ElseIf 99
+                            
+                                SceneStart()
+                                SceneEnd()
                                 
                             EndIf
                         
@@ -420,10 +480,10 @@ SceneStart()
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                         
                         Else
                         
@@ -433,10 +493,10 @@ SceneStart()
                             Filter(Blowjob)
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                             
                         EndIf
                         
@@ -465,12 +525,17 @@ SceneStart()
                             "Do I accept?"
                             0:: Actor:perversion > 50 ::"Why not!"
                             1::"No!"
+                            99::"I change my mind!"
                             
                             If 0
 
                                 Actor.show(3)
                                 Actor.movetoPersonStand(Player, 50)
                                 TempAcceptance = 1
+                            ElseIf 99
+                            
+                                SceneStart()
+                                SceneEnd()
                                 
                             EndIf
                             
@@ -497,10 +562,10 @@ SceneStart()
                             PastorChris:attractiontoplayer += Random(0, 1)
                             Actor:attractiontoplayer += Random(1, 3)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                         
                         Else 
                         
@@ -509,10 +574,10 @@ SceneStart()
                             perversion += 0.35
                             PastorChris:attractiontoplayer += Random(0, 1)
                         
-                            passTime(0.15, 0.25)
+                            passTime(0.5, 1)
                         
                             PastorChris(Serene):: "That was good!"
-                            PastorChris.dress()
+                            PastorChris.dress(Priest-Robe_1)
                             
                         EndIf
                         

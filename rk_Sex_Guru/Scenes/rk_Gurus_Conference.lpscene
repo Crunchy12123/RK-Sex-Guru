@@ -27,22 +27,23 @@ SceneStart()
     discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
 
     If SetAcceptDay > 0.1 && SetAcceptDay <= 3
-    
-        SRSAgent = generatePersonTemporary()
-        SRSAgent.hide()
-        Player.show()
-        Player.animate(call)
         
-        SetDaypass = 3 - SetAcceptDay
-        "I'm getting a call from the Sex Religious Society...???"
+        SceneStart()
+            SRSAgent = generatePersonTemporary()
+            SRSAgent.hide()
+            Player.show()
+            Player.animate(call)
         
-        If SetDaypass >= 1
-            SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in <SetDaypass> day(s)..."
-        Else
-            SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in few hours..."
-        EndIf
-        Player(Happy)::"Ok, no problem I'll be there!"
-        Player.modifyActorVar(rk_SG_AcceptDay, 1)
+            SetDaypass = 3 - SetAcceptDay
+            "I'm getting a call from the Sex Religious Society...???"
+        
+            If SetDaypass >= 1
+                SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in <SetDaypass> day(s)..."
+            Else
+                SRSAgent(Happy)::"Hi <Player.name>, I'm agent <SRSAgent.name> from the Sex Religious Society! Just to remind you that you have a gurus conference in few hours..."
+            EndIf
+            Player(Happy)::"Ok, no problem I'll be there!"
+            Player.modifyActorVar(rk_SG_AcceptDay, 1)
             
         sceneEnd()
         timeout(10, rk_Gurus_Conference)
@@ -57,11 +58,12 @@ SceneStart()
         1::"Refuse invitation"
         
         If 0
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            Player(Happy)::"Sure, I will be there!"
-            Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
-            mood += 3
+            
+            SceneStart()
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                Player(Happy)::"Sure, I will be there!"
+                Player.modifyActorVar(rk_SG_AcceptDay, 0.5)
+                mood += 3
             
             sceneEnd()
             timeout(10, rk_Gurus_Conference)

@@ -14,7 +14,7 @@ SceneStart()
     discipleattractiontoplayer = Player.getActorVar(rk_discipleattractiontoplayer)
     TempAcceptance = Actor.getActorVar(rk_SG_TempAcceptance)
     
-    NunBertha = generatePersonTemporary(rk_ModelF_Bertha_Clever)
+    NunBertha = generatePerson(rk_ModelF_Bertha_Clever)
     NunBertha.hide()
     NunBertha.SetJob(Nun)
     NunBertha.makePermanent()
@@ -28,6 +28,7 @@ SceneStart()
     If rk_ClickFromSSG > 0
     
         Player(Curious)::"Hurry to see how she looks like?"
+        ClickFromSSG.setGlobal(0)
     
     Else
     
@@ -41,7 +42,7 @@ SceneStart()
 
     NunBertha.show()
     dressFormal()
-    NunBertha.dress()
+    NunBertha.dress(Une-Petit-Fleur-Robe_1_F)
     NunBertha.animate(socialize)
     Player.moveToPersonStand(NunBertha, 50)
     NunBertha:attractiontoplayer += Random(5, 10)
@@ -64,7 +65,7 @@ SceneStart()
         5::"How to receive donations"
         6::"Managing inventories"
         7::"Selling your brand products"
-        99::"Got enough tanks!"
+        99::"Got enough thanks!"
     
         If 0
         
@@ -167,14 +168,19 @@ SceneStart()
                 "Do I accept?"
                 0:: Actor:perversion > 50 ::"Why not!"
                 1::"No!"
-
+                99::"I change my mind!"
+                            
                 If 0
 
-                    Actor.dress()
                     Actor.show(3)
                     Actor.movetoPersonStand(Player, 50)
-                    Actor.setActorVar(rk_SG_TempAcceptance, 1)
-
+                    TempAcceptance = 1
+                    
+                ElseIf 99
+                            
+                    SceneStart()
+                    SceneEnd()
+                                
                 EndIf
 
             EndIf
@@ -190,7 +196,7 @@ SceneStart()
                 Actor.makeInterestedIn(NunBertha)
                 NunBertha.makeInterestedIn(Player)
                 NunBertha.makeInterestedIn(Actor)
-                Actor.show(4)
+                Actor.show()
                 Actor.strip()
                 Player.strip()
 
@@ -243,14 +249,19 @@ SceneStart()
                 "Do I accept?"
                 0:: Actor:perversion > 50 ::"Why not!"
                 1::"No!"
-
+                99::"I change my mind!"
+                            
                 If 0
 
-                    Actor.dress()
                     Actor.show(3)
                     Actor.movetoPersonStand(Player, 50)
-                    Actor.setActorVar(rk_SG_TempAcceptance, 1)
-
+                    TempAcceptance = 1
+                    
+                ElseIf 99
+                            
+                    SceneStart()
+                    SceneEnd()
+                                
                 EndIf
 
             EndIf

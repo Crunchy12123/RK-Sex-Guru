@@ -90,7 +90,7 @@ SceneStart()
     
         EndIf
 
-        Erny_Quert = generatePersonTemporary(rk_ModelM_Erny_Quert)
+        Erny_Quert = generatePerson(rk_ModelM_Erny_Quert)
         Erny_Quert.strip()
         Erny_Quert.show()
         Erny_Quert.moveToPersonStand(Player, 50)

@@ -89,7 +89,7 @@ SceneStart()
         
     EndIf
     
-    Cindy_Bound = generatePersonTemporary(rk_ModelF_Cindy_Bound)
+    Cindy_Bound = generatePerson(rk_ModelF_Cindy_Bound)
     Cindy_Bound.strip()
     Cindy_Bound.show()
     Cindy_Bound(Happy)::"Hi lovely master, do you want to print something?"

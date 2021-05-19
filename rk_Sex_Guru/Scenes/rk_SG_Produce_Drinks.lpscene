@@ -87,7 +87,7 @@ SceneStart()
         
     EndIf
         
-    Sen_Suale = generatePersonTemporary(rk_ModelM_Sen_Suale)
+    Sen_Suale = generatePerson(rk_ModelM_Sen_Suale)
     Sen_Suale.strip()
     Sen_Suale.show()
     Sen_Suale(Happy)::"Hi master, really happy to see you!"

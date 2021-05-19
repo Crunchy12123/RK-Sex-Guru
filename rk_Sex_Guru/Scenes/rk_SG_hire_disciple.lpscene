@@ -46,8 +46,7 @@ OTHER: none
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
                     Actor.modifyActorVar(rk_discipleAttraction, 20)
-                        
-                    Actor:discipleattraction => DiscipleSkillLvl
+                    discipleattraction => DiscipleSkillLvl
 
                     skillText = "cool, but never heard about us before!"
                     If DiscipleSkillLvl >= 90
@@ -192,8 +191,8 @@ OTHER: none
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
                     Actor.modifyActorVar(rk_discipleAttraction, 20)
-                        
-                    Actor:discipleattraction => DiscipleSkillLvl
+                    discipleattraction => DiscipleSkillLvl
+                    
 
                     skillText = "cool, but never heard about us before!"
                     If DiscipleSkillLvl >= 90

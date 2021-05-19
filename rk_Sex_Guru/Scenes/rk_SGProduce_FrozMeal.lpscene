@@ -88,7 +88,7 @@ SceneStart()
     
     EndIf
     
-    Masha_Hugg = generatePersonTemporary(rk_ModelF_Masha_Hugg)
+    Masha_Hugg = generatePerson(rk_ModelF_Masha_Hugg)
     Masha_Hugg.strip()
     Masha_Hugg.show()
     Masha_Hugg:rapportwithplayer += Random(5, 10)

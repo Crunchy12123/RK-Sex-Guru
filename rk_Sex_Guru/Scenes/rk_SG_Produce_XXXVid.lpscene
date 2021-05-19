@@ -89,7 +89,7 @@ SceneStart()
     
     EndIf
     
-    Mel_Naina = generatePersonTemporary(rk_ModelF_Mel_Naina)
+    Mel_Naina = generatePerson(rk_ModelF_Mel_Naina)
     Mel_Naina.strip()
     Mel_Naina.show()
     Mel_Naina(Happy)::"Hy my dear master, do you need anything?"

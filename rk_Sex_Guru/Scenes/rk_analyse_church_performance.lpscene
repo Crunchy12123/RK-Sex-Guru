@@ -154,7 +154,7 @@ OTHER: none
             
         Else
     
-            Buffy_Pine = generatePersonTemporary(rk_ModelF_Buffy_Pine)
+            Buffy_Pine = generatePerson(rk_ModelF_Buffy_Pine)
             Buffy_Pine.show()
             Buffy_Pine.dress()
             Buffy_Pine.animate(socialize)
