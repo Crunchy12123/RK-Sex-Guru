@@ -198,7 +198,18 @@ SceneStart()
             ChanceOfGospels = Random(0, 3)
             ChanceOfGospels = ChanceOfGospels.round()
 
-            If SGIllumination > 50 && ChanceOfGospels > 2
+            If Player:arousal > 50
+
+                "While writing my gospel, I had an enlightenment that make me so horny that I need to release..."
+                Player.modifyActorVar(rk_SG_SexGuruIllumination, 1)
+                Player:energy -= Random(0, 2)
+                Player:arousal -= Random(10, 15)
+                Filter(Solo)
+                Sex(Player)
+                "1 gospel added to your Holy book!"
+                Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
+            
+            ElseIf SGIllumination > 50 && ChanceOfGospels > 2
 
                 ChanceGospels = Random(2, 3)
                 ChanceGospels = ChanceGospels.round()
@@ -207,7 +218,7 @@ SceneStart()
                 Player:energy -= Random(0, 2)
                 Player:arousal += Random(0, 1)
                 "<ChanceGospels> gospels added to your Holy book!"
-                Player.modifyActorVar(rk_SG_SexGuruGospels, 1)
+                Player.modifyActorVar(rk_SG_SexGuruGospels, ChanceGospels)
         
             Else
     

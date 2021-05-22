@@ -42,7 +42,7 @@ OTHER: none
                 Player(Curious)::"Let's see if someone has applied as a disciple?"
                 If ActorChanceDisciple > 7
 
-                    Actor = generatePersonTemporary()
+                    Actor = generatePerson()
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
                     Actor.modifyActorVar(rk_discipleAttraction, 20)
@@ -187,7 +187,7 @@ OTHER: none
                 Player(Curious)::"Let's see if someone has applied as a disciple?"
                 If ActorChanceDisciple > 7
                 
-                    Actor = generatePersonTemporary()
+                    Actor = generatePerson()
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
                     Actor.modifyActorVar(rk_discipleAttraction, 20)

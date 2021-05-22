@@ -64,7 +64,7 @@ OTHER: none
                 
                 If intGPost > 99 && ChanceOfGetDiscip > 90
                 
-                    Actor = generatePersonTemporary()
+                    Actor = generatePerson()
                     Actor.randomizeHairs()
                     Actor.randomizeFace()
                     Actor.hide()

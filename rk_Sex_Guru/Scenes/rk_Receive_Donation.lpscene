@@ -21,8 +21,8 @@ SceneStart()
     Dons_Bread = Player.getActorVar(rk_TDons_Bread)
     Dons_Sushi = Player.getActorVar(rk_TDons_Sushi)
 
-    MarcyKlump = generatePersonTemporary(rk_ModelT_Marcy_Klump)
-    
+    MarcyKlump = generatePerson(rk_ModelT_Marcy_Klump)
+    MarcyKlump.hide()
     AmountDonsSG = Dons_HealthyCookie + Dons_BigBallHickey + Dons_money + Dons_Bread + Dons_Sushi
     
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
@@ -89,16 +89,18 @@ SceneStart()
         
         Player(Curious)::"Let's see what we received as a donation this week!"
         
-        If !MarcyKlump.isContactExchanged()
+        SGId = MarcyKlump.getID()
+        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+        MarcyKlump.setActorVar(tag_SGDisciple, 1)
+        MarcyKlump.modifyActorVar(rk_discipleAttraction, 5)
+        MarcyKlump.makeInterested(Player)
+        DoIexchangedContact = Player.getActorVar(rk_SG_MKDoIexchangedContact)
+            
+        If DoIexchangedContact == 0
         
-            SGId = MarcyKlump.getID()
-            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-            MarcyKlump.setActorVar(tag_SGDisciple, 1)
-            MarcyKlump.modifyActorVar(rk_discipleAttraction, 15)
-            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
-            MarcyKlump.makeInterested(Player)
             MarcyKlump.makePermanent()
             exchangeContact(MarcyKlump)
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
             
         EndIf
         
@@ -247,5 +249,7 @@ SceneStart()
         EndIf
     
     EndIf
+    
+    Player.getActorVar(rk_SG_MKDoIexchangedContact, 1)
 
 SceneEnd()

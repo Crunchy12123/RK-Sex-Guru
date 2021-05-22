@@ -129,20 +129,22 @@ OTHER: none
         SGVidXsold = SoloShootings_SGVidXsold + AmateurShootings_SGVidXsold + ThreesomeShootings_SGVidXsold + GangBangShootings_SGVidXsold + RevGangBangShootings_SGVidXsold + LesbianShootings_SGVidXsold + GayShootings_SGVidXsold
     
         TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-
+        Buffy_Pine = generatePerson(rk_ModelF_Buffy_Pine)
         ChechupBuffy = Buffy_Pine.getActorVar(tag_SGDisciple)
 
-        If !Buffy_Pine.isContactExchanged()
-
-            SGId = Buffy_Pine.getID()
-            Buffy_Pine.makeInterested(Player)
-            Buffy_Pine.setActorVar(rk_SG_DiscipleSalary, 0)
-            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
-            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-            Buffy_Pine.setActorVar(tag_SGDisciple, 1)
+        SGId = Buffy_Pine.getID()
+        Buffy_Pine.makeInterested(Player)
+        Buffy_Pine.setActorVar(rk_SG_DiscipleSalary, 0)
+        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+        Buffy_Pine.setActorVar(tag_SGDisciple, 1)
+        DoIexchangedContact = Player.getActorVar(rk_SG_BPDoIexchangedContact)
+            
+        If DoIexchangedContact == 0
+        
             Buffy_Pine.makePermanent()
             exchangeContact(Buffy_Pine)
-            
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+
         EndIf
         
         Buffy_Pine:attractiontoplayer => 50
@@ -154,7 +156,6 @@ OTHER: none
             
         Else
     
-            Buffy_Pine = generatePerson(rk_ModelF_Buffy_Pine)
             Buffy_Pine.show()
             Buffy_Pine.dress()
             Buffy_Pine.animate(socialize)
@@ -305,7 +306,7 @@ OTHER: none
         
                     Buffy_Pine.dress()
                 Endif
-                
+                Player.setActorVar(rk_SG_BPDoIexchangedContact, 1)
                 passTime(1, 2)
         
             Endif

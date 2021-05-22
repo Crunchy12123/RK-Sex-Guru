@@ -12,11 +12,11 @@ SceneStart()
     SexGuruGospels = Player.getActorVar(rk_SG_SexGuruGospels)
     Churchbrand = Player.getActorVar(rk_Churchbrand)
     StartChurchCommerce = Player.getActorVar(rk_StartChurchCommerce)
-    Guest1 = generatePersonTemporary()
-    Guest2 = generatePersonTemporary()
-    Guest3 = generatePersonTemporary()
-    Guest4 = generatePersonTemporary()
-    Guest5 = generatePersonTemporary()
+    Guest1 = generatePerson()
+    Guest2 = generatePerson()
+    Guest3 = generatePerson()
+    Guest4 = generatePerson()
+    Guest5 = generatePerson()
 
     If Player:interpersonal < 75
     

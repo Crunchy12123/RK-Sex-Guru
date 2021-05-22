@@ -4,7 +4,7 @@ WHEN: 0 - 24
 WHO: none
 OTHER: none
 
-    SceneStart()
+SceneStart()
 
     // Go to the Temple if any
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
@@ -49,6 +49,8 @@ OTHER: none
         
     EndIf
     
+    "I'm looking for a better place to preach in front of my disciples, I discovered a nice temple that might just fit my budget. However, I can try to negotiate on the price."
+    
     looking = wantNewTemple
     While looking
     
@@ -76,20 +78,106 @@ OTHER: none
             TnumSize = 2
         EndIf
         
-        Player::"There is a <Tsize> nearby temple available for <TpriceLocal> per month. Shall I rent it?"
+        Player(Happy)::"There is a <Tsize> nearby temple available. Let's take a visit?"
+        "After a while..."
+        passTime(0.5, 1.5)
+        
+        Player(Curious)::"I demand to see the owner!"
+        Landlord = generatePerson()
+        Landlord.dress()
+        Landlord.show(2)
+        Landlord(Excited):: "Hi, this temple is available for just <TpriceLocal> a month, including everything. You won't get a better deal anywhere else! What do you think? Are you going to go for it? I can prepare the lease contract right away."
+        LoweredPrice = false
+        
         0::"Yes rent it"
         1::"No look for another temple"
         99::"I don't want to rent an temple now"
-        
-        If 0
-            If sceneType = Player.getActorVar(rk_TempleEquipmentType)
+
+        ElseIf 0
+            
+            "Do I try to bargain?"
+            2:: "Use your knowledge to negotiate"
+            3:: "Use your charm to haggle"
+            4:: "Use your sex appeal"
+            99:: "No"
+            
+            If 2 && Random(0,100)*Difficulty < intelligence
+            
+                "I used my research about the market rate of rent in the surrounding area to show the landlord that I had alternatives."
+                Templeprice /= 1.1
+                RentConverted = Templeprice.convertToLocalCurrency(true)
+                Landlord(Sarcastic):: "Alright, alright. You're a smart cookie - you should become a landlord yourself someday. How about <RentConverted> a month? That's surely lower than the going rate around."
+                
+            
+            ElseIf 3 && Random(0,100)*Difficulty < interpersonal
+            
+                "I used all my smooth talking to charm the landlord into giving me a discount."
+                Templeprice /= 1.1
+                RentConverted = Templeprice.convertToLocalCurrency(true)
+                Landlord(Happy):: "Okay then, you seems like a nice enough person. I can give you the temple for just <RentConverted> a month, but you'd better not tell my other tenants about it."
+            
+            ElseIf 4 && Landlord.IsInterestedIn(Player) && Landlord:perversion + Landlord:attractiontoplayer > Random(0,100)*Difficulty
+            
+                "I flirted with the landlord while trying to look as sexy as possible. <Landlord.He_or_She> seemed receptive to my advances."
+                Templeprice /= 1.1
+                RentConverted = Templeprice.convertToLocalCurrency(true)
+                Landlord(Flirty):: "Okay, just for a good-looking guru like you, I can drop the rent to <RentConverted> a month. But that's the lowest I'm going to go today ..."
+
+                If Landlord.IsDominantSex(Player) && Landlord:perversion > Random(30, 100)
+                    Landlord(Flirty):: "... unless you want to use that sexy mouth of yours for something better than negotiating"
+                    0:: "No"
+                    1:: perversion > 20:: "Fuck <Landlord.him_or_her>"
+                
+                    If 0
+                        Player(Angry):: "I'm not doing that! Not in a million years."
+                        Landlord(Flirty):: "Oh well, I'm not forcing anything on you. It was you who flirted with me first. I simply got the wrong signal, don't mind me."
+                    Else
+                        Player(Flirty):: "You'd better give me one hell of a deal for this ..."
+                        Sex(Landlord, Player)
+                        Landlord.show(2)
+                        perversion += Random(0, 1.5)
+                        Templeprice /= 1.2
+                        RentConverted = Templeprice.convertToLocalCurrency(true)
+                        Landlord(Flirty):: "Well, now that we've got to know each other on a more ... personal level, you can have the temple for just <RentConverted>. Trust me, I never gave anyone such a good offer in all my years."
+                    Endif
+                Else
+                    0:: "Thank <Landlord.him_or_her>"
+                    1:: perversion > 30:: "Offer sex"
+                
+                    If 1
+                        Player:: "Surely you can change your mind and go even lower if I go down on you?"
+                        If TfGame() && Landlord.isMale()
+                            "When I was a man I used to hold the moral high ground and somewhat looked down on women who use their bodies to get advantages in life. Here I am, offering my body in exchange of rent discount. I'm such a hypocrite after all."
+                        Endif
+                        If Landlord:perversion > Random(20, 100)
+                            Landlord(Flirty):: "Oh? If that's on offer, then yes, perhaps I can change my mind indeed"
+                            Sex(Landlord, Player)
+                            Landlord.show(2)
+                            perversion += Random(0, 2)
+                            Templeprice /= 1.2
+                            RentConverted = Templeprice.convertToLocalCurrency(true)
+                            Landlord(Flirty):: "Well, now that we've got to know each other on a more ... personal level, you can have the temple for just <RentConverted>. Trust me, I never gave anyone such a good offer in all my years."
+                        Else
+                            Landlord(Angry):: "What? Who do you take me for? I'm running a serious business, not a brothel. I already told you it's the lowest I could go for the rent. Take it or leave it!"
+                        Endif
+                    Endif
+                Endif
+            Else
+                Landlord(Annoyed):: "I already told you this is the best deal I can give you."
+                "My negotiations failed miserably. All it did was annoying the landlord. I probably shouldn't try to haggle more, or <Landlord.he_or_she> will refuse to even rent me the temple."
+
+            Endif
+            
+            EndIf
+            
+            sceneType = Player.getActorVar(rk_TempleEquipmentType)
             If [sceneType == 4 && TnumSize <= 5] || [sceneType == 3 && TnumSize <= 2]
                 Player(Sad)::"Well I got too much equipment and homemade products to fit into this small temple. I need to find a larger one."
             Else
                 looking = false
                 
                 If TempleSize > 0   // moving
-                    money -= 6000
+                    money -= Templeprice
                 EndIf
                 
                 TempleSize = TnumSize
@@ -100,12 +188,13 @@ OTHER: none
                 Player.setActorVar(rk_PlayerTempleLocationSize, TnumSize)
                 Player.setActorVar(rk_PlayerTemplePrice, Templeprice)
             EndIf
-            
+        
         ElseIf 99
             looking = false
         EndIf
+        
     EndWhile
     
     followUp(rk_Manage_Your_Religion)
     
-    SceneEnd()
+SceneEnd()

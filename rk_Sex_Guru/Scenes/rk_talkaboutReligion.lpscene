@@ -22,6 +22,8 @@ SceneStart()
     "You begin to discuss with <Actor.name> about your religion and its benefits!"
     Player.modifyActorVar(rk_discipleattractiontoplayer, 0.25)
     Actor.modifyActorVar(rk_discipleattraction, 1)
+    Actor:attractiontoplayer -= Random(0, 5)
+    Actor:rapportwithplayer -= Random(0, 5)
     Player:mood += 1
     Player:perversion += 0.1
 
