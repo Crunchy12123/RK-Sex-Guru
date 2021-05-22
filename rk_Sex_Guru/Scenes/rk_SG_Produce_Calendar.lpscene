@@ -73,58 +73,60 @@ SceneStart()
         // Go to the Temple if any
         TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
         setBackground3D(Modules/vin_Base/World/newsagent___vin01.lpworld)
-    
-        ChechupErnyQuert = Erny_Quert.getActorVar(tag_SGDisciple)
+        Erny_Quert = generatePerson(rk_ModelM_Erny_Quert)
+        SGId = Erny_Quert.getID()
+        Erny_Quert.makeInterested(Player)
+        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+        Erny_Quert.setActorVar(tag_SGDisciple, 1)
+        Erny_Quert.modifyActorVar(rk_discipleAttraction, 5)
+        Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
+        Erny_Quert.hide()
+        CheckupErnyQuert = Erny_Quert.getActorVar(tag_SGDisciple)
+        DoIexchangedContact = Player.getActorVar(rk_SG_EQDoIexchangedContact)
 
-        If !Erny_Quert.isContactExchanged()
-        
-            SGId = Erny_Quert.getID()
-            Erny_Quert.makeInterested(Player)
-            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-            Erny_Quert.setActorVar(tag_SGDisciple, 1)
-            Erny_Quert.modifyActorVar(rk_discipleAttraction, 5)
-            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
-            Erny_Quert.setActorVar(rk_SG_DiscipleSalary, 0)
+        If DoIexchangedContact == 0
+
             Erny_Quert.makePermanent()
             exchangeContact(Erny_Quert)
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
     
         EndIf
 
-        Erny_Quert = generatePerson(rk_ModelM_Erny_Quert)
         Erny_Quert.strip()
         Erny_Quert.show()
         Erny_Quert.moveToPersonStand(Player, 50)
+        Erny_Quert.animate(socialize)
         Erny_Quert(Happy)::"Hi my master, happy to see you!"
         Erny_Quert:rapportwithplayer += Random(5, 10)
         Erny_Quert:perversion += 15
         Erny_Quert:arousal += 10
         
-        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
+        If TempleSize <= 1 && 5000 >= TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
+        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
 
-        ElseIf TempleSize == 3 && TotalGoodsPInStock < 19900
+        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 4 && TotalGoodsPInStock < 49900
+        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 5 && TotalGoodsPInStock < 99900
+        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 6 && TotalGoodsPInStock > 99901
+        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
@@ -236,7 +238,7 @@ SceneStart()
         Endif
                 
         passTime(1, 2)
-    
+        Player.getActorVar(rk_SG_EQDoIexchangedContact, 1)
         Erny_Quert.hide()
     
 SceneEnd()

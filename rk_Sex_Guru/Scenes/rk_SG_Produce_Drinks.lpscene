@@ -6,121 +6,124 @@ OTHER: none
 
 SceneStart()
 
-    SGPussyJuice  = Player.getActorVar(rk_SGPussyJuice)
-    SGSpermJuice  = Player.getActorVar(rk_SGSpermJuice)
-    stock_alcohol  = Player.getActorVar(stock_alcohol)
-    stock_juice  = Player.getActorVar(stock_juice)
-    stock_soda = Player.getActorVar(stock_soda)
-    
-    // Calendars InStock
-    SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
-    AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
-    ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
-    GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
-    RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
-    LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
-    GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
-    
-    TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
-    
-    //XXXmag InStock
-    SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
-    AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
-    ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
-    GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
-    RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
-    LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
-    GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
-    MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
-    
-    TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
-    
-    //Products InStock
-    Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
-    Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
-    Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
-    Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
-    Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
-    Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
-    Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
-    Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
-    
-    SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
-    
-    Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
-    Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
-    Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
-    SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
-    Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
-    
-    SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
-    
-    //VidX  InStock
-    SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
-    AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
-    ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
-    GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
-    RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
-    LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
-    GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
-    
-    TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
-    
-    TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
-    
-    TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
-    setBackground3D(Modules/vin_Base/World/beverages___vin01.lpworld)
-    
-    ChechupCSuale = Sen_Suale.getActorVar(tag_SGDisciple)
-
-    If !Sen_Suale.isContactExchanged()
-
+        SGPussyJuice  = Player.getActorVar(rk_SGPussyJuice)
+        SGSpermJuice  = Player.getActorVar(rk_SGSpermJuice)
+        stock_alcohol  = Player.getActorVar(stock_alcohol)
+        stock_juice  = Player.getActorVar(stock_juice)
+        stock_soda = Player.getActorVar(stock_soda)
+        
+        // Calendars InStock
+        SoloShootings_Calendars = Player.getActorVar(rk_SG_SoloShootings_Calendars_InStock)
+        AmateurShootings_Calendars = Player.getActorVar(rk_SG_AmateurShootings_Calendars_InStock)
+        ThreesomeShootings_Calendars = Player.getActorVar(rk_SG_ThreesomeShootings_Calendars_InStock)
+        GangBangShootings_Calendars = Player.getActorVar(rk_SG_GangBangShootings_Calendars_InStock)
+        RevGangBangShootings_Calendars = Player.getActorVar(rk_SG_RevGangBangShootings_Calendars_InStock)
+        LesbianShootings_Calendars = Player.getActorVar(rk_SG_LesbianShootings_Calendars_InStock)
+        GayShootings_Calendars = Player.getActorVar(rk_SG_GayShootings_Calendars_InStock)
+        
+        TotalCalendarsInStock = SoloShootings_Calendars + AmateurShootings_Calendars + ThreesomeShootings_Calendars + GangBangShootings_Calendars + RevGangBangShootings_Calendars + LesbianShootings_Calendars + GayShootings_Calendars
+        
+        //XXXmag InStock
+        SoloShootings_XXXmagazines = Player.getActorVar(rk_SG_SoloShootings_XXXmagazines_InStock)
+        AmateurShootings_XXXmagazines = Player.getActorVar(rk_SG_AmateurShootings_XXXmagazines_InStock)
+        ThreesomeShootings_XXXmagazines = Player.getActorVar(rk_SG_ThreesomeShootings_XXXmagazines_InStock)
+        GangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_GangBangShootings_XXXmagazines_InStock)
+        RevGangBangShootings_XXXmagazines = Player.getActorVar(rk_SG_RevGangBangShootings_XXXmagazines_InStock)
+        LesbianShootings_XXXmagazines = Player.getActorVar(rk_SG_LesbianShootings_XXXmagazines_InStock)
+        GayShootings_XXXmagazines = Player.getActorVar(rk_SG_GayShootings_XXXmagazines_InStock)
+        MixedShootings_XXXmagazines = Player.getActorVar(rk_SG_MixedShootings_XXXmagazines_InStock)
+        
+        TotalXXXmagInStock = SoloShootings_XXXmagazines + AmateurShootings_XXXmagazines + ThreesomeShootings_XXXmagazines + GangBangShootings_XXXmagazines + RevGangBangShootings_XXXmagazines + LesbianShootings_XXXmagazines + GayShootings_XXXmagazines + MixedShootings_XXXmagazines
+        
+        //Products InStock
+        Tstock_MilkShakeS = Player.getActorVar(Tstock_MilkShakeS)
+        Tstock_MilkShakeP = Player.getActorVar(Tstock_MilkShakeP)
+        Tstock_IcecreamS = Player.getActorVar(Tstock_IcecreamS)
+        Tstock_IcecreamP = Player.getActorVar(Tstock_IcecreamP)
+        Tstock_ApIcecream = Player.getActorVar(Tstock_ApIcecream)
+        Tstock_FrozenPiePC = Player.getActorVar(Tstock_FrozenPiePC)
+        Tstock_CreamCake = Player.getActorVar(Tstock_CreamCake)
+        Tstock_MilkShakeTOP = Player.modifyActorVar(Tstock_MilkShakeTOP)
+        
+        SpecialIceCreams = Tstock_MilkShakeS + Tstock_MilkShakeP + Tstock_IcecreamS + Tstock_IcecreamP + Tstock_ApIcecream + Tstock_FrozenPiePC + Tstock_CreamCake + Tstock_MilkShakeTOP
+        
+        Spermfilteredjuice = Player.getActorVar(rk_Spermfilteredjuice)
+        Pussyfilteredjuice = Player.getActorVar(rk_Pussyfilteredjuice)
+        Enersexenergydrinks = Player.getActorVar(rk_Enersexenergydrinks)
+        SexJuicecocktail = Player.getActorVar(rk_SexJuicecocktail)
+        Sexzombiecocktail = Player.getActorVar(rk_Sexzombiecocktail)
+        
+        SGjuiceStck = Spermfilteredjuice + Pussyfilteredjuice + Enersexenergydrinks + SexJuicecocktail + Sexzombiecocktail
+        
+        //VidX  InStock
+        SoloShootings_SGVidX = Player.getActorVar(rk_SG_SoloShootings_SGVidX_InStock)
+        AmateurShootings_SGVidX = Player.getActorVar(rk_SG_AmateurShootings_SGVidX_InStock)
+        ThreesomeShootings_SGVidX = Player.getActorVar(rk_SG_ThreesomeShootings_SGVidX_InStock)
+        GangBangShootings_SGVidX = Player.getActorVar(rk_SG_GangBangShootings_SGVidX_InStock)
+        RevGangBangShootings_SGVidX = Player.getActorVar(rk_SG_RevGangBangShootings_SGVidX_InStock)
+        LesbianShootings_SGVidX = Player.getActorVar(rk_SG_LesbianShootings_SGVidX_InStock)
+        GayShootings_SGVidX = Player.getActorVar(rk_SG_GayShootings_SGVidX_InStock)
+        
+        TotalofProduced_SGVidX = SoloShootings_SGVidX + AmateurShootings_SGVidX + ThreesomeShootings_SGVidX + GangBangShootings_SGVidX + RevGangBangShootings_SGVidX + LesbianShootings_SGVidX + GayShootings_SGVidX
+        
+        TotalGoodsPInStock = TotalCalendarsInStock + TotalXXXmagInStock + SpecialIceCreams + SGjuiceStck + TotalofProduced_SGVidX
+        
+        TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
+        setBackground3D(Modules/vin_Base/World/beverages___vin01.lpworld)
+        Sen_Suale = generatePerson(rk_ModelM_Sen_Suale)
         SGId = Sen_Suale.getID()
         Sen_Suale.makeInterested(Player)
         Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
         Sen_Suale.setActorVar(tag_SGDisciple, 1)
-        Sen_Suale.modifyActorVar(rk_discipleAttraction, 15)
-        Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+        Sen_Suale.modifyActorVar(rk_discipleAttraction, 5)
         Sen_Suale.setActorVar(rk_SG_DiscipleSalary, 0)
-        Sen_Suale.makePermanent()
-        exchangeContact(Sen_Suale)
+        Sen_Suale.hide()
+        CheckupCSuale = Sen_Suale.getActorVar(tag_SGDisciple)
         
-    EndIf
+        DoIexchangedContact = Player.getActorVar(rk_SG_SSDoIexchangedContact)
+        If DoIexchangedContact == 0
         
-    Sen_Suale = generatePerson(rk_ModelM_Sen_Suale)
-    Sen_Suale.strip()
-    Sen_Suale.show()
-    Sen_Suale(Happy)::"Hi master, really happy to see you!"
-    Sen_Suale:rapportwithplayer += Random(5, 10)
-    Sen_Suale:perversion += 15
-    Sen_Suale:arousal += 10
+            exchangeContact(Sen_Suale)
+            Sen_Suale.makePermanent()
+            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
+                
+        EndIf
 
-        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
+        Sen_Suale.strip()
+        Sen_Suale.show()
+        Sen_Suale.moveToPersonStand(Player, 50)
+        Sen_Suale.animate(socialize)
+        Sen_Suale(Happy)::"Hi master, really happy to see you!"
+        Sen_Suale:rapportwithplayer += Random(5, 10)
+        Sen_Suale:perversion += 15
+        Sen_Suale:arousal += 10
+
+        If TempleSize <= 1 && 5000 >= TotalGoodsPInStock
         
-            Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
-            Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
+            Sen_Suale(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
+            Sen_Suale(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
+        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
 
-        ElseIf TempleSize == 3 && TotalGoodsPInStock < 19900
+        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 4 && TotalGoodsPInStock < 49900
+        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 5 && TotalGoodsPInStock < 99900
+        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 6 && TotalGoodsPInStock > 99901
+        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
@@ -236,7 +239,7 @@ SceneStart()
         Endif
                 
         passTime(1, 2)
-
+        Player.setActorVar(rk_SG_SSDoIexchangedContact, 1)
         Sen_Suale.hide()
 
 SceneEnd()
