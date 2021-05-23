@@ -3,9 +3,9 @@
 <p>https://github.com/vinfamy/LifePlay</p>
 <br>
 <h3>rk_Sex_Guru :</h3>
-<p>Version: 0.0.1  --- <strong>For testing purpose - Still Buggy</strong></p>
+<p>Version: 1.0.0</p>
 <br>
-<p>- Contain 51 scenes</p>
+<p>- Contain 52 scenes</p>
 <p>- 46 new characters</p>
 <p>- 4 popup scenes</p>
 <br>

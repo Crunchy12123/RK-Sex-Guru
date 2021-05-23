@@ -3,5 +3,5 @@ MODULE_NAME: Sex Guru Module
 MODULE_AUTHOR: Raddeck
 MODULE_LINK: https://github.com/RaiderKnight/RK-Sex-Guru
 MODULE_DESCRIPTION: Start your own religious community!
-MODULE_REQUIREMENTS: 
-MODULE_VERSION: 0.1.2
+MODULE_REQUIREMENTS: rk_Home_Inventories
+MODULE_VERSION: 1.0.0
