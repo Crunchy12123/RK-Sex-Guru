@@ -22,7 +22,7 @@ SceneStart()
 
     "What type of event/party you want to organize?"
     0::"Organize a spaghetti dinner to raise funds"
-    1:: VariableWithhNoValue > 99:: "More parties will be added next versions"
+    1:: VariableWithNoValue > 99:: "More events/party will be added soon!"
     99::"Back to the game!"
     
     If 0

@@ -25,7 +25,7 @@ SceneStart()
             discipleAttractionG9 = Guru41.getActorVar(rk_discipleAttraction)
             discipleAttractionG10 = Guru51.getActorVar(rk_discipleAttraction)
             
-            If SetAcceptDay > 0.1 && SetAcceptDay <= 3
+            If SetAcceptDay > 0.1 && SetAcceptDay <= 2.9
             
                 SceneStart()
                     SRSAgent = generatePersonTemporary()

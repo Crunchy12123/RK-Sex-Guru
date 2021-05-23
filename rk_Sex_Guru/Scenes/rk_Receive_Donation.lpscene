@@ -20,7 +20,7 @@ SceneStart()
     Dons_money = Player.getActorVar(rk_TDons_money)
     Dons_Bread = Player.getActorVar(rk_TDons_Bread)
     Dons_Sushi = Player.getActorVar(rk_TDons_Sushi)
-
+    
     MarcyKlump = generatePerson(rk_ModelT_Marcy_Klump)
     MarcyKlump.hide()
     AmountDonsSG = Dons_HealthyCookie + Dons_BigBallHickey + Dons_money + Dons_Bread + Dons_Sushi
@@ -36,9 +36,9 @@ SceneStart()
     DondaysSinceBirth += 0.5
     DondaysSinceBirth = DondaysSinceBirth.round()
     DondaysSinceBirth -= 1
-        
+
     DonlastCheckDays = Player.getActorVar(rk_LastDonCheck)
-    DonLastCheck = DondaysSinceBirth - DonlastCheckDays
+    DonLastCheck =  DondaysSinceBirth - DonlastCheckDays
     
     // Initialize the reporting date
     If DonlastCheckDays == 0
@@ -58,198 +58,197 @@ SceneStart()
     
         // Remember the current date as last check time
         Player.setActorVar(rk_LastDonCheck, DondaysSinceBirth)
-    
-    EndIf
 
-    If HolyStatueType < 1
+        If HolyStatueType < 1
     
-        "You need a Holy Statue and a sex juice collector before receiving any donations!"
+            "You need a Holy Statue and a sex juice collector before receiving any donations!"
         
-    ElseIf JuiceCollectorType < 1
+        ElseIf JuiceCollectorType < 1
      
-        "You need a sex juice collector before receiving any donations!"
-
-    Else
-    
-        //bonus based on JuiceCollectorType - from people of nowhere...
-        If JuiceCollectorType == 1
-            JDonationBonus = random(0, 50)
-            
-        ElseIf JuiceCollectorType == 2
-            JDonationBonus = random(0, 250)
-            
-        ElseIf JuiceCollectorType == 3
-            JDonationBonus = random(0, 500)
-            
-        ElseIf JuiceCollectorType == 4
-            JDonationBonus = random(0, 2500)
-        EndIf
-        
-        LocPriceJDonationBonus = JDonationBonus.convertToLocalCurrency()
-        
-        Player(Curious)::"Let's see what we received as a donation this week!"
-        
-        SGId = MarcyKlump.getID()
-        Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
-        MarcyKlump.setActorVar(tag_SGDisciple, 1)
-        MarcyKlump.modifyActorVar(rk_discipleAttraction, 5)
-        MarcyKlump.makeInterested(Player)
-        DoIexchangedContact = Player.getActorVar(rk_SG_MKDoIexchangedContact)
-            
-        If DoIexchangedContact == 0
-        
-            MarcyKlump.makePermanent()
-            exchangeContact(MarcyKlump)
-            Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
-            
-        EndIf
-        
-        MarcyKlump.strip()
-        MarcyKlump.show()
-        MarcyKlump(Happy)::"Yes my master, let's check together!"
-        MarcyKlump:rapportwithplayer += Random(5, 10)
-        MarcyKlump:perversion += 15
-        MarcyKlump:arousal += 10
-        
-        DonationChance = random(0, 45)
-        
-        If DonationChance == 3
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            Player(Happy)::"We received 2 bottles of sperm juice and <LocPriceJDonationBonus> from public donations, this week!"
-            Player.modifyActorVar(rk_SGSpermJuice, 2)
-            Player.modifyActorVar(rk_SGSpermJuiceDons, 2)
-            money += JDonationBonus
-        
-        ElseIf DonationChance == 7
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            Player(Happy)::"We received 2 bottles of pussy juice and <LocPriceJDonationBonus> from public donations, this week!"
-            Player.modifyActorVar(rk_SGPussyJuice, 2)
-            Player.modifyActorVar(rk_SGPussyJuiceDons, 2)
-            money += JDonationBonus
-        
-        ElseIf DonationChance == 11
-        
-            MoneyDonationChance = random(10, 500)
-            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
-            
-            Player(Happy)::"We received <MoneyDonationChanceLoc> and <LocPriceJDonationBonus> from public donations.!"
-            TmountCash = JDonationBonus + MoneyDonationChance
-            money += TmountCash
-            Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
-        
-        ElseIf DonationChance == 15
-        
-            Player(Happy)::"We received <LocPriceJDonationBonus> from public donations, 1 bottle of sperm juice"
-            Player.modifyActorVar(rk_SGSpermJuice, 1)
-            Player.modifyActorVar(rk_SGSpermJuiceDons, 1)
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 0.5)
-            
-            Player(Happy)::"And also 1 bottle of pussy juice this week!"
-            Player.modifyActorVar(rk_SGPussyJuice, 1)
-            Player.modifyActorVar(rk_SGPussyJuiceDons, 1)
-            money += JDonationBonus
-            
-        ElseIf DonationChance == 19
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 2.5)
-            Player(Happy)::"We received <LocPriceJDonationBonus> from public donations, 5 bottles of sperm juice"
-            Player.modifyActorVar(rk_SGSpermJuice, 5)
-            Player.modifyActorVar(rk_SGSpermJuiceDons, 5)
-            Player(Happy)::"And also 5 bottles of pussy juice this week!"
-            Player.modifyActorVar(rk_SGPussyJuice, 5)
-            Player.modifyActorVar(rk_SGPussyJuiceDons, 5)
-            money += JDonationBonus
-            
-        ElseIf DonationChance == 23
-        
-            MoneyDonationChance = random(10, 500)
-            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 3)
-            Player(Happy)::"We received <MoneyDonationChanceLoc> and <LocPriceJDonationBonus> from public donations."
-            TmountCash = JDonationBonus + MoneyDonationChance
-            money += TmountCash
-            Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
-            Player(Happy)::"We received also got, 1 bottle of sperm juice"
-            Player.modifyActorVar(rk_SGSpermJuice, 1)
-            Player.modifyActorVar(rk_SGSpermJuiceDons, 1)
-            
-            Player(Happy)::"And 1 bottle of pussy juice this week!"
-            Player.modifyActorVar(rk_SGPussyJuice, 1)
-            Player.modifyActorVar(rk_SGPussyJuiceDons, 1)
-            
-        ElseIf DonationChance == 27
-        
-            MoneyDonationChance = random(10, 1500)
-            MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 2)
-            Player(Happy)::"We received <MoneyDonationChanceLoc> from our donators and <LocPriceJDonationBonus> from public donations."
-            TmountCash = JDonationBonus + MoneyDonationChance
-            money += TmountCash
-            Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
-            
-        ElseIf DonationChance == 31
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            "We received 10 Healthy Cookies and <LocPriceJDonationBonus> from public donations."
-            Player.modifyActorVar(Tstock_HealthyCookie, 10)
-            Player.modifyActorVar(rk_TDons_HealthyCookie, 10)
-            money += JDonationBonus
-        
-        ElseIf DonationChance == 35
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            "We received 10 Nutricious breads and <LocPriceJDonationBonus> from public donations."
-            Player.modifyActorVar(Tstock_Bread, 10)
-            Player.modifyActorVar(rk_TDons_Bread, 10)
-            money += JDonationBonus
-
-        ElseIf DonationChance == 39
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            "We received 10 Big ball hickeys and <LocPriceJDonationBonus> from public donations."
-            Player.modifyActorVar(stock_BigBallHickey, 10)
-            Player.modifyActorVar(rk_TDons_BigBallHickey, 10)
-            money += JDonationBonus
-
-        ElseIf DonationChance == 43
-        
-            Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
-            "We received 10 Sushi dishes and <LocPriceJDonationBonus> from public donations."
-            Player.modifyActorVar(Tstock_Sushi, 10)
-            Player.modifyActorVar(rk_TDons_Sushi, 10)
-            money += JDonationBonus
+            "You need a sex juice collector before receiving any donations!"
 
         Else
+    
+            //bonus based on JuiceCollectorType - from people of nowhere...
+            If JuiceCollectorType == 1
+                JDonationBonus = random(0, 50)
+            
+            ElseIf JuiceCollectorType == 2
+                JDonationBonus = random(0, 250)
+            
+            ElseIf JuiceCollectorType == 3
+                JDonationBonus = random(0, 500)
+            
+            ElseIf JuiceCollectorType == 4
+                JDonationBonus = random(0, 2500)
+            EndIf
         
-            Player(sad)::"We've received nothing this week!"
-            
-        EndIf
+            LocPriceJDonationBonus = JDonationBonus.convertToLocalCurrency()
         
-        "What I want to do next?"
-        0::"Give some love to <MarcyKlump.name> <MarcyKlump.name_last>"
-        99::"Nothing else!"
+            Player(Curious)::"Let's see what we received as a donation this week!"
+        
+            SGId = MarcyKlump.getID()
+            Player.setActorVar(rk_SG_EmployedDiscipleId, SGId)
+            MarcyKlump.setActorVar(tag_SGDisciple, 1)
+            MarcyKlump.modifyActorVar(rk_discipleAttraction, 5)
+            MarcyKlump.makeInterested(Player)
+            DoIexchangedContact = Player.getActorVar(rk_SG_MKDoIexchangedContact)
             
-        If 0
+            If DoIexchangedContact == 0
+        
+                MarcyKlump.makePermanent()
+                exchangeContact(MarcyKlump)
+                Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
             
-            Player.strip()
+            EndIf
+        
             MarcyKlump.strip()
-                            
-            Sex(Player, MarcyKlump)
-                            
-            MarcyKlump:perversion += 1
-            Player:perversion += 1
-                            
-            Player:arousal -=40
-            MarcyKlump:arousal -= 40
-                            
-            passTime(0.5, 1.5)
+            MarcyKlump.show()
+            MarcyKlump(Happy)::"Yes my master, let's check together!"
+            MarcyKlump:rapportwithplayer += Random(5, 10)
+            MarcyKlump:perversion += 5
+            MarcyKlump:arousal += 1
+        
+            DonationChance = random(2, 44)
+            DonationChance = DonationChance.round()
+        
+            If DonationChance == 3
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                Player(Happy)::"We received 2 bottles of sperm juice and <LocPriceJDonationBonus> from public donations, this week!"
+                Player.modifyActorVar(rk_SGSpermJuice, 2)
+                Player.modifyActorVar(rk_SGSpermJuiceDons, 2)
+                money += JDonationBonus
+        
+            ElseIf DonationChance == 7
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                Player(Happy)::"We received 2 bottles of pussy juice and <LocPriceJDonationBonus> from public donations, this week!"
+                Player.modifyActorVar(rk_SGPussyJuice, 2)
+                Player.modifyActorVar(rk_SGPussyJuiceDons, 2)
+                money += JDonationBonus
+        
+            ElseIf DonationChance == 11
+        
+                MoneyDonationChance = random(10, 500)
+                MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
             
+                Player(Happy)::"We received <MoneyDonationChanceLoc> and <LocPriceJDonationBonus> from public donations.!"
+                TmountCash = JDonationBonus + MoneyDonationChance
+                money += TmountCash
+                Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
+        
+            ElseIf DonationChance == 15
+        
+                Player(Happy)::"We received <LocPriceJDonationBonus> from public donations, 1 bottle of sperm juice"
+                Player.modifyActorVar(rk_SGSpermJuice, 1)
+                Player.modifyActorVar(rk_SGSpermJuiceDons, 1)
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 0.5)
+            
+                Player(Happy)::"And also 1 bottle of pussy juice this week!"
+                Player.modifyActorVar(rk_SGPussyJuice, 1)
+                Player.modifyActorVar(rk_SGPussyJuiceDons, 1)
+                money += JDonationBonus
+            
+            ElseIf DonationChance == 19
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 2.5)
+                Player(Happy)::"We received <LocPriceJDonationBonus> from public donations, 5 bottles of sperm juice"
+                Player.modifyActorVar(rk_SGSpermJuice, 5)
+                Player.modifyActorVar(rk_SGSpermJuiceDons, 5)
+                Player(Happy)::"And also 5 bottles of pussy juice this week!"
+                Player.modifyActorVar(rk_SGPussyJuice, 5)
+                Player.modifyActorVar(rk_SGPussyJuiceDons, 5)
+                money += JDonationBonus
+            
+            ElseIf DonationChance == 23
+        
+                MoneyDonationChance = random(10, 500)
+                MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 3)
+                Player(Happy)::"We received <MoneyDonationChanceLoc> and <LocPriceJDonationBonus> from public donations."
+                TmountCash = JDonationBonus + MoneyDonationChance
+                money += TmountCash
+                Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
+                Player(Happy)::"We received also got, 1 bottle of sperm juice"
+                Player.modifyActorVar(rk_SGSpermJuice, 1)
+                Player.modifyActorVar(rk_SGSpermJuiceDons, 1)
+            
+                Player(Happy)::"And 1 bottle of pussy juice this week!"
+                Player.modifyActorVar(rk_SGPussyJuice, 1)
+                Player.modifyActorVar(rk_SGPussyJuiceDons, 1)
+            
+            ElseIf DonationChance == 27
+        
+                MoneyDonationChance = random(10, 1500)
+                MoneyDonationChanceLoc = MoneyDonationChance.convertToLocalCurrency
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 2)
+                Player(Happy)::"We received <MoneyDonationChanceLoc> from our donators and <LocPriceJDonationBonus> from public donations."
+                TmountCash = JDonationBonus + MoneyDonationChance
+                money += TmountCash
+                Player.modifyActorVar(rk_TDons_money, MoneyDonationChance)
+            
+            ElseIf DonationChance == 31
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                "We received 10 Healthy Cookies and <LocPriceJDonationBonus> from public donations."
+                Player.modifyActorVar(Tstock_HealthyCookie, 10)
+                Player.modifyActorVar(rk_TDons_HealthyCookie, 10)
+                money += JDonationBonus
+        
+            ElseIf DonationChance == 35
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                "We received 10 Nutricious breads and <LocPriceJDonationBonus> from public donations."
+                Player.modifyActorVar(Tstock_Bread, 10)
+                Player.modifyActorVar(rk_TDons_Bread, 10)
+                money += JDonationBonus
+
+            ElseIf DonationChance == 39
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                "We received 10 Big ball hickeys and <LocPriceJDonationBonus> from public donations."
+                Player.modifyActorVar(stock_BigBallHickey, 10)
+                Player.modifyActorVar(rk_TDons_BigBallHickey, 10)
+                money += JDonationBonus
+
+            ElseIf DonationChance == 43
+        
+                Player.modifyActorVar(rk_SG_SexGuruReputation, 1)
+                "We received 10 Sushi dishes and <LocPriceJDonationBonus> from public donations."
+                Player.modifyActorVar(Tstock_Sushi, 10)
+                Player.modifyActorVar(rk_TDons_Sushi, 10)
+                money += JDonationBonus
+
+            Else
+        
+                MarcyKlump(sad)::"We've received nothing today!"
+            
+            EndIf
+        
+            "What I want to do next?"
+            0::"Give some love to <MarcyKlump.name> <MarcyKlump.name_last>"
+            99::"Nothing else!"
+            
+            If 0
+            
+                Player.strip()
+                MarcyKlump.strip()
+                            
+                Sex(Player, MarcyKlump)
+                            
+                MarcyKlump:perversion += 1
+                Player:perversion += 1
+                            
+                Player:arousal -=40
+                MarcyKlump:arousal -= 40
+                            
+                passTime(0.5, 1.5)
+            
+            EndIf
+    
         EndIf
     
+        Player.setActorVar(rk_SG_MKDoIexchangedContact, 1)
     EndIf
-    
-    Player.getActorVar(rk_SG_MKDoIexchangedContact, 1)
-
 SceneEnd()

@@ -237,6 +237,19 @@ SceneStart()
                 SGPussyJuice = Player.getActorVar(rk_SGPussyJuice)
                 SGSpermJuice = Player.getActorVar(rk_SGSpermJuice)
                 AmountDons = SGPussyJuice + SGSpermJuice
+                If TempleSize == 6
+                    Tsize = "You own a very large temple"
+                ElseIf TempleSize == 5
+                    Tsize = "You own a large temple"
+                ElseIf TempleSize == 4
+                    Tsize = "You own a spacious temple"
+                ElseIf TempleSize == 3
+                    Tsize = "You own a adequate temple"
+                ElseIf TempleSize == 2
+                    Tsize = "You own a small temple"
+                Else
+                    Tsize = "You don't own a temple"
+                EndIf
         
                 // Stats
                 0::"<YouAre>"
@@ -245,6 +258,7 @@ SceneStart()
                 0::"Your reputation level is <SexGuruReputation>"
                 0::"Your disciple attraction level is <discipleattractiontoplayer>"
                 0::"Your illumination level is <SGIllumination>"
+                0::"<Tsize>"
                 0::"<webYes>"
                 0::"You have posted <GPostCount> gospel(s) on your website"
                 0::"You actually own <SexGuruGospels> gospel(s)"

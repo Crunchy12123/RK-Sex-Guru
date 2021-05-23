@@ -6,6 +6,11 @@ OTHER: none
 
 SceneStart()
     
+    If CurrentCompanion.isValid()
+        Player::"<CurrentCompanion.Name>, I need to take care of my community. See you later!"
+        endDate()
+    EndIf
+
     // Find a location - more locations will come
     TempleSize = Player.getActorVar(rk_PlayerTempleLocationSize)
 

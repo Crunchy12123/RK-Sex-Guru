@@ -238,7 +238,7 @@ SceneStart()
         Endif
                 
         passTime(1, 2)
-        Player.getActorVar(rk_SG_EQDoIexchangedContact, 1)
+        Player.setActorVar(rk_SG_EQDoIexchangedContact, 1)
         Erny_Quert.hide()
     
 SceneEnd()

@@ -4,7 +4,7 @@ WHEN: 0-24
 WHO: Actor = getRelative(); If Actor.livesWithPlayer() && Actor:perversion < 30 && Random(50, 200) < Actor:intelligence
 OTHER: isAtHome() && Random(0, 200) < intelligence
 
-    SceneStart()
+SceneStart()
 
     // rkOpenedSexGuru > 0
     
@@ -77,5 +77,5 @@ OTHER: isAtHome() && Random(0, 200) < intelligence
         Endif
     Endif
     
-    SceneEnd()
-    timeout(500, rk_SG_religious_discussion_family)
+SceneEnd()
+timeout(500, rk_SG_religious_discussion_family)

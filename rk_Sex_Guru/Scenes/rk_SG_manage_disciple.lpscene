@@ -20,7 +20,7 @@ OTHER: none
     EndIf
     Player.show()
     
-    "Please select the disciple that you want to manage."
+    "Please select the disciple that you want to manage. Search with the tag 'SGD'."
     selectNPC()
     MainActor = getSelectedNPC()
     

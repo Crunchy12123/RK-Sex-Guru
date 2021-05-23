@@ -199,7 +199,7 @@ SceneStart()
                         wantMale = true
                     EndIf
                     
-                    Model = getPerson(rk_SG_IsStockChurchModel)
+                    Model = getPerson(rk_SG_IsStockAgencyModel)
                     lookForModel = true
                     ChurchAgencyBoss = 0
                     While Model.isValid() && lookForModel
@@ -285,7 +285,7 @@ SceneStart()
                             If Model.isValid()
                                 Model.delete()
                             EndIf
-                            Model = getPerson(rk_SG_IsStockChurchModel)
+                            Model = getPerson(rk_SG_IsStockAgencyModel)
                         EndIf
                     EndWhile
                     
@@ -511,7 +511,7 @@ SceneStart()
                     pos = numActors + 1
                     actorToAdd.show(pos)
                     
-                    isChurchModel = actorToAdd.getActorVar(rk_SG_IsChurchModel)
+                    isChurchModel = actorToAdd.getActorVar(rk_SG_IsAgencyModel)
                     price = 0
                     
                     If actorToAdd.isProstitute()    // prostitutes get a lower salary
@@ -1267,7 +1267,7 @@ SceneStart()
                 
                 shootCostsLocal = shootCosts.convertToLocalCurrency(true)
                 Player.show()
-                Player(Happy)::"This shooting set me back <shootCostsLocal>."
+                Player(Happy)::"This shooting cost me <shootCostsLocal>."
                 
                 money -= shootCosts
                 
@@ -1290,13 +1290,17 @@ SceneStart()
                     idx += 1
                     
                     If idx > 5
+                    
                         goOn = false
+                        
                     ElseIf genereatedActor && actorToCheck.isValid()
+                    
                         Random
                             Player(Serene)::"That was a nice shooting with <actorToCheck.Name>. Do I make <actorToCheck.o> my disciple?"
                             Player(Excited)::"<actorToCheck.Name> did quite a good job. Do I make <actorToCheck.o> my disciple?"
                             Player(Excited)::"<actorToCheck.Name> did a good performance. Do I make <actorToCheck.o> my disciple?"
                         EndRandom
+                        
                         0:: "Yes, make <actorToCheck.o> my disciple"
                         1:: "No. Not this time."
                         
@@ -1311,7 +1315,9 @@ SceneStart()
                             actorToCheck.setActorVar(tag_SGDisciple, 1)
                             actorToCheck.modifyActorVar(rk_discipleAttraction, 12)
                         EndIf
+                        
                     EndIf
+                    
                 EndWhile
                 
             EndIf
@@ -1320,5 +1326,5 @@ SceneStart()
     Else
         "Not sure what you did but somehow we lost the MainActor for this scene! Please report that bug in RaiderKnight Discord!"
     EndIf
-    
+
 SceneEnd()

@@ -60,6 +60,7 @@ SceneStart()
         Player(Excited)::"I need to find a temple and buy some equipment for it..."
         Player.setActorVar(rk_SG_rkAreASexGuru, 1)
         ElfyMana.hide()
+        perks += 1
     
     Else
     

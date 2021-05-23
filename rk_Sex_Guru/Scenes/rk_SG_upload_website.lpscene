@@ -36,8 +36,8 @@ OTHER: none
             
             "What I should do?"
             0:: SexGuruGospels > 0 :: "Post a gospel"
-            1:: SGpendingPhotoCount > 0 :: "Post picture set(s)"
-            2:: SGpendingVideoCount > 0 :: "Post video(s)"
+            1:: "Post picture set(s)"
+            2:: "Post video(s)"
             99::"Do nothing!"
            
             If 0

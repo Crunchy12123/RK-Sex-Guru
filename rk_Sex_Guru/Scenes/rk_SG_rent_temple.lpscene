@@ -174,19 +174,22 @@ OTHER: none
                 If [sceneType == 4 && TnumSize <= 5] || [sceneType == 3 && TnumSize <= 2]
                     Player(Sad)::"Well I got too much equipment and homemade products to fit into this small temple. I need to find a larger one."
                 Else
-                    looking = 1
+                    SceneStart()
+                        looking = 1
                 
-                    If TempleSize > 0   // moving
-                        money -= Templeprice
-                    EndIf
+                        If TempleSize > 0   // moving
+                            money -= Templeprice
+                        EndIf
                 
-                    TempleSize = TnumSize
+                        TempleSize = TnumSize
                 
-                    Player(Happy)::"I signed the contract and now can start preach inside a building."
+                        Player(Happy)::"I signed the contract and now can start preach inside a building."
 
-                    // Persist the temple settings
-                    Player.setActorVar(rk_PlayerTempleLocationSize, TnumSize)
-                    Player.setActorVar(rk_PlayerTemplePrice, Templeprice)
+                        // Persist the temple settings
+                        Player.setActorVar(rk_PlayerTempleLocationSize, TnumSize)
+                        Player.setActorVar(rk_PlayerTemplePrice, Templeprice)
+                    SceneEnd()
+                    
                 EndIf
         
             ElseIf 99
