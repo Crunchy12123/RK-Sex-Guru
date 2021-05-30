@@ -33,13 +33,13 @@ OTHER: rkOpenedSexGuru > 0
             Else
                 "I tried my best to show off my knowledge of religious texts to engage in a sophisticated discussion with <Actor.name> and to convince <Actor.him_or_her> to join my community."
                 Player:interpersonal += 1
-                RandomdiscipleAttraction = Random(10, 100)
-                Actor.modifyActorVar(rk_discipleAttraction, RandomdiscipleAttraction)
+                morediscipleattraction = Random(10, 100)
+                Actor.modifyActorVar(rk_discipleAttraction, morediscipleattraction)
                 If StartChurchCommerce > 0
                     Player.modifyActorVar(rk_Churchbrand, 0.15)
                 EndIf
                 
-                If Player:intelligence > Random(0, 100) && RandomdiscipleAttraction > 50 && Actor:perversion > 50
+                If Player:intelligence > Random(0, 100) && morediscipleattraction > 50 && Actor:perversion > 50
 
                     Actor(Happy):: "It's rare nowadays to meet someone with the same spiritual approach to life. Let's exchange numbers and can I join your community."
                     0:: "Yes"
