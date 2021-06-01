@@ -606,10 +606,9 @@ SceneStart()
             Player.show()
             "You need at least 75 of interpersonal skills to be a sex guru."
             Player(Sad)::"Going back home then ..."
-            moveTo(home)
-
             "After few minutes,..."
             passTime(0.25, 1)
+            moveTo(home)
             stayInMenu = false
 
         EndIf

@@ -2,12 +2,10 @@ WHAT: all, -sleep, -nap
 WHERE: home
 WHEN: 0-24
 WHO: Actor = getRelative(); If Actor.livesWithPlayer() && Actor:perversion < 30 && Random(50, 200) < Actor:intelligence
-OTHER: isAtHome() && Random(0, 200) < intelligence
+OTHER: isAtHome() && rkOpenedSexGuru > 0 && Random(0, 200) < intelligence
 
 SceneStart()
 
-    // rkOpenedSexGuru > 0
-    
     discipleattraction = Actor.getActorVar(rk_discipleattraction)
     Actor.dress()
     Actor.show(2)
@@ -26,11 +24,16 @@ SceneStart()
     Else
         "I tried my best to show off my knowledge of religious texts to engage in a sophisticated discussion with <Actor.name> and to convince <Actor.him_or_her> to join my community."
         Player:interpersonal += 1
+        
+        morediscipleattraction = Random(10, 100)
+
+        Actor.modifyActorVar(rk_discipleAttraction, morediscipleattraction)
+            
         If StartChurchCommerce > 0
             Player.modifyActorVar(rk_Churchbrand, 0.15)
         EndIf
         
-        If Player:intelligence > Random(0, 100) && Actor:discipleattraction > 50 && Actor:perversion > 50
+        If Player:intelligence > Random(0, 100) && discipleattraction > 50 && Actor:perversion > 50
             
             Actor(Happy):: "It's rare nowadays to have someone in the family with the same spiritual approach to life. Can I join your community."
             0:: "Yes"
@@ -46,6 +49,7 @@ SceneStart()
                 Actor:rapportwithplayer += Random(5, 10)
                 Actor.modifyActorVar(rk_discipleAttraction, 5)
                 Actor.makeInterested(Player)
+                Actor.makePermanent()
                 
                 "<Actor.name> is now part of your sex community!"
                 Player.modifyActorVar(rk_SG_SexGuruDisciple, 1)
