@@ -2,7 +2,7 @@ WHAT: all, -go_to_the_bathroom
 WHERE: nightclub
 WHEN: 0 - 24
 WHO: none
-OTHER: Random(0, 800) < attractiveness
+OTHER: Random(0, 800) < attractiveness && isModEnabled(rk_Sex_Guru)
 
     SceneStart()
     

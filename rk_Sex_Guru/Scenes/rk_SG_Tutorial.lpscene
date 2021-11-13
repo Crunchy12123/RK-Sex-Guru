@@ -192,10 +192,10 @@ SceneStart()
 
             If TempAcceptance > 0
 
-                Actor.makeInterestedIn(Player)
-                Actor.makeInterestedIn(NunBertha)
-                NunBertha.makeInterestedIn(Player)
-                NunBertha.makeInterestedIn(Actor)
+                Actor.makeInterested(Player)
+                Actor.makeInterested(NunBertha)
+                NunBertha.makeInterested(Player)
+                NunBertha.makeInterested(Actor)
                 Actor.show()
                 Actor.strip()
                 Player.strip()
@@ -273,10 +273,10 @@ SceneStart()
 
             If TempAcceptance > 0
 
-                Actor.makeInterestedIn(Player)
-                Actor.makeInterestedIn(NunBertha)
-                NunBertha.makeInterestedIn(Player)
-                NunBertha.makeInterestedIn(Actor)
+                Actor.makeInterested(Player)
+                Actor.makeInterested(NunBertha)
+                NunBertha.makeInterested(Player)
+                NunBertha.makeInterested(Actor)
                 Actor.show(4)
                 Actor.strip()
                 Player.strip()
