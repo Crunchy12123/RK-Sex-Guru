@@ -100,32 +100,32 @@ SceneStart()
         Mel_Naina:perversion += 15
         Mel_Naina:arousal += 10
 
-        If TempleSize == 0 && 5000 >= TotalGoodsPInStock
+        If TempleSize == 0 && TotalGoodsPInStock >= 5000
         
             Mel_Naina(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
 
-        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock
+        ElseIf TempleSize == 3 && TotalGoodsPInStock >= 19900
         
             Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
             
-        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
+        ElseIf TempleSize == 4 && TotalGoodsPInStock >= 49900
         
             Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
             
-        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
+        ElseIf TempleSize == 5 && TotalGoodsPInStock >= 99900
         
             Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."
             
-        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
+        ElseIf TempleSize == 6 && TotalGoodsPInStock > 99901
         
             Mel_Naina(Sad)::"We cannot produce more XXX videos, our temple stockroom is overloading..."
             Mel_Naina(Serene)::"To get more spaces, rent a bigger temple or try to sell our XXX videos..."

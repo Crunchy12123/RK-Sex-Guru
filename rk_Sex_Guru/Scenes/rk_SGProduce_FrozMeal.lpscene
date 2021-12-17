@@ -96,32 +96,32 @@ SceneStart()
         Masha_Hugg:perversion += 15
         Masha_Hugg:arousal += 10
 
-        If TempleSize <= 1 && 5000 >= TotalGoodsPInStock
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
             Masha_Hugg(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
 
-        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock 
+        ElseIf TempleSize == 3 && TotalGoodsPInStock >= 19900
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
             
-        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
+        ElseIf TempleSize == 4 && TotalGoodsPInStock >= 49900
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
             
-        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
+        ElseIf TempleSize == 5 && TotalGoodsPInStock >= 99900
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."
             
-        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
+        ElseIf TempleSize == 6 && TotalGoodsPInStock >= 99901
         
             Masha_Hugg(Sad)::"We cannot produce more frozen desserts, our temple stockroom is overloading..."
             Masha_Hugg(Serene)::"To get more spaces, rent a bigger temple or try to sell our frozen desserts..."

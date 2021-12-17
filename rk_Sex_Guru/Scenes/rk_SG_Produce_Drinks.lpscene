@@ -98,32 +98,32 @@ SceneStart()
         Sen_Suale:perversion += 15
         Sen_Suale:arousal += 10
 
-        If TempleSize <= 1 && 5000 >= TotalGoodsPInStock
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
             Sen_Suale(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
 
-        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock
+        ElseIf TempleSize == 3 && TotalGoodsPInStock >= 19900
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
+        ElseIf TempleSize == 4 && TotalGoodsPInStock >= 49900
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
+        ElseIf TempleSize == 5 && TotalGoodsPInStock >= 99900
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."
             
-        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
+        ElseIf TempleSize == 6 && TotalGoodsPInStock >= 99901
         
             Sen_Suale(Sad)::"We cannot produce more drinks, our temple stockroom is overloading..."
             Sen_Suale(Serene)::"To get more spaces, rent a bigger temple or try to sell our drinks..."

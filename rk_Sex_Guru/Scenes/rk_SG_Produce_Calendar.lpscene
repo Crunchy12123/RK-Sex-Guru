@@ -101,32 +101,32 @@ SceneStart()
         Erny_Quert:perversion += 15
         Erny_Quert:arousal += 10
         
-        If TempleSize <= 1 && 5000 >= TotalGoodsPInStock
+        If TempleSize <= 1 && TotalGoodsPInStock >= 5000
         
             Erny_Quert(Sad)::"We cannot produce more calendars, your home stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a temple or try to sell few products..."
         
-        ElseIf TempleSize == 2 && 9900 >= TotalGoodsPInStock
+        ElseIf TempleSize == 2 && TotalGoodsPInStock >= 9900
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
 
-        ElseIf TempleSize == 3 && 19900 < TotalGoodsPInStock
+        ElseIf TempleSize == 3 && TotalGoodsPInStock >= 19900
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 4 && 49900 < TotalGoodsPInStock
+        ElseIf TempleSize == 4 && TotalGoodsPInStock >= 49900
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 5 && 99900 < TotalGoodsPInStock
+        ElseIf TempleSize == 5 && TotalGoodsPInStock >= 99900
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
             
-        ElseIf TempleSize == 6 && 99901 > TotalGoodsPInStock
+        ElseIf TempleSize == 6 && TotalGoodsPInStock >= 99901
         
             Erny_Quert(Sad)::"We cannot produce more calendars, our temple stockroom is overloading..."
             Erny_Quert(Serene)::"To get more spaces, rent a bigger temple or try to sell our calendars..."
